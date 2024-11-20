@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7844666532499952}
   - component: {fileID: 9091463944279118054}
   - component: {fileID: 4158806001138468945}
+  - component: {fileID: -4136428519880525514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -101,9 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hasTheBall: 0
-  _speed: 750
+  _speed: 500
   _jumpForce: 15
+  _dashSpeed: 15
+  _dashDuration: 0.2
+  _dashCooldown: 0.4
   _rayLength: 0.8
   _groundLayer:
     serializedVersion: 2
@@ -111,7 +114,7 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  _ballSpeed: 0
+  _ballSpeed: 10
 --- !u!114 &231906474129314894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,3 +271,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e3d91313c54c6ba3a5e383b88e389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &-4136428519880525514
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243948108377192109}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
