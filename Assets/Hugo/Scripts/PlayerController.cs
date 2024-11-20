@@ -7,7 +7,7 @@ namespace Hugo.Scripts
         private Rigidbody2D _rb2d;
         private SpriteRenderer _sr;
         
-        //GameObject
+        // GameObject
         private GameObject _ball;
         
         // States
@@ -20,6 +20,7 @@ namespace Hugo.Scripts
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
+        private float _isEastButtonPressed;
         private float _isSouthButtonPressed;
         
         // Player Settings
@@ -28,6 +29,8 @@ namespace Hugo.Scripts
         private float _speed;
         [SerializeField]
         private float _jumpForce;
+        [SerializeField]
+        private float _jumpingSpeed;
         
         // Dash Settings
         [Header("Dash Settings")]
@@ -89,7 +92,7 @@ namespace Hugo.Scripts
             }
         
             // Déclencehment du dash
-            if (Mathf.Approximately(_isWestButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false)
+            if (Mathf.Approximately(_isEastButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false && _isGrounded && _move != Vector2.zero)
             {
                 _isDashing = true;
                 _dashTimeRemaining = _dashDuration;
@@ -101,24 +104,14 @@ namespace Hugo.Scripts
                 _sr.color = Color.blue;
                 
                 _canMove = false;
-                _rb2d.gravityScale = 0;
 
-                if (_isGrounded)
-                {
-                    transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
-                    _dashTimeRemaining -= Time.deltaTime;
-                }
-                else
-                {
-                    transform.Translate(_move * (_dashSpeed * Time.deltaTime));
-                    _dashTimeRemaining -= Time.deltaTime;
-                }
+                transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                _dashTimeRemaining -= Time.deltaTime;
                 
                 if (_dashTimeRemaining <= 0)
                 {
                     _isDashing = false;
                     _canMove = true;
-                    _rb2d.gravityScale = 3;
                 }
             }
         }
@@ -131,17 +124,43 @@ namespace Hugo.Scripts
                 
                 var horizontalInput = _move.x;
                 
-                _rb2d.constraints = RigidbodyConstraints2D.None;
-                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-
                 Vector2 movement = new Vector2(horizontalInput * (_speed * Time.deltaTime), _rb2d.velocity.y);
                 _rb2d.velocity = movement;
             }
             else
             {
                 _sr.color = new Color(1, 1, 1, 0.5f);
-                
-                _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            }
+        }
+        
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ball"))
+            {
+                _ball = other.gameObject;
+                if (Mathf.Approximately(_isWestButtonPressed, 1))
+                {
+                    if (_isGrounded)
+                    {
+                        if (_move == Vector2.zero)
+                        {
+                            _ball.GetComponent<BallHandler>().PerfectReception();
+                            Debug.Log(" Perfect reception ! ");
+                        }
+                    }
+                    else
+                    {
+                        _ball.GetComponent<BallHandler>().IsCatch(gameObject);
+                        _hasTheBall = true;
+                        _isDashing = false;
+                        _canMove = true;
+                    }
+                }
+                else
+                {
+                    Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
+                    _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
+                }
             }
         }
 
@@ -154,21 +173,22 @@ namespace Hugo.Scripts
             }
         }
         
-        public void GetWestButtonReadValue(float isButtonPressed)
+        public void GetWestButtonReadValue(float buttonValue)
         {
-            _isWestButtonPressed = isButtonPressed;
-            //Debug.Log(_isWestButtonPressed);
+            _isWestButtonPressed = buttonValue;
+            Debug.Log(_isWestButtonPressed);
 
-            if (!_hasTheBall)
+            if (buttonValue == 0 && _hasTheBall)
             {
-                //Debug.Log("Je peux bouger");
-                // Dash
-                
+                _ball.GetComponent<BallHandler>().IsDrawn(_move);
+                Invoke(nameof(DontHaveTheBallAnymore), 0.1f);
             }
-            else
-            {
-                
-            }
+        }
+
+        public void GetEastButtonReadValue(float buttonValue)
+        {
+            _isEastButtonPressed = buttonValue;
+            //Debug.Log(_isEastButtonPressed);
         }
         
         public void GetSouthButtonReadValue(float buttonValue)
@@ -193,29 +213,6 @@ namespace Hugo.Scripts
             
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                 }
-            }
-            else
-            {
-                Debug.Log(" Tir ! " + buttonValue);
-                if (Mathf.Approximately(buttonValue, 1))
-                {
-                    _ball.GetComponent<BallHandler>().IsDrawn(_move);
-                    Invoke(nameof(DontHaveTheBallAnymore), 0.1f);
-                }
-            }
-        }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Ball") && !_isGrounded)
-            {
-                _ball = other.gameObject;
-                _ball.GetComponent<BallHandler>().IsCatch(gameObject);
-                _hasTheBall = true;
-                _isDashing = false;
-                _canMove = true;
-                _rb2d.gravityScale = 3;
-                Debug.Log(_ball);
             }
         }
 

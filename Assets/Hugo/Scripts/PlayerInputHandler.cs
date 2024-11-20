@@ -35,6 +35,8 @@ namespace Hugo.Scripts
             _playerInput.actions["SouthButton"].canceled += SouthButton;
             _playerInput.actions["LeftButton"].performed += WestButton;
             _playerInput.actions["LeftButton"].canceled += WestButton;
+            _playerInput.actions["RightButton"].performed += EastButton;
+            _playerInput.actions["RightButton"].canceled += EastButton;
         }
         
         private void OnDisable()
@@ -48,6 +50,8 @@ namespace Hugo.Scripts
             _playerInput.actions["SouthButton"].canceled -= SouthButton;
             _playerInput.actions["LeftButton"].performed -= WestButton;
             _playerInput.actions["LeftButton"].canceled -= WestButton;
+            _playerInput.actions["RightButton"].performed -= EastButton;
+            _playerInput.actions["RightButton"].canceled -= EastButton;
         }
 
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -78,6 +82,11 @@ namespace Hugo.Scripts
         private void SouthButton(InputAction.CallbackContext context)
         {
             _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+        }
+
+        private void EastButton(InputAction.CallbackContext context)
+        {
+            _playerController.GetEastButtonReadValue(context.ReadValue<float>());
         }
     }
 }

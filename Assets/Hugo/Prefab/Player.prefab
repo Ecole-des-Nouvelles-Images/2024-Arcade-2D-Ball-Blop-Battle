@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 532244868467900860}
   - component: {fileID: 3666538827017239510}
   - component: {fileID: 231906474129314894}
-  - component: {fileID: 7844666532499952}
+  - component: {fileID: 7632281041000113975}
   - component: {fileID: 9091463944279118054}
   - component: {fileID: 4158806001138468945}
-  - component: {fileID: -4136428519880525514}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -102,8 +101,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 350
-  _jumpForce: 15
+  _speed: 450
+  _jumpForce: 18
+  _jumpingSpeed: 10
   _dashSpeed: 15
   _dashDuration: 0.2
   _dashCooldown: 0.6
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!58 &7844666532499952
+--- !u!58 &7632281041000113975
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -270,38 +270,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e3d91313c54c6ba3a5e383b88e389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &-4136428519880525514
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8243948108377192109}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5

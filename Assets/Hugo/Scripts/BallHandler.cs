@@ -12,7 +12,11 @@ namespace Hugo.Scripts
         private bool _isCatch;
 
         [SerializeField]
-        private float _ballSpeed;
+        private float _ballSpeedDrawn;
+        [SerializeField]
+        private float _ballSpeedPunch;
+        [SerializeField]
+        private float _speedPerfetcReception;
 
         private void Awake()
         {
@@ -42,15 +46,13 @@ namespace Hugo.Scripts
 
         public void IsDrawn(Vector2 direction)
         {
-            Debug.Log(direction);
-
             if (direction == Vector2.zero)
             {
                 _rb2d.constraints = RigidbodyConstraints2D.None;
                 _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 _isCatch = false;
                 
-                _rb2d.AddForce(Vector2.up * _ballSpeed, ForceMode2D.Impulse);
+                _rb2d.AddForce(Vector2.up * _ballSpeedDrawn, ForceMode2D.Impulse);
                 Invoke(nameof(ChangeIsTrigger), 0.1f);
             }
             else
@@ -59,9 +61,21 @@ namespace Hugo.Scripts
                 _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 _isCatch = false;
                 
-                _rb2d.AddForce(direction * _ballSpeed, ForceMode2D.Impulse);
+                _rb2d.AddForce(direction * _ballSpeedDrawn, ForceMode2D.Impulse);
                 Invoke(nameof(ChangeIsTrigger), 0.1f);
             }
+        }
+
+        public void IsPunch(Vector2 direction, Vector2 playerVelocity)
+        {
+            //_rb2d.velocity /= 2;
+            _rb2d.AddForce(direction * playerVelocity * _ballSpeedPunch, ForceMode2D.Impulse);
+        }
+
+        public void PerfectReception()
+        {
+            _rb2d.velocity = Vector2.zero;
+            _rb2d.AddForce(Vector2.up * _speedPerfetcReception / 10, ForceMode2D.Impulse);
         }
 
         private void ChangeIsTrigger()
