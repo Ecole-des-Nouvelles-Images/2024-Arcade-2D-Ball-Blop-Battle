@@ -43,13 +43,25 @@ namespace Hugo.Scripts
         public void IsDrawn(Vector2 direction)
         {
             Debug.Log(direction);
-            
-            _rb2d.constraints = RigidbodyConstraints2D.None;
-            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            _isCatch = false;
+
+            if (direction == Vector2.zero)
+            {
+                _rb2d.constraints = RigidbodyConstraints2D.None;
+                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _isCatch = false;
                 
-            _rb2d.AddForce(direction * _ballSpeed, ForceMode2D.Impulse);
-            Invoke(nameof(ChangeIsTrigger), 0.1f);
+                _rb2d.AddForce(Vector2.up * _ballSpeed, ForceMode2D.Impulse);
+                Invoke(nameof(ChangeIsTrigger), 0.1f);
+            }
+            else
+            {
+                _rb2d.constraints = RigidbodyConstraints2D.None;
+                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _isCatch = false;
+                
+                _rb2d.AddForce(direction * _ballSpeed, ForceMode2D.Impulse);
+                Invoke(nameof(ChangeIsTrigger), 0.1f);
+            }
         }
 
         private void ChangeIsTrigger()

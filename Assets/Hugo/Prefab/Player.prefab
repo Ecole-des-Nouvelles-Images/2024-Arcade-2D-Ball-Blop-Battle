@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9ed75fdbe0fbd1a48ac5d7c6a5407ce1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,11 +102,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 500
+  _speed: 350
   _jumpForce: 15
   _dashSpeed: 15
   _dashDuration: 0.2
-  _dashCooldown: 0.4
+  _dashCooldown: 0.6
   _rayLength: 0.8
   _groundLayer:
     serializedVersion: 2
@@ -114,7 +114,6 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  _ballSpeed: 10
 --- !u!114 &231906474129314894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +205,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 8243948108377192109}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e443c2cfdd5aefa4cb92de662529ed58, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

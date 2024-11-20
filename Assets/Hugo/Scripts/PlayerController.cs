@@ -5,12 +5,14 @@ namespace Hugo.Scripts
     public class PlayerController : MonoBehaviour
     {
         private Rigidbody2D _rb2d;
-        private Collider2D _col2d;
         private SpriteRenderer _sr;
+        
+        //GameObject
+        private GameObject _ball;
         
         // States
         private bool _hasTheBall;
-        private bool _isDashing = false;
+        private bool _isDashing;
         private bool _canMove = true;
         private bool _isGrounded;
         private bool _isWalled;
@@ -46,18 +48,10 @@ namespace Hugo.Scripts
         private LayerMask _groundLayer;
         [SerializeField]
         private LayerMask _wallLayer;
-        
-        // Ball Settings
-        [Header("Ball Settings")]
-        [SerializeField]
-        private float _ballSpeed;
-        private GameObject _ball;
-        
 
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
-            _col2d = GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
         }
 
@@ -104,16 +98,22 @@ namespace Hugo.Scripts
             
             if (_isDashing)
             {
-                _canMove = false;
-                
                 _sr.color = Color.blue;
                 
+                _canMove = false;
                 _rb2d.gravityScale = 0;
+
+                if (_isGrounded)
+                {
+                    transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
+                else
+                {
+                    transform.Translate(_move * (_dashSpeed * Time.deltaTime));
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
                 
-                //_canMove = false;
-                
-                transform.Translate(_move * (_dashSpeed * Time.deltaTime));
-                _dashTimeRemaining -= Time.deltaTime;
                 if (_dashTimeRemaining <= 0)
                 {
                     _isDashing = false;
