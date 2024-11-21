@@ -99,9 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11efa239489680849820c4df293a69a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ballPrefab: {fileID: 7739952088009901526}
-  _speedDrawn: 2.5
-  _speedPunch: 0.1
+  _speedDrawn: 2.3
+  _speedPunch: 0.05
   _speedPerfectReception: 10
   _maxSpeed: 25
   _rotationFactor: 10

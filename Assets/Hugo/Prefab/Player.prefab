@@ -104,7 +104,7 @@ MonoBehaviour:
   _speed: 450
   _jumpForce: 14
   _jumpingSpeed: 10
-  _airControlFactor: 0.2
+  _airControlFactor: 0.15
   _maxAirSpeed: 7
   _dashSpeed: 15
   _dashDuration: 0.15
