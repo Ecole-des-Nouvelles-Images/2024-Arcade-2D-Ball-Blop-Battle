@@ -308,6 +308,7 @@ namespace Hugo.Prototype.Scripts
 
                     if (_isWalled && !_isGrounded)
                     {
+                        _rb2d.velocity = Vector2.zero;
                         Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
                         //Debug.Log(jumping);
             
