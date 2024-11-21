@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Hugo.Scripts
@@ -16,6 +17,8 @@ namespace Hugo.Scripts
         private bool _canMove = true;
         private bool _isGrounded;
         private bool _isWalled;
+        private bool _canDoubleJump;
+        private bool _isOnTheNet;
         
         // Inputs values
         private Vector2 _move;
@@ -31,6 +34,11 @@ namespace Hugo.Scripts
         private float _jumpForce;
         [SerializeField]
         private float _jumpingSpeed;
+        [SerializeField]
+        private float _airControlFactor;
+        [SerializeField]
+        private float _maxAirSpeed;
+        
         
         // Dash Settings
         [Header("Dash Settings")]
@@ -46,11 +54,15 @@ namespace Hugo.Scripts
         // isGrounded and isWalled
         [Header("Is Grounded and Is Walled")]
         [SerializeField]
-        private float _rayLength = 0.8f;
+        private float _rayGroundedLength;
+        [SerializeField]
+        private float _rayNetTouchedLength;
         [SerializeField]
         private LayerMask _groundLayer;
         [SerializeField]
         private LayerMask _wallLayer;
+        [SerializeField]
+        private LayerMask _netLayer;
 
         private void Awake()
         {
@@ -61,24 +73,28 @@ namespace Hugo.Scripts
         private void Update()
         {
             // Raycast _isGrounded
-            RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayLength, _groundLayer);
+            RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
             _isGrounded = hit2DGround.collider;
             
-            Debug.DrawRay(transform.position, Vector3.down * _rayLength, Color.red);
+            // Raycast _isOnTheNet
+            RaycastHit2D hit2DNet = Physics2D.Raycast(transform.position, Vector3.down, _rayNetTouchedLength, _netLayer);
+            _isOnTheNet = hit2DNet.collider;
+            
+            Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
 
             _isWalled = false;
             if (-1 <= _move.x && _move.x <= -0.8 || 0.8 <= _move.x && _move.x <= 1)
             {
                 // Raycast _isWalled
-                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayLength, _wallLayer);
-                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayLength, _wallLayer);
+                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayGroundedLength, _wallLayer);
+                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayGroundedLength, _wallLayer);
                 if (hit2DWallLeft || hit2DWallRight)
                 {
                     _isWalled = true;
                 }
                 
-                Debug.DrawRay(transform.position, Vector3.right * _rayLength, Color.red);
-                Debug.DrawRay(transform.position, Vector3.left * _rayLength, Color.red);
+                Debug.DrawRay(transform.position, Vector3.right * _rayGroundedLength, Color.red);
+                Debug.DrawRay(transform.position, Vector3.left * _rayGroundedLength, Color.red);
             }
             
             // Debug.Log(_isGrounded);
@@ -105,14 +121,28 @@ namespace Hugo.Scripts
                 
                 _canMove = false;
 
-                transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
-                _dashTimeRemaining -= Time.deltaTime;
+                if (transform.rotation.y <= 0)
+                {
+                    transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
+                else
+                {
+                    transform.Translate(-_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
                 
                 if (_dashTimeRemaining <= 0)
                 {
                     _isDashing = false;
                     _canMove = true;
                 }
+            }
+
+            if (_isOnTheNet)
+            {
+                Debug.Log(" FAUTE : Net touched ! ");
+                Destroy(gameObject);
             }
         }
 
@@ -123,13 +153,35 @@ namespace Hugo.Scripts
                 _sr.color = new Color(1, 1, 1, 1f);
                 
                 var horizontalInput = _move.x;
-                
-                Vector2 movement = new Vector2(horizontalInput * (_speed * Time.deltaTime), _rb2d.velocity.y);
-                _rb2d.velocity = movement;
+
+                if (_isGrounded)
+                {
+                    Vector2 movement = new Vector2(horizontalInput * (_speed * Time.deltaTime), _rb2d.velocity.y);
+                    _rb2d.velocity = movement;
+                }
+                else
+                {
+                    float airSpeed = horizontalInput * _speed * _airControlFactor;
+                    float newMovement = Math.Clamp(_rb2d.velocity.x + airSpeed * Time.fixedDeltaTime, -_maxAirSpeed, _maxAirSpeed);
+                    _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
+                }
             }
             else
             {
                 _sr.color = new Color(1, 1, 1, 0.5f);
+            }
+
+            if (_move.x > 0)
+            {
+                var rotation = transform.rotation;
+                rotation.y = 0;
+                transform.rotation = rotation;
+            }
+            else
+            {
+                var rotation = transform.rotation;
+                rotation.y = 180;
+                transform.rotation = rotation;
             }
         }
         
@@ -145,7 +197,7 @@ namespace Hugo.Scripts
                         if (_move == Vector2.zero)
                         {
                             _ball.GetComponent<BallHandler>().PerfectReception();
-                            Debug.Log(" Perfect reception ! ");
+                            //Debug.Log(" Perfect reception ! ");
                         }
                     }
                     else
@@ -164,6 +216,15 @@ namespace Hugo.Scripts
             }
         }
 
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("AboveNet"))
+            {
+                Debug.Log(" FAUTE : Above Net ! ");
+                Destroy(gameObject);
+            }
+        }
+
         public void GetJoystickReadValue(Vector2 move)
         {
             if (_canMove)
@@ -176,7 +237,7 @@ namespace Hugo.Scripts
         public void GetWestButtonReadValue(float buttonValue)
         {
             _isWestButtonPressed = buttonValue;
-            Debug.Log(_isWestButtonPressed);
+            //Debug.Log(_isWestButtonPressed);
 
             if (buttonValue == 0 && _hasTheBall)
             {
@@ -196,22 +257,44 @@ namespace Hugo.Scripts
             _isSouthButtonPressed = buttonValue;
             //Debug.Log(_isSouthButtonPressed);
 
+            if (_isGrounded || _isWalled)
+            {
+                _canDoubleJump = false;
+            }
+
             if (!_hasTheBall)
             {
-                if (_isGrounded && !_isWalled || _isGrounded && _isWalled)
+                if (Mathf.Approximately(buttonValue, 1))
                 {
-                    Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
-                    //Debug.Log(jumping);
+                    if (_canDoubleJump)
+                    {
+                        _rb2d.velocity = Vector2.zero;
+                        Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
+                        //Debug.Log(" Second Jump ! ");
             
-                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
-                }
+                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                        _canDoubleJump = false;
+                    }
+                
+                    if (_isGrounded && !_isWalled || _isGrounded && _isWalled)
+                    {
+                        Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
+                        //Debug.Log(" First Jump ! ");
+            
+                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                        _canDoubleJump = true;
+                        //Debug.Log(_canDoubleJump);
+                    }
 
-                if (_isWalled && !_isGrounded)
-                {
-                    Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
-                    //Debug.Log(jumping);
+                    if (_isWalled && !_isGrounded)
+                    {
+                        Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
+                        //Debug.Log(jumping);
             
-                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                        _canDoubleJump = true;
+                        //Debug.Log(_canDoubleJump);
+                    }
                 }
             }
         }
