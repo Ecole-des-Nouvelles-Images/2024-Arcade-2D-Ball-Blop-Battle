@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hugo.Scripts
+namespace Hugo.Prototype.Scripts
 {
     public class BallHandler : MonoBehaviour
     {
@@ -55,6 +55,32 @@ namespace Hugo.Scripts
             {
                 _rb2d.velocity = _rb2d.velocity.normalized * (_maxSpeed * Time.deltaTime);
             }
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Selling"))
+            {
+                var scale = transform.localScale;
+                scale.y = 0.8f;
+                transform.localScale = scale;
+            }
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                var scale = transform.localScale;
+                scale.x = 0.8f;
+                transform.localScale = scale;
+            }
+            
+            Invoke(nameof(GetSizeBack), 0.1f);
+        }
+
+        private void GetSizeBack()
+        {
+            var scale = transform.localScale;
+            scale.x = 1f;
+            scale.y = 1f;
+            transform.localScale = scale;
         }
 
         public void IsCatch(GameObject playerObject)

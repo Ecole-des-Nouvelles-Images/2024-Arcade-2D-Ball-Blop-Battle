@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Hugo.Scripts
+namespace Hugo.Prototype.Scripts
 {
     public class PlayerController : MonoBehaviour
     {
@@ -25,6 +25,14 @@ namespace Hugo.Scripts
         private float _isWestButtonPressed;
         private float _isEastButtonPressed;
         private float _isSouthButtonPressed;
+        
+        // Special spike
+        private int _specialSpikeCount;
+        
+        // Player Type
+        [Header("Player Type")]
+        [SerializeField]
+        private PlayerData _playerType;
         
         // Player Settings
         [Header("Player Settings")]
@@ -68,6 +76,11 @@ namespace Hugo.Scripts
         {
             _rb2d = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
+        }
+
+        private void Start()
+        {
+            _sr.sprite = _playerType.Sprite;
         }
 
         private void Update()
@@ -197,7 +210,8 @@ namespace Hugo.Scripts
                         if (_move == Vector2.zero)
                         {
                             _ball.GetComponent<BallHandler>().PerfectReception();
-                            //Debug.Log(" Perfect reception ! ");
+                            _specialSpikeCount++;
+                            Debug.Log(_specialSpikeCount + " perfect reception ! ");
                         }
                     }
                     else
@@ -212,6 +226,12 @@ namespace Hugo.Scripts
                 {
                     Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
+
+                    if (_specialSpikeCount == 3)
+                    {
+                        Debug.Log(" SPECIAL SPIKE ! ");
+                        _specialSpikeCount = 0;
+                    }
                 }
             }
         }

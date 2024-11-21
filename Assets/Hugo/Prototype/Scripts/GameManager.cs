@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Hugo.Scripts
+namespace Hugo.Prototype.Scripts
 {
     public class GameManager : MonoBehaviour
     {

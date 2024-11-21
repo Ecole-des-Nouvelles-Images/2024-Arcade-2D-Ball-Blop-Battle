@@ -7,6 +7,8 @@ TagManager:
   - Ball
   - AboveNet
   - Ground
+  - Wall
+  - Selling
   layers:
   - Default
   - TransparentFX

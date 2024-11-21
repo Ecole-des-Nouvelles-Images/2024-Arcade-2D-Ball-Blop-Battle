@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Hugo.Scripts
+namespace Hugo.Prototype.Scripts
 {
     public class PlayerInputHandler : MonoBehaviour
     {

@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 254086516}
   m_Layer: 0
   m_Name: Selling
-  m_TagString: Untagged
+  m_TagString: Selling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 1126770011}
   m_Layer: 6
   m_Name: Wall_1
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1104,7 +1104,7 @@ GameObject:
   - component: {fileID: 1723279759}
   m_Layer: 6
   m_Name: Wall_2
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
