@@ -49,6 +49,7 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void Update()
         {
+            
             _dislpayCurrentSelectedBlopImage.sprite = _eventSystem.currentSelectedGameObject.GetComponent<Image>().sprite;
         }
     }
