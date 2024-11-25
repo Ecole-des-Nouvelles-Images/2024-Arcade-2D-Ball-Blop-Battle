@@ -1,9 +1,10 @@
 using Hugo.Prototype.Scripts.Player;
+using Hugo.Prototype.Scripts.Utils;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Game
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         public GameObject FirstPlayerGameObject;
         public GameObject SecondPlayerGameObject;

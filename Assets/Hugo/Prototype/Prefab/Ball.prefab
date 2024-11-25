@@ -106,6 +106,7 @@ MonoBehaviour:
   _maxSpeed: 25
   _rotationFactor: 10
   _maxRotationSpeed: 20
+  _hudManager: {fileID: 0}
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0

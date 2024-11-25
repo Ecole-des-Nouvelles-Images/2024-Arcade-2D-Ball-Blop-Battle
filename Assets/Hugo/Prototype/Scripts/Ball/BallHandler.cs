@@ -1,4 +1,5 @@
 using System;
+using Hugo.Prototype.Scripts.Game;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Hugo.Prototype.Scripts.Ball
 {
     public class BallHandler : MonoBehaviour
     {
+        public Vector2 DirectionCommitment;
+        
         private Rigidbody2D _rb2d;
         private Collider2D _col2D;
         private SpriteRenderer _sr;
@@ -33,8 +36,9 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void Start()
         {
+            Debug.Log(DirectionCommitment);
             // Engagement
-            _rb2d.AddForce(new Vector2(1,1), ForceMode2D.Impulse);
+            Commitment(DirectionCommitment);
         }
 
         private void Update()
@@ -57,6 +61,19 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            if (other.gameObject.CompareTag("PlayerOneGround"))
+            {
+                MatchManager.ScorePlayerTwo++;
+                MatchManager.PlayerOneScoreLast = true;
+                Destroy(gameObject);
+            }
+            if (other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                MatchManager.ScorePlayerOne++;
+                MatchManager.PlayerOneScoreLast = false;
+                Destroy(gameObject);
+            }
+            
             if (other.gameObject.CompareTag("Player"))
             {
                 if (_isTransparent)
@@ -64,6 +81,16 @@ namespace Hugo.Prototype.Scripts.Ball
                     IsTransparent();
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            MatchManager.IsBallInGame = false;
+        }
+
+        private void Commitment(Vector2 direction)
+        {
+            _rb2d.AddForce(direction, ForceMode2D.Impulse);
         }
 
         public void IsCatch(GameObject playerObject)
