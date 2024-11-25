@@ -5,9 +5,12 @@ namespace Hugo.Prototype.Scripts.Player
     [CreateAssetMenu(fileName = "BlopRouge", menuName = "PlayerData/BlopRouge")]
     public class BlopRouge : PlayerData
     {
-        public override void SpecialSpike()
+        [SerializeField]
+        private GameObject _fakeBallPrefab;
+        
+        public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
-            Debug.Log(" Special Spike ! ");
+            Debug.Log(" ROUGE : SPECIAL SPIKE ! ");
         }
     }
 }

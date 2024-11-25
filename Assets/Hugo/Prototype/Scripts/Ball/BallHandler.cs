@@ -1,3 +1,5 @@
+using System;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Ball
@@ -6,51 +8,47 @@ namespace Hugo.Prototype.Scripts.Ball
     {
         private Rigidbody2D _rb2d;
         private Collider2D _col2D;
+        private SpriteRenderer _sr;
         
         private GameObject _playerObject;
         
         private bool _isCatch;
+        private bool _isTransparent;
 
         [Header("Ball Settings")]
-        [SerializeField]
-        private float _speedDrawn;
-        [SerializeField]
-        private float _speedPunch;
-        [SerializeField]
-        private float _speedPerfectReception;
-        [SerializeField]
-        private float _maxSpeed;
-        [SerializeField]
-        private float _rotationFactor;
-        [SerializeField]
-        private float _maxRotationSpeed;
+        [SerializeField] private float _speedDrawn;
+        [SerializeField] private float _speedPunch;
+        [SerializeField] private float _speedPerfectReception;
+        [SerializeField] private float _speedSpecialSpikeActivation;
+        [SerializeField] private float _maxSpeed;
+        [SerializeField] private float _rotationFactor;
+        [SerializeField] private float _maxRotationSpeed;
 
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
             _col2D = GetComponent<Collider2D>();
+            _sr = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
+            // Engagement
             _rb2d.AddForce(new Vector2(1,1), ForceMode2D.Impulse);
         }
 
         private void Update()
         {
+            // Pour que le ballon reste dans le joueur
             if (_isCatch)
             {
                 transform.position = _playerObject.transform.position;
-                //Debug.Log(_rb2d.velocity.magnitude);
             }
-            
-            // Ball Rotation
-            // float rotation = Math.Clamp(_rb2d.velocity.x * _rotationFactor, -_maxRotationSpeed, _maxRotationSpeed * Time.deltaTime);
-            // transform.rotation = Quaternion.Euler(0f, 0f, -rotation);
         }
 
         private void FixedUpdate()
         {
+            // Clamp la vitesse du ballon
             if (_rb2d.velocity.magnitude > _maxSpeed)
             {
                 _rb2d.velocity = _rb2d.velocity.normalized * (_maxSpeed * Time.deltaTime);
@@ -59,28 +57,13 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ground") || other.gameObject.CompareTag("Selling"))
+            if (other.gameObject.CompareTag("Player"))
             {
-                var scale = transform.localScale;
-                scale.y = 0.8f;
-                transform.localScale = scale;
+                if (_isTransparent)
+                {
+                    IsTransparent();
+                }
             }
-            if (other.gameObject.CompareTag("Wall"))
-            {
-                var scale = transform.localScale;
-                scale.x = 0.8f;
-                transform.localScale = scale;
-            }
-            
-            Invoke(nameof(GetSizeBack), 0.1f);
-        }
-
-        private void GetSizeBack()
-        {
-            var scale = transform.localScale;
-            scale.x = 1f;
-            scale.y = 1f;
-            transform.localScale = scale;
         }
 
         public void IsCatch(GameObject playerObject)
@@ -103,7 +86,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 _isCatch = false;
                 
                 _rb2d.AddForce(Vector2.up * _speedDrawn, ForceMode2D.Impulse);
-                Invoke(nameof(ChangeIsTrigger), 0.1f);
+                Invoke(nameof(ReverseIsTrigger), 0.1f);
             }
             else
             {
@@ -112,7 +95,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 _isCatch = false;
                 
                 _rb2d.AddForce(direction * _speedDrawn, ForceMode2D.Impulse);
-                Invoke(nameof(ChangeIsTrigger), 0.1f);
+                Invoke(nameof(ReverseIsTrigger), 0.1f);
             }
         }
 
@@ -129,9 +112,40 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.AddForce(Vector2.up * _speedPerfectReception / 10, ForceMode2D.Impulse);
         }
 
-        private void ChangeIsTrigger()
+        public void SpecialSpikeActivation()
         {
-            _col2D.isTrigger = false;
+            _rb2d.velocity /= 2;
+            _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation / 10, ForceMode2D.Impulse);
+        }
+
+        public void IsTransparent()
+        {
+            _isTransparent = !_isTransparent;
+
+            if (_isTransparent)
+            {
+                _sr.color = new Color(1,1,1, 0);
+            }
+            else
+            {
+                _sr.color = new Color(1, 1, 1, 1);
+            }
+        }
+
+        public void InvokeMethodTimer([NotNull] string methodName, float timer)
+        {
+            if (methodName == null) throw new ArgumentNullException(nameof(methodName));
+            Invoke(methodName, timer);
+        }
+
+        public void ReverseIsTrigger()
+        {
+            _col2D.isTrigger = !_col2D.isTrigger;
+        }
+
+        public void ReversIsCatch()
+        {
+            _isCatch = !_isCatch;
         }
     }
 }

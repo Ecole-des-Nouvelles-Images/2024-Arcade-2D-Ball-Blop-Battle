@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: Rouge
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: 3b01575443441d54cb93189d107f8229, type: 3}
+  SpeedSpecialSpike: 2.3
   SpecialSpikeName: Chaos
   SpecialSpikeDescription: Lance plusieurs balles
+  _fakeBallPrefab: {fileID: 0}

@@ -6,9 +6,11 @@ TagManager:
   tags:
   - Ball
   - AboveNet
-  - Ground
   - Wall
   - Selling
+  - FakeBall
+  - PlayerOneGround
+  - PlayerTwoGround
   layers:
   - Default
   - TransparentFX

@@ -10,12 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2393506580369988007}
   - component: {fileID: 1685481063665196567}
-  - component: {fileID: -3209539634212642419}
   - component: {fileID: 3045336366238888851}
   - component: {fileID: 8752394035109270788}
   m_Layer: 0
-  m_Name: Ball
-  m_TagString: Ball
+  m_Name: FakeBall
+  m_TagString: FakeBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,25 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-3209539634212642419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739952088009901526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11efa239489680849820c4df293a69a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speedDrawn: 2.3
-  _speedPunch: 0.03
-  _speedPerfectReception: 10
-  _speedSpecialSpikeActivation: 3
-  _maxSpeed: 25
-  _rotationFactor: 10
-  _maxRotationSpeed: 20
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0

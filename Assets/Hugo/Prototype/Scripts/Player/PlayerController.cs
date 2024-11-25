@@ -17,6 +17,7 @@ namespace Hugo.Prototype.Scripts.Player
         // States
         private bool _hasTheBall;
         private bool _isDashing;
+        private bool _canPerfectReception;
         private bool _canMove = true;
         private bool _isGrounded;
         private bool _isWalled;
@@ -26,54 +27,44 @@ namespace Hugo.Prototype.Scripts.Player
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
-        private float _isEastButtonPressed;
         private float _isSouthButtonPressed;
         
         // Special spike
         private int _specialSpikeCount;
+        private bool _canSpecialSpike;
+        private bool _isSpecialSpike;
         
         // Player Type
         [Header("Player Type")]
         [SerializeField]
-        private PlayerData _playerType;
+        private PlayerData _playerData;
         
         // Player Settings
         [Header("Player Settings")]
-        [SerializeField]
-        private float _speed;
-        [SerializeField]
-        private float _jumpForce;
-        [SerializeField]
-        private float _jumpingSpeed;
-        [SerializeField]
-        private float _airControlFactor;
-        [SerializeField]
-        private float _maxAirSpeed;
+        [SerializeField] private float _speed;
+        [SerializeField] private float _jumpForce;
+        [SerializeField] private float _jumpingSpeed;
+        [SerializeField] private float _airControlFactor;
+        [SerializeField] private float _maxAirSpeed;
+        [SerializeField] private float _timePerfectReception;
+        [SerializeField] private float _durationSpecialSpike;
         
         
         // Dash Settings
         [Header("Dash Settings")]
-        [SerializeField]
-        private float _dashSpeed;
-        [SerializeField]
-        private float _dashDuration;
-        [SerializeField]
-        private float _dashCooldown;
+        [SerializeField] private float _dashSpeed;
+        [SerializeField] private float _dashDuration;
+        [SerializeField] private float _dashCooldown;
         private float _dashTimeRemaining;
         private float _dashCooldownRemaining;
         
         // isGrounded and isWalled
         [Header("Is Grounded and Is Walled")]
-        [SerializeField]
-        private float _rayGroundedLength;
-        [SerializeField]
-        private float _rayNetTouchedLength;
-        [SerializeField]
-        private LayerMask _groundLayer;
-        [SerializeField]
-        private LayerMask _wallLayer;
-        [SerializeField]
-        private LayerMask _netLayer;
+        [SerializeField] private float _rayGroundedLength;
+        [SerializeField] private float _rayNetTouchedLength;
+        [SerializeField] private LayerMask _groundLayer;
+        [SerializeField] private LayerMask _wallLayer;
+        [SerializeField] private LayerMask _netLayer;
 
         private void Awake()
         {
@@ -92,7 +83,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Start()
         {
-            _sr.sprite = _playerType.Sprite;
+            _sr.sprite = _playerData.Sprite;
         }
 
         private void Update()
@@ -133,7 +124,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
         
             // Déclencehment du dash
-            if (Mathf.Approximately(_isEastButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false && _isGrounded && _move != Vector2.zero)
+            if (Mathf.Approximately(_isWestButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false && _isGrounded && _move != Vector2.zero)
             {
                 _isDashing = true;
                 _dashTimeRemaining = _dashDuration;
@@ -215,35 +206,43 @@ namespace Hugo.Prototype.Scripts.Player
             if (other.gameObject.CompareTag("Ball"))
             {
                 _ball = other.gameObject;
-                if (Mathf.Approximately(_isWestButtonPressed, 1))
+                if (_canPerfectReception)
                 {
-                    if (_isGrounded)
+                    if (_move == Vector2.zero && _isGrounded)
                     {
-                        if (_move == Vector2.zero)
+                        _ball.GetComponent<BallHandler>().PerfectReception();
+                        _specialSpikeCount++;
+                        Debug.Log(_specialSpikeCount + " perfect reception ! ");
+                            
+                        if (_specialSpikeCount == 3)
                         {
-                            _ball.GetComponent<BallHandler>().PerfectReception();
-                            _specialSpikeCount++;
-                            Debug.Log(_specialSpikeCount + " perfect reception ! ");
+                            _specialSpikeCount = 0;
+                            _canSpecialSpike = true;
+                            Debug.Log(_canSpecialSpike);
                         }
                     }
-                    else
-                    {
-                        _ball.GetComponent<BallHandler>().IsCatch(gameObject);
-                        _hasTheBall = true;
-                        _isDashing = false;
-                        _canMove = true;
-                    }
+                }
+                
+                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded)
+                { 
+                    _ball.GetComponent<BallHandler>().IsCatch(gameObject);
+                    _hasTheBall = true;
+                    _isDashing = false;
+                    _canMove = true;
                 }
                 else
                 {
                     Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
+                }
 
-                    if (_specialSpikeCount == 3)
-                    {
-                        Debug.Log(" SPECIAL SPIKE ! ");
-                        _specialSpikeCount = 0;
-                    }
+                if (_isSpecialSpike)
+                {
+                    _hasTheBall = true;
+                    _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                    _ball.GetComponent<BallHandler>().IsCatch(gameObject);
+
+                    Invoke(nameof(ActiveSpecialSpike), _durationSpecialSpike);
                 }
             }
         }
@@ -270,18 +269,28 @@ namespace Hugo.Prototype.Scripts.Player
         {
             _isWestButtonPressed = buttonValue;
             //Debug.Log(_isWestButtonPressed);
+            
+            if (Mathf.Approximately(buttonValue, 1) && Mathf.Approximately(_isSouthButtonPressed, 1) && _canSpecialSpike)
+            {
+                _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 
+                _isSpecialSpike = true;
+                _canSpecialSpike = false;
+                
+                return;
+            }
+            
+            if (Mathf.Approximately(buttonValue, 1))
+            {
+                _canPerfectReception = true;
+                Invoke(nameof(ReverseCanPerfectReception), _timePerfectReception);
+            }
+            
             if (buttonValue == 0 && _hasTheBall)
             {
                 _ball.GetComponent<BallHandler>().IsDrawn(_move);
-                Invoke(nameof(DontHaveTheBallAnymore), 0.1f);
+                Invoke(nameof(ReverseHaveTheBall), 0.1f);
             }
-        }
-
-        public void GetEastButtonReadValue(float buttonValue)
-        {
-            _isEastButtonPressed = buttonValue;
-            //Debug.Log(_isEastButtonPressed);
         }
         
         public void GetSouthButtonReadValue(float buttonValue)
@@ -293,48 +302,70 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _canDoubleJump = false;
             }
-
-            if (!_hasTheBall)
+            
+            if (Mathf.Approximately(buttonValue, 1) && Mathf.Approximately(_isWestButtonPressed, 1) && _canSpecialSpike)
             {
-                if (Mathf.Approximately(buttonValue, 1))
-                {
-                    if (_canDoubleJump)
-                    {
-                        _rb2d.velocity = Vector2.zero;
-                        Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
-                        //Debug.Log(" Second Jump ! ");
-            
-                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
-                        _canDoubleJump = false;
-                    }
-                
-                    if (_isGrounded && !_isWalled || _isGrounded && _isWalled)
-                    {
-                        Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
-                        //Debug.Log(" First Jump ! ");
-            
-                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
-                        _canDoubleJump = true;
-                        //Debug.Log(_canDoubleJump);
-                    }
+                _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 
-                    if (_isWalled && !_isGrounded)
-                    {
-                        _rb2d.velocity = Vector2.zero;
-                        Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
-                        //Debug.Log(jumping);
+                _isSpecialSpike = true;
+                _canSpecialSpike = false;
+                
+                return;
+            }
             
-                        _rb2d.AddForce(jumping, ForceMode2D.Impulse);
-                        _canDoubleJump = true;
-                        //Debug.Log(_canDoubleJump);
-                    }
+            if (Mathf.Approximately(buttonValue, 1) && !_hasTheBall)
+            {
+                if (_canDoubleJump)
+                { 
+                    _rb2d.velocity = Vector2.zero;
+                    Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
+                    //Debug.Log(" Second Jump ! ");
+                    
+                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                    _canDoubleJump = false;
+                }
+                
+                if (_isGrounded && !_isWalled || _isGrounded && _isWalled)
+                { 
+                    Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
+                    //Debug.Log(" First Jump ! ");
+            
+                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                    _canDoubleJump = true;
+                    //Debug.Log(_canDoubleJump);
+                }
+
+                if (_isWalled && !_isGrounded) 
+                {
+                    _rb2d.velocity = Vector2.zero;
+                    Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
+                    //Debug.Log(jumping);
+            
+                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
+                    _canDoubleJump = true;
+                    //Debug.Log(_canDoubleJump);
                 }
             }
         }
 
-        private void DontHaveTheBallAnymore()
+        private void ActiveSpecialSpike()
         {
+            _playerData.SpecialSpike(gameObject, _ball, _move);
+            
             _hasTheBall = false;
+            _isSpecialSpike = false;
+            _rb2d.constraints = RigidbodyConstraints2D.None;
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+
+        private void ReverseHaveTheBall()
+        {
+            _hasTheBall = !_hasTheBall;
+        }
+
+        private void ReverseCanPerfectReception()
+        {
+            _canPerfectReception = !_canPerfectReception;
         }
     }
 }

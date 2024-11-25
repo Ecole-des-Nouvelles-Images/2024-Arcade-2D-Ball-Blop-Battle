@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Bleu
   m_EditorClassIdentifier: 
   Sprite: {fileID: 21300000, guid: b9dff148afcba0e42965c01c7ee37625, type: 3}
+  SpeedSpecialSpike: 2.3
   SpecialSpikeName: Bouclier
   SpecialSpikeDescription: Active un bouclier

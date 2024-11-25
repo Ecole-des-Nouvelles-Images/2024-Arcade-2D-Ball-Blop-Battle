@@ -9,14 +9,11 @@ namespace Hugo.Prototype.Scripts.InputSystem
         private PlayerInputManager _playerInputManager;
         
         [Header("GameManager")]
-        [SerializeField]
-        private GameManager _gameManager;
+        [SerializeField] private GameManager _gameManager;
         
         [Header("Spawn Points")]
-        [SerializeField]
-        private Vector2 _firstSpawnPoints;
-        [SerializeField]
-        private Vector2 _secondSpawnPoints;
+        [SerializeField] private Vector2 _firstSpawnPoints;
+        [SerializeField] private Vector2 _secondSpawnPoints;
 
         private void Awake()
         {
