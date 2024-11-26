@@ -1,4 +1,5 @@
 using Hugo.Prototype.Scripts.Game;
+using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -36,11 +37,15 @@ namespace Hugo.Prototype.Scripts.InputSystem
             {
                 _gameManager.FirstPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _firstSpawnPoints;
+                
+                playerInput.gameObject.GetComponent<PlayerNumberTouchBallManager>().IsPlayerOne = true;
             }
             else
             {
                 _gameManager.SecondPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _secondSpawnPoints;
+                
+                playerInput.gameObject.GetComponent<PlayerNumberTouchBallManager>().IsPlayerOne = false;
             }
         }
     }

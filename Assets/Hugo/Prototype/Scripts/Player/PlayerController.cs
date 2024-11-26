@@ -10,6 +10,7 @@ namespace Hugo.Prototype.Scripts.Player
         private Rigidbody2D _rb2d;
         private SpriteRenderer _sr;
         private PlayerInput _playerInput;
+        private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
         
         // GameObject
         private GameObject _ball;
@@ -27,7 +28,9 @@ namespace Hugo.Prototype.Scripts.Player
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
+        private float _isEastButtonPressed;
         private float _isSouthButtonPressed;
+        private float _isStartButtonPressed;
         
         // Special spike
         private int _specialSpikeCount;
@@ -65,12 +68,18 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
         [SerializeField] private LayerMask _netLayer;
+        
+        // Animator
+        [Header("Animator")]
+        [SerializeField] private Animator _animator;
 
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _playerInput = GetComponent<PlayerInput>();
+            _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
+            
             // if (_playerInput.playerIndex == 0)
             // {
             //     _playerType = GameManager.FirstPlayerScriptableObject;
@@ -216,14 +225,13 @@ namespace Hugo.Prototype.Scripts.Player
                             
                         if (_specialSpikeCount == 3)
                         {
-                            _specialSpikeCount = 0;
                             _canSpecialSpike = true;
                             Debug.Log(_canSpecialSpike);
                         }
                     }
                 }
                 
-                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded)
+                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallManager.NumberTouchBall < 2)
                 { 
                     _ball.GetComponent<BallHandler>().IsCatch(gameObject);
                     _hasTheBall = true;
@@ -236,13 +244,19 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
                 }
 
-                if (_isSpecialSpike)
+                if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall < 2)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ball.GetComponent<BallHandler>().IsCatch(gameObject);
 
                     Invoke(nameof(ActiveSpecialSpike), _durationSpecialSpike);
+                }
+
+                if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall == 3)
+                {
+                    _isSpecialSpike = false;
+                    _canSpecialSpike = true;
                 }
             }
         }
@@ -270,16 +284,6 @@ namespace Hugo.Prototype.Scripts.Player
             _isWestButtonPressed = buttonValue;
             //Debug.Log(_isWestButtonPressed);
             
-            if (Mathf.Approximately(buttonValue, 1) && Mathf.Approximately(_isSouthButtonPressed, 1) && _canSpecialSpike)
-            {
-                _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
-
-                _isSpecialSpike = true;
-                _canSpecialSpike = false;
-                
-                return;
-            }
-            
             if (Mathf.Approximately(buttonValue, 1))
             {
                 _canPerfectReception = true;
@@ -292,6 +296,23 @@ namespace Hugo.Prototype.Scripts.Player
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
             }
         }
+
+        public void GetEastButtonReadValue(float buttonValue)
+        {
+            _isEastButtonPressed = buttonValue;
+
+            if (_canSpecialSpike)
+            {
+                if (Mathf.Approximately(buttonValue, 1))
+                {
+                    _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
+
+                    _isSpecialSpike = true;
+                    _canSpecialSpike = false;
+                    _specialSpikeCount = 0;
+                }
+            }
+        }
         
         public void GetSouthButtonReadValue(float buttonValue)
         {
@@ -301,16 +322,6 @@ namespace Hugo.Prototype.Scripts.Player
             if (_isGrounded || _isWalled)
             {
                 _canDoubleJump = false;
-            }
-            
-            if (Mathf.Approximately(buttonValue, 1) && Mathf.Approximately(_isWestButtonPressed, 1) && _canSpecialSpike)
-            {
-                _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
-
-                _isSpecialSpike = true;
-                _canSpecialSpike = false;
-                
-                return;
             }
             
             if (Mathf.Approximately(buttonValue, 1) && !_hasTheBall)
@@ -346,6 +357,13 @@ namespace Hugo.Prototype.Scripts.Player
                     //Debug.Log(_canDoubleJump);
                 }
             }
+        }
+
+        public void GetStartButtonReadValue(float buttonValue)
+        {
+            _isStartButtonPressed = buttonValue;
+            
+            Debug.Log(" Start : " + buttonValue);
         }
 
         private void ActiveSpecialSpike()

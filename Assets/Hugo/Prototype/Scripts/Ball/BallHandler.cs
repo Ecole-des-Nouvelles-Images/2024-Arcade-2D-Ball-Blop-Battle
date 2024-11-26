@@ -1,5 +1,6 @@
 using System;
 using Hugo.Prototype.Scripts.Game;
+using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -36,7 +37,7 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void Start()
         {
-            Debug.Log(DirectionCommitment);
+            //Debug.Log(DirectionCommitment);
             // Engagement
             Commitment(DirectionCommitment);
         }
@@ -47,6 +48,12 @@ namespace Hugo.Prototype.Scripts.Ball
             if (_isCatch)
             {
                 transform.position = _playerObject.transform.position;
+            }
+            
+            // Détruit le ballon a la fin du temps
+            if (MatchManager.IsSetOver)
+            {
+                Destroy(gameObject);
             }
         }
 
@@ -76,6 +83,7 @@ namespace Hugo.Prototype.Scripts.Ball
             
             if (other.gameObject.CompareTag("Player"))
             {
+                _playerObject = other.gameObject;
                 if (_isTransparent)
                 {
                     IsTransparent();
@@ -83,9 +91,29 @@ namespace Hugo.Prototype.Scripts.Ball
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("AboveNet"))
+            {
+                if (_playerObject != null)
+                {
+                    _playerObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+                    Debug.Log(" CROSS NET ");
+                }
+            }
+        }
+
         private void OnDestroy()
         {
-            MatchManager.IsBallInGame = false;
+            if (_playerObject != null)
+            {
+                _playerObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+            }
+
+            if (!MatchManager.IsSetOver)
+            {
+                MatchManager.IsBallInGame = false;
+            }
         }
 
         private void Commitment(Vector2 direction)
@@ -151,7 +179,7 @@ namespace Hugo.Prototype.Scripts.Ball
 
             if (_isTransparent)
             {
-                _sr.color = new Color(1,1,1, 0);
+                _sr.color = new Color(1,1,1, 0.2f);
             }
             else
             {

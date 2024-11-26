@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,8 +34,12 @@ namespace Hugo.Prototype.Scripts.Player
             _playerInput.actions["LeftJoystick"].canceled += LeftJoystick;
             _playerInput.actions["SouthButton"].performed += SouthButton;
             _playerInput.actions["SouthButton"].canceled += SouthButton;
-            _playerInput.actions["LeftButton"].performed += WestButton;
-            _playerInput.actions["LeftButton"].canceled += WestButton;
+            _playerInput.actions["WestButton"].performed += WestButton;
+            _playerInput.actions["WestButton"].canceled += WestButton;
+            _playerInput.actions["EastButton"].performed += EastButton;
+            _playerInput.actions["EastButton"].canceled += EastButton;
+            _playerInput.actions["StartButton"].performed += StartButton;
+            _playerInput.actions["StartButton"].canceled += StartButton;
         }
         
         private void OnDisable()
@@ -46,8 +51,12 @@ namespace Hugo.Prototype.Scripts.Player
             _playerInput.actions["LeftJoystick"].canceled -= LeftJoystick;
             _playerInput.actions["SouthButton"].performed -= SouthButton;
             _playerInput.actions["SouthButton"].canceled -= SouthButton;
-            _playerInput.actions["LeftButton"].performed -= WestButton;
-            _playerInput.actions["LeftButton"].canceled -= WestButton;
+            _playerInput.actions["WestButton"].performed -= WestButton;
+            _playerInput.actions["WestButton"].canceled -= WestButton;
+            _playerInput.actions["EastButton"].performed -= EastButton;
+            _playerInput.actions["EastButton"].canceled -= EastButton;
+            _playerInput.actions["StartButton"].performed -= StartButton;
+            _playerInput.actions["StartButton"].canceled -= StartButton;
         }
 
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -70,14 +79,24 @@ namespace Hugo.Prototype.Scripts.Player
             _playerController.GetJoystickReadValue(context.ReadValue<Vector2>());
         }
         
+        private void SouthButton(InputAction.CallbackContext context)
+        {
+            _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+        }
+        
         private void WestButton(InputAction.CallbackContext context)
         {
             _playerController.GetWestButtonReadValue(context.ReadValue<float>());
         }
-
-        private void SouthButton(InputAction.CallbackContext context)
+        
+        private void EastButton(InputAction.CallbackContext context)
         {
-            _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+            _playerController.GetEastButtonReadValue(context.ReadValue<float>());
+        }
+
+        private void StartButton(InputAction.CallbackContext context)
+        {
+            _playerController.GetStartButtonReadValue(context.ReadValue<float>());
         }
     }
 }

@@ -18,9 +18,13 @@ namespace Hugo.Prototype.Scripts.Game
 
         [Header("Commitment")]
         public static bool IsBallInGame = true;
-
+        public static bool IsSetOver = false;
+        
         [Header("Prefabs")]
-        [SerializeField] private GameObject _ball;
+        [SerializeField] private GameObject _ballPrefab;
+        
+        private int _setScorePlayerOne;
+        private int _setScorePlayerTwo;
 
         private void Start()
         {
@@ -51,13 +55,56 @@ namespace Hugo.Prototype.Scripts.Game
         
         private void StartTimer()
         {
+            //Start Timer
             CurrentTime = _totalTimer;
             _isTimerRunning = true;
+            
+            // Reset Values
+            IsSetOver = false;
+            ScorePlayerOne = 0;
+            ScorePlayerTwo = 0;
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void OnTimerEnd()
         {
-            Debug.Log("Timer End");
+            IsSetOver = true;
+            
+            if (ScorePlayerOne > ScorePlayerTwo)
+            {
+                _setScorePlayerOne++;
+                
+                if (_setScorePlayerOne == 2)
+                {
+                    Debug.Log(" Player One WIN the match ");
+                }
+                else
+                {
+                    Invoke(nameof(Commitment), 2f);
+                    Invoke(nameof(StartTimer), 2f);
+                }
+            }
+            else if (ScorePlayerOne < ScorePlayerTwo)
+            {
+                _setScorePlayerTwo++;
+                
+                if (_setScorePlayerTwo == 2)
+                {
+                    Debug.Log(" Player Two WIN the match ");
+                }
+                else
+                {
+                    Invoke(nameof(Commitment), 2f);
+                    Invoke(nameof(StartTimer), 2f);
+                }
+            }
+            else
+            {
+                _setScorePlayerOne++;
+                _setScorePlayerTwo++;
+            }
+            
+            Debug.Log(" Player One : " + _setScorePlayerOne + " / " + _setScorePlayerTwo + " : Player Two ");
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -65,14 +112,14 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (PlayerOneScoreLast)
             {
-                _ball.GetComponent<BallHandler>().DirectionCommitment = new Vector2(1,1);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(1,1);
             }
             else
             {
-                _ball.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-1,1);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-1,1);
             }
             
-            Instantiate(_ball, transform.position, Quaternion.identity);
+            Instantiate(_ballPrefab, transform.position, Quaternion.identity);
             
             IsBallInGame = true;
         }

@@ -24,9 +24,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "LeftButton",
+                    "name": "WestButton",
                     "type": "Button",
                     "id": "37e5c290-c748-4f8d-a90f-b787bbb62048",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "EastButton",
+                    "type": "Button",
+                    "id": "e13b7abe-4544-4a79-97af-a64c6eb77b8d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartButton",
+                    "type": "Button",
+                    "id": "a95a62d3-ef04-465b-a4cd-f1a285834e58",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -173,7 +191,7 @@
                     "interactions": "Press(pressPoint=0.1)",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LeftButton",
+                    "action": "WestButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -184,7 +202,29 @@
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "LeftButton",
+                    "action": "WestButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0f565e7-9148-40c8-9e36-cc1e716c8751",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "EastButton",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c186bd7a-284c-492a-a18d-f8e6b9c61a0f",
+                    "path": "<Gamepad>/start",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartButton",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
