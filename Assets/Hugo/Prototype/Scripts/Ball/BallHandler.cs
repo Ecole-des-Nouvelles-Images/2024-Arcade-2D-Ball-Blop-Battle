@@ -121,7 +121,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.AddForce(direction, ForceMode2D.Impulse);
         }
 
-        public void IsCatch(GameObject playerObject)
+        public void IsAbsorb(GameObject playerObject)
         {
             _playerObject = playerObject;
             
@@ -132,7 +132,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
-        public void IsDrawn(Vector2 direction)
+        public void IsShoot(Vector2 direction)
         {
             if (direction == Vector2.zero)
             {

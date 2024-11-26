@@ -11,6 +11,7 @@ namespace Hugo.Prototype.Scripts.Player
         private SpriteRenderer _sr;
         private PlayerInput _playerInput;
         private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
+        private Animator _animator;
         
         // GameObject
         private GameObject _ball;
@@ -68,10 +69,6 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
         [SerializeField] private LayerMask _netLayer;
-        
-        // Animator
-        [Header("Animator")]
-        [SerializeField] private Animator _animator;
 
         private void Awake()
         {
@@ -79,6 +76,7 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerInput = GetComponent<PlayerInput>();
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
+            _animator = GetComponent<Animator>();
             
             // if (_playerInput.playerIndex == 0)
             // {
@@ -138,6 +136,9 @@ namespace Hugo.Prototype.Scripts.Player
                 _isDashing = true;
                 _dashTimeRemaining = _dashDuration;
                 _dashCooldownRemaining = _dashCooldown;
+                
+                // Animation
+                _animator.SetTrigger("Dash");
             }
             
             if (_isDashing)
@@ -169,6 +170,9 @@ namespace Hugo.Prototype.Scripts.Player
                 Debug.Log(" FAUTE : Net touched ! ");
                 Destroy(gameObject);
             }
+            
+            // Animation
+            _animator.SetBool("HasTheBall", _hasTheBall);
         }
 
         private void FixedUpdate()
@@ -195,19 +199,10 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _sr.color = new Color(1, 1, 1, 0.5f);
             }
-
-            if (_move.x > 0)
-            {
-                var rotation = transform.rotation;
-                rotation.y = 0;
-                transform.rotation = rotation;
-            }
-            else
-            {
-                var rotation = transform.rotation;
-                rotation.y = 180;
-                transform.rotation = rotation;
-            }
+            
+            // Animation
+            _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
+            FlipSprite(_rb2d.velocity.x);
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -222,6 +217,9 @@ namespace Hugo.Prototype.Scripts.Player
                         _ball.GetComponent<BallHandler>().PerfectReception();
                         _specialSpikeCount++;
                         Debug.Log(_specialSpikeCount + " perfect reception ! ");
+                        
+                        // Animation
+                        _animator.SetTrigger("PerfectReception");
                             
                         if (_specialSpikeCount == 3)
                         {
@@ -233,24 +231,33 @@ namespace Hugo.Prototype.Scripts.Player
                 
                 if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallManager.NumberTouchBall < 2)
                 { 
-                    _ball.GetComponent<BallHandler>().IsCatch(gameObject);
+                    _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     _hasTheBall = true;
                     _isDashing = false;
                     _canMove = true;
+                    
+                    // Animation
+                    _animator.SetTrigger("Absorb");
                 }
                 else
                 {
                     Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
+                    
+                    // Animation
+                    _animator.SetTrigger("Attack");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall < 2)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                    _ball.GetComponent<BallHandler>().IsCatch(gameObject);
+                    _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
 
                     Invoke(nameof(ActiveSpecialSpike), _durationSpecialSpike);
+                    
+                    // Animation
+                    _animator.SetTrigger("Absorb");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall == 3)
@@ -292,8 +299,11 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (buttonValue == 0 && _hasTheBall)
             {
-                _ball.GetComponent<BallHandler>().IsDrawn(_move);
+                _ball.GetComponent<BallHandler>().IsShoot(_move);
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
+                
+                // Animation
+                _animator.SetTrigger("Drawn");
             }
         }
 
@@ -310,6 +320,9 @@ namespace Hugo.Prototype.Scripts.Player
                     _isSpecialSpike = true;
                     _canSpecialSpike = false;
                     _specialSpikeCount = 0;
+                    
+                    // Animation
+                    _animator.SetTrigger("ActiveSpecialSpike");
                 }
             }
         }
@@ -319,7 +332,7 @@ namespace Hugo.Prototype.Scripts.Player
             _isSouthButtonPressed = buttonValue;
             //Debug.Log(_isSouthButtonPressed);
 
-            if (_isGrounded || _isWalled)
+            if (_isGrounded)
             {
                 _canDoubleJump = false;
             }
@@ -334,9 +347,12 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = false;
+                    
+                    // Animation
+                    _animator.SetTrigger("DoubleJump");
                 }
                 
-                if (_isGrounded && !_isWalled || _isGrounded && _isWalled)
+                if (_isGrounded)
                 { 
                     Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
                     //Debug.Log(" First Jump ! ");
@@ -344,17 +360,9 @@ namespace Hugo.Prototype.Scripts.Player
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = true;
                     //Debug.Log(_canDoubleJump);
-                }
-
-                if (_isWalled && !_isGrounded) 
-                {
-                    _rb2d.velocity = Vector2.zero;
-                    Vector2 jumping = Vector2.up * buttonValue * (_jumpForce / 2);
-                    //Debug.Log(jumping);
-            
-                    _rb2d.AddForce(jumping, ForceMode2D.Impulse);
-                    _canDoubleJump = true;
-                    //Debug.Log(_canDoubleJump);
+                    
+                    // Animation
+                    _animator.SetTrigger("Jump");
                 }
             }
         }
@@ -374,6 +382,9 @@ namespace Hugo.Prototype.Scripts.Player
             _isSpecialSpike = false;
             _rb2d.constraints = RigidbodyConstraints2D.None;
             _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            
+            // Animation
+            _animator.SetTrigger("ShootSpecialSpike");
         }
 
         private void ReverseHaveTheBall()
@@ -384,6 +395,18 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseCanPerfectReception()
         {
             _canPerfectReception = !_canPerfectReception;
+        }
+
+        private void FlipSprite(float movement)
+        {
+            if (movement > 0.1f)
+            {
+                _sr.flipX = false;
+            }
+            else if (movement < 0.1f)
+            {
+                _sr.flipX = true;
+            }
         }
     }
 }
