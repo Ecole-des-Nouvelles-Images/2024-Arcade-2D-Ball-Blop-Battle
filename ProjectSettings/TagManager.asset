@@ -3,16 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ball
+  - AboveNet
+  - Wall
+  - Selling
+  - FakeBall
+  - PlayerOneGround
+  - PlayerTwoGround
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
+  - Wall
+  - Net
   - 
   - 
   - 
