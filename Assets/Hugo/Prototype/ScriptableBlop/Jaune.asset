@@ -16,4 +16,5 @@ MonoBehaviour:
   SpeedSpecialSpike: 2.3
   SpecialSpikeName: Coucou
   SpecialSpikeDescription: Lance des coucoux
+  PlayerAnimatorController: {fileID: 9100000, guid: 0805e8c3da82ac34aa349ef6541302b9, type: 2}
   _transparentTimer: 0.3

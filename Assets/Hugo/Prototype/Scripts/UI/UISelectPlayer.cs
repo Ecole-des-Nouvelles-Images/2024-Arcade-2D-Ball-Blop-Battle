@@ -12,13 +12,13 @@ namespace Hugo.Prototype.Scripts.UI
 
         [Header("Blops")]
         [SerializeField]
-        private PlayerData _bleuBlop;
+        private PlayerType _bleuBlop;
         [SerializeField]
-        private PlayerData _rougeBlop;
+        private PlayerType _rougeBlop;
         [SerializeField]
-        private PlayerData _jauneBlop;
+        private PlayerType _jauneBlop;
         [SerializeField]
-        private PlayerData _violetBlop;
+        private PlayerType _violetBlop;
         
         [Header("Links")]
         [SerializeField]

@@ -9,7 +9,7 @@ namespace Hugo.Prototype.Scripts.Game
         public GameObject FirstPlayerGameObject;
         public GameObject SecondPlayerGameObject;
         
-        public static PlayerData FirstPlayerScriptableObject;
-        public static PlayerData SecondPlayerScriptableObject;
+        public static PlayerType FirstPlayerScriptableObject;
+        public static PlayerType SecondPlayerScriptableObject;
     }
 }

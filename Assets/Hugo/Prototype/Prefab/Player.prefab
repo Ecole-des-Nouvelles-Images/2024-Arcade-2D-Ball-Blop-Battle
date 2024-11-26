@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1772796910958661415}
   - component: {fileID: 9091463944279118054}
   - component: {fileID: 4158806001138468945}
+  - component: {fileID: -725423216907730320}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -102,7 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerData: {fileID: 11400000, guid: 1d4215861724cb24f869bf80e9d21847, type: 2}
+  _playerType: {fileID: 11400000, guid: 1d4215861724cb24f869bf80e9d21847, type: 2}
   _speed: 450
   _jumpForce: 14
   _jumpingSpeed: 10
@@ -136,6 +137,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50768582ce68e7943af9848af9c0771e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NumberTouchBall: 0
+  IsPlayerOne: 0
 --- !u!114 &231906474129314894
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,3 +295,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e3d91313c54c6ba3a5e383b88e389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &-725423216907730320
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243948108377192109}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -41,7 +41,7 @@ namespace Hugo.Prototype.Scripts.Player
         // Player Type
         [Header("Player Type")]
         [SerializeField]
-        private PlayerData _playerData;
+        private PlayerType _playerType;
         
         // Player Settings
         [Header("Player Settings")]
@@ -90,7 +90,8 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Start()
         {
-            _sr.sprite = _playerData.Sprite;
+            _sr.sprite = _playerType.Sprite;
+            _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
         }
 
         private void Update()
@@ -376,7 +377,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void ActiveSpecialSpike()
         {
-            _playerData.SpecialSpike(gameObject, _ball, _move);
+            _playerType.SpecialSpike(gameObject, _ball, _move);
             
             _hasTheBall = false;
             _isSpecialSpike = false;
