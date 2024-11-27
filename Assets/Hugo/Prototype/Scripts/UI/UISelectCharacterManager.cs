@@ -2,16 +2,13 @@ using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.UI
 {
-    public class UIManager : MonoBehaviour
+    public class UISelectCharacterManager : MonoBehaviour
     {
-        [FormerlySerializedAs("_playerOneData")] [SerializeField]
-        private PlayerType _playerOneType;
-        [FormerlySerializedAs("_playerTwoData")] [SerializeField]
-        private PlayerType _playerTwoType;
+        [SerializeField] private PlayerType _playerOneType;
+        [SerializeField] private PlayerType _playerTwoType;
         
         public void ChangeScene(int index)
         {

@@ -11,22 +11,15 @@ namespace Hugo.Prototype.Scripts.UI
         private PlayerInput _playerInput;
 
         [Header("Blops")]
-        [SerializeField]
-        private PlayerType _bleuBlop;
-        [SerializeField]
-        private PlayerType _rougeBlop;
-        [SerializeField]
-        private PlayerType _jauneBlop;
-        [SerializeField]
-        private PlayerType _violetBlop;
+        [SerializeField] private PlayerType _bleuBlop;
+        [SerializeField] private PlayerType _rougeBlop;
+        [SerializeField] private PlayerType _jauneBlop;
+        [SerializeField] private PlayerType _violetBlop;
         
         [Header("Links")]
-        [SerializeField]
-        private RectTransform _playerSelection;
-        [SerializeField]
-        private Image _dislpayCurrentSelectedBlopImage;
-        [SerializeField]
-        private EventSystem _eventSystem;
+        [SerializeField] private RectTransform _playerSelection;
+        [SerializeField] private Image _dislpayCurrentSelectedBlopImage;
+        [SerializeField] private EventSystem _eventSystem;
 
         private void Awake()
         {
@@ -49,7 +42,6 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void Update()
         {
-            
             _dislpayCurrentSelectedBlopImage.sprite = _eventSystem.currentSelectedGameObject.GetComponent<Image>().sprite;
         }
     }
