@@ -12,6 +12,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // Components
         private Rigidbody2D _rb2d;
+        private Collider2D _col2d;
         private SpriteRenderer _sr;
         private PlayerInput _playerInput;
         private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
@@ -51,6 +52,7 @@ namespace Hugo.Prototype.Scripts.Player
         [Header("Player Settings")]
         [SerializeField] private float _speed;
         [SerializeField] private float _jumpForce;
+        [SerializeField] private float _wallJumpForce;
         [SerializeField] private float _jumpingSpeed;
         [SerializeField] private float _airControlFactor;
         [SerializeField] private float _maxAirSpeed;
@@ -77,6 +79,7 @@ namespace Hugo.Prototype.Scripts.Player
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
+            _col2d = GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
             _playerInput = GetComponent<PlayerInput>();
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
@@ -119,6 +122,7 @@ namespace Hugo.Prototype.Scripts.Player
                 if (hit2DWallLeft || hit2DWallRight)
                 {
                     _isWalled = true;
+                    _canDoubleJump = false;
                 }
                 
                 Debug.DrawRay(transform.position, Vector3.right * _rayGroundedLength, Color.red);
@@ -175,6 +179,16 @@ namespace Hugo.Prototype.Scripts.Player
                 Debug.Log(" FAUTE : Net touched ! ");
                 Destroy(gameObject);
             }
+
+            Debug.Log(_rb2d.velocity.magnitude);
+            // if (_isGrounded)
+            // {
+            //     _col2d.sharedMaterial.friction = 0;
+            // }
+            // else
+            // {
+            //     _col2d.sharedMaterial.friction = 0.4f;
+            // }
             
             // Animation
             //_animator.SetBool("HasTheBall", _hasTheBall);
@@ -407,6 +421,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseCanPerfectReception()
         {
             _canPerfectReception = !_canPerfectReception;
+        }
+        
+        private void ReverseCanMove()
+        {
+            _canMove = !_canMove;
         }
 
         private void FlipSprite(float movement)

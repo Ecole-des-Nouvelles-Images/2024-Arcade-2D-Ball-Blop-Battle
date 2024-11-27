@@ -123,7 +123,10 @@ namespace Hugo.Prototype.Scripts.Ball
             }
             
             // Disable Green Spacial Spike
-            _playerObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+            if (_playerObject != null)
+            {
+                _playerObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+            }
         }
 
         private void Commitment(Vector2 direction)
