@@ -71,6 +71,7 @@ namespace Hugo.Prototype.Scripts.Player
         // isGrounded and isWalled
         [Header("Is Grounded and Is Walled")]
         [SerializeField] private float _rayGroundedLength;
+        [SerializeField] private float _rayWalledLength;
         [SerializeField] private float _rayNetTouchedLength;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
@@ -117,16 +118,16 @@ namespace Hugo.Prototype.Scripts.Player
             if (-1 <= _move.x && _move.x <= -0.8 || 0.8 <= _move.x && _move.x <= 1)
             {
                 // Raycast _isWalled
-                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayGroundedLength, _wallLayer);
-                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayGroundedLength, _wallLayer);
+                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
+                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
                 if (hit2DWallLeft || hit2DWallRight)
                 {
                     _isWalled = true;
                     _canDoubleJump = false;
                 }
                 
-                Debug.DrawRay(transform.position, Vector3.right * _rayGroundedLength, Color.red);
-                Debug.DrawRay(transform.position, Vector3.left * _rayGroundedLength, Color.red);
+                Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
+                Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
             
             // Debug.Log(_isGrounded);
@@ -179,16 +180,6 @@ namespace Hugo.Prototype.Scripts.Player
                 Debug.Log(" FAUTE : Net touched ! ");
                 Destroy(gameObject);
             }
-
-            Debug.Log(_rb2d.velocity.magnitude);
-            // if (_isGrounded)
-            // {
-            //     _col2d.sharedMaterial.friction = 0;
-            // }
-            // else
-            // {
-            //     _col2d.sharedMaterial.friction = 0.4f;
-            // }
             
             // Animation
             //_animator.SetBool("HasTheBall", _hasTheBall);
@@ -389,6 +380,13 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     //_animator.SetTrigger("Jump");
+                }
+                
+                if (_isWalled && !_isGrounded)
+                {
+                    Vector2 walljumping = new Vector2(1,1) * buttonValue * _wallJumpForce;
+                    
+                    _rb2d.AddForce(walljumping, ForceMode2D.Impulse);
                 }
             }
         }

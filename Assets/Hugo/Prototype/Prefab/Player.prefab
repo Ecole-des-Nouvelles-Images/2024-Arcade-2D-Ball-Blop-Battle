@@ -109,14 +109,15 @@ MonoBehaviour:
   _jumpForce: 14
   _wallJumpForce: 10
   _jumpingSpeed: 10
-  _airControlFactor: 0.15
-  _maxAirSpeed: 7
+  _airControlFactor: 0.08
+  _maxAirSpeed: 5.5
   _timePerfectReception: 0.5
   _durationSpecialSpike: 2
   _dashSpeed: 15
   _dashDuration: 0.15
   _dashCooldown: 0.6
   _rayGroundedLength: 0.8
+  _rayWalledLength: 0.5
   _rayNetTouchedLength: 0.6
   _groundLayer:
     serializedVersion: 2
@@ -274,7 +275,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e443c2cfdd5aefa4cb92de662529ed58, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
