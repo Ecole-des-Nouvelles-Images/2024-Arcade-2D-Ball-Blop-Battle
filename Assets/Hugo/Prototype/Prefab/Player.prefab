@@ -103,7 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerType: {fileID: 11400000, guid: 1d4215861724cb24f869bf80e9d21847, type: 2}
+  GreenSpecialSpike: 0
+  _playerType: {fileID: 11400000, guid: 9988807ac4c33a04f87641758bec77e0, type: 2}
   _speed: 450
   _jumpForce: 14
   _jumpingSpeed: 10

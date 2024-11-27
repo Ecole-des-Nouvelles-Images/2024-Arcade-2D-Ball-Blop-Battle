@@ -17,8 +17,12 @@ namespace Hugo.Prototype.Scripts.Ball
         private GameObject _playerObject;
         
         private bool _isCatch;
+        
+        // Specal Spike
         private bool _isTransparent;
+        private bool _canHitAgain;
 
+        // Ball Settings
         [Header("Ball Settings")]
         [SerializeField] private float _speedDrawn;
         [SerializeField] private float _speedPunch;
@@ -86,8 +90,11 @@ namespace Hugo.Prototype.Scripts.Ball
                 _playerObject = other.gameObject;
                 if (_isTransparent)
                 {
-                    IsTransparent();
+                    YellowSpecialSpikeTransparent();
                 }
+                
+                // Disable Green Spacial Spike
+                _playerObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
             }
         }
 
@@ -114,6 +121,9 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 MatchManager.IsBallInGame = false;
             }
+            
+            // Disable Green Spacial Spike
+            _playerObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
         }
 
         private void Commitment(Vector2 direction)
@@ -172,8 +182,10 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.velocity /= 2;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation / 10, ForceMode2D.Impulse);
         }
-
-        public void IsTransparent()
+        
+        // Special Spike
+        // Jaune
+        public void YellowSpecialSpikeTransparent()
         {
             _isTransparent = !_isTransparent;
 
@@ -186,7 +198,16 @@ namespace Hugo.Prototype.Scripts.Ball
                 _sr.color = new Color(1, 1, 1, 1);
             }
         }
-
+        
+        // Vert
+        public void GreenSpecialSpikeHitAgain()
+        {
+            _rb2d.velocity = Vector2.zero;
+            _rb2d.AddForce(Vector2.down * _speedDrawn, ForceMode2D.Impulse);
+        }
+        
+        
+        // Utils
         public void InvokeMethodTimer([NotNull] string methodName, float timer)
         {
             if (methodName == null) throw new ArgumentNullException(nameof(methodName));

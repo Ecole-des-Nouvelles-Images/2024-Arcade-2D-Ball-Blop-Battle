@@ -7,11 +7,15 @@ namespace Hugo.Prototype.Scripts.Player
 {
     public class PlayerController : MonoBehaviour
     {
+        // Green Special Spike
+        public bool GreenSpecialSpike;
+        
+        // Components
         private Rigidbody2D _rb2d;
         private SpriteRenderer _sr;
         private PlayerInput _playerInput;
         private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
-        private Animator _animator;
+        //private Animator _animator;
         
         // GameObject
         private GameObject _ball;
@@ -76,7 +80,7 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerInput = GetComponent<PlayerInput>();
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
-            _animator = GetComponent<Animator>();
+            //_animator = GetComponent<Animator>();
             
             // if (_playerInput.playerIndex == 0)
             // {
@@ -91,7 +95,7 @@ namespace Hugo.Prototype.Scripts.Player
         private void Start()
         {
             _sr.sprite = _playerType.Sprite;
-            _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
+            //_animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
         }
 
         private void Update()
@@ -139,7 +143,7 @@ namespace Hugo.Prototype.Scripts.Player
                 _dashCooldownRemaining = _dashCooldown;
                 
                 // Animation
-                _animator.SetTrigger("Dash");
+                //_animator.SetTrigger("Dash");
             }
             
             if (_isDashing)
@@ -173,7 +177,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             
             // Animation
-            _animator.SetBool("HasTheBall", _hasTheBall);
+            //_animator.SetBool("HasTheBall", _hasTheBall);
         }
 
         private void FixedUpdate()
@@ -202,7 +206,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             
             // Animation
-            _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
+            //_animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
             FlipSprite(_rb2d.velocity.x);
         }
         
@@ -220,7 +224,7 @@ namespace Hugo.Prototype.Scripts.Player
                         Debug.Log(_specialSpikeCount + " perfect reception ! ");
                         
                         // Animation
-                        _animator.SetTrigger("PerfectReception");
+                        //_animator.SetTrigger("PerfectReception");
                             
                         if (_specialSpikeCount == 3)
                         {
@@ -238,7 +242,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _canMove = true;
                     
                     // Animation
-                    _animator.SetTrigger("Absorb");
+                    //_animator.SetTrigger("Absorb");
                 }
                 else
                 {
@@ -246,7 +250,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
                     
                     // Animation
-                    _animator.SetTrigger("Attack");
+                    //_animator.SetTrigger("Attack");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall < 2)
@@ -258,7 +262,7 @@ namespace Hugo.Prototype.Scripts.Player
                     Invoke(nameof(ActiveSpecialSpike), _durationSpecialSpike);
                     
                     // Animation
-                    _animator.SetTrigger("Absorb");
+                    //_animator.SetTrigger("Absorb");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall == 3)
@@ -304,7 +308,7 @@ namespace Hugo.Prototype.Scripts.Player
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
                 // Animation
-                _animator.SetTrigger("Drawn");
+                //_animator.SetTrigger("Drawn");
             }
         }
 
@@ -312,9 +316,9 @@ namespace Hugo.Prototype.Scripts.Player
         {
             _isEastButtonPressed = buttonValue;
 
-            if (_canSpecialSpike)
+            if (Mathf.Approximately(buttonValue, 1))
             {
-                if (Mathf.Approximately(buttonValue, 1))
+                if (_canSpecialSpike)
                 {
                     _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 
@@ -323,7 +327,14 @@ namespace Hugo.Prototype.Scripts.Player
                     _specialSpikeCount = 0;
                     
                     // Animation
-                    _animator.SetTrigger("ActiveSpecialSpike");
+                    //_animator.SetTrigger("ActiveSpecialSpike");
+                }
+
+                if (GreenSpecialSpike)
+                {
+                    Debug.Log(" Coup Special Green ");
+                    GreenSpecialSpike = false;
+                    _ball.GetComponent<BallHandler>().GreenSpecialSpikeHitAgain();
                 }
             }
         }
@@ -350,7 +361,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _canDoubleJump = false;
                     
                     // Animation
-                    _animator.SetTrigger("DoubleJump");
+                    //_animator.SetTrigger("DoubleJump");
                 }
                 
                 if (_isGrounded)
@@ -363,7 +374,7 @@ namespace Hugo.Prototype.Scripts.Player
                     //Debug.Log(_canDoubleJump);
                     
                     // Animation
-                    _animator.SetTrigger("Jump");
+                    //_animator.SetTrigger("Jump");
                 }
             }
         }
@@ -385,7 +396,7 @@ namespace Hugo.Prototype.Scripts.Player
             _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
             
             // Animation
-            _animator.SetTrigger("ShootSpecialSpike");
+            //_animator.SetTrigger("ShootSpecialSpike");
         }
 
         private void ReverseHaveTheBall()
