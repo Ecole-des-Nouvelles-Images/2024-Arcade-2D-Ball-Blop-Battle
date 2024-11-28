@@ -16,7 +16,7 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _ballGameObject = other.gameObject;
                 NumberTouchBall++;
-                Debug.Log(NumberTouchBall);
+                //Debug.Log(NumberTouchBall);
 
                 if (NumberTouchBall > 2)
                 {

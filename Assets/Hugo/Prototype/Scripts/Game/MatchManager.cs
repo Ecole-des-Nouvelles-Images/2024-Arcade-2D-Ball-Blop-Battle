@@ -18,7 +18,7 @@ namespace Hugo.Prototype.Scripts.Game
 
         [Header("Commitment")]
         public static bool IsBallInGame = true;
-        public static bool IsSetOver = false;
+        public static bool IsSetOver;
         
         [Header("Prefabs")]
         [SerializeField] private GameObject _ballPrefab;

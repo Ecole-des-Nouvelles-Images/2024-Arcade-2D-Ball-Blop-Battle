@@ -18,31 +18,53 @@ namespace Hugo.Prototype.Scripts.UI
         
         [Header("Links")]
         [SerializeField] private RectTransform _playerSelection;
-        [SerializeField] private Image _dislpayCurrentSelectedBlopImage;
+        [SerializeField] private GameObject _dislpayCurrentSelectedBlopGameObject;
         [SerializeField] private EventSystem _eventSystem;
+        
+        private Image _currentSelectedBlopImage;
+        private RectTransform _currentSelectedBlopRectTransform;
 
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
+            _currentSelectedBlopImage = _dislpayCurrentSelectedBlopGameObject.GetComponent<Image>();
+            _currentSelectedBlopRectTransform = _dislpayCurrentSelectedBlopGameObject.GetComponent<RectTransform>();
         }
 
         private void OnEnable()
         {
             if (_playerInput.playerIndex == 0)
             {
-                _playerSelection.anchorMin = new Vector2(0f, 0f);
-                _playerSelection.anchorMax = new Vector2(0.5f, 1f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.2f, 0.5f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.4f, 0.9f);
             }
             else
             {
-                _playerSelection.anchorMin = new Vector2(0.5f, 0f);
-                _playerSelection.anchorMax = new Vector2(1f, 1f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.6f, 0.5f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.8f, 0.9f);
             }
         }
 
         private void Update()
         {
-            _dislpayCurrentSelectedBlopImage.sprite = _eventSystem.currentSelectedGameObject.GetComponent<Image>().sprite;
+            if (_eventSystem.currentSelectedGameObject.name == "Bleu")
+            {
+                _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
+            }
+            else if (_eventSystem.currentSelectedGameObject.name == "Jaune")
+            {
+                _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
+            }
+            else if (_eventSystem.currentSelectedGameObject.name == "Rouge")
+            {
+                _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
+            }
+            else if (_eventSystem.currentSelectedGameObject.name == "Violet")
+            {
+                _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
+            }
+            
+            Debug.Log(_eventSystem.currentSelectedGameObject.name);
         }
     }
 }

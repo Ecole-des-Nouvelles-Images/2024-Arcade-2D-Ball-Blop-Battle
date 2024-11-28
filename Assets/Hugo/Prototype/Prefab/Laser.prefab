@@ -48,3 +48,6 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
+  _ballLayer:
+    serializedVersion: 2
+    m_Bits: 512

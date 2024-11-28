@@ -1,8 +1,8 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
+using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -176,8 +176,20 @@ namespace Hugo.Prototype.Scripts.Player
                 }
             }
             
+            // Reset States End of Timer
+            if (MatchManager.IsSetOver)
+            {
+                _hasTheBall = false;
+                _isSpecialSpike = false;
+            }
+            
             // Animation
             //_animator.SetBool("HasTheBall", _hasTheBall);
+            //_animator.SetBool("IsWalled", _isWalled);
+            //_animator.SetFloat("GoUp", _rb2d.velocity.y);
+            //_animator.SetFloat("MaxJumpHeight", _rb2d.velocity.y);
+            //_animator.SetFloat("Falling", _rb2d.velocity.y);
+            //_animator.SetBool("IsGrounded", _isGrounded);
         }
 
         private void FixedUpdate()
@@ -293,7 +305,7 @@ namespace Hugo.Prototype.Scripts.Player
                 Invoke(nameof(ReverseCanPerfectReception), _timePerfectReception);
             }
             
-            if (buttonValue == 0 && _hasTheBall)
+            if (buttonValue == 0 && _hasTheBall && !_isSpecialSpike)
             {
                 _ball.GetComponent<BallHandler>().IsShoot(_move);
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
@@ -350,9 +362,6 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = false;
-                    
-                    // Animation
-                    //_animator.SetTrigger("DoubleJump");
                 }
                 
                 if (_isGrounded)
@@ -373,6 +382,9 @@ namespace Hugo.Prototype.Scripts.Player
                     Vector2 walljumping = new Vector2(1,1) * buttonValue * _wallJumpForce;
                     
                     _rb2d.AddForce(walljumping, ForceMode2D.Impulse);
+                    
+                    // Animation
+                    //_animator.SetTrigger("WallJump");
                 }
             }
         }
@@ -386,7 +398,10 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void ActiveSpecialSpike()
         {
-            _playerType.SpecialSpike(gameObject, _ball, _move);
+            if (_ball)
+            {
+                _playerType.SpecialSpike(gameObject, _ball, _move);
+            }
             
             _hasTheBall = false;
             _isSpecialSpike = false;
@@ -426,7 +441,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void PlayerDie()
         {
-            Debug.Log(" Player Die ");
+            //Debug.Log(" Player Die ");
             
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             
