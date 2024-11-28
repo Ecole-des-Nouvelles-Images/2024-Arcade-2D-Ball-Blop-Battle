@@ -1134,8 +1134,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 851014376, guid: 354a2db00f00ab74bb9897d40cea0c89, type: 3}
     - target: {fileID: 532244868467900860, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 532244868467900860, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772796910958661415, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
+      propertyPath: m_Offset.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3666538827017239510, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: _playerType

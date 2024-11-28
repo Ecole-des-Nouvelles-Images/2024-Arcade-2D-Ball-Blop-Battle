@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 354a2db00f00ab74bb9897d40cea0c89
+guid: 6f31990daef00594ab3c54a1158d72ab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -49,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 130
-  spriteBorder: {x: 260, y: 0, z: 512, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_0
+      name: Sans titre-1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca252891f5524c34782b10be86b7145d
-      internalID: 851014376
+      spriteID: 6da98c73bb84fb241adfb01230aaa346
+      internalID: 1257896451
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_1
+      name: Sans titre-1_1
       rect:
         serializedVersion: 2
         x: 256
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d152ce0487aab2f41a30cf7f146c698f
-      internalID: -1501459203
+      spriteID: 5c2a7a181714d2343a83bc7200747612
+      internalID: 1824980727
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_2
+      name: Sans titre-1_2
       rect:
         serializedVersion: 2
         x: 512
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 448f82a6147cb7246a9cac07ae5b4c74
-      internalID: 404048577
+      spriteID: 4e5af5b08fe74534493aa3225bc2ac64
+      internalID: -1088480387
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_3
+      name: Sans titre-1_3
       rect:
         serializedVersion: 2
         x: 768
@@ -187,8 +187,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 93541ba8abef72d4d9238e1a72adb26b
-      internalID: -1754628911
+      spriteID: 0028445a5eee8804494df4378f886728
+      internalID: -586381495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sans titre-1_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd4c34b8f1bd8fd4a8346e4ddeda861f
+      internalID: 1681472819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sans titre-1_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b7359e19c7a6a4a8667b92d1233d1f
+      internalID: 1696154293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sans titre-1_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ffb74b31e3eaf44885f342dc771872c
+      internalID: -1422186328
       vertices: []
       indices: 
       edges: []
@@ -197,17 +260,20 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpriteSheet_idle_blop_0: 851014376
-      SpriteSheet_idle_blop_1: -1501459203
-      SpriteSheet_idle_blop_2: 404048577
-      SpriteSheet_idle_blop_3: -1754628911
+      Sans titre-1_0: 1257896451
+      Sans titre-1_1: 1824980727
+      Sans titre-1_2: -1088480387
+      Sans titre-1_3: -586381495
+      Sans titre-1_4: 1681472819
+      Sans titre-1_5: 1696154293
+      Sans titre-1_6: -1422186328
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
