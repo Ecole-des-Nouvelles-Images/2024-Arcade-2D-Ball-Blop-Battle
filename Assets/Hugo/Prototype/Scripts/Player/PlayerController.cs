@@ -2,6 +2,7 @@ using System;
 using Hugo.Prototype.Scripts.Ball;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -39,7 +40,7 @@ namespace Hugo.Prototype.Scripts.Player
         private float _isStartButtonPressed;
         
         // Special spike
-        private int _specialSpikeCount;
+        public int PerfectReceptionCount;
         private bool _canSpecialSpike;
         private bool _isSpecialSpike;
         
@@ -174,12 +175,6 @@ namespace Hugo.Prototype.Scripts.Player
                     _canMove = true;
                 }
             }
-
-            if (_isOnTheNet)
-            {
-                Debug.Log(" FAUTE : Net touched ! ");
-                Destroy(gameObject);
-            }
             
             // Animation
             //_animator.SetBool("HasTheBall", _hasTheBall);
@@ -222,16 +217,16 @@ namespace Hugo.Prototype.Scripts.Player
                 _ball = other.gameObject;
                 if (_canPerfectReception)
                 {
-                    if (_move == Vector2.zero && _isGrounded)
+                    if (_move == Vector2.zero && _isGrounded && _playerNumberTouchBallManager.NumberTouchBall < 1)
                     {
                         _ball.GetComponent<BallHandler>().PerfectReception();
-                        _specialSpikeCount++;
-                        Debug.Log(_specialSpikeCount + " perfect reception ! ");
+                        PerfectReceptionCount++;
+                        //Debug.Log(PerfectReceptionCount + " perfect reception ! ");
                         
                         // Animation
                         //_animator.SetTrigger("PerfectReception");
                             
-                        if (_specialSpikeCount == 3)
+                        if (PerfectReceptionCount == 3)
                         {
                             _canSpecialSpike = true;
                             Debug.Log(_canSpecialSpike);
@@ -278,15 +273,6 @@ namespace Hugo.Prototype.Scripts.Player
             }
         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("AboveNet"))
-            {
-                Debug.Log(" FAUTE : Above Net ! ");
-                Destroy(gameObject);
-            }
-        }
-
         public void GetJoystickReadValue(Vector2 move)
         {
             if (_canMove)
@@ -329,7 +315,7 @@ namespace Hugo.Prototype.Scripts.Player
 
                     _isSpecialSpike = true;
                     _canSpecialSpike = false;
-                    _specialSpikeCount = 0;
+                    PerfectReceptionCount = 0;
                     
                     // Animation
                     //_animator.SetTrigger("ActiveSpecialSpike");
@@ -436,6 +422,18 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _sr.flipX = true;
             }
+        }
+
+        public void PlayerDie()
+        {
+            Debug.Log(" Player Die ");
+            
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            
+            // Animation
+            //_animator.SetTrigger("Die");
+            
+            Destroy(gameObject, 0.3f);
         }
     }
 }
