@@ -9,6 +9,8 @@ namespace Hugo.Prototype.Scripts.UI
     public class UISelectPlayer : MonoBehaviour
     {
         private PlayerInput _playerInput;
+        private Image _currentSelectedBlopImage;
+        private RectTransform _currentSelectedBlopRectTransform;
 
         [Header("Blops")]
         [SerializeField] private PlayerType _bleuBlop;
@@ -20,9 +22,6 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private RectTransform _playerSelection;
         [SerializeField] private GameObject _dislpayCurrentSelectedBlopGameObject;
         [SerializeField] private EventSystem _eventSystem;
-        
-        private Image _currentSelectedBlopImage;
-        private RectTransform _currentSelectedBlopRectTransform;
 
         private void Awake()
         {
@@ -47,24 +46,25 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void Update()
         {
-            if (_eventSystem.currentSelectedGameObject.name == "Bleu")
+            if (_eventSystem.currentSelectedGameObject)
             {
-                _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
+                if (_eventSystem.currentSelectedGameObject.name == "Bleu")
+                {
+                    _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
+                }
+                else if (_eventSystem.currentSelectedGameObject.name == "Jaune")
+                {
+                    _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
+                }
+                else if (_eventSystem.currentSelectedGameObject.name == "Rouge")
+                {
+                    _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
+                }
+                else if (_eventSystem.currentSelectedGameObject.name == "Violet")
+                {
+                    _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
+                }
             }
-            else if (_eventSystem.currentSelectedGameObject.name == "Jaune")
-            {
-                _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
-            }
-            else if (_eventSystem.currentSelectedGameObject.name == "Rouge")
-            {
-                _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
-            }
-            else if (_eventSystem.currentSelectedGameObject.name == "Violet")
-            {
-                _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
-            }
-            
-            Debug.Log(_eventSystem.currentSelectedGameObject.name);
         }
     }
 }
