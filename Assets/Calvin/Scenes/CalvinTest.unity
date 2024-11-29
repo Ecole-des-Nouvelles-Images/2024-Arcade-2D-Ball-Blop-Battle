@@ -1132,7 +1132,7 @@ PrefabInstance:
     - target: {fileID: 532244868467900860, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 851014376, guid: 354a2db00f00ab74bb9897d40cea0c89, type: 3}
+      objectReference: {fileID: 1215442914, guid: c32915611289798498e14852170a0c80, type: 3}
     - target: {fileID: 532244868467900860, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_SortingOrder
       value: 10
@@ -1143,7 +1143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1772796910958661415, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_Offset.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3666538827017239510, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: _playerType
