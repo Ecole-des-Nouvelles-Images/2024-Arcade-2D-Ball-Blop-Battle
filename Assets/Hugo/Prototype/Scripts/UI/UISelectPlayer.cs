@@ -1,16 +1,22 @@
+using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Hugo.Prototype.Scripts.UI
 {
     public class UISelectPlayer : MonoBehaviour
     {
+        public bool IsPlayerOne;
+        
         private PlayerInput _playerInput;
         private Image _currentSelectedBlopImage;
         private RectTransform _currentSelectedBlopRectTransform;
+        private GameObject _currentButtonSelected;
+        private bool _hasGameLoaded;
 
         [Header("Blops")]
         [SerializeField] private PlayerType _bleuBlop;
@@ -46,25 +52,92 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void Update()
         {
-            if (_eventSystem.currentSelectedGameObject)
+            _currentButtonSelected = _eventSystem.currentSelectedGameObject;
+            
+            SelectionBlop();
+
+            if (GameManager.FirstPlayerScriptableObject != null && GameManager.SecondPlayerScriptableObject != null && !_hasGameLoaded)
             {
-                if (_eventSystem.currentSelectedGameObject.name == "Bleu")
+                Debug.Log(" Start Game ! ");
+                _hasGameLoaded = true;
+                Invoke(nameof(LoadGameScene), 0.2f);
+            }
+        }
+
+        private void SelectionBlop()
+        {
+            if (_currentButtonSelected)
+            {
+                if (_currentButtonSelected.name == "Bleu")
                 {
                     _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
+
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        if (IsPlayerOne)
+                        {
+                            GameManager.FirstPlayerScriptableObject = _bleuBlop;
+                        }
+                        else
+                        {
+                            GameManager.SecondPlayerScriptableObject = _bleuBlop;
+                        }
+                    }
                 }
-                else if (_eventSystem.currentSelectedGameObject.name == "Jaune")
+                else if (_currentButtonSelected.name == "Jaune")
                 {
                     _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
+
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        if (IsPlayerOne)
+                        {
+                            GameManager.FirstPlayerScriptableObject = _jauneBlop;
+                        }
+                        else
+                        {
+                            GameManager.SecondPlayerScriptableObject = _jauneBlop;
+                        }
+                    }
                 }
-                else if (_eventSystem.currentSelectedGameObject.name == "Rouge")
+                else if (_currentButtonSelected.name == "Rouge")
                 {
                     _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
+
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        if (IsPlayerOne)
+                        {
+                            GameManager.FirstPlayerScriptableObject = _rougeBlop;
+                        }
+                        else
+                        {
+                            GameManager.SecondPlayerScriptableObject = _rougeBlop;
+                        }
+                    }
                 }
-                else if (_eventSystem.currentSelectedGameObject.name == "Violet")
+                else if (_currentButtonSelected.name == "Violet")
                 {
                     _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
+
+                    if (Input.GetButtonDown("Fire1"))
+                    {
+                        if (IsPlayerOne)
+                        {
+                            GameManager.FirstPlayerScriptableObject = _violetBlop;
+                        }
+                        else
+                        {
+                            GameManager.SecondPlayerScriptableObject = _violetBlop;
+                        }
+                    }
                 }
             }
+        }
+
+        private void LoadGameScene()
+        {
+            SceneManager.LoadScene(2);
         }
     }
 }

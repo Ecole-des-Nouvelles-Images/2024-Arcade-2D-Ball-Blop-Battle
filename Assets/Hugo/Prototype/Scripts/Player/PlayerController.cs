@@ -87,14 +87,14 @@ namespace Hugo.Prototype.Scripts.Player
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
             //_animator = GetComponent<Animator>();
             
-            // if (_playerInput.playerIndex == 0)
-            // {
-            //     _playerType = GameManager.FirstPlayerScriptableObject;
-            // }
-            // else
-            // {
-            //     _playerType = GameManager.SecondPlayerScriptableObject;
-            // }
+            if (_playerInput.playerIndex == 0)
+            {
+                _playerType = GameManager.FirstPlayerScriptableObject;
+            }
+            else
+            {
+                _playerType = GameManager.SecondPlayerScriptableObject;
+            }
         }
 
         private void Start()
