@@ -72,7 +72,7 @@ namespace Hugo.Prototype.Scripts.UI
                 {
                     _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
 
-                    if (Input.GetButtonDown("Fire1"))
+                    if (_currentButtonSelected.GetComponent<Button>().onClick != null)
                     {
                         if (IsPlayerOne)
                         {
@@ -88,7 +88,7 @@ namespace Hugo.Prototype.Scripts.UI
                 {
                     _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
 
-                    if (Input.GetButtonDown("Fire1"))
+                    if (_currentButtonSelected.GetComponent<Button>().onClick != null)
                     {
                         if (IsPlayerOne)
                         {
@@ -104,7 +104,7 @@ namespace Hugo.Prototype.Scripts.UI
                 {
                     _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
 
-                    if (Input.GetButtonDown("Fire1"))
+                    if (_currentButtonSelected.GetComponent<Button>().onClick != null)
                     {
                         if (IsPlayerOne)
                         {
@@ -120,7 +120,7 @@ namespace Hugo.Prototype.Scripts.UI
                 {
                     _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
 
-                    if (Input.GetButtonDown("Fire1"))
+                    if (_currentButtonSelected.GetComponent<Button>().onClick != null)
                     {
                         if (IsPlayerOne)
                         {
