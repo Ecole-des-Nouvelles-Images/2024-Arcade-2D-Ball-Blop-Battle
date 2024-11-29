@@ -1036,7 +1036,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4bcd552ea6e7e0949820ec7c0c81ef9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 140602830782d8b419c33ce55f080797, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -2975,7 +2975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7169812, g: 0.1792453, b: 0.1847956, a: 1}
+  m_Color: {r: 0.26321647, g: 0.8584906, b: 0.7060019, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4291,8 +4291,32 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 9fa4a1b9d933474439febe721b8e429b, type: 2}
     - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 10
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.04094709
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.013216442
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.31132078
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: InitialModule.startColor.minMaxState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2653163808214355925, guid: 60bec28189029e34fa6858e64922336d, type: 3}
       propertyPath: EmissionModule.rateOverTime.minScalar
@@ -4301,6 +4325,10 @@ PrefabInstance:
     - target: {fileID: 6238777023175331223, guid: 60bec28189029e34fa6858e64922336d, type: 3}
       propertyPath: m_Name
       value: BullesArrierePlan
+      objectReference: {fileID: 0}
+    - target: {fileID: 6238777023175331223, guid: 60bec28189029e34fa6858e64922336d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8318121981035834294, guid: 60bec28189029e34fa6858e64922336d, type: 3}
       propertyPath: m_LocalPosition.x
