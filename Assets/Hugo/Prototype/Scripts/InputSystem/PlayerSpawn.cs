@@ -7,7 +7,7 @@ namespace Hugo.Prototype.Scripts.InputSystem
 {
     public class PlayerSpawn : MonoBehaviour
     {
-        private PlayerInputManager _playerInputManager;
+        private PlayerInputManager _playerInputHandler;
         
         [Header("GameManager")]
         [SerializeField] private GameManager _gameManager;
@@ -18,17 +18,17 @@ namespace Hugo.Prototype.Scripts.InputSystem
 
         private void Awake()
         {
-            _playerInputManager = GetComponent<PlayerInputManager>();
+            _playerInputHandler = GetComponent<PlayerInputManager>();
         }
 
         private void OnEnable()
         {
-            _playerInputManager.onPlayerJoined += OnPlayerJoined;
+            _playerInputHandler.onPlayerJoined += OnPlayerJoined;
         }
 
         private void OnDisable()
         {
-            _playerInputManager.onPlayerJoined -= OnPlayerJoined;
+            _playerInputHandler.onPlayerJoined -= OnPlayerJoined;
         }
         
         private void OnPlayerJoined(PlayerInput playerInput)

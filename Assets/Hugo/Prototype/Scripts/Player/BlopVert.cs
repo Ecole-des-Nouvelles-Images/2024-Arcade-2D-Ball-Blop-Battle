@@ -3,22 +3,23 @@ using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
 {
-    [CreateAssetMenu(fileName = "BlopJaune", menuName = "PlayerData/BlopJaune")]
-    public class BlopJaune : PlayerType
+    [CreateAssetMenu(fileName = "BlopVert", menuName = "PlayerData/BlopVert")]
+    public class BlopVert : PlayerType
     {
+        // Player Components
+        private PlayerController _playerController;
+        
         // Ball Components
         private Rigidbody2D _rb2dBall;
         private Collider2D _col2dBall;
         private BallHandler _ballHandler;
-
-        [Header("Yellow Player Data")]
-        [SerializeField] private float _transparentTimer;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
-            Debug.Log(" JAUNE : SPECIAL SPIKE ! ");
+            Debug.Log(" VERT : SPECIAL SPIKE ! ");
             
             // Get Components
+            _playerController = player.GetComponent<PlayerController>();
             _rb2dBall = ball.GetComponent<Rigidbody2D>();
             _col2dBall = ball.GetComponent<Collider2D>();
             _ballHandler = ball.GetComponent<BallHandler>();
@@ -31,7 +32,7 @@ namespace Hugo.Prototype.Scripts.Player
             
             // Special Spike
             _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
-            _ballHandler.InvokeMethodTimer("YellowSpecialSpikeTransparent", _transparentTimer);
+            _playerController.GreenSpecialSpike = true;
         }
     }
 }

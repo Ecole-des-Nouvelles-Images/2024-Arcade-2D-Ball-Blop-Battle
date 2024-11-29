@@ -14,11 +14,16 @@ namespace Hugo.Prototype.Scripts.Ball
         private Collider2D _col2D;
         private SpriteRenderer _sr;
         
-        private GameObject _playerObject;
+        private GameObject _currentPlayerGameObject;
+        private GameObject _lastPlayerGameObject;
         
         private bool _isCatch;
+        
+        // Specal Spike
         private bool _isTransparent;
+        private bool _canHitAgain;
 
+        // Ball Settings
         [Header("Ball Settings")]
         [SerializeField] private float _speedDrawn;
         [SerializeField] private float _speedPunch;
@@ -47,7 +52,7 @@ namespace Hugo.Prototype.Scripts.Ball
             // Pour que le ballon reste dans le joueur
             if (_isCatch)
             {
-                transform.position = _playerObject.transform.position;
+                transform.position = _currentPlayerGameObject.transform.position;
             }
             
             // Détruit le ballon a la fin du temps
@@ -83,36 +88,45 @@ namespace Hugo.Prototype.Scripts.Ball
             
             if (other.gameObject.CompareTag("Player"))
             {
-                _playerObject = other.gameObject;
+                if (_currentPlayerGameObject == null)
+                {
+                    _currentPlayerGameObject = other.gameObject;
+                }
+                else if (_currentPlayerGameObject != other.gameObject)
+                {
+                    _lastPlayerGameObject = _currentPlayerGameObject;
+                    _currentPlayerGameObject = other.gameObject;
+                    
+                    // Set NumberTouch of LastPlayer to 0
+                    _lastPlayerGameObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+                    
+                    // Disable Green Spacial Spike
+                    _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+                }
+                
                 if (_isTransparent)
                 {
-                    IsTransparent();
-                }
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("AboveNet"))
-            {
-                if (_playerObject != null)
-                {
-                    _playerObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
-                    Debug.Log(" CROSS NET ");
+                    YellowSpecialSpikeTransparent();
                 }
             }
         }
 
         private void OnDestroy()
         {
-            if (_playerObject != null)
+            if (_currentPlayerGameObject != null)
             {
-                _playerObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+                _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
             }
 
             if (!MatchManager.IsSetOver)
             {
                 MatchManager.IsBallInGame = false;
+            }
+            
+            // Disable Green Spacial Spike
+            if (_currentPlayerGameObject != null)
+            {
+                _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
             }
         }
 
@@ -123,7 +137,7 @@ namespace Hugo.Prototype.Scripts.Ball
 
         public void IsAbsorb(GameObject playerObject)
         {
-            _playerObject = playerObject;
+            _currentPlayerGameObject = playerObject;
             
             _col2D.isTrigger = true;
             _isCatch = true;
@@ -172,8 +186,10 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.velocity /= 2;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation / 10, ForceMode2D.Impulse);
         }
-
-        public void IsTransparent()
+        
+        // Special Spike
+        // Jaune
+        public void YellowSpecialSpikeTransparent()
         {
             _isTransparent = !_isTransparent;
 
@@ -186,7 +202,16 @@ namespace Hugo.Prototype.Scripts.Ball
                 _sr.color = new Color(1, 1, 1, 1);
             }
         }
-
+        
+        // Vert
+        public void GreenSpecialSpikeHitAgain()
+        {
+            _rb2d.velocity = Vector2.zero;
+            _rb2d.AddForce(Vector2.down * _speedDrawn, ForceMode2D.Impulse);
+        }
+        
+        
+        // Utils
         public void InvokeMethodTimer([NotNull] string methodName, float timer)
         {
             if (methodName == null) throw new ArgumentNullException(nameof(methodName));

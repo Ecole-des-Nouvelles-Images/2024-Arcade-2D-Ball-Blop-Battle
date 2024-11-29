@@ -11,5 +11,11 @@ namespace Hugo.Prototype.Scripts.Game
         
         public static PlayerType FirstPlayerScriptableObject;
         public static PlayerType SecondPlayerScriptableObject;
+
+        private void Update()
+        {
+            Debug.Log(FirstPlayerScriptableObject);
+            Debug.Log(SecondPlayerScriptableObject);
+        }
     }
 }
