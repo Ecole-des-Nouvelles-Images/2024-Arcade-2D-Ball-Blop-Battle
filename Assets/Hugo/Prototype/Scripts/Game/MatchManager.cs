@@ -20,8 +20,9 @@ namespace Hugo.Prototype.Scripts.Game
         public static bool IsBallInGame = true;
         public static bool IsSetOver;
         
-        [Header("Prefabs")]
+        [Header("GameObjects")]
         [SerializeField] private GameObject _ballPrefab;
+        [SerializeField] private GameObject _panelPaused;
         
         private int _setScorePlayerOne;
         private int _setScorePlayerTwo;
@@ -77,6 +78,8 @@ namespace Hugo.Prototype.Scripts.Game
                 if (_setScorePlayerOne == 2)
                 {
                     Debug.Log(" Player One WIN the match ");
+                    
+                    EndGame();
                 }
                 else
                 {
@@ -91,6 +94,8 @@ namespace Hugo.Prototype.Scripts.Game
                 if (_setScorePlayerTwo == 2)
                 {
                     Debug.Log(" Player Two WIN the match ");
+                    
+                    EndGame();
                 }
                 else
                 {
@@ -102,6 +107,9 @@ namespace Hugo.Prototype.Scripts.Game
             {
                 _setScorePlayerOne++;
                 _setScorePlayerTwo++;
+                
+                Invoke(nameof(Commitment), 2f);
+                Invoke(nameof(StartTimer), 2f);
             }
             
             Debug.Log(" Player One : " + _setScorePlayerOne + " / " + _setScorePlayerTwo + " : Player Two ");
@@ -122,6 +130,12 @@ namespace Hugo.Prototype.Scripts.Game
             Instantiate(_ballPrefab, transform.position, Quaternion.identity);
             
             IsBallInGame = true;
+        }
+
+        private void EndGame()
+        {
+            _panelPaused.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 }

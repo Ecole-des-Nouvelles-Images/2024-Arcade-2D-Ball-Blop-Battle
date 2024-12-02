@@ -33,14 +33,19 @@ namespace Hugo.Prototype.Scripts.InputSystem
         
         private void OnPlayerJoined(PlayerInput playerInput)
         {
-            if (_gameManager.FirstPlayerGameObject == null)
+            int target = playerInput.devices[0].deviceId;
+            
+            int index = GameManager.DevicesID.IndexOf(target);
+            Debug.Log(index);
+            
+            if (index == 0)
             {
                 _gameManager.FirstPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _firstSpawnPoints;
                 
                 playerInput.gameObject.GetComponent<PlayerNumberTouchBallManager>().IsPlayerOne = true;
             }
-            else
+            else if (index == 1)
             {
                 _gameManager.SecondPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _secondSpawnPoints;

@@ -27,11 +27,11 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (playerInput.playerIndex == 0)
             {
-                playerInput.gameObject.GetComponent<UICharacterSelection>().IsPlayerOne = true;
+                playerInput.gameObject.GetComponent<UICharacterSelectionHandler>().IsPlayerOne = true;
             }
             else
             {
-                playerInput.gameObject.GetComponent<UICharacterSelection>().IsPlayerOne = false;
+                playerInput.gameObject.GetComponent<UICharacterSelectionHandler>().IsPlayerOne = false;
             }
         }
     }

@@ -23,7 +23,7 @@ namespace Hugo.Prototype.Scripts.Laser
             if (hitBall.collider)
             {
                 _ballGameObject = hitBall.collider.gameObject;
-                Debug.Log(_ballGameObject);
+                //Debug.Log(_ballGameObject);
             }
             
             if (hitPlayer.collider && !_hasAlreadyHit)

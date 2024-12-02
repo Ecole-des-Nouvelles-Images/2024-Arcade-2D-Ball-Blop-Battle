@@ -87,7 +87,7 @@ namespace Hugo.Prototype.Scripts.Player
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
             //_animator = GetComponent<Animator>();
             
-            if (_playerInput.playerIndex == 0)
+            if (_playerNumberTouchBallManager.IsPlayerOne)
             {
                 _playerType = GameManager.FirstPlayerScriptableObject;
             }
@@ -392,8 +392,19 @@ namespace Hugo.Prototype.Scripts.Player
         public void GetStartButtonReadValue(float buttonValue)
         {
             _isStartButtonPressed = buttonValue;
-            
-            Debug.Log(" Start : " + buttonValue);
+            //Debug.Log(" Start : " + buttonValue);
+
+            if (Mathf.Approximately(buttonValue, 1))
+            {
+                if (!GameManager.IsGamePaused)
+                {
+                    GameManager.IsGamePaused = true;
+                }
+                else
+                {
+                    GameManager.IsGamePaused = false;
+                }
+            }
         }
 
         private void ActiveSpecialSpike()
