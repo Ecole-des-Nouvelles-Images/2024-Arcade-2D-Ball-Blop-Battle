@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Hugo.Prototype.Scripts.Game
 {
-    public class UIPlayerInput : MonoBehaviour
+    public class UIPlayerInputCharacterSelection : MonoBehaviour
     {
         private PlayerInputManager _playerInputManager;
 
@@ -27,11 +27,11 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (playerInput.playerIndex == 0)
             {
-                playerInput.gameObject.GetComponent<UISelectPlayer>().IsPlayerOne = true;
+                playerInput.gameObject.GetComponent<UICharacterSelection>().IsPlayerOne = true;
             }
             else
             {
-                playerInput.gameObject.GetComponent<UISelectPlayer>().IsPlayerOne = false;
+                playerInput.gameObject.GetComponent<UICharacterSelection>().IsPlayerOne = false;
             }
         }
     }
