@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f6eb9ab6f6bbd24283a1f2a42ec7c06
+guid: 725c7b2fe5329804182a37ce0dc86a8e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_walk_blop_0
+      name: monter_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,56 +118,14 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.22}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27eb9a741a279ea45817bfa001fbcb00
-      internalID: 1751888754
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_walk_blop_1
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.22}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d42406bc106f89d408b3f34dee9eac41
-      internalID: -1677502266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_walk_blop_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.22}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b80d2ec24154c74baaae3eecfcbcebf
-      internalID: -1753535548
+      spriteID: 9c0de003227750849ad54690cea2b8ed
+      internalID: 1564216950
       vertices: []
       indices: 
       edges: []
@@ -183,9 +141,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpriteSheet_walk_blop_0: 1751888754
-      SpriteSheet_walk_blop_1: -1677502266
-      SpriteSheet_walk_blop_2: -1753535548
+      monter_0: 1564216950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

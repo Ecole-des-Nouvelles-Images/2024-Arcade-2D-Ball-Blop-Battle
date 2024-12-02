@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62890e498c64803aef24379a1304dfc, type: 3}
   m_Name: BlopVert
   m_EditorClassIdentifier: 
-  Sprite: {fileID: 851014376, guid: 354a2db00f00ab74bb9897d40cea0c89, type: 3}
+  Sprite: {fileID: 1215442914, guid: c32915611289798498e14852170a0c80, type: 3}
   SpeedSpecialSpike: 0
   SpecialSpikeName: 
   SpecialSpikeDescription: 
