@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
 {
-    public class PlayerNumberTouchBallManager : MonoBehaviour
+    public class PlayerNumberTouchBallHandler : MonoBehaviour
     {
         public int NumberTouchBall;
         public bool IsPlayerOne;
@@ -16,7 +16,6 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _ballGameObject = other.gameObject;
                 NumberTouchBall++;
-                //Debug.Log(NumberTouchBall);
 
                 if (NumberTouchBall > 2)
                 {

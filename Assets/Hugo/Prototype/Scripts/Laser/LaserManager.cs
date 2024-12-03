@@ -33,7 +33,7 @@ namespace Hugo.Prototype.Scripts.Laser
                 //Debug.Log(" hit player ");
                 GameObject playerChildren = hitPlayer.collider.gameObject;
                 playerChildren.GetComponentInParent<PlayerController>().PlayerDie();
-                _isplayerOneHit = playerChildren.GetComponentInParent<PlayerNumberTouchBallManager>().IsPlayerOne;
+                _isplayerOneHit = playerChildren.GetComponentInParent<PlayerNumberTouchBallHandler>().IsPlayerOne;
                 
                 ScoringOnDeath();
                 Invoke(nameof(ResetHasAlreadyHit), 0.5f);

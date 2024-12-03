@@ -19,7 +19,7 @@ namespace Hugo.Prototype.Scripts.Ball
         
         private bool _isCatch;
         
-        // Specal Spike
+        // Special Spike
         private bool _isTransparent;
         private bool _canHitAgain;
 
@@ -98,7 +98,7 @@ namespace Hugo.Prototype.Scripts.Ball
                     _currentPlayerGameObject = other.gameObject;
                     
                     // Set NumberTouch of LastPlayer to 0
-                    _lastPlayerGameObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+                    _lastPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
                     
                     // Disable Green Spacial Spike
                     _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
@@ -115,7 +115,7 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             if (_currentPlayerGameObject != null)
             {
-                _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallManager>().NumberTouchBall = 0;
+                _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
             }
 
             if (!MatchManager.IsSetOver)
@@ -183,7 +183,7 @@ namespace Hugo.Prototype.Scripts.Ball
 
         public void SpecialSpikeActivation()
         {
-            _rb2d.velocity /= 2;
+            _rb2d.velocity /= 3;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation / 10, ForceMode2D.Impulse);
         }
         

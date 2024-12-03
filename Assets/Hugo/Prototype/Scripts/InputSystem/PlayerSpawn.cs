@@ -43,14 +43,14 @@ namespace Hugo.Prototype.Scripts.InputSystem
                 _gameManager.FirstPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _firstSpawnPoints;
                 
-                playerInput.gameObject.GetComponent<PlayerNumberTouchBallManager>().IsPlayerOne = true;
+                playerInput.gameObject.GetComponent<PlayerNumberTouchBallHandler>().IsPlayerOne = true;
             }
             else if (index == 1)
             {
                 _gameManager.SecondPlayerGameObject = playerInput.gameObject;
                 playerInput.gameObject.transform.position = _secondSpawnPoints;
                 
-                playerInput.gameObject.GetComponent<PlayerNumberTouchBallManager>().IsPlayerOne = false;
+                playerInput.gameObject.GetComponent<PlayerNumberTouchBallHandler>().IsPlayerOne = false;
             }
         }
     }

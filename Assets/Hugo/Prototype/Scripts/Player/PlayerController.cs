@@ -14,7 +14,7 @@ namespace Hugo.Prototype.Scripts.Player
         // Components
         private Rigidbody2D _rb2d;
         private SpriteRenderer _sr;
-        private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
+        private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
         
         // GameObject
@@ -77,10 +77,10 @@ namespace Hugo.Prototype.Scripts.Player
             GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
             GetComponent<PlayerInput>();
-            _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
+            _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
             
-            if (_playerNumberTouchBallManager.IsPlayerOne)
+            if (_playerNumberTouchBallHandler.IsPlayerOne)
             {
                 _playerType = GameManager.FirstPlayerScriptableObject;
             }
@@ -212,7 +212,7 @@ namespace Hugo.Prototype.Scripts.Player
                 _ball = other.gameObject;
                 if (_canPerfectReception)
                 {
-                    if (_move == Vector2.zero && _isGrounded && _playerNumberTouchBallManager.NumberTouchBall < 1)
+                    if (_move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
                     {
                         _ball.GetComponent<BallHandler>().PerfectReception();
                         PerfectReceptionCount++;
@@ -229,7 +229,7 @@ namespace Hugo.Prototype.Scripts.Player
                     }
                 }
                 
-                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallManager.NumberTouchBall < 2)
+                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)
                 { 
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     _hasTheBall = true;
@@ -248,7 +248,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _animator.SetTrigger("Attack");
                 }
 
-                if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall < 2)
+                if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -260,7 +260,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _animator.SetTrigger("Absorb");
                 }
 
-                if (_isSpecialSpike && _playerNumberTouchBallManager.NumberTouchBall == 3)
+                if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall == 3)
                 {
                     _isSpecialSpike = false;
                     _canSpecialSpike = true;
