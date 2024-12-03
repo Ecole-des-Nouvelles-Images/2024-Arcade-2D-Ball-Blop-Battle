@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9d15c401323d83e4b83f3f1f4f318623
+guid: fa911e1a91fdcd14582df616a1d05044
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,10 +110,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: elan_0
+      name: jump_SpriteSheet_blop_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
         width: 256
         height: 256
@@ -124,35 +124,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01e492b421393604e87fdba222f89669
-      internalID: -1479138458
+      spriteID: f122ad4a6607f2c4caf0fef2a4dfee7c
+      internalID: 577618931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elan_1
+      name: jump_SpriteSheet_blop_1
       rect:
         serializedVersion: 2
-        x: 257
+        x: 256
         y: 0
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9971b2e2ac2170947a062c3dc03f633d
-      internalID: -376029928
+      spriteID: 4cd51b24219a22142b4025f8454bc937
+      internalID: 1654024248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: elan_2
+      name: jump_SpriteSheet_blop_2
       rect:
         serializedVersion: 2
         x: 512
@@ -160,14 +160,140 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b17d6861f63f8294facb031463d4968a
-      internalID: 914183013
+      spriteID: 867e51c519b83a84498184739ec0f3d9
+      internalID: -1378521676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 812c2110e1fd3944396856c5895186d7
+      internalID: 22181953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b40c54396df7fb64aa18fec12d253a66
+      internalID: -739780239
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54b182912739b404291a6ece42849e91
+      internalID: -2058319963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15beb9e9ba06474fb5c0b27833104de
+      internalID: -1410374744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5647f793644a3d84e98aa85674b502bf
+      internalID: 1093546662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443195ab2851e1140a1fe75037c543ce
+      internalID: -1506363595
       vertices: []
       indices: 
       edges: []
@@ -183,9 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      elan_0: -1479138458
-      elan_1: -376029928
-      elan_2: 914183013
+      jump_SpriteSheet_blop_0: 577618931
+      jump_SpriteSheet_blop_1: 1654024248
+      jump_SpriteSheet_blop_2: -1378521676
+      jump_SpriteSheet_blop_3: 22181953
+      jump_SpriteSheet_blop_4: -739780239
+      jump_SpriteSheet_blop_5: -2058319963
+      jump_SpriteSheet_blop_6: -1410374744
+      jump_SpriteSheet_blop_7: 1093546662
+      jump_SpriteSheet_blop_8: -1506363595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
