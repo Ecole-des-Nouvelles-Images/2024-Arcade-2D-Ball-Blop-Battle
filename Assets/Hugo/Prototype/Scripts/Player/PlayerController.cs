@@ -13,9 +13,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // Components
         private Rigidbody2D _rb2d;
-        private Collider2D _col2d;
         private SpriteRenderer _sr;
-        private PlayerInput _playerInput;
         private PlayerNumberTouchBallManager _playerNumberTouchBallManager;
         private Animator _animator;
         
@@ -30,15 +28,11 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _isGrounded;
         private bool _isWalled;
         private bool _canDoubleJump;
-        private bool _isOnTheNet;
-        
+
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
-        private float _isEastButtonPressed;
-        private float _isSouthButtonPressed;
-        private float _isStartButtonPressed;
-        
+
         // Special spike
         public int PerfectReceptionCount;
         private bool _canSpecialSpike;
@@ -76,14 +70,13 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _rayNetTouchedLength;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
-        [SerializeField] private LayerMask _netLayer;
 
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
-            _col2d = GetComponent<Collider2D>();
+            GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
-            _playerInput = GetComponent<PlayerInput>();
+            GetComponent<PlayerInput>();
             _playerNumberTouchBallManager = GetComponent<PlayerNumberTouchBallManager>();
             _animator = GetComponent<Animator>();
             
@@ -108,11 +101,6 @@ namespace Hugo.Prototype.Scripts.Player
             // Raycast _isGrounded
             RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
             _isGrounded = hit2DGround.collider;
-            
-            // Raycast _isOnTheNet
-            RaycastHit2D hit2DNet = Physics2D.Raycast(transform.position, Vector3.down, _rayNetTouchedLength, _netLayer);
-            _isOnTheNet = hit2DNet.collider;
-            
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
 
             _isWalled = false;
@@ -126,13 +114,9 @@ namespace Hugo.Prototype.Scripts.Player
                     _isWalled = true;
                     _canDoubleJump = false;
                 }
-                
                 Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
                 Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
-            
-            // Debug.Log(_isGrounded);
-            // Debug.Log(_isWalled);
             
             // Dash
             // Décompte du cooldown
@@ -155,7 +139,6 @@ namespace Hugo.Prototype.Scripts.Player
             if (_isDashing)
             {
                 _sr.color = Color.blue;
-                
                 _canMove = false;
 
                 if (transform.rotation.y <= 0)
@@ -317,8 +300,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void GetEastButtonReadValue(float buttonValue)
         {
-            _isEastButtonPressed = buttonValue;
-
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (_canSpecialSpike)
@@ -344,7 +325,6 @@ namespace Hugo.Prototype.Scripts.Player
         
         public void GetSouthButtonReadValue(float buttonValue)
         {
-            _isSouthButtonPressed = buttonValue;
             //Debug.Log(_isSouthButtonPressed);
 
             if (_isGrounded)
@@ -394,7 +374,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void GetStartButtonReadValue(float buttonValue)
         {
-            _isStartButtonPressed = buttonValue;
             //Debug.Log(" Start : " + buttonValue);
 
             if (Mathf.Approximately(buttonValue, 1))
@@ -447,7 +426,7 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _sr.flipX = false;
             }
-            else if (movement < 0.1f)
+            else if (movement < -0.1f)
             {
                 _sr.flipX = true;
             }
