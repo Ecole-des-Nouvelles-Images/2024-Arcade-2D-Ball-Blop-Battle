@@ -19,29 +19,5 @@ namespace Hugo.Prototype.Scripts.Game
         // States of Game
         public static bool HasGameLoaded = false;
         public static bool IsGamePaused = false;
-        private bool _isPanelActive;
-        
-        // Panels
-        [Header("Panels")]
-        [SerializeField] private GameObject _pausePanel;
-
-        private void Update()
-        {
-            if (IsGamePaused && !_isPanelActive)
-            {
-                _pausePanel.SetActive(true);
-                _isPanelActive = true;
-                
-                Time.timeScale = 0;
-            }
-
-            if (!IsGamePaused && _isPanelActive)
-            {
-                _pausePanel.SetActive(false);
-                _isPanelActive = false;
-                
-                Time.timeScale = 1;
-            }
-        }
     }
 }

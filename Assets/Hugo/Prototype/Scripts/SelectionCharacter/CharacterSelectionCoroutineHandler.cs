@@ -1,11 +1,12 @@
 using System.Collections;
+using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Hugo.Prototype.Scripts.Game
+namespace Hugo.Prototype.Scripts.SelectionCharacter
 {
-    public class CharacterSelectionManager : MonoBehaviourSingleton<CharacterSelectionManager>
+    public class CharacterSelectionCoroutineHandler : MonoBehaviourSingleton<CharacterSelectionCoroutineHandler>
     {
         // Coroutine
         private Coroutine _loadSceneCoroutine;

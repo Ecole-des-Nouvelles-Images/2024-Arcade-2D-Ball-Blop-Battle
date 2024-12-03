@@ -5,9 +5,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Hugo.Prototype.Scripts.UI
+namespace Hugo.Prototype.Scripts.SelectionCharacter
 {
-    public class UICharacterSelectionHandler : MonoBehaviour
+    public class CharacterSelectionController : MonoBehaviour
     {
         public bool IsPlayerOne;
         

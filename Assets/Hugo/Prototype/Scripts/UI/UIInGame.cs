@@ -6,6 +6,31 @@ namespace Hugo.Prototype.Scripts.UI
 {
     public class UIInGame : MonoBehaviour
     {
+        // Panels
+        private bool _isPanelActive;
+        
+        [Header("Panels")]
+        [SerializeField] private GameObject _pausePanel;
+
+        private void Update()
+        {
+            if (GameManager.IsGamePaused && !_isPanelActive)
+            {
+                _pausePanel.SetActive(true);
+                _isPanelActive = true;
+                
+                Time.timeScale = 0;
+            }
+
+            if (!GameManager.IsGamePaused && _isPanelActive)
+            {
+                _pausePanel.SetActive(false);
+                _isPanelActive = false;
+                
+                Time.timeScale = 1;
+            }
+        }
+
         public void Resume()
         {
             GameManager.IsGamePaused = false;

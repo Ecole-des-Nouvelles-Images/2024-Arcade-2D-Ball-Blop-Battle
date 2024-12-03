@@ -1,10 +1,9 @@
-using Hugo.Prototype.Scripts.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Hugo.Prototype.Scripts.Game
+namespace Hugo.Prototype.Scripts.SelectionCharacter
 {
-    public class UIPlayerInputCharacterSelection : MonoBehaviour
+    public class PlayerInputCharacterSelectionHandler : MonoBehaviour
     {
         private PlayerInputManager _playerInputManager;
 
@@ -27,11 +26,11 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (playerInput.playerIndex == 0)
             {
-                playerInput.gameObject.GetComponent<UICharacterSelectionHandler>().IsPlayerOne = true;
+                playerInput.gameObject.GetComponent<CharacterSelectionController>().IsPlayerOne = true;
             }
             else
             {
-                playerInput.gameObject.GetComponent<UICharacterSelectionHandler>().IsPlayerOne = false;
+                playerInput.gameObject.GetComponent<CharacterSelectionController>().IsPlayerOne = false;
             }
         }
     }
