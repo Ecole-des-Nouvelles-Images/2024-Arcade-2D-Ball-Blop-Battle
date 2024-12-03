@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Laser
 {
-    public class LaserManager : MonoBehaviour
+    public class LaserHandler : MonoBehaviour
     {
         [Header("Laser Settings")]
         [SerializeField] private float _rayLaserLength;

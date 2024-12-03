@@ -42,7 +42,6 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void Start()
         {
-            //Debug.Log(DirectionCommitment);
             // Engagement
             Commitment(DirectionCommitment);
         }

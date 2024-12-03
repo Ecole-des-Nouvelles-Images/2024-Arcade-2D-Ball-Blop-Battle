@@ -30,6 +30,10 @@ namespace Hugo.Prototype.Scripts.Player
             _ballHandler.InvokeMethodTimer("ReverseIsTrigger", 0.1f);
             
             // Special Spike
+            if (direction == Vector2.zero)
+            {
+                _rb2dBall.AddForce(new Vector2(1,0) * SpeedSpecialSpike, ForceMode2D.Impulse);
+            }
             _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
             _ballHandler.InvokeMethodTimer("YellowSpecialSpikeTransparent", _transparentTimer);
         }

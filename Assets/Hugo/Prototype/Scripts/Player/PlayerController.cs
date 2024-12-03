@@ -2,7 +2,6 @@ using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -10,6 +9,7 @@ namespace Hugo.Prototype.Scripts.Player
     {
         // Green Special Spike
         public bool GreenSpecialSpike;
+        private bool _canGreenSpecialSpikeHitAgain = false;
         
         // Components
         private Rigidbody2D _rb2d;
@@ -32,11 +32,13 @@ namespace Hugo.Prototype.Scripts.Player
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
+        private float _isEastButtonPressed;
 
         // Special spike
         public int PerfectReceptionCount;
         private bool _canSpecialSpike;
         private bool _isSpecialSpike;
+        private bool _shootSpecialSpike;
         
         // Player Type
         [Header("Player Type")]
@@ -52,7 +54,6 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _airControlFactor;
         [SerializeField] private float _maxAirSpeed;
         [SerializeField] private float _timePerfectReception;
-        [SerializeField] private float _durationSpecialSpike;
         
         
         // Dash Settings
@@ -74,20 +75,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void Awake()
         {
             _rb2d = GetComponent<Rigidbody2D>();
-            GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
-            GetComponent<PlayerInput>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
             
-            if (_playerNumberTouchBallHandler.IsPlayerOne)
-            {
-                _playerType = GameManager.FirstPlayerScriptableObject;
-            }
-            else
-            {
-                _playerType = GameManager.SecondPlayerScriptableObject;
-            }
+            _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
         }
 
         private void Start()
@@ -253,8 +245,6 @@ namespace Hugo.Prototype.Scripts.Player
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
-
-                    Invoke(nameof(ActiveSpecialSpike), _durationSpecialSpike);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
@@ -300,6 +290,9 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void GetEastButtonReadValue(float buttonValue)
         {
+            _isEastButtonPressed = buttonValue;
+            //Debug.Log(_isWestButtonPressed);
+            
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (_canSpecialSpike)
@@ -314,10 +307,17 @@ namespace Hugo.Prototype.Scripts.Player
                     _animator.SetTrigger("ActiveSpecialSpike");
                 }
 
-                if (GreenSpecialSpike)
+                if (_isSpecialSpike && _hasTheBall)
+                {
+                    ActiveSpecialSpike();
+                    Invoke(nameof(ReverseCanGreenSpecialSpikeHitAgain), 0.1f);
+                }
+
+                if (GreenSpecialSpike && _canGreenSpecialSpikeHitAgain)
                 {
                     Debug.Log(" Coup Special Green ");
                     GreenSpecialSpike = false;
+                    ReverseCanGreenSpecialSpikeHitAgain();
                     _ball.GetComponent<BallHandler>().GreenSpecialSpikeHitAgain();
                 }
             }
@@ -442,6 +442,11 @@ namespace Hugo.Prototype.Scripts.Player
             _animator.SetTrigger("Die");
             
             Destroy(gameObject, 0.3f);
+        }
+
+        private void ReverseCanGreenSpecialSpikeHitAgain()
+        {
+            _canGreenSpecialSpikeHitAgain = !_canGreenSpecialSpikeHitAgain;
         }
     }
 }
