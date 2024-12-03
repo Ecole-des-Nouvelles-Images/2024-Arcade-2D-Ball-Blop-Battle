@@ -8,7 +8,6 @@ namespace Hugo.Prototype.Scripts.Player
     {
         // Ball Components
         private Rigidbody2D _rb2dBall;
-        private Collider2D _col2dBall;
         private BallHandler _ballHandler;
 
         [Header("Yellow Player Data")]
@@ -20,7 +19,6 @@ namespace Hugo.Prototype.Scripts.Player
             
             // Get Components
             _rb2dBall = ball.GetComponent<Rigidbody2D>();
-            _col2dBall = ball.GetComponent<Collider2D>();
             _ballHandler = ball.GetComponent<BallHandler>();
 
             // Change Constraints

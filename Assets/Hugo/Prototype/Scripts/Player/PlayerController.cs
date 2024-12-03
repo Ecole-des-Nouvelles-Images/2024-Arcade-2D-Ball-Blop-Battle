@@ -9,7 +9,7 @@ namespace Hugo.Prototype.Scripts.Player
     {
         // Green Special Spike
         public bool GreenSpecialSpike;
-        private bool _canGreenSpecialSpikeHitAgain = false;
+        public bool CanGreenSpecialSpikeHitAgain;
         
         // Components
         private Rigidbody2D _rb2d;
@@ -90,65 +90,14 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Update()
         {
-            // Raycast _isGrounded
-            RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
-            _isGrounded = hit2DGround.collider;
-            Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
-
-            _isWalled = false;
-            if (-1 <= _move.x && _move.x <= -0.8 || 0.8 <= _move.x && _move.x <= 1)
-            {
-                // Raycast _isWalled
-                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
-                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
-                if (hit2DWallLeft || hit2DWallRight)
-                {
-                    _isWalled = true;
-                    _canDoubleJump = false;
-                }
-                Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
-                Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
-            }
+            Raycasts();
+            Dash();
             
-            // Dash
-            // Décompte du cooldown
-            if (_dashCooldownRemaining > 0)
+            // Faute when _hasTheBall && _isGrounded
+            if (_isGrounded && _hasTheBall)
             {
-                _dashCooldownRemaining -= Time.deltaTime;
-            }
-        
-            // Déclencehment du dash
-            if (Mathf.Approximately(_isWestButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false && _isGrounded && _move != Vector2.zero)
-            {
-                _isDashing = true;
-                _dashTimeRemaining = _dashDuration;
-                _dashCooldownRemaining = _dashCooldown;
-                
-                // Animation
-                _animator.SetTrigger("Dash");
-            }
-            
-            if (_isDashing)
-            {
-                _sr.color = Color.blue;
-                _canMove = false;
-
-                if (transform.rotation.y <= 0)
-                {
-                    transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
-                    _dashTimeRemaining -= Time.deltaTime;
-                }
-                else
-                {
-                    transform.Translate(-_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
-                    _dashTimeRemaining -= Time.deltaTime;
-                }
-                
-                if (_dashTimeRemaining <= 0)
-                {
-                    _isDashing = false;
-                    _canMove = true;
-                }
+                _playerNumberTouchBallHandler.Fouls();
+                _hasTheBall = false;
             }
             
             // Reset States End of Timer
@@ -263,14 +212,12 @@ namespace Hugo.Prototype.Scripts.Player
             if (_canMove)
             {
                 _move = move;
-                //Debug.Log(_move);
             }
         }
         
         public void GetWestButtonReadValue(float buttonValue)
         {
             _isWestButtonPressed = buttonValue;
-            //Debug.Log(_isWestButtonPressed);
             
             if (Mathf.Approximately(buttonValue, 1))
             {
@@ -291,7 +238,6 @@ namespace Hugo.Prototype.Scripts.Player
         public void GetEastButtonReadValue(float buttonValue)
         {
             _isEastButtonPressed = buttonValue;
-            //Debug.Log(_isWestButtonPressed);
             
             if (Mathf.Approximately(buttonValue, 1))
             {
@@ -313,7 +259,7 @@ namespace Hugo.Prototype.Scripts.Player
                     Invoke(nameof(ReverseCanGreenSpecialSpikeHitAgain), 0.1f);
                 }
 
-                if (GreenSpecialSpike && _canGreenSpecialSpikeHitAgain)
+                if (GreenSpecialSpike && CanGreenSpecialSpikeHitAgain)
                 {
                     Debug.Log(" Coup Special Green ");
                     GreenSpecialSpike = false;
@@ -325,8 +271,6 @@ namespace Hugo.Prototype.Scripts.Player
         
         public void GetSouthButtonReadValue(float buttonValue)
         {
-            //Debug.Log(_isSouthButtonPressed);
-
             if (_isGrounded)
             {
                 _canDoubleJump = false;
@@ -374,18 +318,9 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void GetStartButtonReadValue(float buttonValue)
         {
-            //Debug.Log(" Start : " + buttonValue);
-
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (!GameManager.IsGamePaused)
-                {
-                    GameManager.IsGamePaused = true;
-                }
-                else
-                {
-                    GameManager.IsGamePaused = false;
-                }
+                GameManager.IsGamePaused = !GameManager.IsGamePaused;
             }
         }
 
@@ -405,6 +340,75 @@ namespace Hugo.Prototype.Scripts.Player
             _animator.SetTrigger("ShootSpecialSpike");
         }
 
+        private void Raycasts()
+        {
+            // Raycast _isGrounded
+            RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
+            _isGrounded = hit2DGround.collider;
+            Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
+
+            _isWalled = false;
+            if (-1 <= _move.x && _move.x <= -0.8 || 0.8 <= _move.x && _move.x <= 1)
+            {
+                // Raycast _isWalled
+                RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
+                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
+                if (hit2DWallLeft || hit2DWallRight)
+                {
+                    _isWalled = true;
+                    _canDoubleJump = false;
+                }
+                Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
+                Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
+            }
+        }
+
+        private void Dash()
+        {
+            // Dash
+            // Décompte du cooldown
+            if (_dashCooldownRemaining > 0)
+            {
+                _dashCooldownRemaining -= Time.deltaTime;
+            }
+        
+            // Déclencehment du dash
+            if (Mathf.Approximately(_isWestButtonPressed, 1) && _dashCooldownRemaining <= 0 && _hasTheBall == false && _isGrounded && _move != Vector2.zero)
+            {
+                _isDashing = true;
+                _dashTimeRemaining = _dashDuration;
+                _dashCooldownRemaining = _dashCooldown;
+                
+                // Animation
+                _animator.SetTrigger("Dash");
+            }
+            
+            if (_isDashing)
+            {
+                _sr.color = Color.blue;
+                _canMove = false;
+
+                if (transform.rotation.y <= 0)
+                {
+                    transform.Translate(_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
+                else
+                {
+                    transform.Translate(-_move.x * (_dashSpeed * Time.deltaTime), 0, 0);
+                    _dashTimeRemaining -= Time.deltaTime;
+                }
+                
+                if (_dashTimeRemaining <= 0)
+                {
+                    _isDashing = false;
+                    _canMove = true;
+                }
+            }
+        }
+
+        
+        // Utils
         private void ReverseHaveTheBall()
         {
             _hasTheBall = !_hasTheBall;
@@ -446,7 +450,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void ReverseCanGreenSpecialSpikeHitAgain()
         {
-            _canGreenSpecialSpikeHitAgain = !_canGreenSpecialSpikeHitAgain;
+            CanGreenSpecialSpikeHitAgain = !CanGreenSpecialSpikeHitAgain;
         }
     }
 }

@@ -19,22 +19,27 @@ namespace Hugo.Prototype.Scripts.Player
 
                 if (NumberTouchBall > 2)
                 {
-                    Debug.Log(" FAUTE ");
-                    if (IsPlayerOne)
-                    {
-                        MatchManager.ScorePlayerTwo++;
-                        MatchManager.PlayerOneScoreLast = true;
-                    }
-                    else
-                    {
-                        MatchManager.ScorePlayerOne++;
-                        MatchManager.PlayerOneScoreLast = false;
-                    }
-                    
-                    NumberTouchBall = 0;
-                    Destroy(_ballGameObject);
+                    Fouls();
                 }
             }
+        }
+
+        public void Fouls()
+        {
+            Debug.Log(" FAUTE ");
+            if (IsPlayerOne)
+            {
+                MatchManager.ScorePlayerTwo++;
+                MatchManager.PlayerOneScoreLast = true;
+            }
+            else
+            {
+                MatchManager.ScorePlayerOne++;
+                MatchManager.PlayerOneScoreLast = false;
+            }
+                    
+            NumberTouchBall = 0;
+            Destroy(_ballGameObject);
         }
     }
 }

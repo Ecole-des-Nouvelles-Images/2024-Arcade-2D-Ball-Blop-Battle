@@ -103,6 +103,9 @@ namespace Hugo.Prototype.Scripts.Ball
                     _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
                 }
                 
+                _lastPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+                _lastPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
+                
                 if (_isTransparent)
                 {
                     YellowSpecialSpikeTransparent();
@@ -112,28 +115,24 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void OnDestroy()
         {
-            if (_currentPlayerGameObject != null)
-            {
-                _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
-            }
-
             if (!MatchManager.IsSetOver)
             {
                 MatchManager.IsBallInGame = false;
             }
             
             // Disable Green Spacial Spike
-            if (_currentPlayerGameObject != null)
+            if (_currentPlayerGameObject || _lastPlayerGameObject)
             {
+                _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
                 _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+                _currentPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
+                
+                _lastPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+                _lastPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
             }
         }
 
-        private void Commitment(Vector2 direction)
-        {
-            _rb2d.AddForce(direction, ForceMode2D.Impulse);
-        }
-
+        // Actions Player-Ball
         public void IsAbsorb(GameObject playerObject)
         {
             _currentPlayerGameObject = playerObject;
@@ -180,26 +179,19 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.AddForce(Vector2.up * _speedPerfectReception / 10, ForceMode2D.Impulse);
         }
 
+        // Special Spike
         public void SpecialSpikeActivation()
         {
             _rb2d.velocity /= 3;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation / 10, ForceMode2D.Impulse);
         }
         
-        // Special Spike
         // Jaune
         public void YellowSpecialSpikeTransparent()
         {
             _isTransparent = !_isTransparent;
 
-            if (_isTransparent)
-            {
-                _sr.color = new Color(1,1,1, 0.2f);
-            }
-            else
-            {
-                _sr.color = new Color(1, 1, 1, 1);
-            }
+            _sr.color = _isTransparent ? new Color(1,1,1, 0.2f) : new Color(1, 1, 1, 1);
         }
         
         // Vert
@@ -209,6 +201,11 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.AddForce(Vector2.down * _speedDrawn, ForceMode2D.Impulse);
         }
         
+        // Commitment
+        private void Commitment(Vector2 direction)
+        {
+            _rb2d.AddForce(direction, ForceMode2D.Impulse);
+        }
         
         // Utils
         public void InvokeMethodTimer([NotNull] string methodName, float timer)
