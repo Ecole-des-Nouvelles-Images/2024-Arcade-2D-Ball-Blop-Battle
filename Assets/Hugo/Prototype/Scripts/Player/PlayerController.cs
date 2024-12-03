@@ -32,7 +32,6 @@ namespace Hugo.Prototype.Scripts.Player
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
-        private float _isEastButtonPressed;
 
         // Special spike
         public int PerfectReceptionCount;
@@ -237,8 +236,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void GetEastButtonReadValue(float buttonValue)
         {
-            _isEastButtonPressed = buttonValue;
-            
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (_canSpecialSpike)
@@ -438,8 +435,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void PlayerDie()
         {
-            //Debug.Log(" Player Die ");
-            
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             
             // Animation

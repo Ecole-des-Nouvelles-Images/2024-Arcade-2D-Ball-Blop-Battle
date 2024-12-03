@@ -1,3 +1,4 @@
+using Hugo.Prototype.Scripts.Ball;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -5,12 +6,35 @@ namespace Hugo.Prototype.Scripts.Player
     [CreateAssetMenu(fileName = "BlopRouge", menuName = "PlayerData/BlopRouge")]
     public class BlopRouge : PlayerType
     {
-        [SerializeField]
-        private GameObject _fakeBallPrefab;
+        // Ball Components
+        private Rigidbody2D _rb2dBall;
+        private BallHandler _ballHandler;
+        
+        [Header("Red Player Data")]
+        [SerializeField] private GameObject _fakeBallPrefab;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
             Debug.Log(" ROUGE : SPECIAL SPIKE ! ");
+            
+            // Get Components
+            _rb2dBall = ball.GetComponent<Rigidbody2D>();
+            _ballHandler = ball.GetComponent<BallHandler>();
+            
+            // Change Constraints
+            _rb2dBall.constraints = RigidbodyConstraints2D.None;
+            _rb2dBall.constraints = RigidbodyConstraints2D.FreezeRotation;
+            _ballHandler.ReversIsCatch();
+            _ballHandler.InvokeMethodTimer("ReverseIsTrigger", 0.1f);
+            
+            // Special Spike
+            if (direction == Vector2.zero)
+            {
+                _rb2dBall.AddForce(new Vector2(1,0) * SpeedSpecialSpike, ForceMode2D.Impulse);
+            }
+            _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
+            
+            Instantiate(_fakeBallPrefab, ball.transform.position, ball.transform.rotation);
         }
     }
 }

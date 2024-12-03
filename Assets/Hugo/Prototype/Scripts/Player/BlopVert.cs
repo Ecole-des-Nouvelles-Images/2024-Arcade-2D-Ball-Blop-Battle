@@ -34,6 +34,7 @@ namespace Hugo.Prototype.Scripts.Player
                 _rb2dBall.AddForce(new Vector2(1,0) * SpeedSpecialSpike, ForceMode2D.Impulse);
             }
             _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
+            
             _playerController.GreenSpecialSpike = true;
         }
     }
