@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c32915611289798498e14852170a0c80
+guid: 4425bde5d570de34b93545249668bcd6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_0
+      name: atterissage_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.21}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a0be84c7b76a9354f970ed1d096df23a
-      internalID: 1215442914
+      spriteID: 9170691a14bc76041bd7a3365a08adb0
+      internalID: 728686180
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_idle_blop_1
+      name: atterissage_1
       rect:
         serializedVersion: 2
         x: 256
@@ -139,56 +139,14 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.21}
+      pivot: {x: 0.5, y: 0.12}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e50f7265bd2606488a73d83de6c41ea
-      internalID: 1162007408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_idle_blop_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c84665add3b00454dbcb278313f359cf
-      internalID: 1518675809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpriteSheet_idle_blop_3
-      rect:
-        serializedVersion: 2
-        x: 768
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.21}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9be83e17fc971dd40b727d3ed52a458f
-      internalID: 2100431159
+      spriteID: dbe2f06ecf268a24eac9085024e7bbc5
+      internalID: -1426030719
       vertices: []
       indices: 
       edges: []
@@ -204,10 +162,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpriteSheet_idle_blop_0: 1215442914
-      SpriteSheet_idle_blop_1: 1162007408
-      SpriteSheet_idle_blop_2: 1518675809
-      SpriteSheet_idle_blop_3: 2100431159
+      atterissage_0: 728686180
+      atterissage_1: -1426030719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

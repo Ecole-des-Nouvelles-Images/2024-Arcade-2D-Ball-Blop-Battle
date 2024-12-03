@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7988c6ece9c70d247946e2c6b5bc2e69
+guid: 725c7b2fe5329804182a37ce0dc86a8e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -108,7 +108,28 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: monter_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0de003227750849ad54690cea2b8ed
+      internalID: 1564216950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +140,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      monter_0: 1564216950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

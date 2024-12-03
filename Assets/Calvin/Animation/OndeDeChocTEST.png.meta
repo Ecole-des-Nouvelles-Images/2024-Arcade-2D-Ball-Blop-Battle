@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f6eb9ab6f6bbd24283a1f2a42ec7c06
+guid: 81965079c4b62314d97365f59ca917fa
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpriteSheet_walk_blop_0
+      name: OndeDeChocTEST_0
       rect:
         serializedVersion: 2
         x: 0
@@ -118,20 +118,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.22}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27eb9a741a279ea45817bfa001fbcb00
-      internalID: 1751888754
+      spriteID: c16b74c3ab103ba46a72abd451876c2c
+      internalID: 2023728653
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_walk_blop_1
+      name: OndeDeChocTEST_1
       rect:
         serializedVersion: 2
         x: 256
@@ -139,20 +139,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.22}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d42406bc106f89d408b3f34dee9eac41
-      internalID: -1677502266
+      spriteID: a7fe612ae06377d4fa698d13d60d82b7
+      internalID: -610462294
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpriteSheet_walk_blop_2
+      name: OndeDeChocTEST_2
       rect:
         serializedVersion: 2
         x: 512
@@ -160,14 +160,77 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.22}
+      pivot: {x: 0.5, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1b80d2ec24154c74baaae3eecfcbcebf
-      internalID: -1753535548
+      spriteID: 45d03f31273797f439ba295672412bd5
+      internalID: 800633326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChocTEST_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73b3c45833438994d85ac29aa49d0c5e
+      internalID: -572472485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChocTEST_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11572158fd2b2944abce14f7d6c2da38
+      internalID: 507062221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChocTEST_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6092eb1e4e779fc4688d0076af44cc68
+      internalID: 40283950
       vertices: []
       indices: 
       edges: []
@@ -183,9 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      SpriteSheet_walk_blop_0: 1751888754
-      SpriteSheet_walk_blop_1: -1677502266
-      SpriteSheet_walk_blop_2: -1753535548
+      OndeDeChocTEST_0: 2023728653
+      OndeDeChocTEST_1: -610462294
+      OndeDeChocTEST_2: 800633326
+      OndeDeChocTEST_3: -572472485
+      OndeDeChocTEST_4: 507062221
+      OndeDeChocTEST_5: 40283950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
