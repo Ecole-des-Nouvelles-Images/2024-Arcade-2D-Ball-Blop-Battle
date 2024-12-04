@@ -14,20 +14,23 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void Update()
         {
-            if (GameManager.IsGamePaused && !_isPanelActive)
+            if (_pausePanel)
             {
-                _pausePanel.SetActive(true);
-                _isPanelActive = true;
+                if (GameManager.IsGamePaused && !_isPanelActive)
+                {
+                    _pausePanel.SetActive(true);
+                    _isPanelActive = true;
                 
-                Time.timeScale = 0;
-            }
+                    Time.timeScale = 0;
+                }
 
-            if (!GameManager.IsGamePaused && _isPanelActive)
-            {
-                _pausePanel.SetActive(false);
-                _isPanelActive = false;
+                if (!GameManager.IsGamePaused && _isPanelActive)
+                {
+                    _pausePanel.SetActive(false);
+                    _isPanelActive = false;
                 
-                Time.timeScale = 1;
+                    Time.timeScale = 1;
+                }
             }
         }
 

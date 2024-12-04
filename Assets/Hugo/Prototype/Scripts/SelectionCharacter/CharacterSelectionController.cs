@@ -47,6 +47,9 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             {
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.2f, 0.5f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.4f, 0.9f);
+                
+                // Clear deicesID
+                GameManager.DevicesID.Clear();
             }
             else
             {
