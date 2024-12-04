@@ -11,6 +11,8 @@ TagManager:
   - FakeBall
   - PlayerOneGround
   - PlayerTwoGround
+  - PlayerOneSide
+  - PlayerTwoSide
   layers:
   - Default
   - TransparentFX

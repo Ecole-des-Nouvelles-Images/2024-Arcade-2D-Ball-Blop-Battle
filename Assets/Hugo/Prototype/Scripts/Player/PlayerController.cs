@@ -247,7 +247,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (_canSpecialSpike)
+                if (_canSpecialSpike && _playerNumberTouchBallHandler.IsPlayerOne == _ball.GetComponent<BallHandler>().IsPlayerOneSide)
                 {
                     _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 

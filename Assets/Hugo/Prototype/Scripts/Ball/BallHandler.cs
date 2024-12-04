@@ -9,6 +9,7 @@ namespace Hugo.Prototype.Scripts.Ball
     public class BallHandler : MonoBehaviour
     {
         public Vector2 DirectionCommitment;
+        public bool IsPlayerOneSide;
         
         private Rigidbody2D _rb2d;
         private Collider2D _col2D;
@@ -114,6 +115,19 @@ namespace Hugo.Prototype.Scripts.Ball
                     YellowSpecialSpikeTransparent();
                 }
             }
+        }
+
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("PlayerOneSide"))
+            {
+                IsPlayerOneSide = true;
+            }
+            else if (other.gameObject.CompareTag("PlayerTwoSide"))
+            {
+                IsPlayerOneSide = false;
+            }
+            Debug.Log(IsPlayerOneSide);
         }
 
         private void OnDestroy()
