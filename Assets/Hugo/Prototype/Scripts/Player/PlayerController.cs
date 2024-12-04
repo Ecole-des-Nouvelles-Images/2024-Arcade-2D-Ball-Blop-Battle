@@ -92,6 +92,8 @@ namespace Hugo.Prototype.Scripts.Player
             Raycasts();
             Dash();
             
+            _ball = GameObject.FindGameObjectWithTag("Ball");
+            
             // Faute when _hasTheBall && _isGrounded
             if (_isGrounded && _hasTheBall)
             {
