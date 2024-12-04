@@ -162,7 +162,6 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _ball.GetComponent<BallHandler>().PerfectReception();
                         PerfectReceptionCount++;
-                        //Debug.Log(PerfectReceptionCount + " perfect reception ! ");
                         
                         // Animation
                         // _animator.SetTrigger("PerfectReception");
@@ -300,7 +299,6 @@ namespace Hugo.Prototype.Scripts.Player
                 { 
                     _rb2d.velocity = Vector2.zero;
                     Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
-                    //Debug.Log(" Second Jump ! ");
                     
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = false;
@@ -312,11 +310,9 @@ namespace Hugo.Prototype.Scripts.Player
                 if (_isGrounded)
                 { 
                     Vector2 jumping = Vector2.up * buttonValue * _jumpForce;
-                    //Debug.Log(" First Jump ! ");
             
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = true;
-                    //Debug.Log(_canDoubleJump);
                     
                     // Animation
                     // _animator.SetTrigger("Jump");
