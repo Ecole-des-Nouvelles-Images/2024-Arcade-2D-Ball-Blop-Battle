@@ -658,10 +658,6 @@ MonoBehaviour:
   _playerSelection: {fileID: 8591334478398756652}
   _dislpayCurrentSelectedBlopGameObject: {fileID: 206518928202072676}
   _eventSystem: {fileID: 6540306233577839326}
-  _buttonOne: {fileID: 8740315680436264081}
-  _buttonTwo: {fileID: 3448047112444908383}
-  _buttonThree: {fileID: 1793782879613195698}
-  _buttonFour: {fileID: 1673486564508268394}
 --- !u!1 &7642374682035792623
 GameObject:
   m_ObjectHideFlags: 0

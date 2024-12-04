@@ -5,6 +5,7 @@ namespace Hugo.Prototype.Scripts.Player
     public abstract class PlayerType : ScriptableObject
     {
         [Header("General Player Data")]
+        public string PlayerName;
         public Sprite Sprite;
         public float SpeedSpecialSpike;
         public RuntimeAnimatorController PlayerAnimatorController;
