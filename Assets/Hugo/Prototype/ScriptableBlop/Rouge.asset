@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c535e4cc3140e090f76e799d05d902, type: 3}
   m_Name: Rouge
   m_EditorClassIdentifier: 
+  PlayerName: Rouge
   Sprite: {fileID: 21300000, guid: 3b01575443441d54cb93189d107f8229, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 0}

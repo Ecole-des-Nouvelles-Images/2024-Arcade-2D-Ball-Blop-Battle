@@ -52,6 +52,7 @@ namespace Hugo.Prototype.Scripts.Ball
             if (_isCatch)
             {
                 transform.position = _currentPlayerGameObject.transform.position;
+                // Debug.Log("Is Catch");
             }
             
             // Détruit le ballon a la fin du temps
@@ -100,11 +101,13 @@ namespace Hugo.Prototype.Scripts.Ball
                     _lastPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
                     
                     // Disable Green Spacial Spike
-                    _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
+                    _currentPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
                 }
-                
-                _lastPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
-                _lastPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
+
+                if (_lastPlayerGameObject)
+                {
+                    _lastPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
+                }
                 
                 if (_isTransparent)
                 {
@@ -121,14 +124,15 @@ namespace Hugo.Prototype.Scripts.Ball
             }
             
             // Disable Green Spacial Spike
-            if (_currentPlayerGameObject || _lastPlayerGameObject)
+            if (_currentPlayerGameObject)
             {
                 _currentPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
-                _currentPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
-                _currentPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
-                
-                _lastPlayerGameObject.GetComponent<PlayerController>().GreenSpecialSpike = false;
-                _lastPlayerGameObject.GetComponent<PlayerController>().CanGreenSpecialSpikeHitAgain = false;
+                _currentPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
+
+                if (_lastPlayerGameObject)
+                {
+                    _lastPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
+                }
             }
         }
 
@@ -192,13 +196,6 @@ namespace Hugo.Prototype.Scripts.Ball
             _isTransparent = !_isTransparent;
 
             _sr.color = _isTransparent ? new Color(1,1,1, 0.2f) : new Color(1, 1, 1, 1);
-        }
-        
-        // Vert
-        public void GreenSpecialSpikeHitAgain()
-        {
-            _rb2d.velocity = Vector2.zero;
-            _rb2d.AddForce(Vector2.down * _speedDrawn, ForceMode2D.Impulse);
         }
         
         // Commitment

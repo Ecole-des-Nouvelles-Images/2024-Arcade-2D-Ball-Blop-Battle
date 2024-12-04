@@ -7,6 +7,7 @@ namespace Hugo.Prototype.Scripts.Player
     public class BlopJaune : PlayerType
     {
         // Ball Components
+        private PlayerController _playerController;
         private Rigidbody2D _rb2dBall;
         private BallHandler _ballHandler;
 
@@ -18,6 +19,7 @@ namespace Hugo.Prototype.Scripts.Player
             Debug.Log(" JAUNE : SPECIAL SPIKE ! ");
             
             // Get Components
+            _playerController = player.GetComponent<PlayerController>();
             _rb2dBall = ball.GetComponent<Rigidbody2D>();
             _ballHandler = ball.GetComponent<BallHandler>();
 
@@ -32,9 +34,13 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _rb2dBall.AddForce(new Vector2(1,0) * SpeedSpecialSpike, ForceMode2D.Impulse);
             }
-            _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
-            
+            else
+            {
+                _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
+            }
             _ballHandler.InvokeMethodTimer("YellowSpecialSpikeTransparent", _transparentTimer);
+            
+            _playerController.ResetStatesAfterSpecialSpike();
         }
     }
 }

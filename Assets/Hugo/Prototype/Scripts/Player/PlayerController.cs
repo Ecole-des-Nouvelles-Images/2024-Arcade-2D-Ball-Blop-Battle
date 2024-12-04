@@ -8,12 +8,7 @@ namespace Hugo.Prototype.Scripts.Player
     public class PlayerController : MonoBehaviour
     {
         // Special Spike
-        //Green
-        public bool GreenSpecialSpike;
-        public bool CanGreenSpecialSpikeHitAgain;
-        //Red
-        public bool RedSpecialSpike;
-        public float CountShootRedSpecialSpike;
+        public int CountShootSpecialSpike;
         
         // Components
         private Rigidbody2D _rb2d;
@@ -169,7 +164,6 @@ namespace Hugo.Prototype.Scripts.Player
                         if (PerfectReceptionCount == 3)
                         {
                             _canSpecialSpike = true;
-                            Debug.Log(_canSpecialSpike);
                         }
                     }
                 }
@@ -268,20 +262,13 @@ namespace Hugo.Prototype.Scripts.Player
                 if (_isSpecialSpike && _hasTheBall)
                 {
                     ActiveSpecialSpike();
-                    Invoke(nameof(ReverseCanGreenSpecialSpikeHitAgain), 0.1f);
-                    Invoke(nameof(IncrementCountShootRedSpecialSpike), 0.1f);
+                    return;
                 }
 
-                if (GreenSpecialSpike && CanGreenSpecialSpikeHitAgain)
-                {
-                    GreenSpecialSpike = false;
-                    ReverseCanGreenSpecialSpikeHitAgain();
-                    _ball.GetComponent<BallHandler>().GreenSpecialSpikeHitAgain();
-                }
-
-                if (RedSpecialSpike && CountShootRedSpecialSpike < 3)
+                if (_playerType.name == "Vert" && CountShootSpecialSpike == 1)
                 {
                     ActiveSpecialSpike();
+                    return;
                 }
             }
         }
@@ -344,17 +331,17 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _playerType.SpecialSpike(gameObject, _ball, _move);
             }
-
-            if (_playerType.PlayerName is "Bleu" or "Jaune" or "Vert" || Mathf.Approximately(CountShootRedSpecialSpike, 3))
-            {
-                _hasTheBall = false;
-                _isSpecialSpike = false;
-                _rb2d.constraints = RigidbodyConstraints2D.None;
-                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
-            }
             
             // Animation
             // _animator.SetTrigger("ShootSpecialSpike");
+        }
+
+        public void ResetStatesAfterSpecialSpike()
+        {
+            _hasTheBall = false;
+            _isSpecialSpike = false;
+            _rb2d.constraints = RigidbodyConstraints2D.None;
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
         private void Raycasts()
@@ -461,16 +448,6 @@ namespace Hugo.Prototype.Scripts.Player
             // _animator.SetTrigger("Die");
             
             Destroy(gameObject, 0.3f);
-        }
-
-        private void ReverseCanGreenSpecialSpikeHitAgain()
-        {
-            CanGreenSpecialSpikeHitAgain = !CanGreenSpecialSpikeHitAgain;
-        }
-        
-        private void IncrementCountShootRedSpecialSpike()
-        {
-            CountShootRedSpecialSpike++;
         }
     }
 }

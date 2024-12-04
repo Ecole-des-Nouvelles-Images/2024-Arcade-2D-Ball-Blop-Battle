@@ -36,7 +36,6 @@ namespace Hugo.Prototype.Scripts.InputSystem
             int target = playerInput.devices[0].deviceId;
             
             int index = GameManager.DevicesID.IndexOf(target);
-            Debug.Log(index);
             
             if (index == 0)
             {

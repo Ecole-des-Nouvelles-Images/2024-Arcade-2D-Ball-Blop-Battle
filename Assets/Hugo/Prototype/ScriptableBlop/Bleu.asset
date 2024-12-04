@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f46f1e08f7241bea0bbd65a0031aa41, type: 3}
   m_Name: Bleu
   m_EditorClassIdentifier: 
+  PlayerName: Bleu
   Sprite: {fileID: 21300000, guid: b9dff148afcba0e42965c01c7ee37625, type: 3}
   SpeedSpecialSpike: 2.3
-  SpecialSpikeName: Bouclier
-  SpecialSpikeDescription: Active un bouclier
+  PlayerAnimatorController: {fileID: 0}
