@@ -7,7 +7,7 @@ namespace Hugo.Prototype.Scripts.UI
     {
         [SerializeField] private GameObject _firstSelectedButton;
 
-        private void Start()
+        private void OnEnable()
         {
             EventSystem.current.SetSelectedGameObject(_firstSelectedButton);
         }

@@ -9,5 +9,10 @@ namespace Hugo.Prototype.Scripts.UI
         {
             SceneManager.LoadScene(index);
         }
+
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
     }
 }
