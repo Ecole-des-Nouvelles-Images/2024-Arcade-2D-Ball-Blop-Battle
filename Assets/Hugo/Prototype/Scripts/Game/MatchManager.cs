@@ -1,4 +1,5 @@
 using Hugo.Prototype.Scripts.Ball;
+using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.Utils;
 using UnityEngine;
 
@@ -20,9 +21,10 @@ namespace Hugo.Prototype.Scripts.Game
         public static bool IsBallInGame = true;
         public static bool IsSetOver;
         
-        [Header("GameObjects")]
+        [Header("References")]
         [SerializeField] private GameObject _ballPrefab;
         [SerializeField] private GameObject _panelPaused;
+        [SerializeField] private GameManager _gameManager;
         
         private int _setScorePlayerOne;
         private int _setScorePlayerTwo;
@@ -70,6 +72,10 @@ namespace Hugo.Prototype.Scripts.Game
         private void OnTimerEnd()
         {
             IsSetOver = true;
+            _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
+            _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().CanSpecialSpike = false;
+            _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
+            _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().CanSpecialSpike = false;
             
             if (ScorePlayerOne > ScorePlayerTwo)
             {
