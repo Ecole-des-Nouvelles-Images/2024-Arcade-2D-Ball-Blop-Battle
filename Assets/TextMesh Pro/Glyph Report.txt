@@ -1,0 +1,12 @@
+Font: DynaPuff  Style: Regular
+Point Size: 87   SP/PD Ratio: 5,7٪
+
+Characters included: 70/70
+Missing characters: 0
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+
+Characters excluded from packing:
+----------------------------------------
