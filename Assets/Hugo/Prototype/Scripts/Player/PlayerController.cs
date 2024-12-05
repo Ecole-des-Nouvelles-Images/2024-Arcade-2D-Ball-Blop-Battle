@@ -96,7 +96,7 @@ namespace Hugo.Prototype.Scripts.Player
             _ball = GameObject.FindGameObjectWithTag("Ball");
             
             // Faute when _hasTheBall && _isGrounded
-            if (_isGrounded && _hasTheBall)
+            if (_isGrounded && _hasTheBall && !_isSpecialSpike)
             {
                 _playerNumberTouchBallHandler.Fouls();
                 _hasTheBall = false;
