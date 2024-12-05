@@ -14,7 +14,7 @@ namespace Hugo.Prototype.Scripts.Player
         private Rigidbody2D _rb2d;
         private SpriteRenderer _sr;
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
-        // private Animator _animator;
+        private Animator _animator;
         
         // GameObject
         private GameObject _ball;
@@ -76,7 +76,7 @@ namespace Hugo.Prototype.Scripts.Player
             _rb2d = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
-            // _animator = GetComponent<Animator>();
+            _animator = GetComponent<Animator>();
             
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
         }
@@ -84,7 +84,7 @@ namespace Hugo.Prototype.Scripts.Player
         private void Start()
         {
             _sr.sprite = _playerType.Sprite;
-            // _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
+            _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
         }
 
         private void Update()
@@ -108,14 +108,15 @@ namespace Hugo.Prototype.Scripts.Player
                 _isSpecialSpike = false;
             }
             
-            // // Animation
-            // _animator.SetBool("HasTheBall", _hasTheBall);
-            // _animator.SetBool("IsWalled", _isWalled);
-            // _animator.SetBool("IsGrounded", _isGrounded);
-            // _animator.SetBool("CanAbsorb", _canAbsorb);
-            // _animator.SetFloat("GoUp", _rb2d.velocity.y);
-            // _animator.SetFloat("MaxJumpHeight", _rb2d.velocity.y);
-            // _animator.SetFloat("Falling", _rb2d.velocity.y);
+            // Animation
+            _animator.SetBool("HasTheBall", _hasTheBall);
+            _animator.SetBool("IsWalled", _isWalled);
+            _animator.SetBool("IsGrounded", _isGrounded);
+            _animator.SetBool("CanAbsorb", _canAbsorb);
+            _animator.SetBool("PerfectReception", _canPerfectReception);
+            _animator.SetFloat("GoUp", _rb2d.velocity.y);
+            _animator.SetFloat("MaxJumpHeight", _rb2d.velocity.y);
+            _animator.SetFloat("Falling", _rb2d.velocity.y);
         }
 
         private void FixedUpdate()
@@ -144,7 +145,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             
             // Animation
-            // _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
+            _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
             FlipSprite(_rb2d.velocity.x);
         }
         
@@ -159,9 +160,6 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _ball.GetComponent<BallHandler>().PerfectReception();
                         PerfectReceptionCount++;
-                        
-                        // Animation
-                        // _animator.SetTrigger("PerfectReception");
                             
                         if (PerfectReceptionCount == 3)
                         {
@@ -178,7 +176,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _canMove = true;
                     
                     // Animation
-                    // _animator.SetTrigger("Absorb");
+                    _animator.SetTrigger("Absorb");
                 }
                 else
                 {
@@ -186,7 +184,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
                     
                     // Animation
-                    // _animator.SetTrigger("Attack");
+                    _animator.SetTrigger("Attack");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2)
@@ -196,7 +194,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     
                     // Animation
-                    // _animator.SetTrigger("Absorb");
+                    _animator.SetTrigger("Absorb");
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall == 3)
@@ -241,7 +239,7 @@ namespace Hugo.Prototype.Scripts.Player
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
                 // Animation
-                // _animator.SetTrigger("Drawn");
+                _animator.SetTrigger("Drawn");
             }
         }
 
@@ -258,7 +256,7 @@ namespace Hugo.Prototype.Scripts.Player
                     PerfectReceptionCount = 0;
                     
                     // Animation
-                    // _animator.SetTrigger("ActiveSpecialSpike");
+                    _animator.SetTrigger("ActiveSpecialSpike");
                 }
 
                 if (_isSpecialSpike && _hasTheBall)
@@ -293,7 +291,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _canDoubleJump = false;
                     
                     // Animation
-                    // _animator.SetTrigger("Jump");
+                    _animator.SetTrigger("Jump");
                 }
                 
                 if (_isGrounded)
@@ -304,7 +302,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _canDoubleJump = true;
                     
                     // Animation
-                    // _animator.SetTrigger("Jump");
+                    _animator.SetTrigger("Jump");
                 }
                 
                 if (_isWalled && !_isGrounded)
@@ -314,7 +312,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _rb2d.AddForce(walljumping, ForceMode2D.Impulse);
                     
                     // Animation
-                    // _animator.SetTrigger("WallJump");
+                    _animator.SetTrigger("WallJump");
                 }
             }
         }
@@ -335,7 +333,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             
             // Animation
-            // _animator.SetTrigger("ShootSpecialSpike");
+            _animator.SetTrigger("ShootSpecialSpike");
         }
 
         public void ResetStatesAfterSpecialSpike()
@@ -386,7 +384,7 @@ namespace Hugo.Prototype.Scripts.Player
                 _dashCooldownRemaining = _dashCooldown;
                 
                 // Animation
-                // _animator.SetTrigger("Dash");
+                _animator.SetTrigger("Dash");
             }
             
             if (_isDashing)
@@ -447,7 +445,7 @@ namespace Hugo.Prototype.Scripts.Player
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             
             // Animation
-            // _animator.SetTrigger("Die");
+            _animator.SetTrigger("Die");
             
             Destroy(gameObject, 0.3f);
         }
