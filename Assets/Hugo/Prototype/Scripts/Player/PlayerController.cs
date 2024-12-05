@@ -1,6 +1,7 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -28,6 +29,7 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _isWalled;
         private bool _canDoubleJump;
         private bool _canAbsorb;
+        private bool _isAttacking;
 
         // Inputs values
         private Vector2 _move;
@@ -89,6 +91,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Update()
         {
+            Debug.Log(_isAttacking);
             Raycasts();
             Dash();
             
@@ -109,6 +112,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             
             // Animation
+            _animator.SetBool("Attack", _isAttacking);
             _animator.SetBool("HasTheBall", _hasTheBall);
             _animator.SetBool("IsWalled", _isWalled);
             _animator.SetBool("IsGrounded", _isGrounded);
@@ -182,9 +186,9 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
-                    
-                    // Animation
-                    _animator.SetTrigger("Attack");
+
+                    _isAttacking = true;
+                    Invoke(nameof(ReverseIsAttacking), 0.2f);
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2)
@@ -421,6 +425,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseCanPerfectReception()
         {
             _canPerfectReception = !_canPerfectReception;
+        }
+
+        private void ReverseIsAttacking()
+        {
+            _isAttacking = !_isAttacking;
         }
         
         private void ReverseCanMove()
