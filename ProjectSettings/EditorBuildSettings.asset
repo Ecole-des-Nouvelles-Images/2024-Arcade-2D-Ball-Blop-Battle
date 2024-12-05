@@ -6,12 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Hugo/Prototype/Scenes/HugoMenuScene.unity
-    guid: ad8d018ba9ddf0e44813af353d6032a3
+    path: Assets/Int/Scenes/MainMenu.unity
+    guid: 99595347546561143a0a67572a828f63
   - enabled: 1
-    path: Assets/Hugo/Prototype/Scenes/HugoSelectionPlayer.unity
-    guid: 202612fc57e78054bb33505821cc5407
-  - enabled: 1
-    path: Assets/Hugo/Prototype/Scenes/HugoTest.unity
-    guid: 2e13679b2b6112845aa9e553da684786
+    path: Assets/Int/Scenes/BlopSelection.unity
+    guid: 75c46bd0e52c4024a9872a5b1d397296
   m_configObjects: {}
