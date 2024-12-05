@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 81965079c4b62314d97365f59ca917fa
+guid: fa911e1a91fdcd14582df616a1d05044
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 170
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: OndeDeChocTEST_0
+      name: jump_SpriteSheet_blop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c16b74c3ab103ba46a72abd451876c2c
-      internalID: 2023728653
+      spriteID: f122ad4a6607f2c4caf0fef2a4dfee7c
+      internalID: 577618931
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OndeDeChocTEST_1
+      name: jump_SpriteSheet_blop_1
       rect:
         serializedVersion: 2
         x: 256
@@ -139,20 +139,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7fe612ae06377d4fa698d13d60d82b7
-      internalID: -610462294
+      spriteID: 4cd51b24219a22142b4025f8454bc937
+      internalID: 1654024248
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OndeDeChocTEST_2
+      name: jump_SpriteSheet_blop_2
       rect:
         serializedVersion: 2
         x: 512
@@ -160,20 +160,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.3}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45d03f31273797f439ba295672412bd5
-      internalID: 800633326
+      spriteID: 867e51c519b83a84498184739ec0f3d9
+      internalID: -1378521676
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OndeDeChocTEST_3
+      name: jump_SpriteSheet_blop_3
       rect:
         serializedVersion: 2
         x: 768
@@ -181,20 +181,20 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.2}
+      pivot: {x: 0.5, y: 0.11}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73b3c45833438994d85ac29aa49d0c5e
-      internalID: -572472485
+      spriteID: 812c2110e1fd3944396856c5895186d7
+      internalID: 22181953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OndeDeChocTEST_4
+      name: jump_SpriteSheet_blop_4
       rect:
         serializedVersion: 2
         x: 1024
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 11572158fd2b2944abce14f7d6c2da38
-      internalID: 507062221
+      spriteID: b40c54396df7fb64aa18fec12d253a66
+      internalID: -739780239
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: OndeDeChocTEST_5
+      name: jump_SpriteSheet_blop_5
       rect:
         serializedVersion: 2
         x: 1280
@@ -229,8 +229,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6092eb1e4e779fc4688d0076af44cc68
-      internalID: 40283950
+      spriteID: 54b182912739b404291a6ece42849e91
+      internalID: -2058319963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_6
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a15beb9e9ba06474fb5c0b27833104de
+      internalID: -1410374744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_7
+      rect:
+        serializedVersion: 2
+        x: 1792
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5647f793644a3d84e98aa85674b502bf
+      internalID: 1093546662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_SpriteSheet_blop_8
+      rect:
+        serializedVersion: 2
+        x: 2048
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 443195ab2851e1140a1fe75037c543ce
+      internalID: -1506363595
       vertices: []
       indices: 
       edges: []
@@ -246,12 +309,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      OndeDeChocTEST_0: 2023728653
-      OndeDeChocTEST_1: -610462294
-      OndeDeChocTEST_2: 800633326
-      OndeDeChocTEST_3: -572472485
-      OndeDeChocTEST_4: 507062221
-      OndeDeChocTEST_5: 40283950
+      jump_SpriteSheet_blop_0: 577618931
+      jump_SpriteSheet_blop_1: 1654024248
+      jump_SpriteSheet_blop_2: -1378521676
+      jump_SpriteSheet_blop_3: 22181953
+      jump_SpriteSheet_blop_4: -739780239
+      jump_SpriteSheet_blop_5: -2058319963
+      jump_SpriteSheet_blop_6: -1410374744
+      jump_SpriteSheet_blop_7: 1093546662
+      jump_SpriteSheet_blop_8: -1506363595
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

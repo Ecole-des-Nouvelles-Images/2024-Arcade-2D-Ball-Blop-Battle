@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4425bde5d570de34b93545249668bcd6
+guid: 771971214d2cd79428f79479dfcf935c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 130
+  spritePixelsToUnits: 170
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: atterissage_0
+      name: OndeDeChoc_SpriteSheet_blop_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9170691a14bc76041bd7a3365a08adb0
-      internalID: 728686180
+      spriteID: 86824653402558c4fb400d9237bb7e79
+      internalID: -95014156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atterissage_1
+      name: OndeDeChoc_SpriteSheet_blop_1
       rect:
         serializedVersion: 2
         x: 256
@@ -139,14 +139,98 @@ TextureImporter:
         width: 256
         height: 256
       alignment: 9
-      pivot: {x: 0.5, y: 0.12}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dbe2f06ecf268a24eac9085024e7bbc5
-      internalID: -1426030719
+      spriteID: 697252c5e2f19054597b101a7beefde9
+      internalID: 19522838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChoc_SpriteSheet_blop_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.3}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: df448be1601f41c4492b41e929a443d5
+      internalID: 1240506377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChoc_SpriteSheet_blop_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.2}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90c211c8421d47641a3a5aeddfb64485
+      internalID: 352853361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChoc_SpriteSheet_blop_4
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99ce3402d9e8d72479bf5138a6833976
+      internalID: -1131360695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OndeDeChoc_SpriteSheet_blop_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.11}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a20d86fff6860db4d8d59df9b5e12f3b
+      internalID: 968421583
       vertices: []
       indices: 
       edges: []
@@ -162,8 +246,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      atterissage_0: 728686180
-      atterissage_1: -1426030719
+      OndeDeChoc_SpriteSheet_blop_0: -95014156
+      OndeDeChoc_SpriteSheet_blop_1: 19522838
+      OndeDeChoc_SpriteSheet_blop_2: 1240506377
+      OndeDeChoc_SpriteSheet_blop_3: 352853361
+      OndeDeChoc_SpriteSheet_blop_4: -1131360695
+      OndeDeChoc_SpriteSheet_blop_5: 968421583
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
