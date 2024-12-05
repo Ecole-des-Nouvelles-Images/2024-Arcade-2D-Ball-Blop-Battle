@@ -2,6 +2,7 @@ using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -35,7 +36,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         // Special spike
         public int PerfectReceptionCount;
-        private bool _canSpecialSpike;
+        public bool CanSpecialSpike;
         private bool _isSpecialSpike;
         private bool _shootSpecialSpike;
         
@@ -165,7 +166,7 @@ namespace Hugo.Prototype.Scripts.Player
                             
                         if (PerfectReceptionCount == 3)
                         {
-                            _canSpecialSpike = true;
+                            CanSpecialSpike = true;
                         }
                     }
                 }
@@ -202,7 +203,7 @@ namespace Hugo.Prototype.Scripts.Player
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall == 3)
                 {
                     _isSpecialSpike = false;
-                    _canSpecialSpike = true;
+                    CanSpecialSpike = true;
                 }
             }
         }
@@ -249,12 +250,12 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (_canSpecialSpike && _playerNumberTouchBallHandler.IsPlayerOne == _ball.GetComponent<BallHandler>().IsPlayerOneSide)
+                if (CanSpecialSpike && _playerNumberTouchBallHandler.IsPlayerOne == _ball.GetComponent<BallHandler>().IsPlayerOneSide)
                 {
                     _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 
                     _isSpecialSpike = true;
-                    _canSpecialSpike = false;
+                    CanSpecialSpike = false;
                     PerfectReceptionCount = 0;
                     
                     // Animation
