@@ -25,9 +25,10 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameObject _blupPanel;
         [SerializeField] private GameObject _blapPanel;
         
-        // Components
+        [Header("Event Systems")]
+        [SerializeField] private EventSystem _eventSystem;
+        
         private GameObject _currentSelectedButton;
-        private EventSystem _eventSystem;
 
         private void Update()
         {
