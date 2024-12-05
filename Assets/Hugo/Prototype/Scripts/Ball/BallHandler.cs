@@ -14,6 +14,7 @@ namespace Hugo.Prototype.Scripts.Ball
         private Rigidbody2D _rb2d;
         private Collider2D _col2D;
         private SpriteRenderer _sr;
+        private Transform _transform;
         
         private GameObject _currentPlayerGameObject;
         private GameObject _lastPlayerGameObject;
@@ -22,7 +23,7 @@ namespace Hugo.Prototype.Scripts.Ball
         
         // Special Spike
         private bool _isTransparent;
-        private bool _canHitAgain;
+        private bool _isSmaller;
 
         // Ball Settings
         [Header("Ball Settings")]
@@ -39,6 +40,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d = GetComponent<Rigidbody2D>();
             _col2D = GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
+            _transform = GetComponent<Transform>();
         }
 
         private void Start()
@@ -112,7 +114,12 @@ namespace Hugo.Prototype.Scripts.Ball
                 
                 if (_isTransparent)
                 {
-                    YellowSpecialSpikeTransparent();
+                    YellowSpecialSpike();
+                }
+
+                if (_isSmaller)
+                {
+                    BlueSpecialSpike();
                 }
             }
         }
@@ -127,7 +134,6 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 IsPlayerOneSide = false;
             }
-            Debug.Log(IsPlayerOneSide);
         }
 
         private void OnDestroy()
@@ -205,11 +211,19 @@ namespace Hugo.Prototype.Scripts.Ball
         }
         
         // Jaune
-        public void YellowSpecialSpikeTransparent()
+        private void YellowSpecialSpike()
         {
             _isTransparent = !_isTransparent;
 
             _sr.color = _isTransparent ? new Color(1,1,1, 0.2f) : new Color(1, 1, 1, 1);
+        }
+        
+        // Bleu
+        private void BlueSpecialSpike()
+        {
+            _isSmaller = !_isSmaller;
+            
+            _transform.localScale = _isSmaller ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1f, 1f, 1f);
         }
         
         // Commitment

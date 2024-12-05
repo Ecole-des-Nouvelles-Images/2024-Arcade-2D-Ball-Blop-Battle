@@ -1,5 +1,6 @@
 using Hugo.Prototype.Scripts.Ball;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -11,8 +12,9 @@ namespace Hugo.Prototype.Scripts.Player
         private Rigidbody2D _rb2dBall;
         private BallHandler _ballHandler;
 
+        [FormerlySerializedAs("_transparentTimer")]
         [Header("Yellow Player Data")]
-        [SerializeField] private float _transparentTimer;
+        [SerializeField] private float _becameTransparentTimer;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
@@ -38,7 +40,7 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
             }
-            _ballHandler.InvokeMethodTimer("YellowSpecialSpikeTransparent", _transparentTimer);
+            _ballHandler.InvokeMethodTimer("YellowSpecialSpike", _becameTransparentTimer);
             
             _playerController.ResetStatesAfterSpecialSpike();
         }
