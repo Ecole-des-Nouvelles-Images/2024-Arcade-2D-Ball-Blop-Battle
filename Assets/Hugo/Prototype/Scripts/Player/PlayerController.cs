@@ -1,7 +1,6 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -118,6 +117,7 @@ namespace Hugo.Prototype.Scripts.Player
             _animator.SetBool("IsGrounded", _isGrounded);
             _animator.SetBool("CanAbsorb", _canAbsorb);
             _animator.SetBool("PerfectReception", _canPerfectReception);
+            _animator.SetBool("Dash", _isDashing);
             _animator.SetFloat("GoUp", _rb2d.velocity.y);
             _animator.SetFloat("MaxJumpHeight", _rb2d.velocity.y);
             _animator.SetFloat("Falling", _rb2d.velocity.y);
@@ -386,14 +386,10 @@ namespace Hugo.Prototype.Scripts.Player
                 _isDashing = true;
                 _dashTimeRemaining = _dashDuration;
                 _dashCooldownRemaining = _dashCooldown;
-                
-                // Animation
-                _animator.SetTrigger("Dash");
             }
             
             if (_isDashing)
             {
-                _sr.color = Color.blue;
                 _canMove = false;
 
                 if (transform.rotation.y <= 0)
