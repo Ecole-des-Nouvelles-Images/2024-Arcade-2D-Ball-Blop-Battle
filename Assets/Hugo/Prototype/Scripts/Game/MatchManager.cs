@@ -1,6 +1,8 @@
+using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.Utils;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Game
@@ -14,12 +16,13 @@ namespace Hugo.Prototype.Scripts.Game
 
         [Header("Timer")]
         [SerializeField] private float _totalTimer;
+        [SerializeField] private float _timeBetweenSets;
         public static float CurrentTime;
         private bool _isTimerRunning;
 
         [Header("Commitment")]
-        public static bool IsBallInGame = true;
         public static bool IsSetOver;
+        [SerializeField] private float _timerNewBall;
         
         [Header("References")]
         [SerializeField] private GameObject _ballPrefab;
@@ -28,14 +31,16 @@ namespace Hugo.Prototype.Scripts.Game
         
         private int _setScorePlayerOne;
         private int _setScorePlayerTwo;
-
-        private void Start()
-        {
-            StartTimer();
-        }
+        private bool _inGame;
 
         private void Update()
         {
+            if (_gameManager.FirstPlayerGameObject && _gameManager.SecondPlayerGameObject && !_inGame)
+            {
+                Invoke(nameof(StartTimer), 3f);
+                _inGame = true;
+            }
+            
             // Timer
             if (_isTimerRunning)
             {
@@ -47,12 +52,6 @@ namespace Hugo.Prototype.Scripts.Game
                     CurrentTime = 0f;
                     OnTimerEnd();
                 }
-            }
-            
-            // Commitment
-            if (IsBallInGame == false)
-            {
-                Commitment();
             }
         }
         
@@ -66,6 +65,8 @@ namespace Hugo.Prototype.Scripts.Game
             IsSetOver = false;
             ScorePlayerOne = 0;
             ScorePlayerTwo = 0;
+            
+            Commitment();
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -89,8 +90,7 @@ namespace Hugo.Prototype.Scripts.Game
                 }
                 else
                 {
-                    Invoke(nameof(Commitment), 2f);
-                    Invoke(nameof(StartTimer), 2f);
+                    Invoke(nameof(StartTimer), _timeBetweenSets);
                 }
             }
             else if (ScorePlayerOne < ScorePlayerTwo)
@@ -105,8 +105,7 @@ namespace Hugo.Prototype.Scripts.Game
                 }
                 else
                 {
-                    Invoke(nameof(Commitment), 2f);
-                    Invoke(nameof(StartTimer), 2f);
+                    Invoke(nameof(StartTimer), _timeBetweenSets);
                 }
             }
             else
@@ -114,15 +113,14 @@ namespace Hugo.Prototype.Scripts.Game
                 _setScorePlayerOne++;
                 _setScorePlayerTwo++;
                 
-                Invoke(nameof(Commitment), 2f);
-                Invoke(nameof(StartTimer), 2f);
+                Invoke(nameof(StartTimer), _timeBetweenSets);
             }
             
             Debug.Log(" Player One : " + _setScorePlayerOne + " / " + _setScorePlayerTwo + " : Player Two ");
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
-        public void Commitment()
+        private void Commitment()
         {
             if (PlayerOneScoreLast)
             {
@@ -134,14 +132,19 @@ namespace Hugo.Prototype.Scripts.Game
             }
             
             Instantiate(_ballPrefab, transform.position, Quaternion.identity);
-            
-            IsBallInGame = true;
         }
 
         private void EndGame()
         {
             _panelPaused.SetActive(true);
             Time.timeScale = 0f;
+        }
+        
+        // Utils
+        public void InvokeMethodTimer([NotNull] string methodName)
+        {
+            if (methodName == null) throw new ArgumentNullException(nameof(methodName));
+            Invoke(methodName, _timerNewBall);
         }
     }
 }

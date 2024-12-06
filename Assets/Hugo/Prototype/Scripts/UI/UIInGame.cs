@@ -48,7 +48,6 @@ namespace Hugo.Prototype.Scripts.UI
             MatchManager.ScorePlayerTwo = 0;
             MatchManager.PlayerOneScoreLast = true;
             MatchManager.CurrentTime = 0;
-            MatchManager.IsBallInGame = true;
             
             Time.timeScale = 1;
             
@@ -78,7 +77,6 @@ namespace Hugo.Prototype.Scripts.UI
             MatchManager.ScorePlayerTwo = 0;
             MatchManager.PlayerOneScoreLast = true;
             MatchManager.CurrentTime = 0;
-            MatchManager.IsBallInGame = true;
             
             Time.timeScale = 1;
         }

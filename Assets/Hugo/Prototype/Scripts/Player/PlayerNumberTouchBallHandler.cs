@@ -26,7 +26,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void Fouls()
         {
-            Debug.Log(" FAUTE ");
+            //Debug.Log(" FAUTE ");
             if (IsPlayerOne)
             {
                 MatchManager.ScorePlayerTwo++;

@@ -93,7 +93,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Update()
         {
-            Debug.Log(_isAttacking);
             Raycasts();
             Dash();
             

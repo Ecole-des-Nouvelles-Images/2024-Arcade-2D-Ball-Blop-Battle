@@ -13,6 +13,7 @@ TagManager:
   - PlayerTwoGround
   - PlayerOneSide
   - PlayerTwoSide
+  - MatchManager
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,7 @@ namespace Hugo.Prototype.Scripts.Ball
         private Collider2D _col2D;
         private SpriteRenderer _sr;
         private Transform _transform;
+        private MatchManager _matchManager;
         
         private GameObject _currentPlayerGameObject;
         private GameObject _lastPlayerGameObject;
@@ -41,6 +42,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _col2D = GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
             _transform = GetComponent<Transform>();
+            _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
         }
 
         private void Start()
@@ -140,7 +142,7 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             if (!MatchManager.IsSetOver)
             {
-                MatchManager.IsBallInGame = false;
+                _matchManager.InvokeMethodTimer("Commitment");
             }
             
             // Disable Green Spacial Spike
