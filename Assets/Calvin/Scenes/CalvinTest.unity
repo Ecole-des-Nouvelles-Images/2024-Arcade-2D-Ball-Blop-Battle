@@ -359,7 +359,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7663203329067459350, guid: de3f476c33d6a004c8dbc287e36fab1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7663203329067459350, guid: de3f476c33d6a004c8dbc287e36fab1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1206,6 +1206,10 @@ PrefabInstance:
       propertyPath: _playerType
       value: 
       objectReference: {fileID: 11400000, guid: d6f99d27314a2e84a93a56036471eef8, type: 2}
+    - target: {fileID: 3666538827017239510, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
+      propertyPath: _dashDuration
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 3666538827017239510, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: _timePerfectReception
       value: 0.5
