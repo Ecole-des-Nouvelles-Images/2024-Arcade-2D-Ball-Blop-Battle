@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Int/Scenes/BlopSelection.unity
     guid: 75c46bd0e52c4024a9872a5b1d397296
+  - enabled: 1
+    path: Assets/Hugo/Prototype/Scenes/HugoTest.unity
+    guid: 2e13679b2b6112845aa9e553da684786
   m_configObjects: {}

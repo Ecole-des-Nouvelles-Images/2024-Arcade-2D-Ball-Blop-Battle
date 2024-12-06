@@ -54,6 +54,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _airControlFactor;
         [SerializeField] private float _maxAirSpeed;
         [SerializeField] private float _timePerfectReception;
+        [SerializeField] private float _timeAppears;
         
         
         // Dash Settings
@@ -84,6 +85,9 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Start()
         {
+            _canMove = false;
+            Invoke(nameof(ReverseCanMove), _timeAppears);
+            
             _sr.sprite = _playerType.Sprite;
             _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
         }
