@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bleu
   m_EditorClassIdentifier: 
   PlayerName: Bleu
-  Sprite: {fileID: 21300000, guid: b9dff148afcba0e42965c01c7ee37625, type: 3}
+  Sprite: {fileID: 21300000, guid: 17c56a456031de44b9b68798e4034ed6, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 0}
+  _becameSmallerTimer: 0

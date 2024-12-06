@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Vert
   m_EditorClassIdentifier: 
   PlayerName: Vert
-  Sprite: {fileID: 21300000, guid: cc4a256ca31ef7f489391033a86e62d0, type: 3}
+  Sprite: {fileID: 21300000, guid: 90113cd2109c3f84fa7b39380466f867, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 0}

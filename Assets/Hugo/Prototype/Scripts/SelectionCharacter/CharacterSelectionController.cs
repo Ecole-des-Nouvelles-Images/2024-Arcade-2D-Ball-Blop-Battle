@@ -25,12 +25,22 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         [SerializeField] private PlayerType _bleuBlop;
         [SerializeField] private PlayerType _rougeBlop;
         [SerializeField] private PlayerType _jauneBlop;
-        [SerializeField] private PlayerType _violetBlop;
+        [SerializeField] private PlayerType _vertBlop;
+        
+        [Header("Buttons")]
+        [SerializeField] private Image _bleuBlopButton;
+        [SerializeField] private Image _rougeBlopButton;
+        [SerializeField] private Image _jauneBlopButton;
+        [SerializeField] private Image _vertBlopButton;
         
         [Header("Links")]
         [SerializeField] private RectTransform _playerSelection;
         [SerializeField] private GameObject _dislpayCurrentSelectedBlopGameObject;
         [SerializeField] private EventSystem _eventSystem;
+        
+        [Header("Sprites")]
+        [SerializeField] private Sprite _selectedBlopPlayerOne;
+        [SerializeField] private Sprite _selectedBlopPlayerTwo;
 
         private void Awake()
         {
@@ -38,6 +48,21 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             _playerInput = GetComponent<PlayerInput>();
             _currentSelectedBlopImage = _dislpayCurrentSelectedBlopGameObject.GetComponent<Image>();
             _currentSelectedBlopRectTransform = _dislpayCurrentSelectedBlopGameObject.GetComponent<RectTransform>();
+
+            if (IsPlayerOne)
+            {
+                _bleuBlopButton.sprite = _selectedBlopPlayerOne;
+                _rougeBlopButton.sprite = _selectedBlopPlayerOne;
+                _jauneBlopButton.sprite = _selectedBlopPlayerOne;
+                _vertBlopButton.sprite = _selectedBlopPlayerOne;
+            }
+            else
+            {
+                _bleuBlopButton.sprite = _selectedBlopPlayerTwo;
+                _rougeBlopButton.sprite = _selectedBlopPlayerTwo;
+                _jauneBlopButton.sprite = _selectedBlopPlayerTwo;
+                _vertBlopButton.sprite = _selectedBlopPlayerTwo;
+            }
         }
 
         private void OnEnable()
@@ -45,7 +70,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             // Instantiate Prefab
             if (_playerInput.playerIndex == 0)
             {
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.2f, 0.5f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.1f, 0.4f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.4f, 0.9f);
                 
                 // Clear deicesID
@@ -53,8 +78,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             }
             else
             {
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.6f, 0.5f);
-                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.8f, 0.9f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.6f, 0.4f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.9f, 0.9f);
             }
             
             // Stock deicesID
@@ -92,10 +117,10 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                         SubmitBlop(_rougeBlop);
                         break;
                     }
-                    case "Violet": 
+                    case "Vert": 
                     {
-                        _currentSelectedBlopImage.sprite = _violetBlop.Sprite;
-                        SubmitBlop(_violetBlop);
+                        _currentSelectedBlopImage.sprite = _vertBlop.Sprite;
+                        SubmitBlop(_vertBlop);
                         break;
                     }
                 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Jaune
   m_EditorClassIdentifier: 
   PlayerName: Jaune
-  Sprite: {fileID: 21300000, guid: 7eab87fcb8b137640aad9a95db15e7a6, type: 3}
+  Sprite: {fileID: 21300000, guid: 3456a6123c33d304bbf0b2a8fafb23ed, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 9100000, guid: 0805e8c3da82ac34aa349ef6541302b9, type: 2}
-  _transparentTimer: 0.3
+  _becameTransparentTimer: 0.3

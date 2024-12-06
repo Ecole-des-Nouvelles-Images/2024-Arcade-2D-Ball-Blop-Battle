@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rouge
   m_EditorClassIdentifier: 
   PlayerName: Rouge
-  Sprite: {fileID: 21300000, guid: 3b01575443441d54cb93189d107f8229, type: 3}
+  Sprite: {fileID: 21300000, guid: 8892b693f48890f4fb3f1bb5ce985d32, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 0}
   _fakeBallPrefab: {fileID: 7739952088009901526, guid: 8c6839a5a37e63749b9c0c55de870c02, type: 3}
