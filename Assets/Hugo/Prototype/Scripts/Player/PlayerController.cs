@@ -15,6 +15,7 @@ namespace Hugo.Prototype.Scripts.Player
         private SpriteRenderer _sr;
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
+        private RectTransform _rectTransform;
         
         // GameObject
         private GameObject _ball;
@@ -79,6 +80,7 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
+            _rectTransform = GetComponent<RectTransform>();
             
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
         }
@@ -173,19 +175,24 @@ namespace Hugo.Prototype.Scripts.Player
                     }
                 }
                 
+                Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
+                
                 if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)
-                { 
+                {
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     _hasTheBall = true;
                     _isDashing = false;
                     _canMove = true;
+                    
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                    Invoke(nameof(ResetRotation), 0.2f);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
                 }
                 else
                 {
-                    Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
 
                     _isAttacking = true;
@@ -197,6 +204,10 @@ namespace Hugo.Prototype.Scripts.Player
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
+                    
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                    Invoke(nameof(ResetRotation), 0.2f);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
@@ -432,6 +443,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseCanMove()
         {
             _canMove = !_canMove;
+        }
+
+        private void ResetRotation()
+        {
+            transform.rotation = Quaternion.identity;
         }
 
         private void FlipSprite(float movement)
