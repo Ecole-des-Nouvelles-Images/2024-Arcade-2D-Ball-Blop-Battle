@@ -15,7 +15,6 @@ namespace Hugo.Prototype.Scripts.Player
         private SpriteRenderer _sr;
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
-        private RectTransform _rectTransform;
         
         // GameObject
         private GameObject _ball;
@@ -57,7 +56,6 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _timePerfectReception;
         [SerializeField] private float _timeAppears;
         
-        
         // Dash Settings
         [Header("Dash Settings")]
         [SerializeField] private float _dashSpeed;
@@ -80,7 +78,6 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
-            _rectTransform = GetComponent<RectTransform>();
             
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
         }
