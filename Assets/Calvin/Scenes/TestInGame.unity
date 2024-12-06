@@ -246,7 +246,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalTimer: 60
+  _timeBetweenSets: 4
+  _timerNewBall: 2
   _ballPrefab: {fileID: 7739952088009901526, guid: 529e28658a8424444bf61b708acfb1c7, type: 3}
+  _panelPaused: {fileID: 0}
+  _gameManager: {fileID: 0}
 --- !u!1001 &47987268
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1079,9 +1083,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb3120c50b7348b44be240f027c0a744, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textTimer: {fileID: 11213624}
-  _textScorePlayerOne: {fileID: 1469703213}
-  _textScorePlayerTwo: {fileID: 1916285706}
+  _gameManager: {fileID: 0}
+  _textTimer: {fileID: 0}
+  _textScorePlayerOne: {fileID: 0}
+  _textScorePlayerTwo: {fileID: 0}
+  _firstPerfectReceptionPlayerOne: {fileID: 0}
+  _secondPerfectReceptionPlayerOne: {fileID: 0}
+  _thirdPerfectReceptionPlayerOne: {fileID: 0}
+  _firstPerfectReceptionPlayerTwo: {fileID: 0}
+  _secondPerfectReceptionPlayerTwo: {fileID: 0}
+  _thirdPerfectReceptionPlayerTwo: {fileID: 0}
 --- !u!1 &1126770009
 GameObject:
   m_ObjectHideFlags: 0
