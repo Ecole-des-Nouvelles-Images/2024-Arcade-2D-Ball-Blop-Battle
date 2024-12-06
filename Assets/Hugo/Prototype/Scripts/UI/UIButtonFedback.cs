@@ -6,7 +6,7 @@ namespace Hugo.Prototype.Scripts.UI
 {
     public class UIButtonFedback : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler
     {
-        [SerializeField] private bool _playSounds = true;
+        // [SerializeField] private bool _playSounds = true;
         // [SerializeField] private AudioElement _acPointerEntrer;
         // [SerializeField] private AudioElement _acPointerExit;
         // [SerializeField] private AudioElement _acPointerDown;
