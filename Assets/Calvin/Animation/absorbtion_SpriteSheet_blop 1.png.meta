@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b0bf9aab08b62c3489a6afeef255d9e8
+guid: 63ef6252be0026d4fb6fb737c8b27fc4
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_0
+      name: absorbtion_SpriteSheet_blop 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8300f1e5de1dc243b5e343a2477d07a
-      internalID: -2020532725
+      spriteID: 406fe69d48869ce409726b45c7a23404
+      internalID: 2144168348
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_1
+      name: absorbtion_SpriteSheet_blop 1_1
       rect:
         serializedVersion: 2
         x: 256
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f72dd7130d6ddbd4a954e5dd95b39105
-      internalID: 1999118048
+      spriteID: c7428ac6281f00b409a645a3fb3ffc13
+      internalID: 1141085457
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_2
+      name: absorbtion_SpriteSheet_blop 1_2
       rect:
         serializedVersion: 2
         x: 512
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f4ef16cc98af299459bfb575bbea9b85
-      internalID: -1739203824
+      spriteID: 2695622af5ac7964492b4434ad6e9347
+      internalID: 725991083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_3
+      name: absorbtion_SpriteSheet_blop 1_3
       rect:
         serializedVersion: 2
         x: 768
@@ -187,38 +187,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8e7185367eeeecc4b8626f83c9bfeb26
-      internalID: -1312239404
+      spriteID: b16cb751645748d4baf2f9f019b2b5a7
+      internalID: -854617465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_4
+      name: absorbtion_SpriteSheet_blop 1_4
       rect:
         serializedVersion: 2
         x: 1024
-        y: 0
-        width: 256
-        height: 256
-      alignment: 9
-      pivot: {x: 0.5, y: 0.2}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b56d649129dfc33408fbd1e3b6243ed5
-      internalID: -1630168834
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_5
-      rect:
-        serializedVersion: 2
-        x: 1280
         y: 0
         width: 256
         height: 256
@@ -229,14 +208,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a845173c80fe494bb71375600a0120e
-      internalID: 2124404289
+      spriteID: d19b9c2cacf3d6e49a8229ed1e8786ba
+      internalID: 334083911
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_6
+      name: absorbtion_SpriteSheet_blop 1_5
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 256
+        height: 256
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b173dbd6872038348b9107ed57a52b51
+      internalID: 1385592466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: absorbtion_SpriteSheet_blop 1_6
       rect:
         serializedVersion: 2
         x: 1536
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a27619ba408dfe4abbc9b781569051e
-      internalID: -826047033
+      spriteID: 01707c9167a7e0e4096b372e7889276e
+      internalID: -490417823
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_7
+      name: absorbtion_SpriteSheet_blop 1_7
       rect:
         serializedVersion: 2
         x: 1792
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae106303213fcda46bab9a84ab12c7f4
-      internalID: 1431476340
+      spriteID: da02cb730965b3345b82bad540711481
+      internalID: 839613300
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_8
+      name: absorbtion_SpriteSheet_blop 1_8
       rect:
         serializedVersion: 2
         x: 2048
@@ -292,71 +292,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 533dc470cc34e28449ecd7c31551bdb3
-      internalID: 1985373368
+      spriteID: 13c8a7408e09be44d8f49d604bcc880d
+      internalID: 627176408
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_9
+      name: absorbtion_SpriteSheet_blop 1_9
       rect:
         serializedVersion: 2
         x: 2304
         y: 0
         width: 256
         height: 256
-      alignment: 0
+      alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 89ca55b82ea80654daa21e546f204aa3
-      internalID: 2038351173
+      spriteID: 57598d16b1a461540b4dbfcbe47c31dd
+      internalID: 2139262692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_10
+      name: absorbtion_SpriteSheet_blop 1_10
       rect:
         serializedVersion: 2
         x: 2560
         y: 0
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.6, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 39c3b3c131543454eb05d6dfe739bcc0
-      internalID: -17405092
+      spriteID: e1a8f128feabd7c48bc9ac29ea869097
+      internalID: -1263605337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: absorbtion_SpriteSheet_blop_11
+      name: absorbtion_SpriteSheet_blop 1_11
       rect:
         serializedVersion: 2
         x: 2816
         y: 0
         width: 256
         height: 256
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.7, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 923568397c4f1e544a804ed28644e028
-      internalID: -59376290
+      spriteID: 9727d129fd5f14144a0e06bc8a91759c
+      internalID: -1948022730
       vertices: []
       indices: 
       edges: []
@@ -372,18 +372,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      absorbtion_SpriteSheet_blop_0: -2020532725
-      absorbtion_SpriteSheet_blop_1: 1999118048
-      absorbtion_SpriteSheet_blop_10: -17405092
-      absorbtion_SpriteSheet_blop_11: -59376290
-      absorbtion_SpriteSheet_blop_2: -1739203824
-      absorbtion_SpriteSheet_blop_3: -1312239404
-      absorbtion_SpriteSheet_blop_4: -1630168834
-      absorbtion_SpriteSheet_blop_5: 2124404289
-      absorbtion_SpriteSheet_blop_6: -826047033
-      absorbtion_SpriteSheet_blop_7: 1431476340
-      absorbtion_SpriteSheet_blop_8: 1985373368
-      absorbtion_SpriteSheet_blop_9: 2038351173
+      absorbtion_SpriteSheet_blop 1_0: 2144168348
+      absorbtion_SpriteSheet_blop 1_1: 1141085457
+      absorbtion_SpriteSheet_blop 1_10: -1263605337
+      absorbtion_SpriteSheet_blop 1_11: -1948022730
+      absorbtion_SpriteSheet_blop 1_2: 725991083
+      absorbtion_SpriteSheet_blop 1_3: -854617465
+      absorbtion_SpriteSheet_blop 1_4: 334083911
+      absorbtion_SpriteSheet_blop 1_5: 1385592466
+      absorbtion_SpriteSheet_blop 1_6: -490417823
+      absorbtion_SpriteSheet_blop 1_7: 839613300
+      absorbtion_SpriteSheet_blop 1_8: 627176408
+      absorbtion_SpriteSheet_blop 1_9: 2139262692
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
