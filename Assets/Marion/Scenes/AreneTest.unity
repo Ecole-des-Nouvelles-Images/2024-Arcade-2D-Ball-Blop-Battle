@@ -1542,6 +1542,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PS_BlopYellow
       objectReference: {fileID: 0}
+    - target: {fileID: 5841262197851644056, guid: bb77423cb75e7a84db9f7ef3fbdcde22, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

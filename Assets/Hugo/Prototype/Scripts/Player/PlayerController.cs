@@ -54,7 +54,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _airControlFactor;
         [SerializeField] private float _maxAirSpeed;
         [SerializeField] private float _timePerfectReception;
-        
+        [SerializeField] private float _timeAppears;
         
         // Dash Settings
         [Header("Dash Settings")]
@@ -84,6 +84,9 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void Start()
         {
+            _canMove = false;
+            Invoke(nameof(ReverseCanMove), _timeAppears);
+            
             _sr.sprite = _playerType.Sprite;
             _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
         }
@@ -160,31 +163,33 @@ namespace Hugo.Prototype.Scripts.Player
                 _ball = other.gameObject;
                 if (_canPerfectReception)
                 {
-                    if (_move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
-                    {
-                        _ball.GetComponent<BallHandler>().PerfectReception();
-                        PerfectReceptionCount++;
-                            
-                        if (PerfectReceptionCount == 3)
-                        {
-                            CanSpecialSpike = true;
-                        }
+                    _ball.GetComponent<BallHandler>().PerfectReception();
+                    PerfectReceptionCount++;
+                    
+                    if (PerfectReceptionCount == 3)
+                    { 
+                        CanSpecialSpike = true;
                     }
                 }
                 
+                Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
+                
                 if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)
-                { 
+                {
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     _hasTheBall = true;
                     _isDashing = false;
                     _canMove = true;
+                    
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                    Invoke(nameof(ResetRotation), 0.2f);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
                 }
                 else
                 {
-                    Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
 
                     _isAttacking = true;
@@ -196,6 +201,10 @@ namespace Hugo.Prototype.Scripts.Player
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
+                    
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
+                    Invoke(nameof(ResetRotation), 0.2f);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
@@ -221,7 +230,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             _isWestButtonPressed = buttonValue;
             
-            if (Mathf.Approximately(buttonValue, 1))
+            if (Mathf.Approximately(buttonValue, 1) && _move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
             {
                 _canPerfectReception = true;
                 Invoke(nameof(ReverseCanPerfectReception), _timePerfectReception);
@@ -431,6 +440,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseCanMove()
         {
             _canMove = !_canMove;
+        }
+
+        private void ResetRotation()
+        {
+            transform.rotation = Quaternion.identity;
         }
 
         private void FlipSprite(float movement)
