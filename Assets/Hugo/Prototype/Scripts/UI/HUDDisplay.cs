@@ -1,5 +1,6 @@
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,9 +12,9 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameManager _gameManager;
         
         [Header("HUD")]
-        [SerializeField] private Text _textTimer;
-        [SerializeField] private Text _textScorePlayerOne;
-        [SerializeField] private Text _textScorePlayerTwo;
+        [SerializeField] private TextMeshProUGUI _textTimer;
+        [SerializeField] private TextMeshProUGUI _textScorePlayerOne;
+        [SerializeField] private TextMeshProUGUI _textScorePlayerTwo;
         [SerializeField] private Image _firstPerfectReceptionPlayerOne;
         [SerializeField] private Image _secondPerfectReceptionPlayerOne;
         [SerializeField] private Image _thirdPerfectReceptionPlayerOne;
