@@ -29,6 +29,7 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _canDoubleJump;
         private bool _canAbsorb;
         private bool _isAttacking;
+        private bool _appears;
 
         // Inputs values
         private Vector2 _move;
@@ -55,6 +56,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _maxAirSpeed;
         [SerializeField] private float _timePerfectReception;
         [SerializeField] private float _timeAppears;
+        [SerializeField] private float _timeResetRotation;
         
         // Dash Settings
         [Header("Dash Settings")]
@@ -85,7 +87,9 @@ namespace Hugo.Prototype.Scripts.Player
         private void Start()
         {
             _canMove = false;
+            _appears = true;
             Invoke(nameof(ReverseCanMove), _timeAppears);
+            Invoke(nameof(ReverseAppears), _timeAppears);
             
             _sr.sprite = _playerType.Sprite;
             _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
@@ -180,9 +184,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _isDashing = false;
                     _canMove = true;
                     
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
-                    Invoke(nameof(ResetRotation), 0.2f);
+                    FlipSpriteAbsorbDrawn(direction);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
@@ -201,9 +203,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-                    transform.rotation = Quaternion.Euler(0f, 0f, angle);
-                    Invoke(nameof(ResetRotation), 0.2f);
+                    FlipSpriteAbsorbDrawn(direction);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
@@ -250,6 +250,8 @@ namespace Hugo.Prototype.Scripts.Player
                 _ball.GetComponent<BallHandler>().IsShoot(_move);
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
+                FlipSpriteAbsorbDrawn(_move);
+                
                 // Animation
                 _animator.SetTrigger("Drawn");
             }
@@ -274,12 +276,14 @@ namespace Hugo.Prototype.Scripts.Player
                 if (_isSpecialSpike && _hasTheBall)
                 {
                     ActiveSpecialSpike();
+                    FlipSpriteAbsorbDrawn(_move);
                     return;
                 }
 
                 if (_playerType.name == "Vert" && CountShootSpecialSpike == 1)
                 {
                     ActiveSpecialSpike();
+                    FlipSpriteAbsorbDrawn(_move);
                     return;
                 }
             }
@@ -446,6 +450,11 @@ namespace Hugo.Prototype.Scripts.Player
             transform.rotation = Quaternion.identity;
         }
 
+        private void ReverseAppears()
+        {
+            _appears = !_appears;
+        }
+
         private void FlipSprite(float movement)
         {
             if (movement > 0.1f)
@@ -456,6 +465,29 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _sr.flipX = true;
             }
+        }
+
+        private void FlipSpriteAbsorbDrawn(Vector2 direction)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            if (_sr.flipX == false)
+            {
+                transform.rotation = Quaternion.Euler(0f, 0f, angle);
+            }
+            else
+            {
+                float normalizedAngle;
+                if (angle < 0)
+                {
+                    normalizedAngle = (angle + 180f) % 180f;
+                }
+                else
+                {
+                    normalizedAngle = (angle - 180f) % 180f;
+                }
+                transform.rotation = Quaternion.Euler(0f, 0f, normalizedAngle);
+            }
+            Invoke(nameof(ResetRotation), _timeResetRotation);
         }
 
         public void PlayerDie()
