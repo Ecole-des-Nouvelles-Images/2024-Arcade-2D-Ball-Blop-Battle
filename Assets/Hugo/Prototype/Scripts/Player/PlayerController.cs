@@ -160,15 +160,12 @@ namespace Hugo.Prototype.Scripts.Player
                 _ball = other.gameObject;
                 if (_canPerfectReception)
                 {
-                    if (_move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
-                    {
-                        _ball.GetComponent<BallHandler>().PerfectReception();
-                        PerfectReceptionCount++;
-                            
-                        if (PerfectReceptionCount == 3)
-                        {
-                            CanSpecialSpike = true;
-                        }
+                    _ball.GetComponent<BallHandler>().PerfectReception();
+                    PerfectReceptionCount++;
+                    
+                    if (PerfectReceptionCount == 3)
+                    { 
+                        CanSpecialSpike = true;
                     }
                 }
                 
@@ -221,7 +218,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             _isWestButtonPressed = buttonValue;
             
-            if (Mathf.Approximately(buttonValue, 1))
+            if (Mathf.Approximately(buttonValue, 1) && _move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
             {
                 _canPerfectReception = true;
                 Invoke(nameof(ReverseCanPerfectReception), _timePerfectReception);
