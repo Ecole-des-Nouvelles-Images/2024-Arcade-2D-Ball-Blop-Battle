@@ -148,15 +148,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: b9dff148afcba0e42965c01c7ee37625, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.5585713, y: 1.8771429}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3666538827017239510
@@ -171,7 +171,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c23cc5788bd6264abf8b6714d8d8eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GreenSpecialSpike: 0
+  CountShootSpecialSpike: 0
+  PerfectReceptionCount: 0
+  CanSpecialSpike: 0
   _playerType: {fileID: 11400000, guid: 9988807ac4c33a04f87641758bec77e0, type: 2}
   _speed: 450
   _jumpForce: 14
@@ -180,7 +182,7 @@ MonoBehaviour:
   _airControlFactor: 0.08
   _maxAirSpeed: 5.5
   _timePerfectReception: 0.5
-  _durationSpecialSpike: 2
+  _timeAppears: 0.5
   _dashSpeed: 15
   _dashDuration: 0.15
   _dashCooldown: 0.6
@@ -193,9 +195,6 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  _netLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &1857892761897799751
 MonoBehaviour:
   m_ObjectHideFlags: 0
