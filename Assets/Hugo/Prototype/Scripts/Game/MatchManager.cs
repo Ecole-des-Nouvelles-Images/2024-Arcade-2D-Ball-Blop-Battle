@@ -1,6 +1,7 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Player;
+using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
@@ -28,6 +29,7 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameObject _ballPrefab;
         [SerializeField] private GameObject _panelPaused;
         [SerializeField] private GameManager _gameManager;
+        [SerializeField] private HUDDisplay _hudDisplay;
         
         private int _setScorePlayerOne;
         private int _setScorePlayerTwo;
@@ -138,6 +140,11 @@ namespace Hugo.Prototype.Scripts.Game
         {
             _panelPaused.SetActive(true);
             Time.timeScale = 0f;
+        }
+
+        public void DisplayScoreChange(bool playerOneScored)
+        {
+            _hudDisplay.DisplayScoreChange(playerOneScored);
         }
         
         // Utils

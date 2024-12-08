@@ -1,3 +1,4 @@
+using System.Collections;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using TMPro;
@@ -8,6 +9,9 @@ namespace Hugo.Prototype.Scripts.UI
 {
     public class HUDDisplay : MonoBehaviour
     {
+        private RectTransform _rectTransformScorePlayerOne;
+        private RectTransform _rectTransformScorePlayerTwo;
+        
         [Header("Game Manager")]
         [SerializeField] private GameManager _gameManager;
         
@@ -21,7 +25,17 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private Image _firstPerfectReceptionPlayerTwo;
         [SerializeField] private Image _secondPerfectReceptionPlayerTwo;
         [SerializeField] private Image _thirdPerfectReceptionPlayerTwo;
-        
+
+        [Header("Settings Scale Score")]
+        [SerializeField] private Vector3 _initialScale;
+        [SerializeField] private Vector3 _targetScale;
+
+        private void Awake()
+        {
+            _rectTransformScorePlayerOne = _textScorePlayerOne.gameObject.GetComponent<RectTransform>();
+            _rectTransformScorePlayerTwo = _textScorePlayerTwo.gameObject.GetComponent<RectTransform>();
+        }
+
         private void Update()
         {
             // Timer and Scoring
@@ -100,6 +114,27 @@ namespace Hugo.Prototype.Scripts.UI
                 _secondPerfectReceptionPlayerTwo.color = Color.white;
                 _thirdPerfectReceptionPlayerTwo.color = Color.white;
             }
+        }
+
+        public void DisplayScoreChange(bool playerOneScored)
+        {
+            if (playerOneScored)
+            {
+                _rectTransformScorePlayerOne.transform.localScale = _targetScale;
+                StartCoroutine(ResetScale(_rectTransformScorePlayerOne, 1.5f));
+            }
+            else
+            {
+                _rectTransformScorePlayerTwo.localScale = _targetScale;
+                StartCoroutine(ResetScale(_rectTransformScorePlayerTwo, 1.5f));
+            }
+        }
+
+        private IEnumerator ResetScale(RectTransform score, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+
+            score.localScale = _initialScale;
         }
     }
 }

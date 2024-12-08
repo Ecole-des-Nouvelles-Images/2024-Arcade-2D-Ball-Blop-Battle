@@ -82,12 +82,14 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
+                _matchManager.DisplayScoreChange(false);
                 Destroy(gameObject);
             }
             if (other.gameObject.CompareTag("PlayerTwoGround"))
             {
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
+                _matchManager.DisplayScoreChange(true);
                 Destroy(gameObject);
             }
             

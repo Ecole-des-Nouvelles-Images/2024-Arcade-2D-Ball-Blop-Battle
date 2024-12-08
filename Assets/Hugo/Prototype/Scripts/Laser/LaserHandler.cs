@@ -1,3 +1,4 @@
+using System;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
@@ -14,7 +15,13 @@ namespace Hugo.Prototype.Scripts.Laser
         private bool _hasAlreadyHit;
         private bool _isplayerOneHit;
         private GameObject _ballGameObject;
+        private MatchManager _matchManager;
         
+        private void Awake()
+        {
+            _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
+        }
+
         private void Update()
         {
             // Raycast _laserHit
@@ -49,12 +56,14 @@ namespace Hugo.Prototype.Scripts.Laser
             {
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
+                _matchManager.DisplayScoreChange(false);
                 Destroy(_ballGameObject);
             }
             else
             {
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
+                _matchManager.DisplayScoreChange(true);
                 Destroy(_ballGameObject);
             }
         }

@@ -1,3 +1,4 @@
+using System;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
 
@@ -9,6 +10,12 @@ namespace Hugo.Prototype.Scripts.Player
         public bool IsPlayerOne;
 
         private GameObject _ballGameObject;
+        private MatchManager _matchManager;
+        
+        private void Awake()
+        {
+            _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
+        }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
@@ -31,11 +38,13 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
+                _matchManager.DisplayScoreChange(false);
             }
             else
             {
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
+                _matchManager.DisplayScoreChange(true);
             }
                     
             NumberTouchBall = 0;
