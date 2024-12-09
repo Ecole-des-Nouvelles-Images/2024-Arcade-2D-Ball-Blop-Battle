@@ -174,7 +174,7 @@ MonoBehaviour:
   CountShootSpecialSpike: 0
   PerfectReceptionCount: 0
   CanSpecialSpike: 0
-  _playerType: {fileID: 11400000, guid: 9988807ac4c33a04f87641758bec77e0, type: 2}
+  _playerType: {fileID: 11400000, guid: d6f99d27314a2e84a93a56036471eef8, type: 2}
   _speed: 450
   _jumpForce: 14
   _wallJumpForce: 10

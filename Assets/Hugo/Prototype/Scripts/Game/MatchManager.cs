@@ -88,7 +88,10 @@ namespace Hugo.Prototype.Scripts.Game
                 {
                     Debug.Log(" Player One WIN the match ");
                     
-                    EndGame();
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
+                    
+                    Invoke(nameof(EndGame), 5f);
                 }
                 else
                 {
@@ -103,7 +106,10 @@ namespace Hugo.Prototype.Scripts.Game
                 {
                     Debug.Log(" Player Two WIN the match ");
                     
-                    EndGame();
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
+                    
+                    Invoke(nameof(EndGame), 5f);
                 }
                 else
                 {

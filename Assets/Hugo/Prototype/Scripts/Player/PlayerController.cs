@@ -9,6 +9,8 @@ namespace Hugo.Prototype.Scripts.Player
     {
         // Special Spike
         public int CountShootSpecialSpike;
+        public bool WinTheMatch;
+        public bool LoseTheMatch;
         
         // Components
         private Rigidbody2D _rb2d;
@@ -115,6 +117,17 @@ namespace Hugo.Prototype.Scripts.Player
                 _hasTheBall = false;
                 _isSpecialSpike = false;
             }
+
+            if (WinTheMatch && _isGrounded && _canMove)
+            {
+                _canMove = false;
+                _animator.SetTrigger("Win");
+            }
+            if (LoseTheMatch && _isGrounded && _canMove)
+            {
+                _canMove = false;
+                _animator.SetTrigger("Lose");
+            }
             
             // Animation
             _animator.SetBool("Attack", _isAttacking);
@@ -124,6 +137,7 @@ namespace Hugo.Prototype.Scripts.Player
             _animator.SetBool("CanAbsorb", _canAbsorb);
             _animator.SetBool("PerfectReception", _canPerfectReception);
             _animator.SetBool("Dash", _isDashing);
+            _animator.SetBool("Appears", _appears);
             _animator.SetFloat("GoUp", _rb2d.velocity.y);
             _animator.SetFloat("MaxJumpHeight", _rb2d.velocity.y);
             _animator.SetFloat("Falling", _rb2d.velocity.y);
@@ -151,7 +165,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             else
             {
-                _sr.color = new Color(1, 1, 1, 0.5f);
+                _sr.color = new Color(1, 1, 1, 0.75f);
             }
             
             // Animation
@@ -177,8 +191,10 @@ namespace Hugo.Prototype.Scripts.Player
                 
                 Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                 
-                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)
+                if (Mathf.Approximately(_isWestButtonPressed, 1) && !_isGrounded )
                 {
+                    // && _playerNumberTouchBallHandler.NumberTouchBall < 2
+                    
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     _hasTheBall = true;
                     _isDashing = false;
@@ -266,6 +282,7 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().SpecialSpikeActivation();
 
                     _isSpecialSpike = true;
+                    _canAbsorb = true;
                     CanSpecialSpike = false;
                     PerfectReceptionCount = 0;
                     
@@ -277,6 +294,9 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
+                    
+                    // Animation
+                    _animator.SetTrigger("Drawn");
                     return;
                 }
 
