@@ -32,11 +32,11 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _canAbsorb;
         private bool _isAttacking;
         private bool _appears;
-
+        
         // Inputs values
         private Vector2 _move;
         private float _isWestButtonPressed;
-
+        
         // Special spike
         public int PerfectReceptionCount;
         public bool CanSpecialSpike;
@@ -45,8 +45,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // Player Type
         [Header("Player Type")]
-        [SerializeField]
-        private PlayerType _playerType;
+        [SerializeField] private PlayerType _playerType;
         
         // Player Settings
         [Header("Player Settings")]
