@@ -198,6 +198,12 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  _vfxJumping: {fileID: 0}
+  _vfxLanding: {fileID: 0}
+  _vfxWalking: {fileID: 0}
+  _vfxSpitOut: {fileID: 0}
+  _vfxAttacking: {fileID: 0}
+  _vfxPerfectReception: {fileID: 0}
 --- !u!114 &1857892761897799751
 MonoBehaviour:
   m_ObjectHideFlags: 0
