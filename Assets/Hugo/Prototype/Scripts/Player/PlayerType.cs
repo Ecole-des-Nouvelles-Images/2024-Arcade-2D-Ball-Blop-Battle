@@ -9,6 +9,7 @@ namespace Hugo.Prototype.Scripts.Player
         public Sprite Sprite;
         public float SpeedSpecialSpike;
         public RuntimeAnimatorController PlayerAnimatorController;
+        public ParticleSystem VFXSpecialSpike;
 
         public abstract void SpecialSpike(GameObject player, GameObject ball, Vector2 direction);
     }

@@ -172,6 +172,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CountShootSpecialSpike: 0
+  WinTheMatch: 0
+  LoseTheMatch: 0
   PerfectReceptionCount: 0
   CanSpecialSpike: 0
   _playerType: {fileID: 11400000, guid: d6f99d27314a2e84a93a56036471eef8, type: 2}

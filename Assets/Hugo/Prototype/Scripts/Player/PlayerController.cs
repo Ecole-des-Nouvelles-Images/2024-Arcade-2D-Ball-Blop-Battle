@@ -75,6 +75,15 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _rayNetTouchedLength;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
+        
+        // VFX
+        [Header("VFX Effects")]
+        [SerializeField] private ParticleSystem _vfxJumping;
+        [SerializeField] private ParticleSystem _vfxLanding;
+        [SerializeField] private ParticleSystem _vfxWalking;
+        [SerializeField] private ParticleSystem _vfxSpitOut;
+        [SerializeField] private ParticleSystem _vfxAttacking;
+        [SerializeField] private ParticleSystem _vfxPerfectReception;
 
         private void Awake()
         {
@@ -171,6 +180,13 @@ namespace Hugo.Prototype.Scripts.Player
             // Animation
             _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
             FlipSprite(_rb2d.velocity.x);
+            // VFX
+            if (_vfxWalking)
+            {
+                bool isWalking = _rb2d.velocity.x is > 0.3f or < -0.3f;
+                ParticleSystem.EmissionModule emission = _vfxWalking.emission;
+                emission.enabled = _isGrounded && isWalking;
+            }
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -182,6 +198,12 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     _ball.GetComponent<BallHandler>().PerfectReception();
                     PerfectReceptionCount++;
+                    
+                    // VFX
+                    if (_vfxPerfectReception)
+                    {
+                        _vfxPerfectReception.Play();
+                    }
                     
                     if (PerfectReceptionCount == 3)
                     { 
@@ -211,6 +233,12 @@ namespace Hugo.Prototype.Scripts.Player
 
                     _isAttacking = true;
                     Invoke(nameof(ReverseIsAttacking), 0.2f);
+                    
+                    // VFX
+                    if (_vfxAttacking)
+                    {
+                        _vfxAttacking.Play();
+                    }
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2)
@@ -270,6 +298,11 @@ namespace Hugo.Prototype.Scripts.Player
                 
                 // Animation
                 _animator.SetTrigger("Drawn");
+                // VFX
+                if (_vfxSpitOut)
+                {
+                    _vfxSpitOut.Play();
+                }
             }
         }
 
@@ -297,6 +330,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Drawn");
+                    // VFX
+                    if (_vfxSpitOut)
+                    {
+                        _vfxSpitOut.Play();
+                    }
                     return;
                 }
 
@@ -328,6 +366,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Jump");
+                    // VFX
+                    if (_vfxJumping)
+                    {
+                        _vfxJumping.Play();
+                    }
                 }
                 
                 if (_isGrounded)
@@ -339,6 +382,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Jump");
+                    // VFX
+                    if (_vfxJumping)
+                    {
+                        _vfxJumping.Play();
+                    }
                 }
                 
                 if (_isWalled && !_isGrounded)
@@ -349,6 +397,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("WallJump");
+                    // VFX
+                    if (_vfxJumping)
+                    {
+                        _vfxJumping.Play();
+                    }
                 }
             }
         }
@@ -384,6 +437,10 @@ namespace Hugo.Prototype.Scripts.Player
         {
             // Raycast _isGrounded
             RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
+            if (_isGrounded == false && hit2DGround && _vfxLanding)
+            {
+                _vfxLanding.Play();
+            }
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
 
