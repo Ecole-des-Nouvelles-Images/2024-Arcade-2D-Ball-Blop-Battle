@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 5676168694849698828}
   - component: {fileID: 7982066149560840722}
   - component: {fileID: 3094475499011474780}
+  - component: {fileID: 3251046280349267459}
   m_Layer: 5
   m_Name: MenuPrincipale
   m_TagString: Untagged
@@ -434,6 +435,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelectedButton: {fileID: 5574483879107192957}
+--- !u!114 &3251046280349267459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4476705362126219212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c59e684332d34d80ae6b6b40e1f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playTweening: 1
+  _animationTime: 0.3
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.2
 --- !u!1 &5574483879107192957
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +487,7 @@ GameObject:
   - component: {fileID: 4368148075709671419}
   - component: {fileID: 6518038523101550814}
   - component: {fileID: 8912531207635902360}
+  - component: {fileID: 1903148264990673270}
   m_Layer: 5
   m_Name: Reprendre
   m_TagString: Untagged
@@ -569,6 +610,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelectedButton: {fileID: 5574483879107192957}
+--- !u!114 &1903148264990673270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5574483879107192957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c59e684332d34d80ae6b6b40e1f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playTweening: 1
+  _animationTime: 0.3
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.2
 --- !u!1 &5634242894925821206
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +662,7 @@ GameObject:
   - component: {fileID: 1722674495699046205}
   - component: {fileID: 2096376651353506307}
   - component: {fileID: 4989216015708668853}
+  - component: {fileID: 1470730897408533365}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -704,6 +785,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelectedButton: {fileID: 5574483879107192957}
+--- !u!114 &1470730897408533365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5634242894925821206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c59e684332d34d80ae6b6b40e1f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playTweening: 1
+  _animationTime: 0.3
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.2
 --- !u!1 &6304911618668230895
 GameObject:
   m_ObjectHideFlags: 0
@@ -903,10 +1023,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Recommencer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -930,8 +1050,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -985,6 +1105,7 @@ GameObject:
   - component: {fileID: 5560254423096838870}
   - component: {fileID: 5242512788139950711}
   - component: {fileID: 5891521447586709150}
+  - component: {fileID: 3222801617380469798}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1107,6 +1228,45 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _firstSelectedButton: {fileID: 5574483879107192957}
+--- !u!114 &3222801617380469798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7563306194279610725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c59e684332d34d80ae6b6b40e1f7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playTweening: 1
+  _animationTime: 0.3
+  _animationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  _animationEndScale: 1.2
 --- !u!1 &8275078611642447332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,10 +1600,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Button
+  m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1467,8 +1627,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
