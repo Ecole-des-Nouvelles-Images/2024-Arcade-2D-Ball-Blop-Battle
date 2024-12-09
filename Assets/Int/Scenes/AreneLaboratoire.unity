@@ -2423,6 +2423,8 @@ MonoBehaviour:
   _firstPerfectReceptionPlayerTwo: {fileID: 0}
   _secondPerfectReceptionPlayerTwo: {fileID: 0}
   _thirdPerfectReceptionPlayerTwo: {fileID: 0}
+  _initialScale: {x: 0, y: 0, z: 0}
+  _targetScale: {x: 0, y: 0, z: 0}
 --- !u!114 &1341798601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3044,9 +3046,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _totalTimer: 20
+  _timeBetweenSets: 0
+  _timerNewBall: 0
   _ballPrefab: {fileID: 7739952088009901526, guid: 529e28658a8424444bf61b708acfb1c7, type: 3}
   _panelPaused: {fileID: 282302239}
   _gameManager: {fileID: 2071482333}
+  _hudDisplay: {fileID: 0}
 --- !u!4 &1835072129
 Transform:
   m_ObjectHideFlags: 0
