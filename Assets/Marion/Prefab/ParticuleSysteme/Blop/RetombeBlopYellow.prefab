@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6266600149833462267}
   - component: {fileID: 6429655951441224388}
   m_Layer: 0
-  m_Name: RetombeBlopGreen
+  m_Name: RetombeBlopYellow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4835,7 +4835,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 38b0bdefeb4864045855d061f3b70b6f, type: 2}
+  - {fileID: 2100000, guid: 1c2dc33267b28e44eba207a2f3b91463, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
