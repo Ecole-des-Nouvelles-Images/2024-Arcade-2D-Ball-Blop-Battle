@@ -24,6 +24,17 @@ namespace Hugo.Prototype.Scripts.Ball
             }
         }
 
+        private void Update()
+        {
+            // Touner le ballon dans sa direction
+            Vector2 direction = _rb2d.velocity;
+            if (direction.magnitude > 0.1f)
+            {
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+        }
+
         public void Setup(Vector2 direction, float speed)
         {
             _rb2d.AddForce(direction * speed, ForceMode2D.Impulse);
