@@ -651,10 +651,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlayerOne: 0
-  _bleuBlop: {fileID: 11400000, guid: 9988807ac4c33a04f87641758bec77e0, type: 2}
-  _rougeBlop: {fileID: 11400000, guid: c6c415e132fb45c4384e2d3af3fcb4c0, type: 2}
-  _jauneBlop: {fileID: 11400000, guid: 1d4215861724cb24f869bf80e9d21847, type: 2}
-  _vertBlop: {fileID: 11400000, guid: 867a1949ae03dcc4fbfe590612725147, type: 2}
+  _bleuBlop: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
+  _rougeBlop: {fileID: 11400000, guid: 48a6d79ed3545f44893566638677709b, type: 2}
+  _jauneBlop: {fileID: 11400000, guid: 9374428f9cb1aa8458e2ffadd896fc4d, type: 2}
+  _vertBlop: {fileID: 11400000, guid: d1f337d1024003f42949332e66097c96, type: 2}
   _bleuBlopButton: {fileID: 8546499120733792379}
   _rougeBlopButton: {fileID: 7793685199946760746}
   _jauneBlopButton: {fileID: 3236297458232136774}

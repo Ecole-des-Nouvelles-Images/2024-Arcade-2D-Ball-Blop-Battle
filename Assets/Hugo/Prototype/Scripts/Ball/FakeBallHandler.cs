@@ -34,6 +34,27 @@ namespace Hugo.Prototype.Scripts.Ball
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                Vector2 direction = _rb2d.velocity;
+                Vector2 newDirection = direction;
+                newDirection.x = -_rb2d.velocity.x;
+                _rb2d.velocity = newDirection;
+                
+                // Debug.Log(" Direction : " + direction + " New direction : " + newDirection);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                _col2d.isTrigger = false;
+            }
+        }
 
         public void Setup(Vector2 direction, float speed)
         {

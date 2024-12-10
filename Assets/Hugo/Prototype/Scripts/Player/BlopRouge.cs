@@ -83,7 +83,6 @@ namespace Hugo.Prototype.Scripts.Player
             _rb2dBall.constraints = RigidbodyConstraints2D.None;
             _rb2dBall.constraints = RigidbodyConstraints2D.FreezeRotation;
             _ballHandler.ReversIsCatch();
-            _ballHandler.InvokeMethodTimer("ReverseIsTrigger", 0.1f);
                 
             if (direction == Vector2.zero)
             {
@@ -102,7 +101,6 @@ namespace Hugo.Prototype.Scripts.Player
                 
             GameObject newBall = Instantiate(_fakeBallPrefab, player.transform.position, Quaternion.identity);
             newBall.GetComponent<FakeBallHandler>().Setup(direction, SpeedSpecialSpike);
-            newBall.GetComponent<FakeBallHandler>().InvokeMethodTimer("ReverseIsTrigger", 0.1f);
                 
             _playerController.CountShootSpecialSpike++;
         }

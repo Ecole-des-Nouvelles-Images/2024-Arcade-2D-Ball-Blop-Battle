@@ -243,7 +243,7 @@ namespace Hugo.Prototype.Scripts.Player
                     }
                 }
 
-                if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2)
+                if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_isGrounded)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -253,6 +253,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
+                }
+                else if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && _isGrounded)
+                {
+                    _isSpecialSpike = false;
+                    CanSpecialSpike = true;
                 }
 
                 if (_isSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall == 3)
@@ -340,7 +345,7 @@ namespace Hugo.Prototype.Scripts.Player
                     return;
                 }
 
-                if (_playerType.name == "Vert" && CountShootSpecialSpike == 1)
+                if (_playerType.PlayerName == "Vert" && CountShootSpecialSpike == 1)
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
@@ -393,7 +398,15 @@ namespace Hugo.Prototype.Scripts.Player
                 
                 if (_isWalled && !_isGrounded)
                 {
-                    Vector2 walljumping = new Vector2(1,1) * buttonValue * _wallJumpForce;
+                    Vector2 walljumping;
+                    if (_playerNumberTouchBallHandler.IsPlayerOne)
+                    {
+                        walljumping = new Vector2(1,1) * buttonValue * _wallJumpForce;
+                    }
+                    else
+                    {
+                        walljumping = new Vector2(-1,1) * buttonValue * _wallJumpForce;
+                    }
                     
                     _rb2d.AddForce(walljumping, ForceMode2D.Impulse);
                     

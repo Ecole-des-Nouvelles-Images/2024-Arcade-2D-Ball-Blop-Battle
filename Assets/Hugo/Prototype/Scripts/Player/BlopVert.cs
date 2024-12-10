@@ -29,7 +29,6 @@ namespace Hugo.Prototype.Scripts.Player
                 _rb2dBall.constraints = RigidbodyConstraints2D.None;
                 _rb2dBall.constraints = RigidbodyConstraints2D.FreezeRotation;
                 _ballHandler.ReversIsCatch();
-                _ballHandler.InvokeMethodTimer("ReverseIsTrigger", 0.1f);
                 
                 if (direction == Vector2.zero)
                 {

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c535e4cc3140e090f76e799d05d902, type: 3}
+  m_Name: BlopRouge
+  m_EditorClassIdentifier: 
+  PlayerName: Rouge
+  Sprite: {fileID: -124065854, guid: facbefecedff8a24dbb225fbda6b3ec8, type: 3}
+  SpeedSpecialSpike: 2.3
+  PlayerAnimatorController: {fileID: 9100000, guid: 35ae509de6ee6db4792c285ba11cafa9, type: 2}
+  VFXSpecialSpike: {fileID: 0}
+  _fakeBallPrefab: {fileID: 7739952088009901526, guid: 8c6839a5a37e63749b9c0c55de870c02, type: 3}
