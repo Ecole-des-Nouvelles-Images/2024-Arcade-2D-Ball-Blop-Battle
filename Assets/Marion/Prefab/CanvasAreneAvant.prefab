@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3610823446578838015}
   - component: {fileID: 4611588877161187599}
   m_Layer: 5
-  m_Name: Emissive
+  m_Name: 3-Emissive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2501869205675715684}
   - component: {fileID: 1233983308739173296}
   m_Layer: 5
-  m_Name: "LineColor\xE9"
+  m_Name: "1-LineColor\xE9"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 8417701163785264569}
   - component: {fileID: 3751622661375522309}
   m_Layer: 5
-  m_Name: PremierPlan
+  m_Name: 2-PremierPlan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ Canvas:
   m_GameObject: {fileID: 6640633367983626339}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -287,7 +287,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &429029083313228241
 MonoBehaviour:
