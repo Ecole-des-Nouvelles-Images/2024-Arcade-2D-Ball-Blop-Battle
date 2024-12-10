@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3045336366238888851}
   - component: {fileID: 8752394035109270788}
   - component: {fileID: -5036071354264543736}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FakeBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

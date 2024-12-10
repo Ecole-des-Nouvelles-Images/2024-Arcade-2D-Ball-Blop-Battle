@@ -229,7 +229,8 @@ namespace Hugo.Prototype.Scripts.Player
                     // Animation
                     _animator.SetTrigger("Absorb");
                 }
-                else
+                
+                if(_isWestButtonPressed == 0 && _playerNumberTouchBallHandler.NumberTouchBall < 2)
                 {
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
 
@@ -324,7 +325,6 @@ namespace Hugo.Prototype.Scripts.Player
                     _isSpecialSpike = true;
                     _canAbsorb = true;
                     CanSpecialSpike = false;
-                    PerfectReceptionCount = 0;
                     
                     // Animation
                     _animator.SetTrigger("ActiveSpecialSpike");
@@ -334,6 +334,7 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
+                    PerfectReceptionCount = 0;
                     
                     // Animation
                     _animator.SetTrigger("Drawn");
