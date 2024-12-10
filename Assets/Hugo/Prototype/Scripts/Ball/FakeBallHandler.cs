@@ -46,10 +46,5 @@ namespace Hugo.Prototype.Scripts.Ball
             if (methodName == null) throw new ArgumentNullException(nameof(methodName));
             Invoke(methodName, timer);
         }
-
-        private void ReverseIsTrigger()
-        {
-            _col2d.isTrigger = !_col2d.isTrigger;
-        }
     }
 }

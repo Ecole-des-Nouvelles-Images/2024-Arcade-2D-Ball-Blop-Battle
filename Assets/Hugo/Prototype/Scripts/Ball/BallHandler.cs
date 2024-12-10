@@ -2,7 +2,6 @@ using System;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Ball

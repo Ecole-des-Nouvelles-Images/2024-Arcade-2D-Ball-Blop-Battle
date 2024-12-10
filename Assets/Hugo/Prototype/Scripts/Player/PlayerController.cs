@@ -100,9 +100,12 @@ namespace Hugo.Prototype.Scripts.Player
             _appears = true;
             Invoke(nameof(ReverseCanMove), _timeAppears);
             Invoke(nameof(ReverseAppears), _timeAppears);
-            
-            _sr.sprite = _playerType.Sprite;
-            _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
+
+            if (_playerType)
+            {
+                _sr.sprite = _playerType.Sprite;
+                _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
+            }
         }
 
         private void Update()
