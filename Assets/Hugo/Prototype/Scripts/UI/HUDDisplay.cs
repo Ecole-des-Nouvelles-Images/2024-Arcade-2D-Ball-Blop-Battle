@@ -14,6 +14,7 @@ namespace Hugo.Prototype.Scripts.UI
         
         [Header("Game Manager")]
         [SerializeField] private GameManager _gameManager;
+        [SerializeField] private MatchManager _matchManager;
         
         [Header("HUD")]
         [SerializeField] private TextMeshProUGUI _textTimer;
@@ -25,6 +26,12 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private Image _firstPerfectReceptionPlayerTwo;
         [SerializeField] private Image _secondPerfectReceptionPlayerTwo;
         [SerializeField] private Image _thirdPerfectReceptionPlayerTwo;
+        [SerializeField] private Image _firstSetPlayerOne;
+        [SerializeField] private Image _secondSetPlayerOne;
+        [SerializeField] private Image _thirdSetPlayerOne;
+        [SerializeField] private Image _firstSetPlayerTwo;
+        [SerializeField] private Image _secondSetPlayerTwo;
+        [SerializeField] private Image _thirdSetPlayerTwo;
 
         [Header("Settings Scale Score")]
         [SerializeField] private Vector3 _initialScale;
@@ -113,6 +120,58 @@ namespace Hugo.Prototype.Scripts.UI
                 _firstPerfectReceptionPlayerTwo.color = Color.white;
                 _secondPerfectReceptionPlayerTwo.color = Color.white;
                 _thirdPerfectReceptionPlayerTwo.color = Color.white;
+            }
+            
+            // Set Display
+            if (_matchManager)
+            {
+                // Player One
+                int setCountPlayerOne = _matchManager.SetScorePlayerOne;
+                if (setCountPlayerOne == 0)
+                {
+                    _firstSetPlayerOne.color = Color.gray;
+                    _secondSetPlayerOne.color = Color.gray;
+                    _thirdSetPlayerOne.color = Color.gray;
+                }
+                
+                if (setCountPlayerOne == 1)
+                {
+                    _firstSetPlayerOne.color = Color.green;
+                }
+
+                if (setCountPlayerOne == 2)
+                {
+                    _secondSetPlayerOne.color = Color.green;
+                }
+
+                if (setCountPlayerOne == 3)
+                {
+                    _thirdSetPlayerOne.color = Color.green;
+                }
+                
+                // Player One
+                int setCountPlayerTwo = _matchManager.SetScorePlayerTwo;
+                if (setCountPlayerTwo == 0)
+                {
+                    _firstSetPlayerTwo.color = Color.gray;
+                    _secondSetPlayerTwo.color = Color.gray;
+                    _thirdSetPlayerTwo.color = Color.gray;
+                }
+                
+                if (setCountPlayerTwo == 1)
+                {
+                    _firstSetPlayerTwo.color = Color.green;
+                }
+
+                if (setCountPlayerTwo == 2)
+                {
+                    _secondSetPlayerTwo.color = Color.green;
+                }
+
+                if (setCountPlayerTwo == 3)
+                {
+                    _thirdSetPlayerTwo.color = Color.green;
+                }
             }
         }
 

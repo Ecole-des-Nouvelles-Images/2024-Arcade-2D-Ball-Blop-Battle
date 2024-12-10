@@ -31,6 +31,14 @@ namespace Hugo.Prototype.Scripts.Player
             }
         }
 
+        private void Update()
+        {
+            if (IsPlayerOne)
+            {
+                Debug.Log(NumberTouchBall);
+            }
+        }
+
         public void Fouls()
         {
             //Debug.Log(" FAUTE ");

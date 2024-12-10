@@ -31,8 +31,8 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private HUDDisplay _hudDisplay;
         
-        private int _setScorePlayerOne;
-        private int _setScorePlayerTwo;
+        public int SetScorePlayerOne;
+        public int SetScorePlayerTwo;
         private bool _inGame;
 
         private void Update()
@@ -77,14 +77,16 @@ namespace Hugo.Prototype.Scripts.Game
             IsSetOver = true;
             _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
             _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().CanSpecialSpike = false;
+            _gameManager.FirstPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
             _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
             _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().CanSpecialSpike = false;
+            _gameManager.SecondPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
             
             if (ScorePlayerOne > ScorePlayerTwo)
             {
-                _setScorePlayerOne++;
+                SetScorePlayerOne++;
                 
-                if (_setScorePlayerOne == 2)
+                if (SetScorePlayerOne == 3)
                 {
                     Debug.Log(" Player One WIN the match ");
                     
@@ -100,9 +102,9 @@ namespace Hugo.Prototype.Scripts.Game
             }
             else if (ScorePlayerOne < ScorePlayerTwo)
             {
-                _setScorePlayerTwo++;
+                SetScorePlayerTwo++;
                 
-                if (_setScorePlayerTwo == 2)
+                if (SetScorePlayerTwo == 3)
                 {
                     Debug.Log(" Player Two WIN the match ");
                     
@@ -118,13 +120,38 @@ namespace Hugo.Prototype.Scripts.Game
             }
             else
             {
-                _setScorePlayerOne++;
-                _setScorePlayerTwo++;
+                SetScorePlayerOne++;
+                SetScorePlayerTwo++;
                 
-                Invoke(nameof(StartTimer), _timeBetweenSets);
+                if (SetScorePlayerOne == 3)
+                {
+                    Debug.Log(" Player One WIN the match ");
+                    
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
+                    
+                    Invoke(nameof(EndGame), 5f);
+                }
+                if (SetScorePlayerTwo == 3)
+                {
+                    Debug.Log(" Player Two WIN the match ");
+                    
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
+                    
+                    Invoke(nameof(EndGame), 5f);
+                }
+                if (SetScorePlayerOne == 3 && SetScorePlayerTwo == 3)
+                {
+                    Invoke(nameof(EndGame), 5f);
+                }
+                else
+                {
+                    Invoke(nameof(StartTimer), _timeBetweenSets);
+                }
             }
             
-            Debug.Log(" Player One : " + _setScorePlayerOne + " / " + _setScorePlayerTwo + " : Player Two ");
+            Debug.Log(" Player One : " + SetScorePlayerOne + " / " + SetScorePlayerTwo + " : Player Two ");
         }
 
         // ReSharper disable Unity.PerformanceAnalysis

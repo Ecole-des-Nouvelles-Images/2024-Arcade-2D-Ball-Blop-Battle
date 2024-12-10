@@ -187,6 +187,24 @@ namespace Hugo.Prototype.Scripts.Ball
                     _lastPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
                 }
             }
+            
+            GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
+            if (gameManager)
+            {
+                if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike)
+                {
+                    gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
+                    gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
+                    gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
+                }
+                
+                if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike)
+                {
+                    gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
+                    gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
+                    gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
+                }
+            }
         }
 
         // Actions Player-Ball
