@@ -1,4 +1,3 @@
-using System;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
@@ -11,6 +10,7 @@ namespace Hugo.Prototype.Scripts.Laser
         [SerializeField] private float _rayLaserLength;
         [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private LayerMask _ballLayer;
+        [SerializeField] private ParticleSystem _laserParticles;
 
         private bool _hasAlreadyHit;
         private bool _isplayerOneHit;
@@ -41,6 +41,9 @@ namespace Hugo.Prototype.Scripts.Laser
                 GameObject playerChildren = hitPlayer.collider.gameObject;
                 playerChildren.GetComponentInParent<PlayerController>().PlayerDie();
                 _isplayerOneHit = playerChildren.GetComponentInParent<PlayerNumberTouchBallHandler>().IsPlayerOne;
+                
+                // Particles System
+                _laserParticles.Play();
                 
                 ScoringOnDeath();
                 Invoke(nameof(ResetHasAlreadyHit), 0.5f);
