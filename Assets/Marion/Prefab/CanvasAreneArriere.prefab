@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7575240684334305310}
   - component: {fileID: 6050170215960005177}
   m_Layer: 5
-  m_Name: MeubleMiddle
+  m_Name: 2-MeubleMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 8985139631661425057}
   - component: {fileID: 6215849682411765536}
   m_Layer: 5
-  m_Name: DessusVentilation
+  m_Name: 3-DessusVentilation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 3936535744675800724}
   - component: {fileID: 1428217846729831933}
   m_Layer: 5
-  m_Name: PalmesVentilation
+  m_Name: 4-PalmesVentilation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 4761438867903485756}
   - component: {fileID: 2120246561284355097}
   m_Layer: 5
-  m_Name: Fond
+  m_Name: 6-Fond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -419,7 +419,7 @@ GameObject:
   - component: {fileID: 6201909162735346186}
   - component: {fileID: 5213128216484715153}
   m_Layer: 5
-  m_Name: MeublesArriere
+  m_Name: 5-MeublesArriere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 4553542201032258348}
   - component: {fileID: 2502321803731888139}
   m_Layer: 5
-  m_Name: BlopInFioles
+  m_Name: 1-BlopInFioles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
