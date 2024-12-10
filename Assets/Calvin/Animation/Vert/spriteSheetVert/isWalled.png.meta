@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ad04fb835552f74581b909e5c188d65
+guid: c4e989562a624a546b9db5c2f5bc5784
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -124,8 +124,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 43a5a27cd2cc6ef4bba4929d4899f9ee
-      internalID: -542931214
+      spriteID: 87efa601c0563a34aa7cfa9db026985e
+      internalID: 1878436573
       vertices: []
       indices: 
       edges: []
@@ -145,8 +145,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4da7e3726a1829544aeb9fa1de170499
-      internalID: -2003589077
+      spriteID: 20b9273ad54e7cf448b3dea4144c2c8f
+      internalID: 2092766674
       vertices: []
       indices: 
       edges: []
@@ -166,8 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4291cc80654a72646bcc2f65461ee797
-      internalID: 1374424152
+      spriteID: a9f20c32f091a8640a7f0548e905a323
+      internalID: 1068551003
       vertices: []
       indices: 
       edges: []
@@ -183,9 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      isWalled_0: -542931214
-      isWalled_1: -2003589077
-      isWalled_2: 1374424152
+      isWalled_0: 1878436573
+      isWalled_1: 2092766674
+      isWalled_2: 1068551003
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
