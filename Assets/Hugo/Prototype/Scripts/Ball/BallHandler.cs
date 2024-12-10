@@ -2,6 +2,7 @@ using System;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Ball
@@ -135,6 +136,27 @@ namespace Hugo.Prototype.Scripts.Ball
                 }
             }
         }
+        
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Wall"))
+            {
+                Vector2 direction = _rb2d.velocity;
+                Vector2 newDirection = direction;
+                newDirection.x = -_rb2d.velocity.x;
+                _rb2d.velocity = newDirection;
+                
+                // Debug.Log(" Direction : " + direction + " New direction : " + newDirection);
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                _col2D.isTrigger = false;
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D other)
         {
@@ -189,7 +211,6 @@ namespace Hugo.Prototype.Scripts.Ball
                 _isCatch = false;
                 
                 _rb2d.AddForce(Vector2.up * _speedDrawn, ForceMode2D.Impulse);
-                Invoke(nameof(ReverseIsTrigger), 0.1f);
             }
             else
             {
@@ -198,7 +219,6 @@ namespace Hugo.Prototype.Scripts.Ball
                 _isCatch = false;
                 
                 _rb2d.AddForce(direction * _speedDrawn, ForceMode2D.Impulse);
-                Invoke(nameof(ReverseIsTrigger), 0.1f);
             }
         }
 
@@ -206,7 +226,6 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             Vector2 velocity = new Vector2(direction.x * playerVelocity.y * _speedPunch, direction.y * playerVelocity.y * _speedPunch);
             _rb2d.AddForce(velocity, ForceMode2D.Impulse);
-            //Debug.Log(_rb2d.velocity.magnitude);
         }
 
         public void PerfectReception()
@@ -249,11 +268,6 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             if (methodName == null) throw new ArgumentNullException(nameof(methodName));
             Invoke(methodName, timer);
-        }
-
-        public void ReverseIsTrigger()
-        {
-            _col2D.isTrigger = !_col2D.isTrigger;
         }
 
         public void ReversIsCatch()
