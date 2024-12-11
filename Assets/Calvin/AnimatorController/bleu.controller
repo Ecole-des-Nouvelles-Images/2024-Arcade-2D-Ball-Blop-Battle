@@ -877,13 +877,13 @@ AnimatorStateMachine:
     m_Position: {x: 1170, y: -1140, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4996726345272245501}
-    m_Position: {x: -400, y: -40, z: 0}
+    m_Position: {x: -400, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2561260059321286854}
-    m_Position: {x: -660, y: -40, z: 0}
+    m_Position: {x: -700, y: 60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3008961409766413858}
-    m_Position: {x: -400, y: 60, z: 0}
+    m_Position: {x: -400, y: -30, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -1638058517953543473}
     m_Position: {x: 830, y: 30, z: 0}
