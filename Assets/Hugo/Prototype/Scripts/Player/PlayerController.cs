@@ -32,6 +32,7 @@ namespace Hugo.Prototype.Scripts.Player
         public bool CanAbsorb;
         private bool _isAttacking;
         private bool _appears;
+        private bool _hasPunch;
         
         // Inputs values
         private Vector2 _move;
@@ -230,12 +231,14 @@ namespace Hugo.Prototype.Scripts.Player
                     _animator.SetTrigger("Absorb");
                 }
                 
-                if(_isWestButtonPressed == 0 && _playerNumberTouchBallHandler.NumberTouchBall < 2)
+                if(_isWestButtonPressed == 0 && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_hasPunch)
                 {
                     _ball.GetComponent<BallHandler>().IsPunch(direction, _rb2d.velocity);
 
                     _isAttacking = true;
+                    _hasPunch = true;
                     Invoke(nameof(ReverseIsAttacking), 0.2f);
+                    Invoke(nameof(ReverseHasPunch), 0.1f);
                     
                     // VFX
                     if (_vfxAttacking)
@@ -532,6 +535,11 @@ namespace Hugo.Prototype.Scripts.Player
         private void ReverseIsAttacking()
         {
             _isAttacking = !_isAttacking;
+        }
+
+        private void ReverseHasPunch()
+        {
+            _hasPunch = !_hasPunch;
         }
         
         private void ReverseCanMove()

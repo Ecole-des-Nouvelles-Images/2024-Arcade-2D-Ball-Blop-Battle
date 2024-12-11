@@ -1,4 +1,3 @@
-using System;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private GameObject _ballGameObject;
         private MatchManager _matchManager;
+        private bool _alreadyTouched;
         
         private void Awake()
         {
@@ -22,7 +22,13 @@ namespace Hugo.Prototype.Scripts.Player
             if (other.gameObject.CompareTag("Ball"))
             {
                 _ballGameObject = other.gameObject;
-                NumberTouchBall++;
+
+                if (!_alreadyTouched)
+                {
+                    NumberTouchBall++;
+                    _alreadyTouched = true;
+                    Invoke(nameof(ReverseAlreadyTouched), 0.1f);
+                }
 
                 if (NumberTouchBall > 2)
                 {
@@ -33,7 +39,6 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void Fouls()
         {
-            //Debug.Log(" FAUTE ");
             if (IsPlayerOne)
             {
                 MatchManager.ScorePlayerTwo++;
@@ -49,6 +54,11 @@ namespace Hugo.Prototype.Scripts.Player
                     
             NumberTouchBall = 0;
             Destroy(_ballGameObject);
+        }
+
+        private void ReverseAlreadyTouched()
+        {
+            _alreadyTouched = !_alreadyTouched;
         }
     }
 }
