@@ -59,14 +59,14 @@ namespace Hugo.Prototype.Scripts.Laser
             {
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
-                _matchManager.DisplayScoreChange(false);
+                _matchManager.DisplayScoreChange(false, true);
                 Destroy(_ballGameObject);
             }
             else
             {
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
-                _matchManager.DisplayScoreChange(true);
+                _matchManager.DisplayScoreChange(true, true);
                 Destroy(_ballGameObject);
             }
         }

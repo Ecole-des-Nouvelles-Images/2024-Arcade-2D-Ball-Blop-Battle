@@ -31,6 +31,10 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private HUDDisplay _hudDisplay;
         
+        [Header("Panels")]
+        [SerializeField] private GameObject _playerOneFoulPanel;
+        [SerializeField] private GameObject _playerTwoFoulPanel;
+        
         public int SetScorePlayerOne;
         public int SetScorePlayerTwo;
         private bool _inGame;
@@ -175,9 +179,25 @@ namespace Hugo.Prototype.Scripts.Game
             Time.timeScale = 0f;
         }
 
-        public void DisplayScoreChange(bool playerOneScored)
+        public void DisplayScoreChange(bool isPlayerOneScored, bool isFoul)
         {
-            _hudDisplay.DisplayScoreChange(playerOneScored);
+            _hudDisplay.DisplayScoreChange(isPlayerOneScored);
+            if (isFoul)
+            {
+                DisplayFouls(isPlayerOneScored);
+            }
+        }
+
+        private void DisplayFouls(bool isPlayerOneScored)
+        {
+            if (isPlayerOneScored)
+            {
+                _playerTwoFoulPanel.SetActive(true);
+            }
+            else
+            {
+                _playerOneFoulPanel.SetActive(true);
+            }
         }
         
         // Utils

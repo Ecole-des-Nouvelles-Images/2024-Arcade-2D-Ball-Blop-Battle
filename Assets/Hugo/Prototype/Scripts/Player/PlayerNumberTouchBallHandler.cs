@@ -43,13 +43,13 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
-                _matchManager.DisplayScoreChange(false);
+                _matchManager.DisplayScoreChange(false, true);
             }
             else
             {
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
-                _matchManager.DisplayScoreChange(true);
+                _matchManager.DisplayScoreChange(true, true);
             }
                     
             NumberTouchBall = 0;
