@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fautes
+  m_text: Points et Fautes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -474,10 +474,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Touche :
-
-
-    Explications detaillees'
+  m_text: "Permet au joueur de pouvoir sauter une deuxi\xE8me fois en l'air \n\nTouche
+    : A + A\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -1475,7 +1473,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 683272501578198526}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -1670,7 +1668,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 7709892754798483484}
+    m_SelectOnUp: {fileID: 1963812469461228140}
     m_SelectOnDown: {fileID: 1815246792087777992}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 8826841069881320099}
@@ -2247,7 +2245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Touche : \n\nExplications detaillees"
+  m_text: 'Permet au joueur d''avoir une courte impulsion '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -2348,7 +2346,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3304222894156658086}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -2680,8 +2678,8 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 7709892754798483484}
-    m_SelectOnDown: {fileID: 1815246792087777992}
+    m_SelectOnUp: {fileID: 1433392327395768829}
+    m_SelectOnDown: {fileID: 7444630168079664680}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 8826841069881320099}
   m_Transition: 2
@@ -3782,7 +3780,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 7709892754798483484}
-    m_SelectOnDown: {fileID: 1815246792087777992}
+    m_SelectOnDown: {fileID: 1963812469461228140}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 8826841069881320099}
   m_Transition: 2
@@ -4317,7 +4315,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4483184475649051402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -4451,7 +4449,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3333975866007842545}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -4589,7 +4587,7 @@ RectTransform:
   - {fileID: 683272501578198526}
   m_Father: {fileID: 2003896442380311830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15, y: 0.1}
+  m_AnchorMin: {x: 0.05, y: 0.1}
   m_AnchorMax: {x: 1, y: 0.4}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -4664,7 +4662,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4610060243912332444}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -4697,7 +4695,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Fautes !
+  m_text: Points - Fautes
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -5572,7 +5570,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 1433392327395768829}
+    m_SelectOnUp: {fileID: 7444630168079664680}
     m_SelectOnDown: {fileID: 7288798142222342378}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 8826841069881320099}
@@ -5658,7 +5656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4938347016748864781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5914,7 +5912,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Touche : \n\nExplications detaillees"
+  m_text: "\nPour marquer des points : \n\nIl suffit d'envoyer la balle toucher le
+    sol du camps adverse \n\nCependant un syst\xE8me de fautes est en place pour
+    \xE9viter les abus. Faire une faute donnera un point \xE0 l'adversaire\n\n- Toucher
+    la balle 3 fois de suite\n- Vouloir aller dans le camps adverse"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -6015,7 +6016,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5302216323148324479}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -6431,7 +6432,7 @@ RectTransform:
   - {fileID: 4483184475649051402}
   m_Father: {fileID: 2003896442380311830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15, y: 0.47}
+  m_AnchorMin: {x: 0.05, y: 0.47}
   m_AnchorMax: {x: 1, y: 0.88}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -6983,7 +6984,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 3661671284536410100}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -7258,7 +7259,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1602685809814167774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -7504,7 +7505,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Touche : '
+  m_text: 'Touche : A'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
@@ -8017,7 +8018,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5496683869538913245}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
@@ -8360,7 +8361,7 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 2385317955994417720}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.12, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
