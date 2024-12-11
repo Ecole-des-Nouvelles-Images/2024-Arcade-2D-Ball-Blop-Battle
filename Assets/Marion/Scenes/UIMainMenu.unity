@@ -653,6 +653,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1592153564}
     m_Modifications:
+    - target: {fileID: 309960083380541775, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3340696182383924629, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4483184475649051402, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.000030517578
+      objectReference: {fileID: 0}
     - target: {fileID: 4938347016748864781, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -737,8 +749,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelTutoriel
       objectReference: {fileID: 0}
-    - target: {fileID: 5573782126197454786, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 5829177097462217731, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8826841069881320099, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
@@ -915,6 +927,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 351417119}
+    - target: {fileID: 7356643682413261177, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
+      propertyPath: m_Spacing
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356643682413261177, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
+      propertyPath: m_Padding.m_Top
+      value: 315
+      objectReference: {fileID: 0}
     - target: {fileID: 7890603710291046302, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
