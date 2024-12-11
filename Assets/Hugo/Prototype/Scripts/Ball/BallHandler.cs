@@ -35,6 +35,14 @@ namespace Hugo.Prototype.Scripts.Ball
         [SerializeField] private float _maxSpeed;
         [SerializeField] private float _rotationFactor;
         [SerializeField] private float _maxRotationSpeed;
+        
+        [Header("Particle System")]
+        [SerializeField] private ParticleSystem _ballAppearsDisappears;
+        [SerializeField] private ParticleSystem _specialSpikeBlue;
+        [SerializeField] private ParticleSystem _specialSpikeYellow;
+        [SerializeField] private ParticleSystem _specialSpikeYellowImpact;
+        [SerializeField] private ParticleSystem _specialSpikeRed;
+        [SerializeField] private ParticleSystem _specialSpikeGreen;
 
         private void Awake()
         {

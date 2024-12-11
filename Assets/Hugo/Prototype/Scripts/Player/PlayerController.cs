@@ -79,11 +79,9 @@ namespace Hugo.Prototype.Scripts.Player
         // VFX
         [Header("VFX Effects")]
         [SerializeField] private ParticleSystem _vfxJumping;
-        [SerializeField] private ParticleSystem _vfxLanding;
-        [SerializeField] private ParticleSystem _vfxWalking;
-        [SerializeField] private ParticleSystem _vfxSpitOut;
         [SerializeField] private ParticleSystem _vfxAttacking;
         [SerializeField] private ParticleSystem _vfxPerfectReception;
+        [SerializeField] private ParticleSystem _vfxActiveSpecialSpike;
 
         private void Awake()
         {
@@ -184,12 +182,12 @@ namespace Hugo.Prototype.Scripts.Player
             _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
             FlipSprite(_rb2d.velocity.x);
             // VFX
-            if (_vfxWalking)
-            {
-                bool isWalking = _rb2d.velocity.x is > 0.3f or < -0.3f;
-                ParticleSystem.EmissionModule emission = _vfxWalking.emission;
-                emission.enabled = _isGrounded && isWalking;
-            }
+            // if (_vfxWalking)
+            // {
+            //     bool isWalking = _rb2d.velocity.x is > 0.3f or < -0.3f;
+            //     ParticleSystem.EmissionModule emission = _vfxWalking.emission;
+            //     emission.enabled = _isGrounded && isWalking;
+            // }
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -311,9 +309,9 @@ namespace Hugo.Prototype.Scripts.Player
                 // Animation
                 _animator.SetTrigger("Drawn");
                 // VFX
-                if (_vfxSpitOut)
+                if (_playerType.Spitout)
                 {
-                    _vfxSpitOut.Play();
+                    _playerType.Spitout.Play();
                 }
             }
         }
@@ -332,6 +330,8 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("ActiveSpecialSpike");
+                    // VFX
+                    _vfxActiveSpecialSpike.Play();
                 }
 
                 if (IsSpecialSpike && _hasTheBall)
@@ -343,9 +343,9 @@ namespace Hugo.Prototype.Scripts.Player
                     // Animation
                     _animator.SetTrigger("Drawn");
                     // VFX
-                    if (_vfxSpitOut)
+                    if (_playerType.Spitout)
                     {
-                        _vfxSpitOut.Play();
+                        _playerType.Spitout.Play();
                     }
                     return;
                 }
@@ -457,9 +457,9 @@ namespace Hugo.Prototype.Scripts.Player
         {
             // Raycast _isGrounded
             RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
-            if (_isGrounded == false && hit2DGround && _vfxLanding)
+            if (_isGrounded == false && hit2DGround && _playerType.Landing)
             {
-                _vfxLanding.Play();
+                _playerType.Landing.Play();
             }
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);

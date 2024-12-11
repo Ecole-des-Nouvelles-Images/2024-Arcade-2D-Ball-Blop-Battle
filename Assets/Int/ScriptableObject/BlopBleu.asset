@@ -16,5 +16,6 @@ MonoBehaviour:
   Sprite: {fileID: 954817538, guid: 5be2606d08c38dd4eba177bb54760134, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 9100000, guid: 1417f446827ed414e9adab59499138bb, type: 2}
-  VFXSpecialSpike: {fileID: 0}
+  Spitout: {fileID: 6190771650280476721, guid: ea2a4cd4ba9d0b44dad9c93d56575474, type: 3}
+  Landing: {fileID: 6266600149833462267, guid: 2b0b3b52764ace448b3dbc2fec569378, type: 3}
   _becameSmallerTimer: 0

@@ -211,7 +211,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d30a97745edf347aa136e769c1b1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panel: {fileID: 0}
   _blinkColor: {r: 1, g: 1, b: 1, a: 0}
   _blinkDuration: 1
   _blinkInterval: 0.2
@@ -2416,7 +2415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34d30a97745edf347aa136e769c1b1a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _panel: {fileID: 0}
   _blinkColor: {r: 1, g: 1, b: 1, a: 0}
   _blinkDuration: 1
   _blinkInterval: 0.2

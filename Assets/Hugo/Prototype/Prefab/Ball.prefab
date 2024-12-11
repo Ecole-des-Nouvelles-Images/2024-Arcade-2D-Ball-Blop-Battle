@@ -108,6 +108,12 @@ MonoBehaviour:
   _maxSpeed: 25
   _rotationFactor: 10
   _maxRotationSpeed: 20
+  _ballAppearsDisappears: {fileID: 0}
+  _specialSpikeBlue: {fileID: 5962813462235153734, guid: e97bbb7727e339545b395d6b86256c4b, type: 3}
+  _specialSpikeYellow: {fileID: 8444466096697730047, guid: 2859018a7aaf77d409fecd88db399989, type: 3}
+  _specialSpikeYellowImpact: {fileID: 0}
+  _specialSpikeRed: {fileID: 4433861055914273655, guid: 558d56c6680b1444ca0cc332425d55af, type: 3}
+  _specialSpikeGreen: {fileID: 4162660207676613349, guid: ad19940d46021ab4385803e2dc7b92ef, type: 3}
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0
