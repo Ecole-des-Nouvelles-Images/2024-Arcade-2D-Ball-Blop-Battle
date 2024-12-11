@@ -404,7 +404,7 @@ namespace Hugo.Prototype.Scripts.Player
                 if (_isWalled && !_isGrounded)
                 {
                     Vector2 walljumping;
-                    if (_playerNumberTouchBallHandler.IsPlayerOne)
+                    if (_move.x < -0.1f)
                     {
                         walljumping = new Vector2(1,1) * buttonValue * _wallJumpForce;
                     }

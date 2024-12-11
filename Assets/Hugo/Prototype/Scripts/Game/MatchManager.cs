@@ -5,6 +5,7 @@ using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Game
 {
@@ -35,6 +36,7 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameObject _playerOneFoulPanel;
         [SerializeField] private GameObject _playerTwoFoulPanel;
         
+        [Header("Public Variables")]
         public int SetScorePlayerOne;
         public int SetScorePlayerTwo;
         private bool _inGame;
@@ -161,13 +163,16 @@ namespace Hugo.Prototype.Scripts.Game
         // ReSharper disable Unity.PerformanceAnalysis
         private void Commitment()
         {
+            float randomNumberY = Random.Range(0.1f, 1.1f);
             if (PlayerOneScoreLast)
             {
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(1,1);
+                float randomNumberX = Random.Range(0.5f, 1.1f);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
             }
             else
             {
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-1,1);
+                float randomNumberX = Random.Range(-1.1f, -0.5f);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
             }
             
             Instantiate(_ballPrefab, transform.position, Quaternion.identity);
