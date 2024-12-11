@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -9,10 +10,6 @@ namespace Hugo.Prototype.Scripts.Player
         public Sprite Sprite;
         public float SpeedSpecialSpike;
         public RuntimeAnimatorController PlayerAnimatorController;
-        
-        [Header("Particle System")]
-        public ParticleSystem Spitout;
-        public ParticleSystem Landing;
 
         public abstract void SpecialSpike(GameObject player, GameObject ball, Vector2 direction);
     }

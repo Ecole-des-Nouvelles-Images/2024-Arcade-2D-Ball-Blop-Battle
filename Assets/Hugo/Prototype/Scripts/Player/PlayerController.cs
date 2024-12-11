@@ -82,6 +82,14 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private ParticleSystem _vfxAttacking;
         [SerializeField] private ParticleSystem _vfxPerfectReception;
         [SerializeField] private ParticleSystem _vfxActiveSpecialSpike;
+        [SerializeField] private ParticleSystem _vfxSpitOutBlue;
+        [SerializeField] private ParticleSystem _vfxLandingBlue;
+        [SerializeField] private ParticleSystem _vfxSpitOutGreen;
+        [SerializeField] private ParticleSystem _vfxLandingGreen;
+        [SerializeField] private ParticleSystem _vfxSpitOutYellow;
+        [SerializeField] private ParticleSystem _vfxLandingYellow;
+        [SerializeField] private ParticleSystem _vfxSpitOutRed;
+        [SerializeField] private ParticleSystem _vfxLandingRed;
 
         private void Awake()
         {
@@ -309,9 +317,24 @@ namespace Hugo.Prototype.Scripts.Player
                 // Animation
                 _animator.SetTrigger("Drawn");
                 // VFX
-                if (_playerType.Spitout)
+                if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
                 {
-                    _playerType.Spitout.Play();
+                    if (_playerType.PlayerName == "Bleu")
+                    {
+                        _vfxSpitOutBlue.Play();
+                    }
+                    if (_playerType.PlayerName == "Vert")
+                    {
+                        _vfxSpitOutGreen.Play();
+                    }
+                    if (_playerType.PlayerName == "Jaune")
+                    {
+                        _vfxSpitOutYellow.Play();
+                    }
+                    if (_playerType.PlayerName == "Rouge")
+                    {
+                        _vfxSpitOutRed.Play();
+                    }
                 }
             }
         }
@@ -343,9 +366,24 @@ namespace Hugo.Prototype.Scripts.Player
                     // Animation
                     _animator.SetTrigger("Drawn");
                     // VFX
-                    if (_playerType.Spitout)
+                    if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
                     {
-                        _playerType.Spitout.Play();
+                        if (_playerType.PlayerName == "Bleu")
+                        {
+                            _vfxSpitOutBlue.Play();
+                        }
+                        if (_playerType.PlayerName == "Vert")
+                        {
+                            _vfxSpitOutGreen.Play();
+                        }
+                        if (_playerType.PlayerName == "Jaune")
+                        {
+                            _vfxSpitOutYellow.Play();
+                        }
+                        if (_playerType.PlayerName == "Rouge")
+                        {
+                            _vfxSpitOutRed.Play();
+                        }
                     }
                     return;
                 }
@@ -457,9 +495,27 @@ namespace Hugo.Prototype.Scripts.Player
         {
             // Raycast _isGrounded
             RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
-            if (_isGrounded == false && hit2DGround && _playerType.Landing)
+            if (_isGrounded == false && hit2DGround)
             {
-                _playerType.Landing.Play();
+                if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
+                {
+                    if (_playerType.PlayerName == "Bleu")
+                    {
+                        _vfxLandingBlue.Play();
+                    }
+                    if (_playerType.PlayerName == "Vert")
+                    {
+                        _vfxLandingGreen.Play();
+                    }
+                    if (_playerType.PlayerName == "Jaune")
+                    {
+                        _vfxLandingYellow.Play();
+                    }
+                    if (_playerType.PlayerName == "Rouge")
+                    {
+                        _vfxLandingRed.Play();
+                    }
+                }
             }
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
