@@ -1,7 +1,6 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Hugo.Prototype.Scripts.Arene
 {
@@ -26,6 +25,7 @@ namespace Hugo.Prototype.Scripts.Arene
         {
             if (!_isBlinking)
             {
+                Debug.Log("start coroutine");
                 StartCoroutine(BlinkCoroutine());
             }
         }
@@ -50,6 +50,8 @@ namespace Hugo.Prototype.Scripts.Arene
             _panelTextMeshPro.color = _originalColor;
             _isBlinking = false;
             gameObject.SetActive(false);
+            
+            Debug.Log("reset coroutine");
         }
     }
 }
