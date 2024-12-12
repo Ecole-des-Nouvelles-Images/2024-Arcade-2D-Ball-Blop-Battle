@@ -415,18 +415,22 @@ namespace Hugo.Prototype.Scripts.Player
                         if (_playerType.PlayerName == "Bleu")
                         {
                             _vfxShootSpecialSpikeBlue.Play();
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlue.SetActive(true);
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
                             _vfxShootSpecialSpikeGreen.Play();
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeGreen.SetActive(true);
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
                             _vfxShootSpecialSpikeYellow.Play();
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellow.SetActive(true);
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
                             _vfxShootSpecialSpikeRed.Play();
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
                         }
                     }
                     return;

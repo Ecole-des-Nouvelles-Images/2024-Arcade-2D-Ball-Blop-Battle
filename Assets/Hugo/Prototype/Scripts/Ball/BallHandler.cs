@@ -3,6 +3,7 @@ using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Ball
 {
@@ -37,13 +38,17 @@ namespace Hugo.Prototype.Scripts.Ball
         [SerializeField] private float _rotationFactor;
         [SerializeField] private float _maxRotationSpeed;
         
-        [Header("Particle System")]
+        [Header("   Particle System")]
         [SerializeField] private ParticleSystem _ballAppearsDisappears;
-        [SerializeField] private ParticleSystem _specialSpikeBlue;
-        [SerializeField] private ParticleSystem _specialSpikeYellow;
-        [SerializeField] private ParticleSystem _specialSpikeYellowImpact;
-        [SerializeField] private ParticleSystem _specialSpikeRed;
-        [SerializeField] private ParticleSystem _specialSpikeGreen;
+        [Header("Blue")]
+        public GameObject VFXSpecialSpikeBlue;
+        [Header("Yellow")]
+        public GameObject VFXSpecialSpikeYellow;
+        [FormerlySerializedAs("_specialSpikeYellowImpact1")] [SerializeField] private ParticleSystem _specialSpikeYellowImpact;
+        [Header("Red")]
+        public GameObject VFXSpecialSpikeRed;
+        [Header("Green")]
+        public GameObject VFXSpecialSpikeGreen;
 
         private void Awake()
         {
@@ -115,6 +120,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, false);
+                ResetVFXSpecialSpike();
                 Destroy(gameObject);
             }
             if (other.gameObject.CompareTag("PlayerTwoGround"))
@@ -122,6 +128,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, false);
+                ResetVFXSpecialSpike();
                 Destroy(gameObject);
             }
             
@@ -157,6 +164,13 @@ namespace Hugo.Prototype.Scripts.Ball
                 {
                     BlueSpecialSpike();
                 }
+
+                if (VFXSpecialSpikeYellow.activeSelf)
+                {
+                    _specialSpikeYellowImpact.Play();
+                }
+                
+                ResetVFXSpecialSpike();
             }
         }
         
@@ -293,7 +307,7 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             _isTransparent = !_isTransparent;
 
-            _sr.color = _isTransparent ? new Color(1,1,1, 0.2f) : new Color(1, 1, 1, 1);
+            _sr.color = _isTransparent ? new Color(1,1,1, 0f) : new Color(1, 1, 1, 1);
         }
         
         // Bleu
@@ -325,6 +339,14 @@ namespace Hugo.Prototype.Scripts.Ball
         private void ReverseCanCommitment()
         {
             _canCommitment = !_canCommitment;
+        }
+
+        private void ResetVFXSpecialSpike()
+        {
+            VFXSpecialSpikeBlue.SetActive(false);
+            VFXSpecialSpikeGreen.SetActive(false);
+            VFXSpecialSpikeRed.SetActive(false);
+            VFXSpecialSpikeYellow.SetActive(false);
         }
     }
 }
