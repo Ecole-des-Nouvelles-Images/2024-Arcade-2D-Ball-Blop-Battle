@@ -1,10 +1,11 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Hugo.Prototype.Scripts.Arene
 {
-    public class FoulsHandler : MonoBehaviour
+    public class SignsHandler : MonoBehaviour
     {
         [Header("Panel Settings")]
         [SerializeField] private Color _blinkColor = new Color(1,1,1,0.5f); // Couleur pendant le clignotement
@@ -13,12 +14,12 @@ namespace Hugo.Prototype.Scripts.Arene
 
         private Color _originalColor; // Couleur d'origine du panneau
         private bool _isBlinking; // Indique si le panneau est en train de clignoter
-        private Image _panelImage;
+        private TextMeshPro _panelTextMeshPro;
 
         private void Awake()
         {
-            _panelImage = GetComponent<Image>();
-            _originalColor = _panelImage.color;
+            _panelTextMeshPro = GetComponent<TextMeshPro>();
+            _originalColor = _panelTextMeshPro.color;
         }
 
         private void OnEnable()
@@ -37,7 +38,7 @@ namespace Hugo.Prototype.Scripts.Arene
             while (elapsedTime < _blinkDuration)
             {
                 // Alterner entre la couleur d'origine et la couleur de clignotement
-                _panelImage.color = _panelImage.color == _originalColor ? _blinkColor : _originalColor;
+                _panelTextMeshPro.color = _panelTextMeshPro.color == _originalColor ? _blinkColor : _originalColor;
 
                 // Attendre le prochain clignotement
                 yield return new WaitForSeconds(_blinkInterval);
@@ -46,7 +47,7 @@ namespace Hugo.Prototype.Scripts.Arene
             }
 
             // Réinitialiser à la couleur d'origine
-            _panelImage.color = _originalColor;
+            _panelTextMeshPro.color = _originalColor;
             _isBlinking = false;
             gameObject.SetActive(false);
         }

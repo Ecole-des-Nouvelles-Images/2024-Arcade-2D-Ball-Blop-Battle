@@ -165,7 +165,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (!_hasTheBall)
             {
-                _sr.color = new Color(1, 1, 1, 1f);
+                _sr.color = new Color(1, 1, 1, 0.8f);
                 
                 var horizontalInput = _move.x;
 
@@ -183,7 +183,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
             else
             {
-                _sr.color = new Color(1, 1, 1, 0.75f);
+                _sr.color = new Color(1, 1, 1, 0.7f);
             }
             
             // Animation

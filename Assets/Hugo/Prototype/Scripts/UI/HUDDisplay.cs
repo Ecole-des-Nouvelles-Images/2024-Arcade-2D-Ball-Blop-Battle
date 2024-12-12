@@ -12,6 +12,10 @@ namespace Hugo.Prototype.Scripts.UI
         private RectTransform _rectTransformScorePlayerOne;
         private RectTransform _rectTransformScorePlayerTwo;
         
+        private Color _colorEmptyPerfectReception = Color.gray;
+        private Color _colorFillPerfectReception = new Color(1f, 0.6f, 0.2f);
+        private Color _colorReadyPerfectReception = new Color(0f, 1f, 0f);
+        
         [Header("Game Manager")]
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private MatchManager _matchManager;
@@ -57,33 +61,33 @@ namespace Hugo.Prototype.Scripts.UI
                 int perfectReceptionCount = _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount;
                 if (perfectReceptionCount == 0)
                 {
-                    _firstPerfectReceptionPlayerOne.color = Color.white;
-                    _secondPerfectReceptionPlayerOne.color = Color.white;
-                    _thirdPerfectReceptionPlayerOne.color = Color.white;
+                    _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+                    _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+                    _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
                 }
                 
                 if (perfectReceptionCount == 1)
                 {
-                    _firstPerfectReceptionPlayerOne.color = Color.yellow;
+                    _firstPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
                 }
 
                 if (perfectReceptionCount == 2)
                 {
-                    _secondPerfectReceptionPlayerOne.color = Color.yellow;
+                    _secondPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
                 }
 
                 if (perfectReceptionCount == 3)
                 {
-                    _firstPerfectReceptionPlayerOne.color = Color.red;
-                    _secondPerfectReceptionPlayerOne.color = Color.red;
-                    _thirdPerfectReceptionPlayerOne.color = Color.red;
+                    _firstPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+                    _secondPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+                    _thirdPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
                 }
             }
             else
             {
-                _firstPerfectReceptionPlayerOne.color = Color.white;
-                _secondPerfectReceptionPlayerOne.color = Color.white;
-                _thirdPerfectReceptionPlayerOne.color = Color.white;
+                _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+                _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+                _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
             }
             
             // Player Two
@@ -93,33 +97,33 @@ namespace Hugo.Prototype.Scripts.UI
                 
                 if (perfectReceptionCount == 0)
                 {
-                    _firstPerfectReceptionPlayerTwo.color = Color.white;
-                    _secondPerfectReceptionPlayerTwo.color = Color.white;
-                    _thirdPerfectReceptionPlayerTwo.color = Color.white;
+                    _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+                    _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+                    _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
                 }
                 
                 if (perfectReceptionCount == 1)
                 {
-                    _firstPerfectReceptionPlayerTwo.color = Color.yellow;
+                    _firstPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
                 }
 
                 if (perfectReceptionCount == 2)
                 {
-                    _secondPerfectReceptionPlayerTwo.color = Color.yellow;
+                    _secondPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
                 }
 
                 if (perfectReceptionCount == 3)
                 {
-                    _firstPerfectReceptionPlayerTwo.color = Color.red;
-                    _secondPerfectReceptionPlayerTwo.color = Color.red;
-                    _thirdPerfectReceptionPlayerTwo.color = Color.red;
+                    _firstPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+                    _secondPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+                    _thirdPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
                 }
             }
             else
             {
-                _firstPerfectReceptionPlayerTwo.color = Color.white;
-                _secondPerfectReceptionPlayerTwo.color = Color.white;
-                _thirdPerfectReceptionPlayerTwo.color = Color.white;
+                _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+                _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+                _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
             }
             
             // Set Display
