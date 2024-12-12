@@ -21,6 +21,7 @@ namespace Hugo.Prototype.Scripts.Ball
         private GameObject _lastPlayerGameObject;
         
         private bool _isCatch;
+        private bool _canCommitment;
         
         // Special Spike
         private bool _isTransparent;
@@ -55,12 +56,27 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void Start()
         {
-            // Engagement
-            Commitment(DirectionCommitment);
+            _sr.color = new Color(1f, 1f, 1f, 0f);
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            
+            // VFX
+            _ballAppearsDisappears.Play();
+            _canCommitment = false;
+            Invoke(nameof(ReverseCanCommitment), 0.8f);
         }
 
         private void Update()
         {
+            // Commitment
+            if (_canCommitment)
+            {
+                _rb2d.constraints = RigidbodyConstraints2D.None;
+                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _sr.color = new Color(1f, 1f, 1f, 1f);
+                Commitment(DirectionCommitment);
+                _canCommitment = false;
+            }
+            
             // Touner le ballon dans sa direction
             Vector2 direction = _rb2d.velocity;
             if (direction.magnitude > 0.1f)
@@ -304,6 +320,11 @@ namespace Hugo.Prototype.Scripts.Ball
         public void ReversIsCatch()
         {
             _isCatch = !_isCatch;
+        }
+
+        private void ReverseCanCommitment()
+        {
+            _canCommitment = !_canCommitment;
         }
     }
 }

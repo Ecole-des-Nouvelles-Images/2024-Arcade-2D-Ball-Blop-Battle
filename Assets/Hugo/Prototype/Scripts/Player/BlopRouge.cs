@@ -78,7 +78,8 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void RealBall(Vector2 direction)
         {
-            Debug.Log(" real shoot ");
+            // Debug.Log(" real shoot ");
+            
             // Change Constraints
             _rb2dBall.constraints = RigidbodyConstraints2D.None;
             _rb2dBall.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -97,7 +98,7 @@ namespace Hugo.Prototype.Scripts.Player
 
         private void FakeBall(Vector2 direction, GameObject player)
         {
-            Debug.Log(" fake shoot ");
+            // Debug.Log(" fake shoot ");
                 
             GameObject newBall = Instantiate(_fakeBallPrefab, player.transform.position, Quaternion.identity);
             newBall.GetComponent<FakeBallHandler>().Setup(direction, SpeedSpecialSpike);

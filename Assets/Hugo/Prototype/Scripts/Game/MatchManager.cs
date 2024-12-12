@@ -35,6 +35,8 @@ namespace Hugo.Prototype.Scripts.Game
         [Header("Panels")]
         [SerializeField] private GameObject _playerOneFoulPanel;
         [SerializeField] private GameObject _playerTwoFoulPanel;
+        [SerializeField] private GameObject _playerOneScoredPanel;
+        [SerializeField] private GameObject _playerTwoScoredPanel;
         
         [Header("Public Variables")]
         public int SetScorePlayerOne;
@@ -94,7 +96,7 @@ namespace Hugo.Prototype.Scripts.Game
                 
                 if (SetScorePlayerOne == 3)
                 {
-                    Debug.Log(" Player One WIN the match ");
+                    // Debug.Log(" Player One WIN the match ");
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
@@ -112,7 +114,7 @@ namespace Hugo.Prototype.Scripts.Game
                 
                 if (SetScorePlayerTwo == 3)
                 {
-                    Debug.Log(" Player Two WIN the match ");
+                    // Debug.Log(" Player Two WIN the match ");
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
@@ -131,7 +133,7 @@ namespace Hugo.Prototype.Scripts.Game
                 
                 if (SetScorePlayerOne == 3)
                 {
-                    Debug.Log(" Player One WIN the match ");
+                    // Debug.Log(" Player One WIN the match ");
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
@@ -140,7 +142,7 @@ namespace Hugo.Prototype.Scripts.Game
                 }
                 if (SetScorePlayerTwo == 3)
                 {
-                    Debug.Log(" Player Two WIN the match ");
+                    // Debug.Log(" Player Two WIN the match ");
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
@@ -157,7 +159,7 @@ namespace Hugo.Prototype.Scripts.Game
                 }
             }
             
-            Debug.Log(" Player One : " + SetScorePlayerOne + " / " + SetScorePlayerTwo + " : Player Two ");
+            // Debug.Log(" Player One : " + SetScorePlayerOne + " / " + SetScorePlayerTwo + " : Player Two ");
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -187,6 +189,21 @@ namespace Hugo.Prototype.Scripts.Game
         public void DisplayScoreChange(bool isPlayerOneScored, bool isFoul)
         {
             _hudDisplay.DisplayScoreChange(isPlayerOneScored);
+            if (isPlayerOneScored)
+            {
+                if (_playerOneScoredPanel)
+                {
+                    _playerOneScoredPanel.SetActive(true);
+                }
+            }
+            else
+            {
+                if (_playerTwoScoredPanel)
+                {
+                    _playerTwoScoredPanel.SetActive(true);
+                }
+            }
+            
             if (isFoul)
             {
                 DisplayFouls(isPlayerOneScored);
@@ -197,11 +214,17 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (isPlayerOneScored)
             {
-                _playerTwoFoulPanel.SetActive(true);
+                if (_playerTwoFoulPanel)
+                {
+                    _playerTwoFoulPanel.SetActive(true);
+                }
             }
             else
             {
-                _playerOneFoulPanel.SetActive(true);
+                if (_playerOneFoulPanel)
+                {
+                    _playerOneFoulPanel.SetActive(true);
+                }
             }
         }
         
