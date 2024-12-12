@@ -32,7 +32,7 @@ Transform:
   - {fileID: 6990964140412467038}
   - {fileID: 2656154421715169799}
   - {fileID: 4828758932243976175}
-  - {fileID: 8204192287669585678}
+  - {fileID: 841136582010865353}
   - {fileID: 24329561449896951}
   - {fileID: 8703220723692298679}
   m_Father: {fileID: 2393506580369988007}
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 16f817b71120360448cd373f19a1a62c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3fb1a257f3fb2a94b9b4b98affbb389f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   _specialSpikeBlue: {fileID: 7643120204366759998}
   _specialSpikeYellow: {fileID: 2736207769916834792}
   _specialSpikeYellowImpact: {fileID: 4766860702814141952}
-  _specialSpikeRed: {fileID: 2363007911550559503}
+  _specialSpikeRed: {fileID: 0}
   _specialSpikeGreen: {fileID: 609651125598384731}
 --- !u!58 &3045336366238888851
 CircleCollider2D:
@@ -346,14 +346,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 558d56c6680b1444ca0cc332425d55af, type: 3}
---- !u!198 &2363007911550559503 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4433861055914273655, guid: 558d56c6680b1444ca0cc332425d55af, type: 3}
-  m_PrefabInstance: {fileID: 2108575292378173048}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &8204192287669585678 stripped
+--- !u!4 &841136582010865353 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 7825021276805024118, guid: 558d56c6680b1444ca0cc332425d55af, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1652675160219961521, guid: 558d56c6680b1444ca0cc332425d55af, type: 3}
   m_PrefabInstance: {fileID: 2108575292378173048}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3580738907333103806
