@@ -1,4 +1,5 @@
 using System;
+using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
@@ -20,6 +21,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // GameObject
         private GameObject _ball;
+        private GameObject _arenaVFXHandler;
         
         // States
         private bool _hasTheBall;
@@ -97,7 +99,8 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
-            
+
+            _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
         }
 
@@ -355,6 +358,14 @@ namespace Hugo.Prototype.Scripts.Player
                     _animator.SetTrigger("ActiveSpecialSpike");
                     // VFX
                     _vfxActiveSpecialSpike.Play();
+                    if (_playerNumberTouchBallHandler.IsPlayerOne)
+                    {
+                        _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerOne();
+                    }
+                    else
+                    {
+                        _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerTwo();
+                    }
                 }
 
                 if (IsSpecialSpike && _hasTheBall)

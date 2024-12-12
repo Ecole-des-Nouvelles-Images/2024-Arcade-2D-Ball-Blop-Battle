@@ -189,6 +189,7 @@ namespace Hugo.Prototype.Scripts.Game
         public void DisplayScoreChange(bool isPlayerOneScored, bool isFoul)
         {
             _hudDisplay.DisplayScoreChange(isPlayerOneScored);
+            
             if (isPlayerOneScored)
             {
                 if (_playerOneScoredPanel)

@@ -15,6 +15,7 @@ TagManager:
   - PlayerTwoSide
   - MatchManager
   - GameManager
+  - ArenaParticleSystem
   layers:
   - Default
   - TransparentFX
