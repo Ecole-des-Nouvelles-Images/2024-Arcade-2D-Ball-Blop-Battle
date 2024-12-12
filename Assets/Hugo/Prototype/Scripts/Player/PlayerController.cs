@@ -79,11 +79,13 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private LayerMask _wallLayer;
         
         // VFX
-        [Header("VFX Effects")]
+        [Header("   VFX Effects")]
+        [Header("Common")]
         [SerializeField] private ParticleSystem _vfxJumping;
         [SerializeField] private ParticleSystem _vfxAttacking;
         [SerializeField] private ParticleSystem _vfxPerfectReception;
         [SerializeField] private ParticleSystem _vfxActiveSpecialSpike;
+        [Header("SpitOut and Landing")]
         [SerializeField] private ParticleSystem _vfxSpitOutBlue;
         [SerializeField] private ParticleSystem _vfxLandingBlue;
         [SerializeField] private ParticleSystem _vfxSpitOutGreen;
@@ -92,6 +94,16 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private ParticleSystem _vfxLandingYellow;
         [SerializeField] private ParticleSystem _vfxSpitOutRed;
         [SerializeField] private ParticleSystem _vfxLandingRed;
+        [Header("Shoot Special Spike")]
+        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeBlue;
+        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeGreen;
+        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeYellow;
+        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeRed;
+        [Header("Trails")]
+        [SerializeField] private GameObject _vfxTrailBlue;
+        [SerializeField] private GameObject _vfxTrailGreen;
+        [SerializeField] private GameObject _vfxTrailYellow;
+        [SerializeField] private GameObject _vfxTrailRed;
 
         private void Awake()
         {
@@ -102,6 +114,27 @@ namespace Hugo.Prototype.Scripts.Player
 
             _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
+
+            // VFX TRAILS
+            if (_vfxTrailBlue && _vfxTrailGreen && _vfxTrailYellow && _vfxTrailRed)
+            {
+                if (_playerType.PlayerName == "Bleu")
+                {
+                    _vfxTrailBlue.SetActive(true);
+                }
+                if (_playerType.PlayerName == "Vert")
+                {
+                    _vfxTrailGreen.SetActive(true);
+                }
+                if (_playerType.PlayerName == "Jaune")
+                {
+                    _vfxTrailYellow.SetActive(true);
+                }
+                if (_playerType.PlayerName == "Rouge")
+                {
+                    _vfxTrailRed.SetActive(true);
+                }
+            }
         }
 
         private void Start()
@@ -377,23 +410,23 @@ namespace Hugo.Prototype.Scripts.Player
                     // Animation
                     _animator.SetTrigger("Drawn");
                     // VFX
-                    if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
+                    if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeRed && _vfxShootSpecialSpikeYellow)
                     {
                         if (_playerType.PlayerName == "Bleu")
                         {
-                            _vfxSpitOutBlue.Play();
+                            _vfxShootSpecialSpikeBlue.Play();
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
-                            _vfxSpitOutGreen.Play();
+                            _vfxShootSpecialSpikeGreen.Play();
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
-                            _vfxSpitOutYellow.Play();
+                            _vfxShootSpecialSpikeYellow.Play();
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
-                            _vfxSpitOutRed.Play();
+                            _vfxShootSpecialSpikeRed.Play();
                         }
                     }
                     return;
