@@ -362,18 +362,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasChoixPerso
       objectReference: {fileID: 0}
-    - target: {fileID: 4107090495966236841, guid: 1ec60caa349c2be4a817d77cea50defa, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4549648368452273636, guid: 1ec60caa349c2be4a817d77cea50defa, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 378126027}
-    - target: {fileID: 5246278669530980623, guid: 1ec60caa349c2be4a817d77cea50defa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6771684469241113726, guid: 1ec60caa349c2be4a817d77cea50defa, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
