@@ -489,7 +489,10 @@ PrefabInstance:
     - {fileID: 1355436343832815175, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3878736224468220149, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1701801796}
   m_SourcePrefab: {fileID: 100100000, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
 --- !u!224 &103751386 stripped
 RectTransform:
@@ -920,7 +923,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7392693082944420119, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202329912}
+    - targetCorrespondingSourceObject: {fileID: 7392693082944420119, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202329916}
   m_SourcePrefab: {fileID: 100100000, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
 --- !u!224 &1202329910 stripped
 RectTransform:
@@ -932,6 +941,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7392693082944420119, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
   m_PrefabInstance: {fileID: 1202329909}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202329912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202329911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ab981c41a2406c44294d79e969fce04d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 253024455}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1202329916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202329911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb23190b74c163c4e9c098d971e4bb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelMainMenu: {fileID: 1701801791}
+  _panelCurrent: {fileID: 1202329911}
 --- !u!1 &1274314387 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3265464521022680980, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
@@ -1190,6 +1243,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5573782126197454786, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1425044990}
+    - targetCorrespondingSourceObject: {fileID: 5573782126197454786, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1927528930}
   m_SourcePrefab: {fileID: 100100000, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
 --- !u!224 &1425044985 stripped
 RectTransform:
@@ -1249,6 +1305,8 @@ MonoBehaviour:
   _blupPanel: {fileID: 1425044988}
   _blapPanel: {fileID: 1425044987}
   _eventSystem: {fileID: 253024453}
+  _panelMainMenu: {fileID: 1701801791}
+  _panelTutoriel: {fileID: 1425044986}
 --- !u!1 &1425044991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2243807756171028585, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
@@ -1539,6 +1597,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3878736224468220149, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
   m_PrefabInstance: {fileID: 103751385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1701801796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701801791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ab981c41a2406c44294d79e969fce04d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 253024455}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1856459032 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2059153082551110885, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
@@ -1605,6 +1693,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1927528930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425044986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ab981c41a2406c44294d79e969fce04d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 253024455}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1996075988 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 628933811679121773, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
@@ -2122,6 +2240,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7454996632307960702, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2108452797}
+    - targetCorrespondingSourceObject: {fileID: 7454996632307960702, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2108452798}
+    - targetCorrespondingSourceObject: {fileID: 7454996632307960702, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2108452802}
     - targetCorrespondingSourceObject: {fileID: 7311070709161300022, guid: fe4f0b2b22f930a459187d0a90788d05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1637646568}
@@ -2169,6 +2293,50 @@ MonoBehaviour:
   _toggleOne: {fileID: 1637646567}
   _toggleTwo: {fileID: 1350308373}
   _toggleThree: {fileID: 1856459034}
+--- !u!114 &2108452798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108452793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ab981c41a2406c44294d79e969fce04d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 253024455}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2108452802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108452793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb23190b74c163c4e9c098d971e4bb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelMainMenu: {fileID: 1701801791}
+  _panelCurrent: {fileID: 2108452793}
 --- !u!114 &2111193790 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4421099396970622302, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}

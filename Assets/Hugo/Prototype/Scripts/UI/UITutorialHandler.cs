@@ -1,5 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Hugo.Prototype.Scripts.UI
 {
@@ -29,10 +32,18 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameObject _blupPanel;
         [SerializeField] private GameObject _blapPanel;
         
-        [Header("Event Systems")]
+        [Header("Links")]
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private GameObject _panelMainMenu;
+        [SerializeField] private GameObject _panelTutoriel;
         
         private GameObject _currentSelectedButton;
+        private PlayerInput _playerInput;
+
+        private void Awake()
+        {
+            _playerInput = GetComponent<PlayerInput>();
+        }
 
         private void Update()
         {
@@ -179,6 +190,12 @@ namespace Hugo.Prototype.Scripts.UI
                     _blupPanel.SetActive(false);
                     _blapPanel.SetActive(true);
                 }
+            }
+
+            if (_playerInput.actions["UI/Cancel"].triggered)
+            {
+                _panelTutoriel.SetActive(false);
+                _panelMainMenu.SetActive(true);
             }
         }
     }
