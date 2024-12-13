@@ -15,43 +15,18 @@ namespace Hugo.Prototype.Scripts.Camera
         public void ScoredShake()
         {
             _cam.DOShakePosition( _shakeScoreDuration, _shakeScoreMagnitude);
+            // Invoke(nameof(ResetTransform), _shakeScoreDuration);
         }
 
         public void HitShake()
         {
             _cam.DOShakePosition( _shakeHitDuration, _shakeHitMagnitude);
+            // Invoke(nameof(ResetTransform), _shakeHitDuration);
         }
 
-        // public void StartShake()
+        // private void ResetTransform()
         // {
-        //     StartCoroutine(ShakeCoroutine());
-        // }
-        //
-        // private IEnumerator ShakeCoroutine()
-        // {
-        //     float elapsedTime = 0f;
-        //
-        //     while (elapsedTime < _shakeDuration)
-        //     {
-        //         // Générer un léger décalage aléatoire
-        //         Vector3 randomOffset = new Vector3(
-        //             Random.Range(-1f, 1f) * _shakeMagnitude,
-        //             Random.Range(-1f, 1f) * _shakeMagnitude,
-        //             0f // On ne change pas l'axe Z pour éviter de désaligner la caméra
-        //         );
-        //
-        //         // Appliquer le décalage à la position
-        //         transform.localPosition = _originalPosition + randomOffset;
-        //
-        //         // Incrémenter le temps écoulé
-        //         elapsedTime += Time.deltaTime;
-        //
-        //         // Attendre la prochaine frame
-        //         yield return null;
-        //     }
-        //
-        //     // Réinitialiser la position une fois le shake terminé
-        //     transform.localPosition = _originalPosition;
+        //     transform.position = Vector2.zero;
         // }
     }
 }

@@ -211,7 +211,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (!_hasTheBall)
             {
-                _sr.color = new Color(1, 1, 1, 0.8f);
+                _sr.color = new Color(1, 1, 1, 0.9f);
                 
                 var horizontalInput = _move.x;
 
@@ -315,22 +315,22 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         if (_playerType.PlayerName == "Bleu")
                         {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.blue;
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.green;
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.yellow;
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.red;
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                     }
@@ -432,22 +432,22 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         if (_playerType.PlayerName == "Bleu")
                         {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.blue;
+                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.green;
+                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.yellow;
+                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.red;
+                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
                     }
