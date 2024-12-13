@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -40,6 +41,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         [SerializeField] private RectTransform _specialSpikeText;
         [SerializeField] private GameObject _dislpayCurrentSelectedBlopGameObject;
         [SerializeField] private EventSystem _eventSystem;
+        [SerializeField] private TextMeshProUGUI _textSpecialSpike;
         
         [Header("Sprites")]
         [SerializeField] private Sprite _selectedBlopPlayerOne;
@@ -76,7 +78,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.15f, 0.45f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.35f, 0.85f);
                 
-                _specialSpikeText.anchorMin = new Vector2(0.05f, 0.05f);
+                _specialSpikeText.anchorMin = new Vector2(0.03f, 0.05f);
                 _specialSpikeText.anchorMax = new Vector2(0.2f, 0.35f);
                 
                 // Clear deicesID
@@ -90,7 +92,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.85f, 0.85f);
                 
                 _specialSpikeText.anchorMin = new Vector2(0.8f, 0.05f);
-                _specialSpikeText.anchorMax = new Vector2(0.95f, 0.35f);
+                _specialSpikeText.anchorMax = new Vector2(0.97f, 0.35f);
             }
             
             // Stock deicesID
@@ -113,24 +115,28 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                     case "Bleu":
                     {
                         _currentSelectedBlopImage.sprite = _bleuBlop.Sprite;
+                        _textSpecialSpike.text = _bleuBlop.SpecialSpikeDescription;
                         SubmitBlop(_bleuBlop);
                         break;
                     }
                     case "Jaune":
                     {
                         _currentSelectedBlopImage.sprite = _jauneBlop.Sprite;
+                        _textSpecialSpike.text = _jauneBlop.SpecialSpikeDescription;
                         SubmitBlop(_jauneBlop);
                         break;
                     }
                     case "Rouge":
                     {
                         _currentSelectedBlopImage.sprite = _rougeBlop.Sprite;
+                        _textSpecialSpike.text = _rougeBlop.SpecialSpikeDescription;
                         SubmitBlop(_rougeBlop);
                         break;
                     }
                     case "Vert": 
                     {
                         _currentSelectedBlopImage.sprite = _vertBlop.Sprite;
+                        _textSpecialSpike.text = _vertBlop.SpecialSpikeDescription;
                         SubmitBlop(_vertBlop);
                         break;
                     }
@@ -177,6 +183,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 
                     _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
                     _currentButtonSelected.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                    _textSpecialSpike.text = null;
                 
                     var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
                     navigation.mode = _enableNavigation;

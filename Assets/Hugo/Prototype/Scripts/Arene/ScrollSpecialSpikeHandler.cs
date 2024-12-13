@@ -21,10 +21,10 @@ namespace Hugo.Prototype.Scripts.Arene
             // Augmente la position sur l'axe Y à chaque frame
             transform.position += Vector3.up * (_speed * Time.deltaTime);
 
-            if (transform.position.y >= 3 && !_isSpawn)
+            if (transform.position.y >= 8 && !_isSpawn)
             {
                 _isSpawn = true;
-                Instantiate(_scrollBackGround, new Vector2(0, -12f), Quaternion.identity);
+                Instantiate(_scrollBackGround, new Vector2(0, -22f), Quaternion.identity);
             }
             
             if (transform.position.y > 20)
