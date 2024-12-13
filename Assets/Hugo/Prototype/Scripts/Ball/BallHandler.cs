@@ -123,6 +123,13 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, false);
                 ResetVFXSpecialSpike();
+                if (_currentPlayerGameObject)
+                {
+                    if (_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    {
+                        Destroy(_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                    }
+                }
                 Destroy(gameObject);
             }
             if (other.gameObject.CompareTag("PlayerTwoGround"))
@@ -131,6 +138,13 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, false);
                 ResetVFXSpecialSpike();
+                if (_currentPlayerGameObject)
+                {
+                    if (_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    {
+                        Destroy(_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                    }
+                }
                 Destroy(gameObject);
             }
             
@@ -170,6 +184,14 @@ namespace Hugo.Prototype.Scripts.Ball
                 if (VFXSpecialSpikeYellow.activeSelf)
                 {
                     _specialSpikeYellowImpact.Play();
+                }
+
+                if (_lastPlayerGameObject)
+                {
+                    if (_lastPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    {
+                        Destroy(_lastPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                    }
                 }
                 
                 ResetVFXSpecialSpike();

@@ -3,6 +3,7 @@ using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -77,6 +78,12 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _rayNetTouchedLength;
         [SerializeField] private LayerMask _groundLayer;
         [SerializeField] private LayerMask _wallLayer;
+        
+        [Header("BackGround SpecialSpike")]
+        [SerializeField] private GameObject _impactBackground;
+        [SerializeField] private GameObject _scrollBackground;
+        public GameObject ImpactBackgroundObject;
+        public GameObject ScrollBackgroundObject;
         
         // VFX
         [Header("   VFX Effects")]
@@ -298,6 +305,31 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     FlipSpriteAbsorbDrawn(direction);
                     
+                    if (_scrollBackground)
+                    {
+                        if (_playerType.PlayerName == "Bleu")
+                        {
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.blue;
+                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Vert")
+                        {
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.green;
+                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Jaune")
+                        {
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.yellow;
+                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Rouge")
+                        {
+                            _scrollBackground.GetComponent<SpriteRenderer>().color = Color.red;
+                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                        }
+                    }
+                    Destroy(ImpactBackgroundObject);
+                    
                     // Animation
                     _animator.SetTrigger("Absorb");
                 }
@@ -386,6 +418,30 @@ namespace Hugo.Prototype.Scripts.Player
                     IsSpecialSpike = true;
                     CanAbsorb = true;
                     CanSpecialSpike = false;
+
+                    if (_impactBackground)
+                    {
+                        if (_playerType.PlayerName == "Bleu")
+                        {
+                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.blue;
+                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Vert")
+                        {
+                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.green;
+                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Jaune")
+                        {
+                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.yellow;
+                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
+                        }
+                        if (_playerType.PlayerName == "Rouge")
+                        {
+                            _impactBackground.GetComponent<SpriteRenderer>().color = Color.red;
+                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
+                        }
+                    }
                     
                     // Animation
                     _animator.SetTrigger("ActiveSpecialSpike");

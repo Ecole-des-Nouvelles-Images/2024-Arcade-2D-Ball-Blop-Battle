@@ -253,6 +253,8 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
+  _impactBackground: {fileID: 3117198505760830044, guid: e3d76625c78b83f4289b2614340fbb75, type: 3}
+  _scrollBackground: {fileID: 1361749555874063764, guid: 37205f678ba768e47851377ba423c38d, type: 3}
   _vfxJumping: {fileID: 6960193284403353707}
   _vfxAttacking: {fileID: 6177206345739415146}
   _vfxPerfectReception: {fileID: 5433815415873377306}
