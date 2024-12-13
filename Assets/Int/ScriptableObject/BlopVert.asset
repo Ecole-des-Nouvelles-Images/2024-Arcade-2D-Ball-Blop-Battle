@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: BlopVert
   m_EditorClassIdentifier: 
   PlayerName: Vert
-  Sprite: {fileID: -578272677, guid: b928f6cd4c80ece489dae7d699b55d58, type: 3}
+  Sprite: {fileID: 21300000, guid: 1452e30d034902e43b99a181a7e5a438, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 9100000, guid: 2b3b9a25762d107498c2dbde3f76a81b, type: 2}
-  Spitout: {fileID: 6190771650280476721, guid: 25d3c3e8139a7ba45ac59c16b93e96a5, type: 3}
-  Landing: {fileID: 6266600149833462267, guid: 0beca2774f7174644b0adb5f1fb1a224, type: 3}

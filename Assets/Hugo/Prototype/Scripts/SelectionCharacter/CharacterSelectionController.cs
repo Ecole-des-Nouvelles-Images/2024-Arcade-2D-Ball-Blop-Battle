@@ -73,8 +73,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             // Instantiate Prefab
             if (_playerInput.playerIndex == 0)
             {
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.1f, 0.4f);
-                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.4f, 0.9f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.15f, 0.45f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.35f, 0.85f);
                 
                 _specialSpikeText.anchorMin = new Vector2(0.05f, 0.05f);
                 _specialSpikeText.anchorMax = new Vector2(0.2f, 0.35f);
@@ -84,8 +84,10 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             }
             else
             {
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.6f, 0.4f);
-                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+                _currentSelectedBlopRectTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.65f, 0.45f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.85f, 0.85f);
                 
                 _specialSpikeText.anchorMin = new Vector2(0.8f, 0.05f);
                 _specialSpikeText.anchorMax = new Vector2(0.95f, 0.35f);

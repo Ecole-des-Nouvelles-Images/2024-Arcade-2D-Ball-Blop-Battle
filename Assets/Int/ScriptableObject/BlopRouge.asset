@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: BlopRouge
   m_EditorClassIdentifier: 
   PlayerName: Rouge
-  Sprite: {fileID: -124065854, guid: facbefecedff8a24dbb225fbda6b3ec8, type: 3}
+  Sprite: {fileID: 21300000, guid: 79ac69feb401b6347b6ca65bfcb057ee, type: 3}
   SpeedSpecialSpike: 2.3
   PlayerAnimatorController: {fileID: 9100000, guid: 35ae509de6ee6db4792c285ba11cafa9, type: 2}
-  Spitout: {fileID: 6190771650280476721, guid: 210c43bc9f0e7fa44836800cd59d8597, type: 3}
-  Landing: {fileID: 6266600149833462267, guid: 04237f6e9e897dc4e9811c976225e339, type: 3}
   _fakeBallPrefab: {fileID: 7739952088009901526, guid: 8c6839a5a37e63749b9c0c55de870c02, type: 3}

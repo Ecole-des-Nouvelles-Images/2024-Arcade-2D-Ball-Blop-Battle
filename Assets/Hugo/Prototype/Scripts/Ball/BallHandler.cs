@@ -72,7 +72,7 @@ namespace Hugo.Prototype.Scripts.Ball
             // VFX
             _ballAppearsDisappears.Play();
             _canCommitment = false;
-            Invoke(nameof(ReverseCanCommitment), 0.8f);
+            Invoke(nameof(ReverseCanCommitment), 0.6f);
         }
 
         private void Update()

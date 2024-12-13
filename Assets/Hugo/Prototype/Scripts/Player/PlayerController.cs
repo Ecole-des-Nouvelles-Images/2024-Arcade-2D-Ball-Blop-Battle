@@ -316,22 +316,22 @@ namespace Hugo.Prototype.Scripts.Player
                         if (_playerType.PlayerName == "Bleu")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -4), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -4), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -4), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -4), Quaternion.identity);
                         }
                     }
                     Destroy(ImpactBackgroundObject);
