@@ -12,11 +12,6 @@ namespace Hugo.Prototype.Scripts.Camera
         [SerializeField] private float _shakeHitMagnitude; // Amplitude de la secousse
         [SerializeField] private Transform _cam;
 
-        private void Start()
-        {
-            ScoredShake();
-        }
-
         public void ScoredShake()
         {
             _cam.DOShakePosition( _shakeScoreDuration, _shakeScoreMagnitude);

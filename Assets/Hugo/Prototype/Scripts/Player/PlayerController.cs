@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
+using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
 
@@ -18,6 +20,7 @@ namespace Hugo.Prototype.Scripts.Player
         private SpriteRenderer _sr;
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
+        private CameraHandler _cameraHandler;
         
         // GameObject
         private GameObject _ball;
@@ -82,7 +85,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private GameObject _impactBackground;
         [SerializeField] private GameObject _scrollBackground;
         public GameObject ImpactBackgroundObject;
-        public GameObject ScrollBackgroundObject;
+        public static List<GameObject> ScrollBackgroundObjects = new List<GameObject>();
         
         // VFX
         [Header("   VFX Effects")]
@@ -119,6 +122,7 @@ namespace Hugo.Prototype.Scripts.Player
             _animator = GetComponent<Animator>();
 
             _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
+            _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
             _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
 
             // VFX TRAILS
@@ -288,6 +292,9 @@ namespace Hugo.Prototype.Scripts.Player
                     Invoke(nameof(ReverseIsAttacking), 0.2f);
                     Invoke(nameof(ReverseHasPunch), 0.1f);
                     
+                    // Shake Camera
+                    _cameraHandler.HitShake();
+                    
                     // VFX
                     if (_vfxAttacking)
                     {
@@ -309,22 +316,22 @@ namespace Hugo.Prototype.Scripts.Player
                         if (_playerType.PlayerName == "Bleu")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = Color.blue;
-                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = Color.green;
-                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Jaune")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = Color.yellow;
-                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = Color.red;
-                            ScrollBackgroundObject = Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
+                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
                     }
                     Destroy(ImpactBackgroundObject);
@@ -380,6 +387,9 @@ namespace Hugo.Prototype.Scripts.Player
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
                 FlipSpriteAbsorbDrawn(_move);
+                
+                // Shake Camera
+                _cameraHandler.HitShake();
                 
                 // Animation
                 _animator.SetTrigger("Drawn");
@@ -461,6 +471,9 @@ namespace Hugo.Prototype.Scripts.Player
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
                     PerfectReceptionCount = 0;
+                    
+                    // Shake Camera
+                    _cameraHandler.HitShake();
                     
                     // Animation
                     _animator.SetTrigger("Drawn");

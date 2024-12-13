@@ -1,3 +1,4 @@
+using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Arene
@@ -9,6 +10,11 @@ namespace Hugo.Prototype.Scripts.Arene
         [Header("Settings")]
         [SerializeField] private float _speed = 1.0f; // Vitesse d'augmentation
         [SerializeField] private GameObject _scrollBackGround; // Vitesse d'augmentation
+
+        private void Awake()
+        {
+            PlayerController.ScrollBackgroundObjects.Add(gameObject);
+        }
 
         private void Update()
         {

@@ -10,6 +10,8 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameObject _dashButton;
         [SerializeField] private GameObject _receptionParfaiteButton;
         [SerializeField] private GameObject _absorptionButton;
+        [SerializeField] private GameObject _foulsButton;
+        [SerializeField] private GameObject _specialSpikeButton;
         [SerializeField] private GameObject _blepButton;
         [SerializeField] private GameObject _blopButton;
         [SerializeField] private GameObject _blupButton;
@@ -20,6 +22,8 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameObject _dashPanel;
         [SerializeField] private GameObject _receptionParfaitePanel;
         [SerializeField] private GameObject _absorptionPanel;
+        [SerializeField] private GameObject _foulsPanel;
+        [SerializeField] private GameObject _specialSpikePanel;
         [SerializeField] private GameObject _blepPanel;
         [SerializeField] private GameObject _blopPanel;
         [SerializeField] private GameObject _blupPanel;
@@ -42,6 +46,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);
@@ -54,6 +60,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(true);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);
@@ -66,6 +74,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(true);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);
@@ -78,6 +88,36 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(true);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
+                    _blepPanel.SetActive(false);
+                    _blopPanel.SetActive(false);
+                    _blupPanel.SetActive(false);
+                    _blapPanel.SetActive(false);
+                }
+                
+                if (_currentSelectedButton == _foulsButton)
+                {
+                    _sautPanel.SetActive(false);
+                    _dashPanel.SetActive(false);
+                    _receptionParfaitePanel.SetActive(false);
+                    _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(true);
+                    _specialSpikePanel.SetActive(false);
+                    _blepPanel.SetActive(false);
+                    _blopPanel.SetActive(false);
+                    _blupPanel.SetActive(false);
+                    _blapPanel.SetActive(false);
+                }
+                
+                if (_currentSelectedButton == _specialSpikeButton)
+                {
+                    _sautPanel.SetActive(false);
+                    _dashPanel.SetActive(false);
+                    _receptionParfaitePanel.SetActive(false);
+                    _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(true);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);
@@ -90,6 +130,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(true);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);
@@ -102,6 +144,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(true);
                     _blupPanel.SetActive(false);
@@ -114,6 +158,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(true);
@@ -126,6 +172,8 @@ namespace Hugo.Prototype.Scripts.UI
                     _dashPanel.SetActive(false);
                     _receptionParfaitePanel.SetActive(false);
                     _absorptionPanel.SetActive(false);
+                    _foulsPanel.SetActive(false);
+                    _specialSpikePanel.SetActive(false);
                     _blepPanel.SetActive(false);
                     _blopPanel.SetActive(false);
                     _blupPanel.SetActive(false);

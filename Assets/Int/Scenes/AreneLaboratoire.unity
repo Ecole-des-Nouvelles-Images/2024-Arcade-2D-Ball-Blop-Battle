@@ -2622,10 +2622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4193e528108fc2941a6ba49fc1510e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shakeScoreDuration: 1
-  _shakeScoreMagnitude: 0.5
-  _shakeHitDuration: 0.5
-  _shakeHitMagnitude: 0.3
+  _shakeScoreDuration: 0.5
+  _shakeScoreMagnitude: 0.3
+  _shakeHitDuration: 0.25
+  _shakeHitMagnitude: 0.1
   _cam: {fileID: 741620794}
 --- !u!1 &774521428
 GameObject:
@@ -3318,6 +3318,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
+    - target: {fileID: 4556737953731932860, guid: de3f476c33d6a004c8dbc287e36fab1e, type: 3}
+      propertyPath: _cameraHandler
+      value: 
+      objectReference: {fileID: 741620795}
     - target: {fileID: 4556737953731932860, guid: de3f476c33d6a004c8dbc287e36fab1e, type: 3}
       propertyPath: _laserParticles
       value: 
@@ -5130,6 +5134,7 @@ MonoBehaviour:
   _panelPaused: {fileID: 282302239}
   _gameManager: {fileID: 2071482333}
   _hudDisplay: {fileID: 791754940}
+  _cameraHandler: {fileID: 0}
   _playerOneFoulPanel: {fileID: 1743567502}
   _playerTwoFoulPanel: {fileID: 2094874610}
   _playerOneScoredPanel: {fileID: 1743567501}

@@ -1,3 +1,4 @@
+using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
@@ -11,6 +12,9 @@ namespace Hugo.Prototype.Scripts.Laser
         [SerializeField] private LayerMask _playerLayer;
         [SerializeField] private LayerMask _ballLayer;
         [SerializeField] private ParticleSystem _laserParticles;
+        
+        [Header("Camera")]
+        [SerializeField] private CameraHandler _cameraHandler;
 
         private bool _hasAlreadyHit;
         private bool _isplayerOneHit;
@@ -60,6 +64,7 @@ namespace Hugo.Prototype.Scripts.Laser
                 MatchManager.ScorePlayerTwo++;
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, true);
+                _cameraHandler.ScoredShake();
                 Destroy(_ballGameObject);
             }
             else
@@ -67,6 +72,7 @@ namespace Hugo.Prototype.Scripts.Laser
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, true);
+                _cameraHandler.ScoredShake();
                 Destroy(_ballGameObject);
             }
         }

@@ -1,5 +1,6 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
+using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
@@ -31,6 +32,7 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameObject _panelPaused;
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private HUDDisplay _hudDisplay;
+        [SerializeField] private CameraHandler _cameraHandler;
         
         [Header("Panels")]
         [SerializeField] private GameObject _playerOneFoulPanel;

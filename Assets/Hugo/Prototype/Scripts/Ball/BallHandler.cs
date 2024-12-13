@@ -1,4 +1,5 @@
 using System;
+using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
@@ -16,6 +17,7 @@ namespace Hugo.Prototype.Scripts.Ball
         private SpriteRenderer _sr;
         private Transform _transform;
         private MatchManager _matchManager;
+        private CameraHandler _cameraHandler;
         
         private GameObject _currentPlayerGameObject;
         private GameObject _lastPlayerGameObject;
@@ -59,6 +61,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _sr = GetComponent<SpriteRenderer>();
             _transform = GetComponent<Transform>();
             _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
+            _cameraHandler = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraHandler>();
         }
 
         private void Start()
@@ -123,13 +126,14 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, false);
                 ResetVFXSpecialSpike();
-                if (_currentPlayerGameObject)
+                if (PlayerController.ScrollBackgroundObjects.Count > 0)
                 {
-                    if (_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    foreach (GameObject scroll in PlayerController.ScrollBackgroundObjects)
                     {
-                        Destroy(_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                        Destroy(scroll);
                     }
                 }
+                _cameraHandler.ScoredShake();
                 Destroy(gameObject);
             }
             if (other.gameObject.CompareTag("PlayerTwoGround"))
@@ -138,13 +142,14 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, false);
                 ResetVFXSpecialSpike();
-                if (_currentPlayerGameObject)
+                if (PlayerController.ScrollBackgroundObjects.Count > 0)
                 {
-                    if (_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    foreach (GameObject scroll in PlayerController.ScrollBackgroundObjects)
                     {
-                        Destroy(_currentPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                        Destroy(scroll);
                     }
                 }
+                _cameraHandler.ScoredShake();
                 Destroy(gameObject);
             }
             
@@ -186,11 +191,11 @@ namespace Hugo.Prototype.Scripts.Ball
                     _specialSpikeYellowImpact.Play();
                 }
 
-                if (_lastPlayerGameObject)
+                if (PlayerController.ScrollBackgroundObjects.Count > 0)
                 {
-                    if (_lastPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject)
+                    foreach (GameObject scroll in PlayerController.ScrollBackgroundObjects)
                     {
-                        Destroy(_lastPlayerGameObject.GetComponent<PlayerController>().ScrollBackgroundObject);
+                        Destroy(scroll);
                     }
                 }
                 
