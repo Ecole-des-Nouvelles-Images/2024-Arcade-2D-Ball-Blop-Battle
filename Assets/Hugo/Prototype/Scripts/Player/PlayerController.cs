@@ -416,6 +416,7 @@ namespace Hugo.Prototype.Scripts.Player
                         {
                             _vfxShootSpecialSpikeBlue.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlue.SetActive(true);
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlueImpact.Play();
                         }
                         if (_playerType.PlayerName == "Vert")
                         {
@@ -426,6 +427,7 @@ namespace Hugo.Prototype.Scripts.Player
                         {
                             _vfxShootSpecialSpikeYellow.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellow.SetActive(true);
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellowImpact.Play();
                         }
                         if (_playerType.PlayerName == "Rouge")
                         {
@@ -440,6 +442,14 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
+                    
+                    Debug.Log("Special Spike Green");
+                    // VFX
+                    if (_ball.GetComponent<BallHandler>().VFXSpecialSpikeGreen.activeSelf)
+                    {
+                        Debug.Log("Special Spike Green Play");
+                        _ball.GetComponent<BallHandler>().VFXSpecialSpikeGreenImpact.Play();
+                    }
                     return;
                 }
             }

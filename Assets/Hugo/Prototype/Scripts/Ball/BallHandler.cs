@@ -3,7 +3,6 @@ using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Ball
 {
@@ -42,13 +41,16 @@ namespace Hugo.Prototype.Scripts.Ball
         [SerializeField] private ParticleSystem _ballAppearsDisappears;
         [Header("Blue")]
         public GameObject VFXSpecialSpikeBlue;
+        public ParticleSystem VFXSpecialSpikeBlueImpact;
         [Header("Yellow")]
         public GameObject VFXSpecialSpikeYellow;
-        [FormerlySerializedAs("_specialSpikeYellowImpact1")] [SerializeField] private ParticleSystem _specialSpikeYellowImpact;
+        public ParticleSystem VFXSpecialSpikeYellowImpact;
+        [SerializeField] private ParticleSystem _specialSpikeYellowImpact;
         [Header("Red")]
         public GameObject VFXSpecialSpikeRed;
         [Header("Green")]
         public GameObject VFXSpecialSpikeGreen;
+        public ParticleSystem VFXSpecialSpikeGreenImpact;
 
         private void Awake()
         {

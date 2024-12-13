@@ -28,9 +28,7 @@ namespace Hugo.Prototype.Scripts.UI
         {
             if (isOn)
             {
-                Debug.Log("Toggle 1 activé");
                 Screen.SetResolution(1920, 1080, true);
-                Debug.Log($"Nouvelle résolution : {Screen.width}x{Screen.height}");
             }
         }
         
@@ -38,9 +36,7 @@ namespace Hugo.Prototype.Scripts.UI
         {
             if (isOn)
             {
-                Debug.Log("Toggle 2 activé");
                 Screen.SetResolution(2560, 1440, true);
-                Debug.Log($"Nouvelle résolution : {Screen.width}x{Screen.height}");
             }
         }
         
@@ -48,9 +44,7 @@ namespace Hugo.Prototype.Scripts.UI
         {
             if (isOn)
             {
-                Debug.Log("Toggle 3 activé");
                 Screen.SetResolution(3840, 2160, true);
-                Debug.Log($"Nouvelle résolution : {Screen.width}x{Screen.height}");
             }
         }
     }
