@@ -1,8 +1,10 @@
+using DG.Tweening;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Hugo.Prototype.Scripts.SelectionCharacter
@@ -35,6 +37,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         
         [Header("Links")]
         [SerializeField] private RectTransform _playerSelection;
+        [SerializeField] private RectTransform _specialSpikeText;
         [SerializeField] private GameObject _dislpayCurrentSelectedBlopGameObject;
         [SerializeField] private EventSystem _eventSystem;
         
@@ -73,6 +76,9 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.1f, 0.4f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.4f, 0.9f);
                 
+                _specialSpikeText.anchorMin = new Vector2(0.05f, 0.05f);
+                _specialSpikeText.anchorMax = new Vector2(0.2f, 0.35f);
+                
                 // Clear deicesID
                 GameManager.DevicesID.Clear();
             }
@@ -80,6 +86,9 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             {
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.6f, 0.4f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.9f, 0.9f);
+                
+                _specialSpikeText.anchorMin = new Vector2(0.8f, 0.05f);
+                _specialSpikeText.anchorMax = new Vector2(0.95f, 0.35f);
             }
             
             // Stock deicesID
@@ -139,7 +148,10 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 {
                     GameManager.SecondPlayerScriptableObject = blop;
                 }
-                            
+                
+                _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBounce);
+                _currentButtonSelected.GetComponent<Image>().color = new Color(0.8f, 0.8f, 0.8f, 1f);
+                
                 var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
                 navigation.mode = _disableNavigation;
                 _currentButtonSelected.GetComponent<Button>().navigation = navigation;
@@ -150,18 +162,29 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         {
             if (_playerInput.actions["UI/Cancel"].triggered)
             {
-                if (IsPlayerOne)
+                if (GameManager.FirstPlayerScriptableObject && IsPlayerOne || GameManager.SecondPlayerScriptableObject && !IsPlayerOne)
                 {
-                    GameManager.FirstPlayerScriptableObject = null;
+                    if (IsPlayerOne)
+                    {
+                        GameManager.FirstPlayerScriptableObject = null;
+                    }
+                    else
+                    {
+                        GameManager.SecondPlayerScriptableObject = null;
+                    }
+                
+                    _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
+                    _currentButtonSelected.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                
+                    var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
+                    navigation.mode = _enableNavigation;
+                    _currentButtonSelected.GetComponent<Button>().navigation = navigation;
                 }
                 else
                 {
-                    GameManager.SecondPlayerScriptableObject = null;
+                    SceneManager.LoadScene(0);
                 }
                 
-                var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
-                navigation.mode = _enableNavigation;
-                _currentButtonSelected.GetComponent<Button>().navigation = navigation;
             }
         }
     }
