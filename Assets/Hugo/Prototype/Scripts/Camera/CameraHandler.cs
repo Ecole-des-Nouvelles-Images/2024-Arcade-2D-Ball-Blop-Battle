@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -11,6 +12,11 @@ namespace Hugo.Prototype.Scripts.Camera
         [SerializeField] private float _shakeHitDuration; // Durée totale de la secousse
         [SerializeField] private float _shakeHitMagnitude; // Amplitude de la secousse
         [SerializeField] private Transform _cam;
+
+        private void Start()
+        {
+            ScoredShake();
+        }
 
         public void ScoredShake()
         {
