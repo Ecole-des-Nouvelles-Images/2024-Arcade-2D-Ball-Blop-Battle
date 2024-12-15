@@ -114,6 +114,10 @@ PrefabInstance:
       value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1445635147939425687, guid: 5231f51c2459dbc46b021c0858ecb7e3, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1445635147939425687, guid: 5231f51c2459dbc46b021c0858ecb7e3, type: 3}
       propertyPath: EmissionModule.rateOverTime.minScalar
       value: 0.05
       objectReference: {fileID: 0}
@@ -175,6 +179,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099891359650266892}
     m_Modifications:
+    - target: {fileID: 1038632747460950496, guid: a4332c4fabd1ca444b8e8318676a53b3, type: 3}
+      propertyPath: startDelay.scalar
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1038632747460950496, guid: a4332c4fabd1ca444b8e8318676a53b3, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 0.2
