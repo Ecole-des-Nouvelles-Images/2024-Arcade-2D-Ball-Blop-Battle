@@ -1,20 +1,29 @@
+using System;
 using System.Collections;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Utils;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Hugo.Prototype.Scripts.SelectionCharacter
 {
     public class CharacterSelectionCoroutineHandler : MonoBehaviourSingleton<CharacterSelectionCoroutineHandler>
     {
+        private Image _panelTimerImage;
+        
         // Coroutine
         private Coroutine _loadSceneCoroutine;
 
         [Header("Text Timer")]
         [SerializeField] private GameObject _panelTimer;
         [SerializeField] private TextMeshProUGUI _textTimer;
+
+        private void Awake()
+        {
+            _panelTimerImage = _panelTimer.GetComponent<Image>();
+        }
 
         private void Update()
         {
