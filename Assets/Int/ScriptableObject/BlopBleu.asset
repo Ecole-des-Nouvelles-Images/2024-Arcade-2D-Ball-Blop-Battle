@@ -15,7 +15,7 @@ MonoBehaviour:
   PlayerName: Bleu
   Sprite: {fileID: 21300000, guid: 8af49cbc149bc4946b6ae8353dd7dae5, type: 3}
   SpeedSpecialSpike: 2.3
-  SpecialSpikeDescription: "Tir un ballon qui se r\xE9tr\xE9ci et devient plus dur
-    a r\xE9ceptioner."
+  SpecialSpikeDescription: "Tire un ballon qui r\xE9tr\xE9cit et devient plus dur
+    a r\xE9ceptionner."
   PlayerAnimatorController: {fileID: 9100000, guid: 1417f446827ed414e9adab59499138bb, type: 2}
   _becameSmallerTimer: 0

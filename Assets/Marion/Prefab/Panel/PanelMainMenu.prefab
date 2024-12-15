@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 9074076268163742365}
   - component: {fileID: 7356643682413261177}
   - component: {fileID: 2622150858653950227}
-  - component: {fileID: 3132035177822177582}
+  - component: {fileID: 7132056210956377183}
   m_Layer: 5
   m_Name: PanelMainMenu
   m_TagString: Untagged
@@ -927,7 +927,7 @@ MonoBehaviour:
   - {fileID: 8361067613685352786}
   - {fileID: 3759774624135284249}
   - {fileID: 2039477680747231098}
---- !u!114 &3132035177822177582
+--- !u!114 &7132056210956377183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
