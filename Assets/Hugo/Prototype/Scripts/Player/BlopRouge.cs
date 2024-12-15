@@ -1,4 +1,5 @@
 using Hugo.Prototype.Scripts.Ball;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -7,7 +8,7 @@ namespace Hugo.Prototype.Scripts.Player
     public class BlopRouge : PlayerType
     {
         // Random
-        private bool _randomNumberAlreadyChoose;
+        private bool _randomNumberAlreadyChoose = false;
         private int _randomNumber;
         
         // Ball Components
@@ -31,6 +32,7 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _randomNumber = Random.Range(0, 2);
                 _randomNumberAlreadyChoose = true;
+                Debug.Log(_randomNumber);
             }
             
             // Special Spike

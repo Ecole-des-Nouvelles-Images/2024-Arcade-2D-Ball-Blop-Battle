@@ -52,7 +52,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // Player Type
         [Header("Player Type")]
-        [SerializeField] private PlayerType _playerType;
+        public PlayerType PlayerType;
         
         // Player Settings
         [Header("Player Settings")]
@@ -124,24 +124,24 @@ namespace Hugo.Prototype.Scripts.Player
 
             _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
-            _playerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
+            PlayerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
 
             // VFX TRAILS
             if (_vfxTrailBlue && _vfxTrailGreen && _vfxTrailYellow && _vfxTrailRed)
             {
-                if (_playerType.PlayerName == "Bleu")
+                if (PlayerType.PlayerName == "Bleu")
                 {
                     _vfxTrailBlue.SetActive(true);
                 }
-                if (_playerType.PlayerName == "Vert")
+                if (PlayerType.PlayerName == "Vert")
                 {
                     _vfxTrailGreen.SetActive(true);
                 }
-                if (_playerType.PlayerName == "Jaune")
+                if (PlayerType.PlayerName == "Jaune")
                 {
                     _vfxTrailYellow.SetActive(true);
                 }
-                if (_playerType.PlayerName == "Rouge")
+                if (PlayerType.PlayerName == "Rouge")
                 {
                     _vfxTrailRed.SetActive(true);
                 }
@@ -155,10 +155,10 @@ namespace Hugo.Prototype.Scripts.Player
             Invoke(nameof(ReverseCanMove), _timeAppears);
             Invoke(nameof(ReverseAppears), _timeAppears);
 
-            if (_playerType)
+            if (PlayerType)
             {
-                _sr.sprite = _playerType.Sprite;
-                _animator.runtimeAnimatorController = _playerType.PlayerAnimatorController;
+                _sr.sprite = PlayerType.Sprite;
+                _animator.runtimeAnimatorController = PlayerType.PlayerAnimatorController;
             }
         }
 
@@ -320,22 +320,22 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     if (_scrollBackground)
                     {
-                        if (_playerType.PlayerName == "Bleu")
+                        if (PlayerType.PlayerName == "Bleu")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Vert")
+                        if (PlayerType.PlayerName == "Vert")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Jaune")
+                        if (PlayerType.PlayerName == "Jaune")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Rouge")
+                        if (PlayerType.PlayerName == "Rouge")
                         {
                             _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                             Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
@@ -403,19 +403,19 @@ namespace Hugo.Prototype.Scripts.Player
                 // VFX
                 if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
                 {
-                    if (_playerType.PlayerName == "Bleu")
+                    if (PlayerType.PlayerName == "Bleu")
                     {
                         _vfxSpitOutBlue.Play();
                     }
-                    if (_playerType.PlayerName == "Vert")
+                    if (PlayerType.PlayerName == "Vert")
                     {
                         _vfxSpitOutGreen.Play();
                     }
-                    if (_playerType.PlayerName == "Jaune")
+                    if (PlayerType.PlayerName == "Jaune")
                     {
                         _vfxSpitOutYellow.Play();
                     }
-                    if (_playerType.PlayerName == "Rouge")
+                    if (PlayerType.PlayerName == "Rouge")
                     {
                         _vfxSpitOutRed.Play();
                     }
@@ -437,22 +437,22 @@ namespace Hugo.Prototype.Scripts.Player
 
                     if (_impactBackground)
                     {
-                        if (_playerType.PlayerName == "Bleu")
+                        if (PlayerType.PlayerName == "Bleu")
                         {
                             _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Vert")
+                        if (PlayerType.PlayerName == "Vert")
                         {
                             _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Jaune")
+                        if (PlayerType.PlayerName == "Jaune")
                         {
                             _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
                         }
-                        if (_playerType.PlayerName == "Rouge")
+                        if (PlayerType.PlayerName == "Rouge")
                         {
                             _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                             ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
@@ -487,25 +487,33 @@ namespace Hugo.Prototype.Scripts.Player
                     // VFX
                     if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeRed && _vfxShootSpecialSpikeYellow)
                     {
-                        if (_playerType.PlayerName == "Bleu")
+                        if (PlayerType.PlayerName == "Bleu")
                         {
+                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
+                            
                             _vfxShootSpecialSpikeBlue.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlue.SetActive(true);
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlueImpact.Play();
                         }
-                        if (_playerType.PlayerName == "Vert")
+                        if (PlayerType.PlayerName == "Vert")
                         {
+                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
+                            
                             _vfxShootSpecialSpikeGreen.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeGreen.SetActive(true);
                         }
-                        if (_playerType.PlayerName == "Jaune")
+                        if (PlayerType.PlayerName == "Jaune")
                         {
+                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
+                            
                             _vfxShootSpecialSpikeYellow.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellow.SetActive(true);
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellowImpact.Play();
                         }
-                        if (_playerType.PlayerName == "Rouge")
+                        if (PlayerType.PlayerName == "Rouge")
                         {
+                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
+                            
                             _vfxShootSpecialSpikeRed.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
                         }
@@ -513,7 +521,7 @@ namespace Hugo.Prototype.Scripts.Player
                     return;
                 }
 
-                if (_playerType.PlayerName == "Vert" && CountShootSpecialSpike == 1)
+                if (PlayerType.PlayerName == "Vert" && CountShootSpecialSpike == 1)
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
@@ -609,7 +617,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (_ball)
             {
-                _playerType.SpecialSpike(gameObject, _ball, _move);
+                PlayerType.SpecialSpike(gameObject, _ball, _move);
             }
             
             // Animation
@@ -632,19 +640,19 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
                 {
-                    if (_playerType.PlayerName == "Bleu")
+                    if (PlayerType.PlayerName == "Bleu")
                     {
                         _vfxLandingBlue.Play();
                     }
-                    if (_playerType.PlayerName == "Vert")
+                    if (PlayerType.PlayerName == "Vert")
                     {
                         _vfxLandingGreen.Play();
                     }
-                    if (_playerType.PlayerName == "Jaune")
+                    if (PlayerType.PlayerName == "Jaune")
                     {
                         _vfxLandingYellow.Play();
                     }
-                    if (_playerType.PlayerName == "Rouge")
+                    if (PlayerType.PlayerName == "Rouge")
                     {
                         _vfxLandingRed.Play();
                     }
@@ -654,18 +662,27 @@ namespace Hugo.Prototype.Scripts.Player
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
 
             _isWalled = false;
-            if (-1 <= _move.x && _move.x <= -0.8 || 0.8 <= _move.x && _move.x <= 1)
+            if (-1 <= _move.x && _move.x <= -0.8)
+            {
+                // Raycast _isWalled
+                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
+                if (hit2DWallLeft)
+                {
+                    _isWalled = true;
+                    _canDoubleJump = false;
+                }
+                Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
+            }
+            if (0.8 <= _move.x && _move.x <= 1)
             {
                 // Raycast _isWalled
                 RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
-                RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
-                if (hit2DWallLeft || hit2DWallRight)
+                if (hit2DWallRight)
                 {
                     _isWalled = true;
                     _canDoubleJump = false;
                 }
                 Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
-                Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
         }
 

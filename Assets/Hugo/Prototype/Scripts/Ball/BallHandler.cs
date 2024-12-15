@@ -4,6 +4,7 @@ using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Ball
 {
@@ -40,6 +41,7 @@ namespace Hugo.Prototype.Scripts.Ball
         [SerializeField] private float _maxRotationSpeed;
         
         [Header("   Particle System")]
+        public GameObject BallBaseTrail;
         [SerializeField] private ParticleSystem _ballAppearsDisappears;
         [SerializeField] private ParticleSystem _ballHits;
         [Header("Blue")]
@@ -134,6 +136,15 @@ namespace Hugo.Prototype.Scripts.Ball
                         Destroy(scroll);
                     }
                 }
+                
+                if (_lastPlayerGameObject)
+                {
+                    _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                }
+                if (_currentPlayerGameObject)
+                {
+                    _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                }
                 _cameraHandler.ScoredShake();
                 Destroy(gameObject);
             }
@@ -149,6 +160,15 @@ namespace Hugo.Prototype.Scripts.Ball
                     {
                         Destroy(scroll);
                     }
+                }
+
+                if (_lastPlayerGameObject)
+                {
+                    _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                }
+                if (_currentPlayerGameObject)
+                {
+                    _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                 }
                 _cameraHandler.ScoredShake();
                 Destroy(gameObject);
@@ -198,6 +218,27 @@ namespace Hugo.Prototype.Scripts.Ball
                     {
                         Destroy(scroll);
                     }
+                }
+
+                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Bleu")
+                {
+                    BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.25f, 0.57f, 0.75f);
+                    BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.25f, 0.57f, 0.75f);
+                }
+                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Vert")
+                {
+                    BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.4f, 0.75f, 0.25f);
+                    BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.4f, 0.75f, 0.25f);
+                }
+                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Jaune")
+                {
+                    BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(1f, 1f, 0f);
+                    BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(1f, 1f, 0f);
+                }
+                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Rouge")
+                {
+                    BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.88f, 0.3f, 0.23f);
+                    BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.88f, 0.3f, 0.23f);
                 }
                 
                 ResetVFXSpecialSpike();
@@ -383,6 +424,8 @@ namespace Hugo.Prototype.Scripts.Ball
             VFXSpecialSpikeGreen.SetActive(false);
             VFXSpecialSpikeRed.SetActive(false);
             VFXSpecialSpikeYellow.SetActive(false);
+            
+            BallBaseTrail.SetActive(true);
         }
     }
 }
