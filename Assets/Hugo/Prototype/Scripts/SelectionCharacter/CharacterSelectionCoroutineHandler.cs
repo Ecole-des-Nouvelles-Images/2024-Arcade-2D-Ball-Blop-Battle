@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Utils;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +17,11 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
 
         [Header("Text Timer")]
         [SerializeField] private GameObject _panelTimer;
-        [SerializeField] private TextMeshProUGUI _textTimer;
+        [SerializeField] private Sprite _spriteThree;
+        [SerializeField] private Sprite _spriteTwo;
+        [SerializeField] private Sprite _spriteOne;
+        [SerializeField] private Sprite _spriteGo;
+        // [SerializeField] private TextMeshProUGUI _textTimer;
 
         private void Awake()
         {
@@ -47,14 +50,30 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
 
             while (remainingTime > 0)
             {
-                _textTimer.text = Mathf.Ceil(remainingTime).ToString();
+                if (Math.Abs(remainingTime - 3) < 0.2f)
+                {
+                    _panelTimerImage.sprite = _spriteThree;
+                }
+                if (Math.Abs(remainingTime - 2) < 0.2f)
+                {
+                    _panelTimerImage.sprite = _spriteTwo;
+                }
+                if (Math.Abs(remainingTime - 1) < 0.2f)
+                {
+                    _panelTimerImage.sprite = _spriteOne;
+                }
+                if (remainingTime == 0)
+                {
+                    _panelTimerImage.sprite = _spriteGo;
+                }
+                // _textTimer.text = Mathf.Ceil(remainingTime).ToString();
                 
                 yield return null;
                 
                 remainingTime -= Time.deltaTime;
             }
 
-            _textTimer.text = " Go ! ";
+            // _textTimer.text = " Go ! ";
             
             yield return new WaitForSeconds(delay);
 
