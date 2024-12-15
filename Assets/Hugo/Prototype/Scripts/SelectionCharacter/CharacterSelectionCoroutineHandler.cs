@@ -16,12 +16,12 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         private Coroutine _loadSceneCoroutine;
 
         [Header("Text Timer")]
+        [SerializeField] private GameObject _panelBackGround;
         [SerializeField] private GameObject _panelTimer;
         [SerializeField] private Sprite _spriteThree;
         [SerializeField] private Sprite _spriteTwo;
         [SerializeField] private Sprite _spriteOne;
         [SerializeField] private Sprite _spriteGo;
-        // [SerializeField] private TextMeshProUGUI _textTimer;
 
         private void Awake()
         {
@@ -47,33 +47,32 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         private IEnumerator LoadSceneWithDelay(float delay)
         {
             float remainingTime = delay;
+            
+            _panelBackGround.SetActive(true);
 
-            while (remainingTime > 0)
+            while (remainingTime > 0f)
             {
-                if (Math.Abs(remainingTime - 3) < 0.2f)
+                if (Math.Abs(remainingTime - 3f) < 0.2f)
                 {
                     _panelTimerImage.sprite = _spriteThree;
                 }
-                if (Math.Abs(remainingTime - 2) < 0.2f)
+                if (Math.Abs(remainingTime - 2f) < 0.2f)
                 {
                     _panelTimerImage.sprite = _spriteTwo;
                 }
-                if (Math.Abs(remainingTime - 1) < 0.2f)
+                if (Math.Abs(remainingTime - 1f) < 0.2f)
                 {
                     _panelTimerImage.sprite = _spriteOne;
                 }
-                if (remainingTime == 0)
+                if (Math.Abs(remainingTime - 0.1f) < 0.1f)
                 {
                     _panelTimerImage.sprite = _spriteGo;
                 }
-                // _textTimer.text = Mathf.Ceil(remainingTime).ToString();
                 
                 yield return null;
                 
                 remainingTime -= Time.deltaTime;
             }
-
-            // _textTimer.text = " Go ! ";
             
             yield return new WaitForSeconds(delay);
 
@@ -84,6 +83,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         {
             if (_loadSceneCoroutine != null)
             {
+                _panelBackGround.SetActive(false);
                 StopCoroutine(_loadSceneCoroutine);
                 _loadSceneCoroutine = null;
                 GameManager.HasGameLoaded = false;
