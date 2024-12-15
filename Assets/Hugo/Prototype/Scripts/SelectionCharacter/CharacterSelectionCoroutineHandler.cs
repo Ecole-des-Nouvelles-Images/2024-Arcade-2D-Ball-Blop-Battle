@@ -49,7 +49,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             
             yield return new WaitForSeconds(delay);
 
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
         
         public void CancelLoadScene()

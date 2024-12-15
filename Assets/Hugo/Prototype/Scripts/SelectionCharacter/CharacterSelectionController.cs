@@ -191,7 +191,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 }
                 else
                 {
-                    SceneManager.LoadScene(0);
+                    SceneManager.LoadScene(1);
                 }
                 
             }
