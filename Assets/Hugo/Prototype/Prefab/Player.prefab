@@ -238,7 +238,7 @@ MonoBehaviour:
   _jumpingSpeed: 10
   _airControlFactor: 0.08
   _maxAirSpeed: 5.5
-  _timePerfectReception: 0.5
+  _timeCanPerfectReception: 0.5
   _timeAppears: 0.5
   _timeResetRotation: 0.2
   _dashSpeed: 15
@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76e3d91313c54c6ba3a5e383b88e389f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputAreEnable: 1
 --- !u!95 &-725423216907730320
 Animator:
   serializedVersion: 5

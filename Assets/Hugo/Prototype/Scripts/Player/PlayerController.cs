@@ -5,6 +5,7 @@ using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -61,7 +62,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private float _jumpingSpeed;
         [SerializeField] private float _airControlFactor;
         [SerializeField] private float _maxAirSpeed;
-        [SerializeField] private float _timePerfectReception;
+        [SerializeField] private float _timeCanPerfectReception;
         [SerializeField] private float _timeAppears;
         [SerializeField] private float _timeResetRotation;
         
@@ -181,15 +182,21 @@ namespace Hugo.Prototype.Scripts.Player
                 _hasTheBall = false;
                 IsSpecialSpike = false;
             }
+            
+            // Cant Perfect reception dans les airs
+            if (!_isGrounded)
+            {
+                _canPerfectReception = false;
+            }
 
             if (WinTheMatch && _isGrounded && _canMove)
             {
-                _canMove = false;
+                // _canMove = false;
                 _animator.SetTrigger("Win");
             }
             if (LoseTheMatch && _isGrounded && _canMove)
             {
-                _canMove = false;
+                // _canMove = false;
                 _animator.SetTrigger("Lose");
             }
             
@@ -368,7 +375,7 @@ namespace Hugo.Prototype.Scripts.Player
             if (Mathf.Approximately(buttonValue, 1) && _move == Vector2.zero && _isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 1)
             {
                 _canPerfectReception = true;
-                Invoke(nameof(ReverseCanPerfectReception), _timePerfectReception);
+                Invoke(nameof(ReverseCanPerfectReception), _timeCanPerfectReception);
             }
 
             if (Mathf.Approximately(buttonValue, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)

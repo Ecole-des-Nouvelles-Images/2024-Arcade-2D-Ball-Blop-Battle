@@ -34,7 +34,7 @@ namespace Hugo.Prototype.Scripts.UI
             }
         }
 
-        public void Resume()
+        public void Resum()
         {
             GameManager.IsGamePaused = false;
         }
@@ -51,13 +51,13 @@ namespace Hugo.Prototype.Scripts.UI
             
             Time.timeScale = 1;
             
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
         }
         
         public void BackMenu()
         {
             ResetParameters();
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
         
         public void Quit()
