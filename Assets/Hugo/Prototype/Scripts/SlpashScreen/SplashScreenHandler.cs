@@ -22,6 +22,9 @@ namespace Hugo.Prototype.Scripts.SlpashScreen
 
         private void Start()
         {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
             _screenEnsi.DOFade(1f, _fadeInDuration);
             Invoke(nameof(FadeOutEnsi), _screenStay);
         }
