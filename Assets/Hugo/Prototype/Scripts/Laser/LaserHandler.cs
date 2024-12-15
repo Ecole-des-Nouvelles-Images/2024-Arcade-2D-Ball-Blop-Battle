@@ -1,3 +1,4 @@
+using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
@@ -65,7 +66,7 @@ namespace Hugo.Prototype.Scripts.Laser
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, true);
                 _cameraHandler.ScoredShake();
-                Destroy(_ballGameObject);
+                _ballGameObject.GetComponent<BallHandler>().Destroy();
             }
             else
             {
@@ -73,7 +74,7 @@ namespace Hugo.Prototype.Scripts.Laser
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, true);
                 _cameraHandler.ScoredShake();
-                Destroy(_ballGameObject);
+                _ballGameObject.GetComponent<BallHandler>().Destroy();
             }
         }
 

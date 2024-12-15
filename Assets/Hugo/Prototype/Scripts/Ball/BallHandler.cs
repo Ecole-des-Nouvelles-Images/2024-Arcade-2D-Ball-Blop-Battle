@@ -43,6 +43,7 @@ namespace Hugo.Prototype.Scripts.Ball
         [Header("   Particle System")]
         public GameObject BallBaseTrail;
         [SerializeField] private ParticleSystem _ballAppearsDisappears;
+        public ParticleSystem BallDisappears;
         [SerializeField] private ParticleSystem _ballHits;
         [Header("Blue")]
         public GameObject VFXSpecialSpikeBlue;
@@ -108,7 +109,7 @@ namespace Hugo.Prototype.Scripts.Ball
             // Détruit le ballon a la fin du temps
             if (MatchManager.IsSetOver)
             {
-                Destroy(gameObject);
+                Destroy();
             }
         }
 
@@ -146,7 +147,8 @@ namespace Hugo.Prototype.Scripts.Ball
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                 }
                 _cameraHandler.ScoredShake();
-                Destroy(gameObject);
+                
+                Destroy();
             }
             if (other.gameObject.CompareTag("PlayerTwoGround"))
             {
@@ -171,7 +173,8 @@ namespace Hugo.Prototype.Scripts.Ball
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                 }
                 _cameraHandler.ScoredShake();
-                Destroy(gameObject);
+
+                Destroy();
             }
             
             if (other.gameObject.CompareTag("Player"))
@@ -426,6 +429,18 @@ namespace Hugo.Prototype.Scripts.Ball
             VFXSpecialSpikeYellow.SetActive(false);
             
             BallBaseTrail.SetActive(true);
+        }
+
+        public void Destroy()
+        {
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                
+            // VFX
+            BallDisappears.Play();
+                
+            _sr.color = new Color(1, 1, 1, 0);
+            
+            Destroy(gameObject, 0.3f);
         }
     }
 }

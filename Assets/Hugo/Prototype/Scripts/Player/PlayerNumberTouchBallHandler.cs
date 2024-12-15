@@ -1,3 +1,4 @@
+using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace Hugo.Prototype.Scripts.Player
             }
                     
             NumberTouchBall = 0;
-            Destroy(_ballGameObject);
+            _ballGameObject.GetComponent<BallHandler>().Destroy();
         }
 
         private void ReverseAlreadyTouched()
