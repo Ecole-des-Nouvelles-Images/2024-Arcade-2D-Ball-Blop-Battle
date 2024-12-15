@@ -78,8 +78,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.15f, 0.45f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.35f, 0.85f);
                 
-                _specialSpikeText.anchorMin = new Vector2(0.03f, 0.05f);
-                _specialSpikeText.anchorMax = new Vector2(0.2f, 0.35f);
+                _specialSpikeText.anchorMin = new Vector2(0f, 0.02f);
+                _specialSpikeText.anchorMax = new Vector2(0.25f, 0.4f);
                 
                 // Clear deicesID
                 GameManager.DevicesID.Clear();
@@ -91,8 +91,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.65f, 0.45f);
                 _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.85f, 0.85f);
                 
-                _specialSpikeText.anchorMin = new Vector2(0.8f, 0.05f);
-                _specialSpikeText.anchorMax = new Vector2(0.97f, 0.35f);
+                _specialSpikeText.anchorMin = new Vector2(0.75f, 0.02f);
+                _specialSpikeText.anchorMax = new Vector2(1f, 0.4f);
             }
             
             // Stock deicesID
