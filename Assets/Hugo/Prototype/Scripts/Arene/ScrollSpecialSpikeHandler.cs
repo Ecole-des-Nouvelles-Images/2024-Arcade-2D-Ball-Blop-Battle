@@ -24,7 +24,7 @@ namespace Hugo.Prototype.Scripts.Arene
             if (transform.position.y >= 8 && !_isSpawn)
             {
                 _isSpawn = true;
-                Instantiate(_scrollBackGround, new Vector2(0, -22f), Quaternion.identity);
+                Instantiate(_scrollBackGround, new Vector2(0, -21.98f), Quaternion.identity);
             }
             
             if (transform.position.y > 20)

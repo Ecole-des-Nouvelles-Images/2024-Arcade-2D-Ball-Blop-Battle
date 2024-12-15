@@ -41,6 +41,7 @@ namespace Hugo.Prototype.Scripts.Ball
         
         [Header("   Particle System")]
         [SerializeField] private ParticleSystem _ballAppearsDisappears;
+        [SerializeField] private ParticleSystem _ballHits;
         [Header("Blue")]
         public GameObject VFXSpecialSpikeBlue;
         public ParticleSystem VFXSpecialSpikeBlueImpact;
@@ -200,6 +201,12 @@ namespace Hugo.Prototype.Scripts.Ball
                 }
                 
                 ResetVFXSpecialSpike();
+            }
+
+            if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Selling"))
+            {
+                // VFX
+                _ballHits.Play();
             }
         }
         

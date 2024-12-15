@@ -231,7 +231,7 @@ MonoBehaviour:
   PerfectReceptionCount: 0
   CanSpecialSpike: 0
   IsSpecialSpike: 0
-  _playerType: {fileID: 11400000, guid: d6f99d27314a2e84a93a56036471eef8, type: 2}
+  _playerType: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
   _speed: 450
   _jumpForce: 14
   _wallJumpForce: 10
@@ -255,6 +255,7 @@ MonoBehaviour:
     m_Bits: 64
   _impactBackground: {fileID: 3117198505760830044, guid: e3d76625c78b83f4289b2614340fbb75, type: 3}
   _scrollBackground: {fileID: 1361749555874063764, guid: 37205f678ba768e47851377ba423c38d, type: 3}
+  ImpactBackgroundObject: {fileID: 0}
   _vfxJumping: {fileID: 6960193284403353707}
   _vfxAttacking: {fileID: 6177206345739415146}
   _vfxPerfectReception: {fileID: 5433815415873377306}

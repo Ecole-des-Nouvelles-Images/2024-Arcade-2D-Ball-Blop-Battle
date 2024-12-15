@@ -18,6 +18,8 @@ namespace Hugo.Prototype.Scripts.Player
         private float _westButtonReadValue;
         private float _leftButtonReadValue;
 
+        public bool InputAreEnable = true;
+
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
@@ -75,27 +77,42 @@ namespace Hugo.Prototype.Scripts.Player
         
         private void LeftJoystick(InputAction.CallbackContext context)
         {
-            _playerController.GetJoystickReadValue(context.ReadValue<Vector2>());
+            if (InputAreEnable)
+            {
+                _playerController.GetJoystickReadValue(context.ReadValue<Vector2>());
+            }
         }
         
         private void SouthButton(InputAction.CallbackContext context)
         {
-            _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+            if (InputAreEnable)
+            {
+                _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+            }
         }
         
         private void WestButton(InputAction.CallbackContext context)
         {
-            _playerController.GetWestButtonReadValue(context.ReadValue<float>());
+            if (InputAreEnable)
+            {
+                _playerController.GetWestButtonReadValue(context.ReadValue<float>());
+            }
         }
         
         private void EastButton(InputAction.CallbackContext context)
         {
-            _playerController.GetEastButtonReadValue(context.ReadValue<float>());
+            if (InputAreEnable)
+            {
+                _playerController.GetEastButtonReadValue(context.ReadValue<float>());
+            }
         }
 
         private void StartButton(InputAction.CallbackContext context)
         {
-            _playerController.GetStartButtonReadValue(context.ReadValue<float>());
+            if (InputAreEnable)
+            {
+                _playerController.GetStartButtonReadValue(context.ReadValue<float>());
+            }
         }
     }
 }

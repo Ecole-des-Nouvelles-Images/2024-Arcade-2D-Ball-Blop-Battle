@@ -29,7 +29,6 @@ namespace Hugo.Prototype.Scripts.Game
         
         [Header("References")]
         [SerializeField] private GameObject _ballPrefab;
-        [SerializeField] private GameObject _panelPaused;
         [SerializeField] private GameManager _gameManager;
         [SerializeField] private HUDDisplay _hudDisplay;
         [SerializeField] private CameraHandler _cameraHandler;
@@ -40,6 +39,10 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private GameObject _playerOneScoredPanel;
         [SerializeField] private GameObject _playerTwoScoredPanel;
         
+        [Header("Canvas")]
+        [SerializeField] private GameObject _canvasNewSet;
+        [SerializeField] private GameObject _canvasEndMatch;
+        
         [Header("Public Variables")]
         public int SetScorePlayerOne;
         public int SetScorePlayerTwo;
@@ -49,7 +52,10 @@ namespace Hugo.Prototype.Scripts.Game
         {
             if (_gameManager.FirstPlayerGameObject && _gameManager.SecondPlayerGameObject && !_inGame)
             {
-                Invoke(nameof(StartTimer), 3f);
+                _canvasNewSet.SetActive(true);
+                Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
+                
+                Invoke(nameof(StartTimer), _timeBetweenSets);
                 _inGame = true;
             }
             
@@ -103,10 +109,15 @@ namespace Hugo.Prototype.Scripts.Game
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 else
                 {
+                    _canvasNewSet.SetActive(true);
+                    Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
+                    
                     Invoke(nameof(StartTimer), _timeBetweenSets);
                 }
             }
@@ -121,10 +132,15 @@ namespace Hugo.Prototype.Scripts.Game
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 else
                 {
+                    _canvasNewSet.SetActive(true);
+                    Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
+                    
                     Invoke(nameof(StartTimer), _timeBetweenSets);
                 }
             }
@@ -140,6 +156,8 @@ namespace Hugo.Prototype.Scripts.Game
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 if (SetScorePlayerTwo == 3)
@@ -149,14 +167,21 @@ namespace Hugo.Prototype.Scripts.Game
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerController>().LoseTheMatch = true;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().WinTheMatch = true;
                     
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 if (SetScorePlayerOne == 3 && SetScorePlayerTwo == 3)
                 {
+                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 else
                 {
+                    _canvasNewSet.SetActive(true);
+                    Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
+                    
                     Invoke(nameof(StartTimer), _timeBetweenSets);
                 }
             }
@@ -184,8 +209,7 @@ namespace Hugo.Prototype.Scripts.Game
 
         private void EndGame()
         {
-            _panelPaused.SetActive(true);
-            Time.timeScale = 0f;
+            _canvasEndMatch.SetActive(true);
         }
 
         public void DisplayScoreChange(bool isPlayerOneScored, bool isFoul)
@@ -229,6 +253,11 @@ namespace Hugo.Prototype.Scripts.Game
                     _playerOneFoulPanel.SetActive(true);
                 }
             }
+        }
+
+        private void CanvasSetActiveFalse()
+        {
+            _canvasNewSet.SetActive(false);
         }
         
         // Utils
