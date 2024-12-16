@@ -17,7 +17,7 @@ namespace Hugo.Prototype.Scripts.UI
         [SerializeField] private GameObject _firstSelectedButton;
         
         [Header("Buttons")]
-        [SerializeField] private List<Button> _buttons;
+        [SerializeField] private List<GameObject> _buttons;
 
         private void OnEnable()
         {
@@ -28,7 +28,7 @@ namespace Hugo.Prototype.Scripts.UI
                 _firstSelectedButton.transform.DOScale(_animationEndScale, _animationTime).SetEase(_animationCurve);
             }
 
-            foreach (Button button in _buttons)
+            foreach (GameObject button in _buttons)
             {
                 button.GetComponent<RectTransform>().localScale = Vector3.one;
             }
