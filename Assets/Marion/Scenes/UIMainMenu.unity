@@ -1071,10 +1071,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelMainMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 3878736224468220149, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4738647248128139903, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -1165,7 +1161,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9017245395006560880, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.34
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9017245395006560880, guid: d06b5062d1aacf540bb19d90a8f86bde, type: 3}
       propertyPath: m_AnchorMax.y
