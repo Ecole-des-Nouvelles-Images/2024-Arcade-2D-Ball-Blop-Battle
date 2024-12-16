@@ -15,7 +15,7 @@ MonoBehaviour:
   PlayerName: Jaune
   Sprite: {fileID: 21300000, guid: 03fe9fb39ba1d6048b0733a0691ebd4e, type: 3}
   SpeedSpecialSpike: 2.3
-  SpecialSpikeDescription: "Tir un ballon si vite qu'il devient invisible et laisse
-    seulement une train\xE9e electrique."
+  SpecialSpikeDescription: "Tire un ballon si rapide qu'il devient invisible et laisse
+    seulement une tra\xEEn\xE9e \xE9lectrique."
   PlayerAnimatorController: {fileID: 9100000, guid: bf36f98d727855a479adb153011ef9bd, type: 2}
   _becameTransparentTimer: 0.3
