@@ -108,7 +108,7 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private ParticleSystem _vfxShootSpecialSpikeBlue;
         [SerializeField] private ParticleSystem _vfxShootSpecialSpikeGreen;
         [SerializeField] private ParticleSystem _vfxShootSpecialSpikeYellow;
-        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeRed;
+        public ParticleSystem VfxShootSpecialSpikeRed;
         [Header("Trails")]
         [SerializeField] private GameObject _vfxTrailBlue;
         [SerializeField] private GameObject _vfxTrailGreen;
@@ -345,6 +345,18 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
+                    
+                    // VFX
+                    if (VfxShootSpecialSpikeRed)
+                    {
+                        if (PlayerType.PlayerName == "Rouge")
+                        {
+                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
+                            
+                            VfxShootSpecialSpikeRed.Play();
+                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
+                        }
+                    }
                 }
                 else if (IsSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && _isGrounded)
                 {
@@ -485,7 +497,7 @@ namespace Hugo.Prototype.Scripts.Player
                     // Animation
                     _animator.SetTrigger("Drawn");
                     // VFX
-                    if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeRed && _vfxShootSpecialSpikeYellow)
+                    if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeYellow)
                     {
                         if (PlayerType.PlayerName == "Bleu")
                         {
@@ -509,13 +521,6 @@ namespace Hugo.Prototype.Scripts.Player
                             _vfxShootSpecialSpikeYellow.Play();
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellow.SetActive(true);
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellowImpact.Play();
-                        }
-                        if (PlayerType.PlayerName == "Rouge")
-                        {
-                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
-                            
-                            _vfxShootSpecialSpikeRed.Play();
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
                         }
                     }
                     return;

@@ -3,6 +3,7 @@ using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -141,10 +142,20 @@ namespace Hugo.Prototype.Scripts.Ball
                 if (_lastPlayerGameObject)
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+
+                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    {
+                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    }
                 }
                 if (_currentPlayerGameObject)
                 {
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                    
+                    if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    {
+                        _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    }
                 }
                 _cameraHandler.ScoredShake();
                 
@@ -167,10 +178,20 @@ namespace Hugo.Prototype.Scripts.Ball
                 if (_lastPlayerGameObject)
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                    
+                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    {
+                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    }
                 }
                 if (_currentPlayerGameObject)
                 {
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
+                    
+                    if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    {
+                        _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    }
                 }
                 _cameraHandler.ScoredShake();
 
@@ -198,6 +219,11 @@ namespace Hugo.Prototype.Scripts.Ball
                 if (_lastPlayerGameObject)
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
+                    
+                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    {
+                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    }
                 }
                 
                 if (_isTransparent)
@@ -316,7 +342,6 @@ namespace Hugo.Prototype.Scripts.Ball
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
-                        Debug.Log("Reset");
                     }
                     Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
                 }
@@ -328,7 +353,6 @@ namespace Hugo.Prototype.Scripts.Ball
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
-                        Debug.Log("Reset");
                     }
                     Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
                 }

@@ -231,7 +231,7 @@ MonoBehaviour:
   PerfectReceptionCount: 0
   CanSpecialSpike: 0
   IsSpecialSpike: 0
-  _playerType: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
+  PlayerType: {fileID: 0}
   _speed: 450
   _jumpForce: 14
   _wallJumpForce: 10
@@ -271,7 +271,7 @@ MonoBehaviour:
   _vfxShootSpecialSpikeBlue: {fileID: 771637283815474671}
   _vfxShootSpecialSpikeGreen: {fileID: 1066238822166053794}
   _vfxShootSpecialSpikeYellow: {fileID: 8969064149635420381}
-  _vfxShootSpecialSpikeRed: {fileID: 4837830951000162309}
+  VfxShootSpecialSpikeRed: {fileID: 4837830951000162309}
   _vfxTrailBlue: {fileID: 5311831988348182660}
   _vfxTrailGreen: {fileID: 3353820899675485340}
   _vfxTrailYellow: {fileID: 6996063166557946003}
@@ -1749,6 +1749,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: looping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: lengthInSec
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: InitialModule.gravitySource
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4433861055914273655, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: InitialModule.startLifetime.minScalar
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7825021276805024118, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1792,6 +1816,10 @@ PrefabInstance:
     - target: {fileID: 8252428279917890593, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
       propertyPath: m_Name
       value: Lance_CS_R
+      objectReference: {fileID: 0}
+    - target: {fileID: 8252428279917890593, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
