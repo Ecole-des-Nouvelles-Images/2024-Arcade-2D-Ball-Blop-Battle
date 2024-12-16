@@ -311,22 +311,26 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject)
                 {
-                    if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike)
+                    if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().CanAbsorb)
                     {
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
+                        Debug.Log("Reset");
                     }
+                    Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
                 }
 
                 if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject)
                 {
-                    if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike)
+                    if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().CanAbsorb)
                     {
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
+                        Debug.Log("Reset");
                     }
+                    Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
                 }
             }
         }

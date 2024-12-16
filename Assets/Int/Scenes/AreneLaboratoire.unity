@@ -3823,7 +3823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308884ad2f5782543a8da953dcb868de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalTimer: 60
+  _totalTimer: 30
   _timeBetweenSets: 4
   _timerNewBall: 1
   _ballPrefab: {fileID: 7739952088009901526, guid: 529e28658a8424444bf61b708acfb1c7, type: 3}
