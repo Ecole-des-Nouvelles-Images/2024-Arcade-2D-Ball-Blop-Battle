@@ -1,0 +1,12 @@
+Font: Shine Bubble Deco  Style: Regular
+Point Size: 63   SP/PD Ratio: 7,9٪
+
+Characters included: 77/77
+Missing characters: 0
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+
+Characters excluded from packing:
+----------------------------------------
