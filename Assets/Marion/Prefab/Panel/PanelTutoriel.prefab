@@ -109,8 +109,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 68.20001, y: -40.500015}
-  m_SizeDelta: {x: 536.4, y: 81.00003}
+  m_AnchoredPosition: {x: 68.20001, y: -40.500004}
+  m_SizeDelta: {x: 536.4, y: 81.00001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2544996249753487509
 CanvasRenderer:
@@ -432,8 +432,8 @@ MonoBehaviour:
     lanc\xE9 !\n\nAppuyer sur \"B\" une fois le ballon tir\xE9 pour changer sa trajectoire
     et le smasher au sol."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -643,7 +643,7 @@ MonoBehaviour:
     r\xE9tr\xE9cit et devient donc plus difficile \xE0 r\xE9ceptionner. Le ballon
     reprend sa taille au premier impact avec le joueur adverse ou le sol."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -778,8 +778,8 @@ MonoBehaviour:
   m_text: "Permet au joueur de pouvoir sauter une deuxi\xE8me fois en l'air.\n\nTouche
     : \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1367,12 +1367,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Elle permet d'envoyer le ballon pile au-dessus de son blop avec une vitesse
-    moyenne. Elle augment \xE9galement la charge de coup sp\xE9cial de 1.\nPour se
-    faire, il faut appuyer sur \"X\" juste avant de toucher la balle tout en \xE9tant
+    moyenne. Elle augment \xE9galement la charge de coup sp\xE9cial de 1.\n\nPour
+    se faire, il faut appuyer sur \"X\" juste avant de toucher la balle tout en \xE9tant
     immobile.\n\nTouche : "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1506,8 +1506,8 @@ MonoBehaviour:
   m_text: "Permet de tirer le ballon si vous l'avez absorb\xE9 pr\xE9alablement.\n\nTouche
     : \n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1926,8 +1926,8 @@ MonoBehaviour:
     Il faut appuyer et rester appuy\xE9 sur \"X\" pour attraper le ballon et le garder
     en soi.\n\nTouche : "
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2472,8 +2472,8 @@ RectTransform:
   - {fileID: 2369312003557238147}
   m_Father: {fileID: 451813675428437916}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.25}
-  m_AnchorMax: {x: 1, y: 0.35}
+  m_AnchorMin: {x: 0.35, y: 0.33}
+  m_AnchorMax: {x: 1, y: 0.43}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3055,8 +3055,8 @@ MonoBehaviour:
 
     Touche : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3810,8 +3810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 68.20001, y: -40.499985}
-  m_SizeDelta: {x: 536.4, y: 80.99997}
+  m_AnchoredPosition: {x: 68.20001, y: -40.500015}
+  m_SizeDelta: {x: 536.4, y: 81.00003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5472429239837871305
 CanvasRenderer:
@@ -5238,10 +5238,10 @@ RectTransform:
   - {fileID: 1628960747261467229}
   m_Father: {fileID: 1678939206627025176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.47}
-  m_AnchorMax: {x: 1, y: 0.57}
+  m_AnchorMin: {x: 0.35, y: 0.52}
+  m_AnchorMax: {x: 1, y: 0.62}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -0.0000019073486}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1702992229874030198
 CanvasRenderer:
@@ -5499,8 +5499,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150.7, y: -40.500015}
-  m_SizeDelta: {x: 197.13333, y: 81.00003}
+  m_AnchoredPosition: {x: 150.7, y: -40.499985}
+  m_SizeDelta: {x: 197.13333, y: 80.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6375284691203545997
 CanvasRenderer:
@@ -5783,8 +5783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 63.566666, y: -40.500015}
-  m_SizeDelta: {x: 197.13333, y: 81.00003}
+  m_AnchoredPosition: {x: 63.566666, y: -40.499985}
+  m_SizeDelta: {x: 197.13333, y: 80.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8312213224582409947
 CanvasRenderer:
@@ -5992,8 +5992,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 237.83333, y: -40.500015}
-  m_SizeDelta: {x: 197.13333, y: 81.00003}
+  m_AnchoredPosition: {x: 237.83333, y: -40.499985}
+  m_SizeDelta: {x: 197.13333, y: 80.99997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4094551915470482665
 CanvasRenderer:
@@ -6584,7 +6584,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4938347016748864781
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6831,7 +6831,7 @@ MonoBehaviour:
     qu'elle devient invisible et laisse sur son passage seulement une tra\xEEn\xE9e
     \xE9lectrique."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7048,8 +7048,8 @@ MonoBehaviour:
     ne le touche\n \u2022 Toucher le sol avec le ballon en soi\n \u2022 Aller dans
     le camp adverse"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7285,8 +7285,8 @@ RectTransform:
   - {fileID: 1681275963381957635}
   m_Father: {fileID: 2102249938834521374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.07}
-  m_AnchorMax: {x: 1, y: 0.17}
+  m_AnchorMin: {x: 0.35, y: 0.1}
+  m_AnchorMax: {x: 1, y: 0.2}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7968,8 +7968,8 @@ RectTransform:
   - {fileID: 5653042861793247352}
   m_Father: {fileID: 8428292848433690797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0}
-  m_AnchorMax: {x: 1, y: 0.1}
+  m_AnchorMin: {x: 0.35, y: 0.15}
+  m_AnchorMax: {x: 1, y: 0.25}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8582,11 +8582,10 @@ MonoBehaviour:
   m_text: 'Permet au joueur de sauter.
 
 
-
     Touche : '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8724,8 +8723,8 @@ MonoBehaviour:
     de rappuyer sur \"B\" pour tirer avec le coup sp\xE9cial de son blop.\n\nTouche
     :"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
-  m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
+  m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9543,8 +9542,8 @@ RectTransform:
   - {fileID: 2545027553565823983}
   m_Father: {fileID: 1678939206627025176}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.07}
-  m_AnchorMax: {x: 1, y: 0.17}
+  m_AnchorMin: {x: 0.35, y: 0.1}
+  m_AnchorMax: {x: 1, y: 0.2}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9989,10 +9988,10 @@ RectTransform:
   - {fileID: 6094747988747724650}
   m_Father: {fileID: 2102249938834521374}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.57}
-  m_AnchorMax: {x: 1, y: 0.67}
+  m_AnchorMin: {x: 0.35, y: 0.65}
+  m_AnchorMax: {x: 1, y: 0.75}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0.0000076293945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6984217723001509130
 CanvasRenderer:
@@ -10303,8 +10302,8 @@ RectTransform:
   - {fileID: 7515062506069295335}
   m_Father: {fileID: 3081951960031002453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.35, y: 0.52}
-  m_AnchorMax: {x: 1, y: 0.62}
+  m_AnchorMin: {x: 0.35, y: 0.6}
+  m_AnchorMax: {x: 1, y: 0.7}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -10575,7 +10574,7 @@ MonoBehaviour:
     et parmi elles deux seront des fausses.\n\nAppuyer trois fois sur \"B\" pour
     tirer  les trois ballons."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_sharedMaterial: {fileID: -1394548902934304166, guid: 4d79f30ebf5cf394da55516a10186ac1, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
