@@ -41,6 +41,8 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _isAttacking;
         private bool _appears;
         private bool _hasPunch;
+        private bool _isWinning;
+        private bool _isLosing;
         
         // Inputs values
         private Vector2 _move;
@@ -191,16 +193,18 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 _canPerfectReception = false;
             }
-
-            if (WinTheMatch && _isGrounded && _canMove)
+            
+            if (WinTheMatch && _isGrounded && !_isWinning)
             {
-                // _canMove = false;
+                _isWinning = true;
                 _animator.SetTrigger("Win");
+                Debug.Log("Win");
             }
-            if (LoseTheMatch && _isGrounded && _canMove)
+            if (LoseTheMatch && _isGrounded && !_isLosing)
             {
-                // _canMove = false;
+                _isLosing = true;
                 _animator.SetTrigger("Lose");
+                Debug.Log("Lose");
             }
             
             // Animation

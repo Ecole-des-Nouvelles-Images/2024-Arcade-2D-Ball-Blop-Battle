@@ -2310,6 +2310,10 @@ PrefabInstance:
       propertyPath: _buttons.Array.data[0]
       value: 
       objectReference: {fileID: 1349327316}
+    - target: {fileID: 5588278770274246976, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_text
+      value: "Producer \n\nGame Artist\nGame Artiste \n\nDeveloper "
+      objectReference: {fileID: 0}
     - target: {fileID: 5917508101426138902, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_SpriteState.m_SelectedSprite
       value: 
@@ -2345,6 +2349,11 @@ PrefabInstance:
     - target: {fileID: 7742594863087583886, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964262659608165361, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_text
+      value: "Ecole des nouvelles images \n\nCalvin Ovide\nMarion Dubreuil\n\nHugo
+        Isambart"
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7805240701382505037, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
