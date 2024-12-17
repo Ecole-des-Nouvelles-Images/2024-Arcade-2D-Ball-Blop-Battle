@@ -1034,6 +1034,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "PanelCr\xE9dit"
       objectReference: {fileID: 0}
+    - target: {fileID: 7392693082944420119, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7742594863087583886, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.98

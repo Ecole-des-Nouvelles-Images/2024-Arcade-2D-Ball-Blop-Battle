@@ -5,7 +5,6 @@ using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
