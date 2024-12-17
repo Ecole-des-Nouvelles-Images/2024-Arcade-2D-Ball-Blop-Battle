@@ -1,4 +1,6 @@
+using System;
 using DG.Tweening;
+using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,12 +12,19 @@ namespace Hugo.Prototype.Scripts.UI
         // [SerializeField] private AudioElement _acPointerEntrer;
         // [SerializeField] private AudioElement _acPointerExit;
         // [SerializeField] private AudioElement _acPointerDown;
+        
+        private AudioSource _audioSource;
 
         [SerializeField] private bool _playTweening = true;
         [SerializeField] private float _animationTime = 0.3f;
         [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
         [SerializeField] private float _animationEndScale = 1.2f;
+        [SerializeField] private bool _isSlimeButton;
 
+        private void Awake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
 
         public void OnPointerEnter(PointerEventData eventData)
         {
@@ -27,6 +36,18 @@ namespace Hugo.Prototype.Scripts.UI
             {
                 transform.DOPause();
                 transform.DOScale(_animationEndScale, _animationTime).SetEase(_animationCurve);
+            }
+            
+            // SFX
+            if (_isSlimeButton)
+            {
+                _audioSource.clip = AudioStock.Instance.SlimeButtonClip;
+                _audioSource.Play();
+            }
+            else
+            {
+                _audioSource.clip = AudioStock.Instance.ClassicButtonClip;
+                _audioSource.Play();
             }
         }
 

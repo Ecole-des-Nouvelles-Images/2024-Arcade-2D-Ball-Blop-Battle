@@ -2,6 +2,7 @@ using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
+using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Laser
@@ -21,10 +22,12 @@ namespace Hugo.Prototype.Scripts.Laser
         private bool _isplayerOneHit;
         private GameObject _ballGameObject;
         private MatchManager _matchManager;
+        private AudioSource _audioSource;
         
         private void Awake()
         {
             _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
+            _audioSource = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -42,13 +45,17 @@ namespace Hugo.Prototype.Scripts.Laser
             {
                 _hasAlreadyHit = true;
                 
-                //Debug.Log(" hit player ");
+                Debug.Log(" hit player ");
                 GameObject playerChildren = hitPlayer.collider.gameObject;
                 playerChildren.GetComponentInParent<PlayerController>().PlayerDie();
                 _isplayerOneHit = playerChildren.GetComponentInParent<PlayerNumberTouchBallHandler>().IsPlayerOne;
                 
                 // Particles System
                 _laserParticles.Play();
+                
+                // Audio
+                _audioSource.clip = AudioStock.Instance.LaserClips[0];
+                _audioSource.Play();
                 
                 ScoringOnDeath();
                 Invoke(nameof(ResetHasAlreadyHit), 0.5f);
@@ -62,19 +69,25 @@ namespace Hugo.Prototype.Scripts.Laser
         {
             if (_isplayerOneHit)
             {
-                MatchManager.ScorePlayerTwo++;
-                MatchManager.PlayerOneScoreLast = true;
-                _matchManager.DisplayScoreChange(false, true);
-                _cameraHandler.ScoredShake();
-                _ballGameObject.GetComponent<BallHandler>().Destroy();
+                if (_ballGameObject)
+                {
+                    MatchManager.ScorePlayerTwo++;
+                    MatchManager.PlayerOneScoreLast = true;
+                    _matchManager.DisplayScoreChange(false, true);
+                    _cameraHandler.ScoredShake();
+                    _ballGameObject.GetComponent<BallHandler>().Destroy();
+                }
             }
             else
             {
-                MatchManager.ScorePlayerOne++;
-                MatchManager.PlayerOneScoreLast = false;
-                _matchManager.DisplayScoreChange(true, true);
-                _cameraHandler.ScoredShake();
-                _ballGameObject.GetComponent<BallHandler>().Destroy();
+                if (_ballGameObject)
+                {
+                    MatchManager.ScorePlayerOne++;
+                    MatchManager.PlayerOneScoreLast = false;
+                    _matchManager.DisplayScoreChange(true, true);
+                    _cameraHandler.ScoredShake();
+                    _ballGameObject.GetComponent<BallHandler>().Destroy();
+                }
             }
         }
 

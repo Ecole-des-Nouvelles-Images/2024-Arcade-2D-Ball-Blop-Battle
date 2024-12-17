@@ -4,7 +4,9 @@ using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
+using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -21,6 +23,7 @@ namespace Hugo.Prototype.Scripts.Player
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
         private CameraHandler _cameraHandler;
+        private AudioSource _audioSource;
         
         // GameObject
         private GameObject _ball;
@@ -120,6 +123,7 @@ namespace Hugo.Prototype.Scripts.Player
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
+            _audioSource = GetComponent<AudioSource>();
 
             _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
@@ -270,6 +274,10 @@ namespace Hugo.Prototype.Scripts.Player
                     { 
                         CanSpecialSpike = true;
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
                 
                 Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
@@ -287,6 +295,10 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
                 
                 if(_isWestButtonPressed == 0 && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_hasPunch)
@@ -306,6 +318,10 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _vfxAttacking.Play();
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
 
                 if (IsSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_isGrounded)
@@ -356,6 +372,10 @@ namespace Hugo.Prototype.Scripts.Player
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
                         }
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
                 else if (IsSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && _isGrounded)
                 {
@@ -431,6 +451,10 @@ namespace Hugo.Prototype.Scripts.Player
                         _vfxSpitOutRed.Play();
                     }
                 }
+                
+                // SFX
+                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                _audioSource.Play();
             }
         }
 
@@ -482,6 +506,10 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerTwo();
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
 
                 if (IsSpecialSpike && _hasTheBall)
@@ -522,6 +550,10 @@ namespace Hugo.Prototype.Scripts.Player
                             _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellowImpact.Play();
                         }
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                     return;
                 }
 
@@ -566,6 +598,10 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _vfxJumping.Play();
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
                 
                 if (_isGrounded)
@@ -582,6 +618,10 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _vfxJumping.Play();
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
                 
                 if (_isWalled && !_isGrounded)
@@ -605,6 +645,10 @@ namespace Hugo.Prototype.Scripts.Player
                     {
                         _vfxJumping.Play();
                     }
+                    
+                    // SFX
+                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                    _audioSource.Play();
                 }
             }
         }
@@ -661,6 +705,10 @@ namespace Hugo.Prototype.Scripts.Player
                         _vfxLandingRed.Play();
                     }
                 }
+                
+                // SFX
+                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                _audioSource.Play();
             }
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
@@ -705,6 +753,10 @@ namespace Hugo.Prototype.Scripts.Player
                 _isDashing = true;
                 _dashTimeRemaining = _dashDuration;
                 _dashCooldownRemaining = _dashCooldown;
+                
+                // SFX
+                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
+                _audioSource.Play();
             }
             
             if (_isDashing)

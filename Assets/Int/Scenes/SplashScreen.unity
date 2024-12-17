@@ -154,7 +154,7 @@ MonoBehaviour:
   _fadeInDuration: 1
   _fadeOutDuration: 2
   _screenStay: 2
-  _lauchGame: 3
+  _lauchGame: 4
   _screenEnsi: {fileID: 1153286124}
   _illustration: {fileID: 765151750}
   _textChargement: {fileID: 840194253}

@@ -2,10 +2,10 @@ using System;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using Hugo.Prototype.Scripts.Player;
+using Hugo.Prototype.Scripts.Sounds;
 using JetBrains.Annotations;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Ball
 {
@@ -20,6 +20,7 @@ namespace Hugo.Prototype.Scripts.Ball
         private Transform _transform;
         private MatchManager _matchManager;
         private CameraHandler _cameraHandler;
+        private AudioSource _audioSource;
         
         private GameObject _currentPlayerGameObject;
         private GameObject _lastPlayerGameObject;
@@ -65,6 +66,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _col2D = GetComponent<Collider2D>();
             _sr = GetComponent<SpriteRenderer>();
             _transform = GetComponent<Transform>();
+            _audioSource = GetComponent<AudioSource>();
             _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
             _cameraHandler = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraHandler>();
         }
@@ -277,6 +279,10 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 // VFX
                 _ballHits.Play();
+                
+                // SFX
+                _audioSource.clip = AudioStock.Instance.BallClips[Random.Range(0, AudioStock.Instance.BallClips.Count)];
+                _audioSource.Play();
             }
         }
         
@@ -290,6 +296,27 @@ namespace Hugo.Prototype.Scripts.Ball
                 _rb2d.velocity = newDirection;
                 
                 // Debug.Log(" Direction : " + direction + " New direction : " + newDirection);
+            }
+            
+            if (other.gameObject.CompareTag("PlayerOneGround"))
+            {
+                MatchManager.ScorePlayerTwo++;
+                MatchManager.PlayerOneScoreLast = true;
+                _matchManager.DisplayScoreChange(false, false);
+                ResetVFXSpecialSpike();
+                _cameraHandler.ScoredShake();
+                
+                Destroy();
+            }
+            if (other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                MatchManager.ScorePlayerOne++;
+                MatchManager.PlayerOneScoreLast = false;
+                _matchManager.DisplayScoreChange(true, false);
+                ResetVFXSpecialSpike();
+                _cameraHandler.ScoredShake();
+
+                Destroy();
             }
         }
 
