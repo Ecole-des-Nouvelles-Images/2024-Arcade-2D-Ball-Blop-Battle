@@ -1140,6 +1140,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &628933811679121773
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1302,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &768677953685344425
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2365,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &2001420903250516351
 GameObject:
   m_ObjectHideFlags: 0
@@ -3358,6 +3361,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &2733641299273843319
 GameObject:
   m_ObjectHideFlags: 0
@@ -4146,6 +4150,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &3440511249540532693
 GameObject:
   m_ObjectHideFlags: 0
@@ -4676,6 +4681,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &3963243740419423391
 GameObject:
   m_ObjectHideFlags: 0
@@ -4936,6 +4942,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &3978845752924162345
 GameObject:
   m_ObjectHideFlags: 0
@@ -6403,6 +6410,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &5543118079416755184
 GameObject:
   m_ObjectHideFlags: 0
@@ -6564,6 +6572,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &5573782126197454786
 GameObject:
   m_ObjectHideFlags: 0
@@ -6696,7 +6705,7 @@ MonoBehaviour:
   _animationEndScale: 1.2
   _firstSelectedButton: {fileID: 7590034015881165958}
   _buttons:
-  - {fileID: 8826841069881320099}
+  - {fileID: 0}
 --- !u!114 &6843197007135059765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9143,6 +9152,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &7674051414327252848
 GameObject:
   m_ObjectHideFlags: 0
@@ -11114,6 +11124,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 0
 --- !u!1 &9222373510649587256
 GameObject:
   m_ObjectHideFlags: 0
