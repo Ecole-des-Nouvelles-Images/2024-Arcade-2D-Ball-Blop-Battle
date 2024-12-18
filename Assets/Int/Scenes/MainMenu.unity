@@ -730,6 +730,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1478243184}
     m_Modifications:
+    - target: {fileID: 1596636516560921436, guid: 4cc366e50867fd04ea610e54e8d84ad7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1837111187197016554, guid: 4cc366e50867fd04ea610e54e8d84ad7, type: 3}
       propertyPath: m_Name
       value: FondMainMenu
@@ -813,6 +817,10 @@ PrefabInstance:
     - target: {fileID: 7736190174918301024, guid: 4cc366e50867fd04ea610e54e8d84ad7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9124962656987765984, guid: 4cc366e50867fd04ea610e54e8d84ad7, type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2312,7 +2320,7 @@ PrefabInstance:
       objectReference: {fileID: 1349327316}
     - target: {fileID: 5588278770274246976, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_text
-      value: "Producer \n\nGame Artist\nGame Artiste \n\nDeveloper "
+      value: "Producer \n\nGame Artist\nGame Artist \n\nDeveloper "
       objectReference: {fileID: 0}
     - target: {fileID: 5917508101426138902, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_SpriteState.m_SelectedSprite
