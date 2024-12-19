@@ -153,8 +153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fadeInDuration: 1
   _fadeOutDuration: 2
-  _screenStay: 2
-  _lauchGame: 4
+  _timeScreenEnsiStay: 2
+  _timeScreenLoadingStay: 4
+  _intervalLoadingPoint: 0.3
   _screenEnsi: {fileID: 1153286124}
   _illustration: {fileID: 765151750}
   _textChargement: {fileID: 840194253}
