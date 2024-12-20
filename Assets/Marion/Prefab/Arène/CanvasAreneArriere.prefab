@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 6340770846017691265}
   - component: {fileID: 3936535744675800724}
   - component: {fileID: 1428217846729831933}
+  - component: {fileID: 7009197011811101512}
   m_Layer: 5
   m_Name: 4-PalmesVentilation
   m_TagString: Untagged
@@ -177,14 +178,14 @@ RectTransform:
   m_GameObject: {fileID: 4806607134205378838}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.09048684, y: 0.09048684, z: 0.09048684}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4479946703280913046}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -89.60004, y: 232.29999}
+  m_AnchorMin: {x: 0.42752084, y: 0.66700006}
+  m_AnchorMax: {x: 0.47800002, y: 0.76400006}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3936535744675800724
@@ -225,6 +226,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7009197011811101512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4806607134205378838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f641268d78b4e004090ec61ff8bce5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxRotationSpeed: 360
+  _accelerationDuration: 10
 --- !u!1 &5034326819587388201
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,8 +343,8 @@ RectTransform:
   m_GameObject: {fileID: 7448042421619314998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.009259259, y: 0.009259259, z: 0.009259259}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7279400448846259865}
   - {fileID: 6810876301112186908}
@@ -353,7 +368,7 @@ Canvas:
   m_GameObject: {fileID: 7448042421619314998}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -365,7 +380,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -15
   m_TargetDisplay: 0
 --- !u!114 &3393363800054218779
 MonoBehaviour:
@@ -389,7 +404,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &411117606081869207
 MonoBehaviour:
   m_ObjectHideFlags: 0

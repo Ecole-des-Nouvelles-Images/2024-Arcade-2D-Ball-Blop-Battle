@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Ecole des nouvelles images \n\nFred Conil\nMarion Dubreuil\n\nHugo Isambart"
+  m_text: "Ecole des nouvelles images \n\nCalvin Ovide\nMarion Dubreuil\n\nHugo Isambart"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
   m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Producer \n\nGame Artiste\nGame Artiste \n\nDevelopper "
+  m_text: "Producer \n\nGame Artist\nGame Artist \n\nDeveloper "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
   m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
@@ -848,6 +848,8 @@ GameObject:
   - component: {fileID: 76850310637796551}
   - component: {fileID: 6183011087721239168}
   - component: {fileID: 4246655884172914088}
+  - component: {fileID: 9116896151260556196}
+  - component: {fileID: 2003550488029123540}
   m_Layer: 5
   m_Name: "PanelCr\xE9dit"
   m_TagString: Untagged
@@ -960,7 +962,52 @@ MonoBehaviour:
     m_RotationOrder: 4
   _animationEndScale: 1.2
   _firstSelectedButton: {fileID: 8122989996546205533}
-  _buttons: []
+  _buttons:
+  - {fileID: 8122989996546205533}
+--- !u!114 &9116896151260556196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392693082944420119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: ab981c41a2406c44294d79e969fce04d, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &2003550488029123540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7392693082944420119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb23190b74c163c4e9c098d971e4bb2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _panelMainMenu: {fileID: 0}
+  _panelCurrent: {fileID: 7392693082944420119}
 --- !u!1 &8122989996546205533
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,8 +1020,8 @@ GameObject:
   - component: {fileID: 2541202616730643370}
   - component: {fileID: 1895026478853886143}
   - component: {fileID: 5917508101426138902}
-  - component: {fileID: 7805240701382505037}
   - component: {fileID: 2742541410206905411}
+  - component: {fileID: 7717555929403940150}
   m_Layer: 5
   m_Name: Retour
   m_TagString: Untagged
@@ -998,7 +1045,7 @@ RectTransform:
   m_Father: {fileID: 1347036127769849014}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.8, y: 0.02}
-  m_AnchorMax: {x: 1, y: 0.22}
+  m_AnchorMax: {x: 0.98, y: 0.22}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1069,9 +1116,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 1298837565fb85045b483398fdf635ef, type: 3}
+    m_HighlightedSprite: {fileID: 21300000, guid: 58cc5f835526a3b4e8aef72971c2e339, type: 3}
     m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 21300000, guid: 1298837565fb85045b483398fdf635ef, type: 3}
+    m_SelectedSprite: {fileID: 21300000, guid: 58cc5f835526a3b4e8aef72971c2e339, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1108,47 +1155,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &7805240701382505037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8122989996546205533}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42e2cd37a080b094eb3abfe935dcfd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _playTweening: 1
-  _animationTime: 0.3
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _animationEndScale: 1.2
-  _firstSelectedButton: {fileID: 8122989996546205533}
-  _buttons: []
 --- !u!114 &2742541410206905411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1188,3 +1194,100 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _animationEndScale: 1.2
+  _isSlimeButton: 1
+--- !u!82 &7717555929403940150
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8122989996546205533}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -7605999342445201457, guid: a9195dd3455bd524499f1ec9ea5197be, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
