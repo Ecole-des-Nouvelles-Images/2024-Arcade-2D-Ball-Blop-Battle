@@ -1,13 +1,9 @@
 using System;
 using System.Collections.Generic;
-using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
-using Hugo.Prototype.Scripts.Player;
-using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -24,11 +20,9 @@ namespace Hugo.Prototype.Scripts.Player
         private PlayerNumberTouchBallHandler _playerNumberTouchBallHandler;
         private Animator _animator;
         private CameraHandler _cameraHandler;
-        private AudioSource _audioSource;
         
         // GameObject
         private GameObject _ball;
-        private GameObject _arenaVFXHandler;
         
         // States
         private bool _hasTheBall;
@@ -88,83 +82,45 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private LayerMask _wallLayer;
         
         [Header("BackGround SpecialSpike")]
-        [SerializeField] private GameObject _impactBackground;
-        [SerializeField] private GameObject _scrollBackground;
         public GameObject ImpactBackgroundObject;
         public static List<GameObject> ScrollBackgroundObjects = new List<GameObject>();
-        
-        // VFX
-        [Header("   VFX Effects")]
-        [Header("Common")]
-        [SerializeField] private ParticleSystem _vfxJumping;
-        [SerializeField] private ParticleSystem _vfxAttacking;
-        [SerializeField] private ParticleSystem _vfxPerfectReception;
-        [SerializeField] private ParticleSystem _vfxActiveSpecialSpike;
-        [Header("SpitOut and Landing")]
-        [SerializeField] private ParticleSystem _vfxSpitOutBlue;
-        [SerializeField] private ParticleSystem _vfxLandingBlue;
-        [SerializeField] private ParticleSystem _vfxSpitOutGreen;
-        [SerializeField] private ParticleSystem _vfxLandingGreen;
-        [SerializeField] private ParticleSystem _vfxSpitOutYellow;
-        [SerializeField] private ParticleSystem _vfxLandingYellow;
-        [SerializeField] private ParticleSystem _vfxSpitOutRed;
-        [SerializeField] private ParticleSystem _vfxLandingRed;
-        [Header("Shoot Special Spike")]
-        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeBlue;
-        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeGreen;
-        [SerializeField] private ParticleSystem _vfxShootSpecialSpikeYellow;
-        public ParticleSystem VfxShootSpecialSpikeRed;
-        [Header("Trails")]
-        [SerializeField] private GameObject _vfxTrailBlue;
-        [SerializeField] private GameObject _vfxTrailGreen;
-        [SerializeField] private GameObject _vfxTrailYellow;
-        [SerializeField] private GameObject _vfxTrailRed;
 
-        public event EventHandler OnJumpt;
+        // Events
+        public event EventHandler OnAppears;
+        public event EventHandler OnMove;
+        public event EventHandler OnDash;
+        public event EventHandler OnJump;
+        public event EventHandler OnDoubleJump;
+        public event EventHandler OnLand;
+        public event EventHandler OnPerfectReception;
+        public event EventHandler OnPunch;
+        public event EventHandler OnCanAbsorb;
+        public event EventHandler OnAbsorb;
+        public event EventHandler OnHasTheBall;
+        public event EventHandler OnDrawn;
+        public event EventHandler OnIsWalled;
+        public event EventHandler OnWallJump;
+        public event EventHandler OnActiveSpecialSpike;
+        public event EventHandler OnShootSpecialSpike;
+        public event EventHandler OnAbsorbSpecialSpike;
+        public event EventHandler OnDeath;
         
-        public event EventHandler<int> OnTakeDamage;
+        
         private void Awake()
         {
-            
-            OnJumpt?.Invoke(this, EventArgs.Empty);
-            OnTakeDamage?.Invoke(this, 20);
-            
-            
-            
             _rb2d = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             _animator = GetComponent<Animator>();
-            _audioSource = GetComponent<AudioSource>();
 
-            _arenaVFXHandler = GameObject.FindGameObjectWithTag("ArenaParticleSystem");
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
             PlayerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
-
-            // VFX TRAILS
-            if (_vfxTrailBlue && _vfxTrailGreen && _vfxTrailYellow && _vfxTrailRed)
-            {
-                if (PlayerType.PlayerName == "Bleu")
-                {
-                    _vfxTrailBlue.SetActive(true);
-                }
-                if (PlayerType.PlayerName == "Vert")
-                {
-                    _vfxTrailGreen.SetActive(true);
-                }
-                if (PlayerType.PlayerName == "Jaune")
-                {
-                    _vfxTrailYellow.SetActive(true);
-                }
-                if (PlayerType.PlayerName == "Rouge")
-                {
-                    _vfxTrailRed.SetActive(true);
-                }
-            }
         }
 
         private void Start()
         {
+            OnAppears?.Invoke(this, EventArgs.Empty);
+            
             _canMove = false;
             _appears = true;
             Invoke(nameof(ReverseCanMove), _timeAppears);
@@ -243,6 +199,11 @@ namespace Hugo.Prototype.Scripts.Player
                 {
                     Vector2 movement = new Vector2(horizontalInput * (_speed * Time.deltaTime), _rb2d.velocity.y);
                     _rb2d.velocity = movement;
+
+                    if (movement.x != 0)
+                    {
+                        OnMove?.Invoke(this, EventArgs.Empty);
+                    }
                 }
                 else
                 {
@@ -259,13 +220,6 @@ namespace Hugo.Prototype.Scripts.Player
             // Animation
             _animator.SetFloat("Speed", Mathf.Abs(_rb2d.velocity.x));
             FlipSprite(_rb2d.velocity.x);
-            // VFX
-            // if (_vfxWalking)
-            // {
-            //     bool isWalking = _rb2d.velocity.x is > 0.3f or < -0.3f;
-            //     ParticleSystem.EmissionModule emission = _vfxWalking.emission;
-            //     emission.enabled = _isGrounded && isWalking;
-            // }
         }
         
         private void OnCollisionEnter2D(Collision2D other)
@@ -278,20 +232,12 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().PerfectReception();
                     PerfectReceptionCount++;
                     
-                    // VFX
-                    if (_vfxPerfectReception)
-                    {
-                        _vfxPerfectReception.Play();
-                    }
+                    OnPerfectReception?.Invoke(this, EventArgs.Empty);
                     
                     if (PerfectReceptionCount == 3)
                     { 
                         CanSpecialSpike = true;
                     }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
                 
                 Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
@@ -307,12 +253,10 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     FlipSpriteAbsorbDrawn(direction);
                     
+                    OnAbsorb?.Invoke(this, EventArgs.Empty);
+                    
                     // Animation
                     _animator.SetTrigger("Absorb");
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
                 
                 if(_isWestButtonPressed == 0 && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_hasPunch)
@@ -326,16 +270,8 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     // Shake Camera
                     _cameraHandler.HitShake();
-                    
-                    // VFX
-                    if (_vfxAttacking)
-                    {
-                        _vfxAttacking.Play();
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
+
+                    OnPunch?.Invoke(this, EventArgs.Empty);
                 }
 
                 if (IsSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && !_isGrounded)
@@ -347,49 +283,10 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     FlipSpriteAbsorbDrawn(direction);
                     
-                    if (_scrollBackground)
-                    {
-                        if (PlayerType.PlayerName == "Bleu")
-                        {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Vert")
-                        {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Jaune")
-                        {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Rouge")
-                        {
-                            _scrollBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
-                            Instantiate(_scrollBackground, new Vector2(0, -9), Quaternion.identity);
-                        }
-                    }
-                    Destroy(ImpactBackgroundObject);
+                    OnAbsorbSpecialSpike?.Invoke(this, EventArgs.Empty);
                     
                     // Animation
                     _animator.SetTrigger("Absorb");
-                    
-                    // VFX
-                    if (VfxShootSpecialSpikeRed)
-                    {
-                        if (PlayerType.PlayerName == "Rouge")
-                        {
-                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
-                            
-                            VfxShootSpecialSpikeRed.Play();
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeRed.SetActive(true);
-                        }
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
                 else if (IsSpecialSpike && _playerNumberTouchBallHandler.NumberTouchBall < 2 && _isGrounded)
                 {
@@ -426,6 +323,8 @@ namespace Hugo.Prototype.Scripts.Player
             if (Mathf.Approximately(buttonValue, 1) && !_isGrounded && _playerNumberTouchBallHandler.NumberTouchBall < 2)
             {
                 CanAbsorb = true;
+                
+                OnCanAbsorb?.Invoke(this, EventArgs.Empty);
             }
 
             if (buttonValue == 0 && CanAbsorb)
@@ -435,40 +334,18 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (buttonValue == 0 && _hasTheBall && !IsSpecialSpike)
             {
-                _ball.GetComponent<BallHandler>().IsShoot(_move);
+                _ball.GetComponent<BallHandler>().IsDrawn(_move);
                 Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
                 FlipSpriteAbsorbDrawn(_move);
+                
+                OnDrawn?.Invoke(this, EventArgs.Empty);
                 
                 // Shake Camera
                 _cameraHandler.HitShake();
                 
                 // Animation
                 _animator.SetTrigger("Drawn");
-                // VFX
-                if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
-                {
-                    if (PlayerType.PlayerName == "Bleu")
-                    {
-                        _vfxSpitOutBlue.Play();
-                    }
-                    if (PlayerType.PlayerName == "Vert")
-                    {
-                        _vfxSpitOutGreen.Play();
-                    }
-                    if (PlayerType.PlayerName == "Jaune")
-                    {
-                        _vfxSpitOutYellow.Play();
-                    }
-                    if (PlayerType.PlayerName == "Rouge")
-                    {
-                        _vfxSpitOutRed.Play();
-                    }
-                }
-                
-                // SFX
-                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                _audioSource.Play();
             }
         }
 
@@ -483,47 +360,11 @@ namespace Hugo.Prototype.Scripts.Player
                     IsSpecialSpike = true;
                     CanAbsorb = true;
                     CanSpecialSpike = false;
-
-                    if (_impactBackground)
-                    {
-                        if (PlayerType.PlayerName == "Bleu")
-                        {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
-                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Vert")
-                        {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
-                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Jaune")
-                        {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
-                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
-                        }
-                        if (PlayerType.PlayerName == "Rouge")
-                        {
-                            _impactBackground.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
-                            ImpactBackgroundObject = Instantiate(_impactBackground, Vector2.zero, Quaternion.identity);
-                        }
-                    }
+                    
+                    OnActiveSpecialSpike?.Invoke(this, EventArgs.Empty);
                     
                     // Animation
                     _animator.SetTrigger("ActiveSpecialSpike");
-                    // VFX
-                    _vfxActiveSpecialSpike.Play();
-                    if (_playerNumberTouchBallHandler.IsPlayerOne)
-                    {
-                        _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerOne();
-                    }
-                    else
-                    {
-                        _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerTwo();
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
 
                 if (IsSpecialSpike && _hasTheBall)
@@ -535,39 +376,10 @@ namespace Hugo.Prototype.Scripts.Player
                     // Shake Camera
                     _cameraHandler.HitShake();
                     
+                    OnShootSpecialSpike?.Invoke(this, EventArgs.Empty);
+                    
                     // Animation
                     _animator.SetTrigger("Drawn");
-                    // VFX
-                    if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeYellow)
-                    {
-                        if (PlayerType.PlayerName == "Bleu")
-                        {
-                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
-                            
-                            _vfxShootSpecialSpikeBlue.Play();
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlue.SetActive(true);
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeBlueImpact.Play();
-                        }
-                        if (PlayerType.PlayerName == "Vert")
-                        {
-                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
-                            
-                            _vfxShootSpecialSpikeGreen.Play();
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeGreen.SetActive(true);
-                        }
-                        if (PlayerType.PlayerName == "Jaune")
-                        {
-                            _ball.GetComponent<BallHandler>().BallBaseTrail.SetActive(false);
-                            
-                            _vfxShootSpecialSpikeYellow.Play();
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellow.SetActive(true);
-                            _ball.GetComponent<BallHandler>().VFXSpecialSpikeYellowImpact.Play();
-                        }
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                     return;
                 }
 
@@ -605,17 +417,10 @@ namespace Hugo.Prototype.Scripts.Player
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = false;
                     
+                    OnDoubleJump?.Invoke(this, EventArgs.Empty);
+                    
                     // Animation
                     _animator.SetTrigger("Jump");
-                    // VFX
-                    if (_vfxJumping)
-                    {
-                        _vfxJumping.Play();
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
                 
                 if (_isGrounded)
@@ -625,17 +430,10 @@ namespace Hugo.Prototype.Scripts.Player
                     _rb2d.AddForce(jumping, ForceMode2D.Impulse);
                     _canDoubleJump = true;
                     
+                    OnJump?.Invoke(this, EventArgs.Empty);
+                    
                     // Animation
                     _animator.SetTrigger("Jump");
-                    // VFX
-                    if (_vfxJumping)
-                    {
-                        _vfxJumping.Play();
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
                 
                 if (_isWalled && !_isGrounded)
@@ -652,17 +450,10 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     _rb2d.AddForce(walljumping, ForceMode2D.Impulse);
                     
+                    OnWallJump?.Invoke(this, EventArgs.Empty);
+                    
                     // Animation
                     _animator.SetTrigger("WallJump");
-                    // VFX
-                    if (_vfxJumping)
-                    {
-                        _vfxJumping.Play();
-                    }
-                    
-                    // SFX
-                    _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                    _audioSource.Play();
                 }
             }
         }
@@ -700,42 +491,25 @@ namespace Hugo.Prototype.Scripts.Player
             RaycastHit2D hit2DGround = Physics2D.Raycast(transform.position, Vector3.down, _rayGroundedLength, _groundLayer);
             if (_isGrounded == false && hit2DGround)
             {
-                if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
-                {
-                    if (PlayerType.PlayerName == "Bleu")
-                    {
-                        _vfxLandingBlue.Play();
-                    }
-                    if (PlayerType.PlayerName == "Vert")
-                    {
-                        _vfxLandingGreen.Play();
-                    }
-                    if (PlayerType.PlayerName == "Jaune")
-                    {
-                        _vfxLandingYellow.Play();
-                    }
-                    if (PlayerType.PlayerName == "Rouge")
-                    {
-                        _vfxLandingRed.Play();
-                    }
-                }
-                
-                // SFX
-                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                _audioSource.Play();
+                OnLand?.Invoke(this, EventArgs.Empty);
             }
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
-
-            _isWalled = false;
+            
             if (-1 <= _move.x && _move.x <= -0.8)
             {
                 // Raycast _isWalled
                 RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
-                if (hit2DWallLeft)
+                if (hit2DWallLeft && _isWalled == false)
                 {
-                    _isWalled = true;
+                    _isWalled = hit2DWallLeft.collider;
                     _canDoubleJump = false;
+                    
+                    OnIsWalled?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    _isWalled = hit2DWallLeft.collider;
                 }
                 Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
@@ -743,10 +517,16 @@ namespace Hugo.Prototype.Scripts.Player
             {
                 // Raycast _isWalled
                 RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
-                if (hit2DWallRight)
+                if (hit2DWallRight && _isWalled == false)
                 {
-                    _isWalled = true;
+                    _isWalled = hit2DWallRight.collider;
                     _canDoubleJump = false;
+                    
+                    OnIsWalled?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    _isWalled = hit2DWallRight.collider;
                 }
                 Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
             }
@@ -768,9 +548,7 @@ namespace Hugo.Prototype.Scripts.Player
                 _dashTimeRemaining = _dashDuration;
                 _dashCooldownRemaining = _dashCooldown;
                 
-                // SFX
-                _audioSource.clip = AudioStock.Instance.BlopClips[Random.Range(0, AudioStock.Instance.BlopClips.Count)];
-                _audioSource.Play();
+                OnDash?.Invoke(this, EventArgs.Empty);
             }
             
             if (_isDashing)
@@ -872,31 +650,12 @@ namespace Hugo.Prototype.Scripts.Player
         {
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             
+            OnDeath?.Invoke(this, EventArgs.Empty);
+            
             // Animation
             _animator.SetTrigger("Die");
             
             Destroy(gameObject, 0.3f);
         }
-    }
-}
-
-public class Test : MonoBehaviour
-{
-    public PlayerController PlayerController;
-
-    public void Start()
-    {
-        PlayerController.OnJumpt += PlayerControllerOnOnJumpt;
-        PlayerController.OnTakeDamage+= PlayerControllerOnOnTakeDamage;
-    }
-
-    private void PlayerControllerOnOnTakeDamage(object sender, int damage)
-    {
-        throw new NotImplementedException();
-    }
-
-    private void PlayerControllerOnOnJumpt(object sender, EventArgs e)
-    {
-        throw new NotImplementedException();
     }
 }

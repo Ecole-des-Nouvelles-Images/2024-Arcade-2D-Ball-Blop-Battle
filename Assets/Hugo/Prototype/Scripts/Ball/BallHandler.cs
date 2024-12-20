@@ -145,19 +145,19 @@ namespace Hugo.Prototype.Scripts.Ball
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
 
-                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
-                    {
-                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
-                    }
+                    // if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    // {
+                    //     _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    // }
                 }
                 if (_currentPlayerGameObject)
                 {
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                     
-                    if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
-                    {
-                        _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
-                    }
+                    // if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    // {
+                    //     _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    // }
                 }
                 _cameraHandler.ScoredShake();
                 
@@ -181,19 +181,19 @@ namespace Hugo.Prototype.Scripts.Ball
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                     
-                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
-                    {
-                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
-                    }
+                    // if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    // {
+                    //     _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    // }
                 }
                 if (_currentPlayerGameObject)
                 {
                     _currentPlayerGameObject.GetComponent<PlayerController>().ResetStatesAfterSpecialSpike();
                     
-                    if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
-                    {
-                        _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
-                    }
+                    // if (_currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    // {
+                    //     _currentPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    // }
                 }
                 _cameraHandler.ScoredShake();
 
@@ -222,10 +222,10 @@ namespace Hugo.Prototype.Scripts.Ball
                 {
                     _lastPlayerGameObject.GetComponent<PlayerController>().CountShootSpecialSpike = 0;
                     
-                    if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
-                    {
-                        _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
-                    }
+                    // if (_lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.isPlaying)
+                    // {
+                    //     _lastPlayerGameObject.GetComponent<PlayerController>().VfxShootSpecialSpikeRed.Stop();
+                    // }
                 }
                 
                 if (_isTransparent)
@@ -398,7 +398,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
         }
 
-        public void IsShoot(Vector2 direction)
+        public void IsDrawn(Vector2 direction)
         {
             if (direction == Vector2.zero)
             {
