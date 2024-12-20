@@ -4,6 +4,7 @@ using Hugo.Prototype.Scripts.Arene;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
+using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -119,8 +120,17 @@ namespace Hugo.Prototype.Scripts.Player
         [SerializeField] private GameObject _vfxTrailYellow;
         [SerializeField] private GameObject _vfxTrailRed;
 
+        public event EventHandler OnJumpt;
+        
+        public event EventHandler<int> OnTakeDamage;
         private void Awake()
         {
+            
+            OnJumpt?.Invoke(this, EventArgs.Empty);
+            OnTakeDamage?.Invoke(this, 20);
+            
+            
+            
             _rb2d = GetComponent<Rigidbody2D>();
             _sr = GetComponent<SpriteRenderer>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
@@ -867,5 +877,26 @@ namespace Hugo.Prototype.Scripts.Player
             
             Destroy(gameObject, 0.3f);
         }
+    }
+}
+
+public class Test : MonoBehaviour
+{
+    public PlayerController PlayerController;
+
+    public void Start()
+    {
+        PlayerController.OnJumpt += PlayerControllerOnOnJumpt;
+        PlayerController.OnTakeDamage+= PlayerControllerOnOnTakeDamage;
+    }
+
+    private void PlayerControllerOnOnTakeDamage(object sender, int damage)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void PlayerControllerOnOnJumpt(object sender, EventArgs e)
+    {
+        throw new NotImplementedException();
     }
 }
