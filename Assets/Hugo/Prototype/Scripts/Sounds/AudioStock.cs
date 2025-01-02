@@ -6,9 +6,6 @@ namespace Hugo.Prototype.Scripts.Sounds
 {
     public class AudioStock : MonoBehaviourSingleton<AudioStock>
     {
-        [Header("Blop")]
-        public List<AudioClip> BlopClips;
-        
         [Header("Ball")]
         public List<AudioClip> BallClips;
         

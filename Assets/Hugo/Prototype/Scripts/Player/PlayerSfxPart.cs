@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -7,7 +9,10 @@ namespace Hugo.Prototype.Scripts.Player
     {
         private PlayerController _playerController;
         private AudioSource _audioSource;
-
+        
+        [Header("Blop")]
+        public List<AudioClip> BlopClips;
+        
         private void Awake()
         {
             _playerController = GetComponent<PlayerController>();
@@ -64,6 +69,9 @@ namespace Hugo.Prototype.Scripts.Player
         private void PlayerControllerOnAppears(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Appears ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnMove(object sender, EventArgs e)
@@ -74,31 +82,49 @@ namespace Hugo.Prototype.Scripts.Player
         private void PlayerControllerOnDash(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Dash ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnJump(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Jump ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnDoubleJump(object sender, EventArgs e)
         {
             Debug.Log(" SFX: DoubleJump ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnLand(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Land ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnPerfectReception(object sender, EventArgs e)
         {
             Debug.Log(" SFX: PerfectReception ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnPunch(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Shoot ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnCanAbsorb(object sender, EventArgs e)
@@ -119,16 +145,25 @@ namespace Hugo.Prototype.Scripts.Player
         private void PlayerControllerOnDrawn(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Drawn ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnIsWalled(object sender, EventArgs e)
         {
             Debug.Log(" SFX: IsWalled ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnWallJump(object sender, EventArgs e)
         {
             Debug.Log(" SFX: WallJump ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnActiveSpecialSpike(object sender, EventArgs e)
@@ -139,6 +174,9 @@ namespace Hugo.Prototype.Scripts.Player
         private void PlayerControllerOnShootSpecialSpike(object sender, EventArgs e)
         {
             Debug.Log(" SFX: ShootSpecialSpike ");
+            
+            _audioSource.clip = BlopClips[RandomNumber(BlopClips.Count)];
+            _audioSource.Play();
         }
         
         private void PlayerControllerOnAbsorbSpecialSpike(object sender, EventArgs e)
@@ -149,6 +187,12 @@ namespace Hugo.Prototype.Scripts.Player
         private void PlayerControllerOnDeath(object sender, EventArgs e)
         {
             Debug.Log(" SFX: Death ");
+        }
+
+        private int RandomNumber(int listCount)
+        {
+            int randomNumber = Random.Range(0, listCount);
+            return randomNumber;
         }
     }
 }

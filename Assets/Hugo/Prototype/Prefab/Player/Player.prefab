@@ -317,6 +317,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94c21b914b4b820429a311226a8525a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BlopClips:
+  - {fileID: 8300000, guid: 02b0d908d3588b64daa6013cd18c6af3, type: 3}
+  - {fileID: 8300000, guid: 601074bca5e093141991a21578fd9eec, type: 3}
+  - {fileID: 8300000, guid: ca2b427e618636543ad6ff0a2dab2859, type: 3}
+  - {fileID: 8300000, guid: 49435c95c11a83e4d9945b4b961254a5, type: 3}
 --- !u!114 &231906474129314894
 MonoBehaviour:
   m_ObjectHideFlags: 0
