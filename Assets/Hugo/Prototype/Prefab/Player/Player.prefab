@@ -256,7 +256,7 @@ MonoBehaviour:
   _wallLayer:
     serializedVersion: 2
     m_Bits: 64
-  ImpactBackgroundObject: {fileID: 0}
+  ImpactBackgroundObject: {fileID: 3117198505760830044, guid: e3d76625c78b83f4289b2614340fbb75, type: 3}
 --- !u!114 &1857892761897799751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vfxJumping: {fileID: 6960193284403353707}
   _vfxAttacking: {fileID: 6177206345739415146}
-  _vfxPerfectReception: {fileID: 5433815415873377306}
+  _vfxPerfectReception: {fileID: 0}
   _vfxActiveSpecialSpike: {fileID: 6857391114822624339}
   _vfxSpitOutBlue: {fileID: 8922143002407604572}
   _vfxLandingBlue: {fileID: 4471898500698041461}
@@ -1169,11 +1169,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
---- !u!198 &5433815415873377306 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8179560653892597508, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
-  m_PrefabInstance: {fileID: 4245602827863008030}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5619901327940167645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8581203629618595011, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
