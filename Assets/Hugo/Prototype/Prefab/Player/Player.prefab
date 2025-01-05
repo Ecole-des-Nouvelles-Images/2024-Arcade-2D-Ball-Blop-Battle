@@ -285,7 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vfxJumping: {fileID: 6960193284403353707}
   _vfxAttacking: {fileID: 6177206345739415146}
-  _vfxPerfectReception: {fileID: 0}
+  _vfxPerfectReception: {fileID: 8127289272878408422}
   _vfxActiveSpecialSpike: {fileID: 6857391114822624339}
   _vfxSpitOutBlue: {fileID: 8922143002407604572}
   _vfxLandingBlue: {fileID: 4471898500698041461}
@@ -1172,6 +1172,11 @@ PrefabInstance:
 --- !u!4 &5619901327940167645 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8581203629618595011, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
+  m_PrefabInstance: {fileID: 4245602827863008030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8127289272878408422 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5341981433506923000, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
   m_PrefabInstance: {fileID: 4245602827863008030}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5181838500565204645
