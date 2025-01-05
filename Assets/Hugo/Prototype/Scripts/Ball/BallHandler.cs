@@ -370,7 +370,11 @@ namespace Hugo.Prototype.Scripts.Ball
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
                     }
-                    Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
+
+                    if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject)
+                    {
+                        Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
+                    }
                 }
 
                 if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject)
@@ -381,7 +385,11 @@ namespace Hugo.Prototype.Scripts.Ball
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().IsSpecialSpike = false;
                         gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().CanAbsorb = false;
                     }
-                    Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
+
+                    if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject)
+                    {
+                        Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<PlayerController>().ImpactBackgroundObject);
+                    }
                 }
             }
         }
