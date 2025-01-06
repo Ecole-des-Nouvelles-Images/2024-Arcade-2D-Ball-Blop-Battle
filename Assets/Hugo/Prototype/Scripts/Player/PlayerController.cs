@@ -507,10 +507,6 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     OnIsWalled?.Invoke(this, EventArgs.Empty);
                 }
-                else
-                {
-                    _isWalled = hit2DWallLeft.collider;
-                }
                 Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
             if (0.8 <= _move.x && _move.x <= 1)
@@ -524,11 +520,12 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     OnIsWalled?.Invoke(this, EventArgs.Empty);
                 }
-                else
-                {
-                    _isWalled = hit2DWallRight.collider;
-                }
                 Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
+            }
+
+            if (_isGrounded)
+            {
+                _isWalled = false;
             }
         }
 
