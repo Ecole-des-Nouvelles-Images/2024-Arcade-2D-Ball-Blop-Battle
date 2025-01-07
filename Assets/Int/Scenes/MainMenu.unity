@@ -1079,6 +1079,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelTutoriel
       objectReference: {fileID: 0}
+    - target: {fileID: 5573782126197454786, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5653042861793247352, guid: 9c33fe6d54078b04cb7d54580391d3b2, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
