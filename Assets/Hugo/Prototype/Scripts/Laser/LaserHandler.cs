@@ -44,6 +44,7 @@ namespace Hugo.Prototype.Scripts.Laser
             if (hitPlayer.collider && !_hasAlreadyHit)
             {
                 _hasAlreadyHit = true;
+                _matchManager.IsTimerRunning = false;
                 
                 Debug.Log(" hit player ");
                 GameObject playerChildren = hitPlayer.collider.gameObject;

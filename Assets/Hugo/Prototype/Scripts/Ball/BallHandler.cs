@@ -205,6 +205,7 @@ namespace Hugo.Prototype.Scripts.Ball
             {
                 if (_currentPlayerGameObject == null)
                 {
+                    _matchManager.IsTimerRunning = true;
                     _currentPlayerGameObject = other.gameObject;
                 }
                 else if (_currentPlayerGameObject != other.gameObject)
@@ -346,6 +347,7 @@ namespace Hugo.Prototype.Scripts.Ball
             if (!MatchManager.IsSetOver)
             {
                 _matchManager.InvokeMethodTimer("Commitment");
+                _matchManager.IsTimerRunning = false;
             }
             
             // Disable Green Spacial Spike

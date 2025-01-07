@@ -1605,6 +1605,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _totalTimer: 60
   _timeBetweenSets: 4
+  IsTimerRunning: 0
   _timerNewBall: 1
   _ballPrefab: {fileID: 7739952088009901526, guid: 529e28658a8424444bf61b708acfb1c7, type: 3}
   _gameManager: {fileID: 2071482333}

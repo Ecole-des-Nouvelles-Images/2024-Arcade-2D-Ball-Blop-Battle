@@ -43,6 +43,8 @@ namespace Hugo.Prototype.Scripts.Player
 
         public void Fouls()
         {
+            _matchManager.IsTimerRunning = false;
+            
             if (IsPlayerOne)
             {
                 MatchManager.ScorePlayerTwo++;

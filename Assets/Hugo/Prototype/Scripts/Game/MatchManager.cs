@@ -6,6 +6,7 @@ using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Game
@@ -21,7 +22,7 @@ namespace Hugo.Prototype.Scripts.Game
         [SerializeField] private float _totalTimer;
         [SerializeField] private float _timeBetweenSets;
         public static float CurrentTime;
-        private bool _isTimerRunning;
+        public bool IsTimerRunning;
 
         [Header("Commitment")]
         public static bool IsSetOver;
@@ -60,13 +61,13 @@ namespace Hugo.Prototype.Scripts.Game
             }
             
             // Timer
-            if (_isTimerRunning)
+            if (IsTimerRunning)
             {
                 CurrentTime -= Time.deltaTime;
 
                 if (CurrentTime <= 0f)
                 {
-                    _isTimerRunning = false;
+                    IsTimerRunning = false;
                     CurrentTime = 0f;
                     OnTimerEnd();
                 }
@@ -77,7 +78,7 @@ namespace Hugo.Prototype.Scripts.Game
         {
             //Start Timer
             CurrentTime = _totalTimer;
-            _isTimerRunning = true;
+            // IsTimerRunning = true;
             
             // Reset Values
             IsSetOver = false;
@@ -195,14 +196,14 @@ namespace Hugo.Prototype.Scripts.Game
             float randomNumberY = Random.Range(0.1f, 1.1f);
             if (PlayerOneScoreLast)
             {
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(4, -1);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-4, -1);
                 
                 // float randomNumberX = Random.Range(0.5f, 1.1f);
                 // _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
             }
             else
             {
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-4, -1);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(4, -1);
                 
                 // float randomNumberX = Random.Range(-1.1f, -0.5f);
                 // _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
