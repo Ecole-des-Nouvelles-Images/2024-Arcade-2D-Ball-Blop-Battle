@@ -31,6 +31,7 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _canMove = true;
         private bool _isGrounded;
         private bool _isWalled;
+        private bool _raycastIsWalledActive;
         private bool _canDoubleJump;
         public bool CanAbsorb;
         private bool _isAttacking;
@@ -496,9 +497,11 @@ namespace Hugo.Prototype.Scripts.Player
             _isGrounded = hit2DGround.collider;
             Debug.DrawRay(transform.position, Vector3.down * _rayGroundedLength, Color.red);
             
+            // Raycast _isWalled
+            _raycastIsWalledActive = false;
             if (-1 <= _move.x && _move.x <= -0.8)
             {
-                // Raycast _isWalled
+                _raycastIsWalledActive = true;
                 RaycastHit2D hit2DWallLeft = Physics2D.Raycast(transform.position, Vector3.left, _rayWalledLength, _wallLayer);
                 if (hit2DWallLeft && _isWalled == false)
                 {
@@ -507,15 +510,15 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     OnIsWalled?.Invoke(this, EventArgs.Empty);
                 }
-                else
+                else if (hit2DWallLeft.collider == false)
                 {
-                    _isWalled = hit2DWallLeft.collider;
+                    _isWalled = false;
                 }
                 Debug.DrawRay(transform.position, Vector3.left * _rayWalledLength, Color.red);
             }
             if (0.8 <= _move.x && _move.x <= 1)
             {
-                // Raycast _isWalled
+                _raycastIsWalledActive = true;
                 RaycastHit2D hit2DWallRight = Physics2D.Raycast(transform.position, Vector3.right, _rayWalledLength, _wallLayer);
                 if (hit2DWallRight && _isWalled == false)
                 {
@@ -524,11 +527,16 @@ namespace Hugo.Prototype.Scripts.Player
                     
                     OnIsWalled?.Invoke(this, EventArgs.Empty);
                 }
-                else
+                else if (hit2DWallRight.collider == false)
                 {
-                    _isWalled = hit2DWallRight.collider;
+                    _isWalled = false;
                 }
                 Debug.DrawRay(transform.position, Vector3.right * _rayWalledLength, Color.red);
+            }
+
+            if (_raycastIsWalledActive == false)
+            {
+                _isWalled = false;
             }
         }
 

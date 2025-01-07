@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerName: Rouge
   Sprite: {fileID: 21300000, guid: 79ac69feb401b6347b6ca65bfcb057ee, type: 3}
-  SpeedSpecialSpike: 2.3
+  SpeedSpecialSpike: 2.8
   SpecialSpikeDescription: "Tire trois ballons les uns apr\xE8s les autres mais seulement
     un seul est le vrai."
   PlayerAnimatorController: {fileID: 9100000, guid: 35ae509de6ee6db4792c285ba11cafa9, type: 2}

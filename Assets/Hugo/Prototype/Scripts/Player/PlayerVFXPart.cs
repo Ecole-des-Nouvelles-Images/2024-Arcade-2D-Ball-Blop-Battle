@@ -13,7 +13,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         // References
         private BallHandler _ballHandler;
-        private ArenaVFXHandler _arenaVFXHandler;
+        // private ArenaVFXHandler _arenaVFXHandler;
         
         [Header("   VFX Effects")]
         [Header("Common")]
@@ -49,7 +49,7 @@ namespace Hugo.Prototype.Scripts.Player
             _playerController = GetComponent<PlayerController>();
             _playerNumberTouchBallHandler = GetComponent<PlayerNumberTouchBallHandler>();
             
-            _arenaVFXHandler = GameObject.FindWithTag("ArenaVFXHandler").GetComponent<ArenaVFXHandler>();
+            // _arenaVFXHandler = GameObject.FindWithTag("ArenaVFXHandler").GetComponent<ArenaVFXHandler>();
         }
 
         private void OnEnable()
@@ -299,14 +299,14 @@ namespace Hugo.Prototype.Scripts.Player
                 }
             }
             
-            if (_playerNumberTouchBallHandler.IsPlayerOne)
-            {
-                _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerOne();
-            }
-            else
-            {
-                _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerTwo();
-            }
+            // if (_playerNumberTouchBallHandler.IsPlayerOne)
+            // {
+            //     _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerOne();
+            // }
+            // else
+            // {
+            //     _arenaVFXHandler.GetComponent<ArenaVFXHandler>().PlayWindPlayerTwo();
+            // }
         }
         
         private void PlayerControllerOnShootSpecialSpike(object sender, EventArgs e)
