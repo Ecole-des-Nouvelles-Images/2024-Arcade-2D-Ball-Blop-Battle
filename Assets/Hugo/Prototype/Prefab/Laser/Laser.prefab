@@ -4934,7 +4934,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c08f8445653929458cef6f8f240101f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rayLaserLength: 4
+  _rayLaserLength: 4.5
   _playerLayer:
     serializedVersion: 2
     m_Bits: 256
