@@ -195,13 +195,17 @@ namespace Hugo.Prototype.Scripts.Game
             float randomNumberY = Random.Range(0.1f, 1.1f);
             if (PlayerOneScoreLast)
             {
-                float randomNumberX = Random.Range(0.5f, 1.1f);
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(4, -1);
+                
+                // float randomNumberX = Random.Range(0.5f, 1.1f);
+                // _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
             }
             else
             {
-                float randomNumberX = Random.Range(-1.1f, -0.5f);
-                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
+                _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(-4, -1);
+                
+                // float randomNumberX = Random.Range(-1.1f, -0.5f);
+                // _ballPrefab.GetComponent<BallHandler>().DirectionCommitment = new Vector2(randomNumberX, randomNumberY);
             }
             
             Instantiate(_ballPrefab, transform.position, Quaternion.identity);

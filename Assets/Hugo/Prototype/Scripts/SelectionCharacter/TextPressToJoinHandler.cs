@@ -16,7 +16,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
 
         private void Start()
         {
-            StartCoroutine(ScaleUp(_timeBetweenAnimations));
+            StartCoroutine(ScaleUp(0.1f));
         }
 
         private IEnumerator ScaleUp(float delay)

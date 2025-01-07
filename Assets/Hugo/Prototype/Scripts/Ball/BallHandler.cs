@@ -73,6 +73,7 @@ namespace Hugo.Prototype.Scripts.Ball
 
         private void Start()
         {
+            transform.position = DirectionCommitment;
             _sr.color = new Color(1f, 1f, 1f, 0f);
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
             
@@ -464,7 +465,9 @@ namespace Hugo.Prototype.Scripts.Ball
         // Commitment
         private void Commitment(Vector2 direction)
         {
-            _rb2d.AddForce(direction, ForceMode2D.Impulse);
+            transform.position = direction;
+            
+            // _rb2d.AddForce(direction, ForceMode2D.Impulse);
         }
         
         // Utils
