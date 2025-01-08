@@ -40,6 +40,10 @@ namespace Hugo.Prototype.Scripts.UI
         [Header("Settings Scale Score")]
         [SerializeField] private Vector3 _initialScale;
         [SerializeField] private Vector3 _targetScale;
+        
+        [Header("Pressed B")]
+        [SerializeField] private GameObject _displayPressB;
+        private GameObject _displayPressBGameObject;
 
         private void Awake()
         {
@@ -81,6 +85,11 @@ namespace Hugo.Prototype.Scripts.UI
                     _firstPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
                     _secondPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
                     _thirdPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+                    
+                    if (!_displayPressBGameObject)
+                    {
+                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+                    }
                 }
             }
             else
@@ -117,6 +126,11 @@ namespace Hugo.Prototype.Scripts.UI
                     _firstPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
                     _secondPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
                     _thirdPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+
+                    if (!_displayPressBGameObject)
+                    {
+                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+                    }
                 }
             }
             else
