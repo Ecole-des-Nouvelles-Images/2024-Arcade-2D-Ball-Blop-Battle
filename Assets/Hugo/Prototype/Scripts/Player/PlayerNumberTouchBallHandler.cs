@@ -85,7 +85,10 @@ namespace Hugo.Prototype.Scripts.Player
             }
                     
             NumberTouchBall = 0;
-            _ballGameObject.GetComponent<BallHandler>().Destroy();
+            if (_ballGameObject)
+            {
+                _ballGameObject.GetComponent<BallHandler>().Destroy();
+            }
         }
 
         private void ReverseAlreadyTouched()

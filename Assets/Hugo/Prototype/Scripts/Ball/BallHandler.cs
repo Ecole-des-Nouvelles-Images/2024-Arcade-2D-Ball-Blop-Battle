@@ -76,6 +76,7 @@ namespace Hugo.Prototype.Scripts.Ball
             transform.position = DirectionCommitment;
             _sr.color = new Color(1f, 1f, 1f, 0f);
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            _col2D.enabled = false;
             
             // VFX
             _ballAppearsDisappears.Play();
@@ -88,8 +89,10 @@ namespace Hugo.Prototype.Scripts.Ball
             // Commitment
             if (_canCommitment)
             {
+                _col2D.enabled = true;
                 _rb2d.constraints = RigidbodyConstraints2D.None;
                 _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _rb2d.gravityScale = 0f;
                 _sr.color = new Color(1f, 1f, 1f, 1f);
                 Commitment(DirectionCommitment);
                 _canCommitment = false;
@@ -206,6 +209,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 if (_currentPlayerGameObject == null)
                 {
                     _matchManager.IsTimerRunning = true;
+                    _rb2d.gravityScale = 1f;
                     _currentPlayerGameObject = other.gameObject;
                 }
                 else if (_currentPlayerGameObject != other.gameObject)
@@ -502,6 +506,7 @@ namespace Hugo.Prototype.Scripts.Ball
         public void Destroy()
         {
             _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+            _col2D.enabled = false;
                 
             // VFX
             BallDisappears.Play();

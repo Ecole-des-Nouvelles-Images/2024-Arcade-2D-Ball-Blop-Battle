@@ -336,7 +336,8 @@ namespace Hugo.Prototype.Scripts.Player
             if (buttonValue == 0 && _hasTheBall && !IsSpecialSpike)
             {
                 _ball.GetComponent<BallHandler>().IsDrawn(_move);
-                Invoke(nameof(ReverseHaveTheBall), 0.1f);
+                _hasTheBall = false;
+                // Invoke(nameof(ReverseHaveTheBall), 0.1f);
                 
                 FlipSpriteAbsorbDrawn(_move);
                 
