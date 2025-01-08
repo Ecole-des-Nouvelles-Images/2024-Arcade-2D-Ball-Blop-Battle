@@ -257,6 +257,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   ImpactBackgroundObject: {fileID: 3117198505760830044, guid: e3d76625c78b83f4289b2614340fbb75, type: 3}
+  _displayPressB: {fileID: 5904520992703540994, guid: 87300ad1999527949a87602eefdfc151, type: 3}
 --- !u!114 &1857892761897799751
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,7 +85,11 @@ namespace Hugo.Prototype.Scripts.Player
         [Header("BackGround SpecialSpike")]
         public GameObject ImpactBackgroundObject;
         public static List<GameObject> ScrollBackgroundObjects = new List<GameObject>();
-
+        
+        [Header("Display Press B")]
+        [SerializeField] private GameObject _displayPressB;
+        private GameObject _displayPressBGameObject;
+        
         // Events
         public event EventHandler OnAppears;
         public event EventHandler OnMove;
@@ -283,6 +287,15 @@ namespace Hugo.Prototype.Scripts.Player
                     _ball.GetComponent<BallHandler>().IsAbsorb(gameObject);
                     
                     FlipSpriteAbsorbDrawn(direction);
+
+                    if (_playerNumberTouchBallHandler.IsPlayerOne)
+                    {
+                        _displayPressBGameObject = Instantiate(_displayPressB, transform.position + new Vector3(-1f, 1f, 0f), Quaternion.identity);
+                    }
+                    else
+                    {
+                        _displayPressBGameObject = Instantiate(_displayPressB, transform.position + new Vector3(1f, 1f, 0f), Quaternion.identity);
+                    }
                     
                     OnAbsorbSpecialSpike?.Invoke(this, EventArgs.Empty);
                     
@@ -374,6 +387,8 @@ namespace Hugo.Prototype.Scripts.Player
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
                     PerfectReceptionCount = 0;
+                    
+                    Destroy(_displayPressBGameObject, 0.1f);
                     
                     // Shake Camera
                     _cameraHandler.HitShake();
