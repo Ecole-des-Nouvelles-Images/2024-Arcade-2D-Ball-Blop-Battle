@@ -35,15 +35,14 @@ namespace Hugo.Prototype.Scripts.Laser
             // Raycast _laserHit
             RaycastHit2D hitPlayer = Physics2D.Raycast(transform.position, Vector3.down, _rayLaserLength, _playerLayer);
             RaycastHit2D hitBall = Physics2D.Raycast(transform.position, Vector3.down, _rayLaserLength, _ballLayer);
+            
             if (hitBall.collider)
             {
                 _ballGameObject = hitBall.collider.gameObject;
-                //Debug.Log(_ballGameObject);
             }
             
-            if (hitPlayer.collider && !_hasAlreadyHit)
+            if (hitPlayer.collider)
             {
-                _hasAlreadyHit = true;
                 _matchManager.IsTimerRunning = false;
                 
                 Debug.Log(" hit player ");
@@ -51,15 +50,15 @@ namespace Hugo.Prototype.Scripts.Laser
                 playerChildren.GetComponentInParent<PlayerController>().PlayerDie();
                 _isplayerOneHit = playerChildren.GetComponentInParent<PlayerNumberTouchBallHandler>().IsPlayerOne;
                 
+                playerChildren.SetActive(false);
+                ScoringOnDeath();
+                
                 // Particles System
                 _laserParticles.Play();
                 
                 // Audio
                 _audioSource.clip = AudioStock.Instance.LaserClips[0];
                 _audioSource.Play();
-                
-                ScoringOnDeath();
-                Invoke(nameof(ResetHasAlreadyHit), 0.5f);
             }
             
             // Display Laser RayCast
@@ -90,11 +89,6 @@ namespace Hugo.Prototype.Scripts.Laser
                     _ballGameObject.GetComponent<BallHandler>().Destroy();
                 }
             }
-        }
-
-        private void ResetHasAlreadyHit()
-        {
-            _hasAlreadyHit = false;
         }
     }
 }
