@@ -191,6 +191,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 }
                 else
                 {
+                    GameManager.FirstPlayerScriptableObject = null;
+                    GameManager.SecondPlayerScriptableObject = null;
                     SceneManager.LoadScene(1);
                 }
                 
