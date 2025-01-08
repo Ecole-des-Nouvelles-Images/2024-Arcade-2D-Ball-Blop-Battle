@@ -271,6 +271,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NumberTouchBall: 0
   IsPlayerOne: 0
+  _canvasNumberTouchBallGameObject: {fileID: 3934629697110937489, guid: b9dd51ed30233f34e9e3045218575c05, type: 3}
 --- !u!114 &8757298026172100848
 MonoBehaviour:
   m_ObjectHideFlags: 0

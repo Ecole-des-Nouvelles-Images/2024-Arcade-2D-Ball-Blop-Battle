@@ -1,4 +1,3 @@
-using System;
 using DG.Tweening;
 using Hugo.Prototype.Scripts.Sounds;
 using UnityEngine;

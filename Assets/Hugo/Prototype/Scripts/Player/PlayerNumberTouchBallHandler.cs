@@ -1,6 +1,7 @@
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
+using TMPro;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -9,16 +10,23 @@ namespace Hugo.Prototype.Scripts.Player
     {
         public int NumberTouchBall;
         public bool IsPlayerOne;
-
+        
+        [Header("References")]
+        [SerializeField] private GameObject _canvasNumberTouchBallGameObject;
+        
         private GameObject _ballGameObject;
         private MatchManager _matchManager;
         private CameraHandler _cameraHandler;
         private bool _alreadyTouched;
+        private TextMeshProUGUI _textNumberTouchBallText;
+        private GameObject _firstCanvas;
         
         private void Awake()
         {
             _matchManager = GameObject.FindGameObjectWithTag("MatchManager").GetComponent<MatchManager>();
             _cameraHandler = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraHandler>();
+
+            _textNumberTouchBallText = _canvasNumberTouchBallGameObject.GetComponentInChildren<TextMeshProUGUI>();
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -32,6 +40,20 @@ namespace Hugo.Prototype.Scripts.Player
                     NumberTouchBall++;
                     _alreadyTouched = true;
                     Invoke(nameof(ReverseAlreadyTouched), 0.1f);
+                    
+                    // Display
+                    _textNumberTouchBallText.text = NumberTouchBall.ToString();
+
+                    if (_firstCanvas == null)
+                    {
+                        _firstCanvas = Instantiate(_canvasNumberTouchBallGameObject, gameObject.transform.position + new Vector3(0.8f, 0.8f, 0f), Quaternion.identity);
+                    }
+                    else
+                    {
+                        Destroy(_firstCanvas);
+                        _firstCanvas = Instantiate(_canvasNumberTouchBallGameObject, gameObject.transform.position + new Vector3(0.8f, 0.8f, 0f), Quaternion.identity);
+                    }
+                    
                 }
 
                 if (NumberTouchBall > 2)
