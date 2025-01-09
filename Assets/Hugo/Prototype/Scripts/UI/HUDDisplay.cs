@@ -95,14 +95,15 @@ namespace Hugo.Prototype.Scripts.UI
                     if (!_displayPressBGameObjectPlayerOne)
                     {
                         _displayPressBGameObjectPlayerOne = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
-
-                        Canvas canvasPlayerOne = _displayPressBGameObjectPlayerOne.GetComponent<Canvas>();
-                        canvasPlayerOne.renderMode = RenderMode.ScreenSpaceOverlay;
-                        canvasPlayerOne.sortingOrder = 25;
                         
-                        RectTransform transformPlayerOne = _displayPressBGameObjectPlayerOne.GetComponentInChildren<RectTransform>();
-                        transformPlayerOne.anchorMin = new Vector2(0.38f, 0.88f);
-                        transformPlayerOne.anchorMax = new Vector2(0.31f, 0.98f);
+                        Canvas canvas = _displayPressBGameObjectPlayerOne.GetComponent<Canvas>();
+                        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                        canvas.sortingOrder = 25;
+                        
+                        Image image = canvas.GetComponentInChildren<Image>();
+                        RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
+                        rectTransform.anchorMin = new Vector2(0.31f, 0.88f);
+                        rectTransform.anchorMax = new Vector2(0.38f, 0.98f);
                     }
                 }
             }
@@ -150,14 +151,14 @@ namespace Hugo.Prototype.Scripts.UI
                     {
                         _displayPressBGameObjectPlayerTwo = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
                         
-                        Canvas canvasPlayerTwo = _displayPressBGameObjectPlayerTwo.GetComponent<Canvas>();
-                        canvasPlayerTwo.renderMode = RenderMode.ScreenSpaceOverlay;
-                        canvasPlayerTwo.sortingOrder = 25;
-                        
-                        RectTransform transformPlayerTwo = _displayPressBGameObjectPlayerTwo.GetComponentInChildren<RectTransform>();
-                        Debug.Log(transformPlayerTwo);
-                        transformPlayerTwo.anchorMin = new Vector2(0.62f, 0.88f);
-                        transformPlayerTwo.anchorMax = new Vector2(0.69f, 0.98f);
+                        Canvas canvas = _displayPressBGameObjectPlayerTwo.GetComponent<Canvas>();
+                        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                        canvas.sortingOrder = 25;
+
+                        Image image = canvas.GetComponentInChildren<Image>();
+                        RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
+                        rectTransform.anchorMin = new Vector2(0.62f, 0.88f);
+                        rectTransform.anchorMax = new Vector2(0.69f, 0.98f);
                     }
                 }
             }
