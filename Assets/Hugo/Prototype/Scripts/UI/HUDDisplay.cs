@@ -68,6 +68,11 @@ namespace Hugo.Prototype.Scripts.UI
                     _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
                     _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
                     _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+                    
+                    if (_displayPressBGameObject)
+                    {
+                        Destroy(_displayPressBGameObject);
+                    }
                 }
                 
                 if (perfectReceptionCount == 1)
@@ -109,6 +114,11 @@ namespace Hugo.Prototype.Scripts.UI
                     _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
                     _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
                     _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+                    
+                    if (_displayPressBGameObject)
+                    {
+                        Destroy(_displayPressBGameObject);
+                    }
                 }
                 
                 if (perfectReceptionCount == 1)
@@ -129,7 +139,7 @@ namespace Hugo.Prototype.Scripts.UI
 
                     if (!_displayPressBGameObject)
                     {
-                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
                     }
                 }
             }
