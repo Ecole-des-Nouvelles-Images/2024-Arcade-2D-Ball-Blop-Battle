@@ -43,7 +43,8 @@ namespace Hugo.Prototype.Scripts.UI
         
         [Header("Pressed B")]
         [SerializeField] private GameObject _displayPressB;
-        private GameObject _displayPressBGameObject;
+        private GameObject _displayPressBGameObjectPlayerOne;
+        private GameObject _displayPressBGameObjectPlayerTwo;
 
         private void Awake()
         {
@@ -69,9 +70,9 @@ namespace Hugo.Prototype.Scripts.UI
                     _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
                     _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
                     
-                    if (_displayPressBGameObject)
+                    if (_displayPressBGameObjectPlayerOne)
                     {
-                        Destroy(_displayPressBGameObject);
+                        Destroy(_displayPressBGameObjectPlayerOne);
                     }
                 }
                 
@@ -91,9 +92,17 @@ namespace Hugo.Prototype.Scripts.UI
                     _secondPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
                     _thirdPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
                     
-                    if (!_displayPressBGameObject)
+                    if (!_displayPressBGameObjectPlayerOne)
                     {
-                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+                        _displayPressBGameObjectPlayerOne = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
+
+                        Canvas canvasPlayerOne = _displayPressBGameObjectPlayerOne.GetComponent<Canvas>();
+                        canvasPlayerOne.renderMode = RenderMode.ScreenSpaceOverlay;
+                        canvasPlayerOne.sortingOrder = 25;
+                        
+                        RectTransform transformPlayerOne = _displayPressBGameObjectPlayerOne.GetComponentInChildren<RectTransform>();
+                        transformPlayerOne.anchorMin = new Vector2(0.38f, 0.88f);
+                        transformPlayerOne.anchorMax = new Vector2(0.31f, 0.98f);
                     }
                 }
             }
@@ -115,9 +124,9 @@ namespace Hugo.Prototype.Scripts.UI
                     _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
                     _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
                     
-                    if (_displayPressBGameObject)
+                    if (_displayPressBGameObjectPlayerTwo)
                     {
-                        Destroy(_displayPressBGameObject);
+                        Destroy(_displayPressBGameObjectPlayerTwo);
                     }
                 }
                 
@@ -137,9 +146,18 @@ namespace Hugo.Prototype.Scripts.UI
                     _secondPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
                     _thirdPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
 
-                    if (!_displayPressBGameObject)
+                    if (!_displayPressBGameObjectPlayerTwo)
                     {
-                        _displayPressBGameObject = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
+                        _displayPressBGameObjectPlayerTwo = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+                        
+                        Canvas canvasPlayerTwo = _displayPressBGameObjectPlayerTwo.GetComponent<Canvas>();
+                        canvasPlayerTwo.renderMode = RenderMode.ScreenSpaceOverlay;
+                        canvasPlayerTwo.sortingOrder = 25;
+                        
+                        RectTransform transformPlayerTwo = _displayPressBGameObjectPlayerTwo.GetComponentInChildren<RectTransform>();
+                        Debug.Log(transformPlayerTwo);
+                        transformPlayerTwo.anchorMin = new Vector2(0.62f, 0.88f);
+                        transformPlayerTwo.anchorMax = new Vector2(0.69f, 0.98f);
                     }
                 }
             }
