@@ -276,7 +276,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6167727194080525435}
         m_TargetAssemblyTypeName: Hugo.Prototype.Scripts.UI.UIInGame, Assembly-CSharp
         m_MethodName: Resum
         m_Mode: 1
@@ -2467,7 +2467,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6167727194080525435}
         m_TargetAssemblyTypeName: Hugo.Prototype.Scripts.UI.UIInGame, Assembly-CSharp
         m_MethodName: BackMenu
         m_Mode: 1
@@ -4787,12 +4787,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 5235253020774696387}
+    m_SelectOnRight: {fileID: 5235253020774696387}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6167727194080525435}
         m_TargetAssemblyTypeName: Hugo.Prototype.Scripts.UI.UIInGame, Assembly-CSharp
         m_MethodName: BackMenu
         m_Mode: 1
@@ -5058,12 +5058,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 8355899915844614271}
+    m_SelectOnRight: {fileID: 8355899915844614271}
   m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -5089,7 +5089,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6167727194080525435}
         m_TargetAssemblyTypeName: Hugo.Prototype.Scripts.UI.UIInGame, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -7172,6 +7172,7 @@ MonoBehaviour:
   _thirdSetPlayerTwo: {fileID: 4706834893478407541}
   _initialScale: {x: 1, y: 1, z: 1}
   _targetScale: {x: 1.5, y: 1.5, z: 1.5}
+  _displayPressB: {fileID: 5904520992703540994, guid: 87300ad1999527949a87602eefdfc151, type: 3}
 --- !u!1 &8301793154508695330
 GameObject:
   m_ObjectHideFlags: 0
@@ -8615,7 +8616,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 6167727194080525435}
         m_TargetAssemblyTypeName: Hugo.Prototype.Scripts.UI.UIInGame, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1

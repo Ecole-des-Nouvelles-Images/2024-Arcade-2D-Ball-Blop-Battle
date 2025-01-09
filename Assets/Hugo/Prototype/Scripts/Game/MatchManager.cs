@@ -6,7 +6,6 @@ using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 namespace Hugo.Prototype.Scripts.Game
