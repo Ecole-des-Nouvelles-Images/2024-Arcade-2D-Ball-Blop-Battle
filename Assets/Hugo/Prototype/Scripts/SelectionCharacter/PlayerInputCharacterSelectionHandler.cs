@@ -8,8 +8,10 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         private PlayerInputManager _playerInputManager;
 
         [Header("References")]
-        [SerializeField] private GameObject _testJoinPlayerOne;
-        [SerializeField] private GameObject _testJoinPlayerTwo;
+        [SerializeField] private GameObject _textJoinPlayerOne;
+        [SerializeField] private GameObject _imageJoinPlayerOne;
+        [SerializeField] private GameObject _textJoinPlayerTwo;
+        [SerializeField] private GameObject _imageJoinPlayerTwo;
 
         private void Awake()
         {
@@ -31,12 +33,14 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             if (playerInput.playerIndex == 0)
             {
                 playerInput.gameObject.GetComponent<CharacterSelectionController>().IsPlayerOne = true;
-                _testJoinPlayerOne.SetActive(false);
+                _textJoinPlayerOne.SetActive(false);
+                _imageJoinPlayerOne.SetActive(false);
             }
             else
             {
                 playerInput.gameObject.GetComponent<CharacterSelectionController>().IsPlayerOne = false;
-                _testJoinPlayerTwo.SetActive(false);
+                _textJoinPlayerTwo.SetActive(false);
+                _imageJoinPlayerTwo.SetActive(false);
             }
         }
     }

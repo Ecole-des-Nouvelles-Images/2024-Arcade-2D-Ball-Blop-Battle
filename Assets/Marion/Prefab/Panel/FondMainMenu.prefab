@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a5c8bf7756f7e47b0373bf3cfc120b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 1
+  _animationTime: 2
   _animationLeftRotation: {x: 0, y: 0, z: 3}
   _animationRightRotation: {x: 0, y: 0, z: -3}
   _animationCurve:
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 198a8d38b0c574c4d83465c4992d977f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 1
+  _animationTime: 2
   _animationLeftRotation: {x: 0, y: 0, z: 3}
   _animationRightRotation: {x: 0, y: 0, z: -3}
   _animationCurve:
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animationTime: 3
   _animationStartFade: 1
-  _animationEndFade: 0.6
+  _animationEndFade: 0.25
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -893,7 +893,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animationTime: 1
   _animationStartScale: 1
-  _animationEndScale: 1.5
+  _animationEndScale: 1.4
   _animationCurve:
     serializedVersion: 2
     m_Curve:

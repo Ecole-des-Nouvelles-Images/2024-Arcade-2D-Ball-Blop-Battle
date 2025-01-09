@@ -103,7 +103,7 @@ namespace Hugo.Prototype.Scripts.UI
                         Image image = canvas.GetComponentInChildren<Image>();
                         RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
                         rectTransform.anchorMin = new Vector2(0.31f, 0.88f);
-                        rectTransform.anchorMax = new Vector2(0.38f, 0.98f);
+                        rectTransform.anchorMax = new Vector2(0.36f, 0.98f);
                     }
                 }
             }
@@ -157,7 +157,7 @@ namespace Hugo.Prototype.Scripts.UI
 
                         Image image = canvas.GetComponentInChildren<Image>();
                         RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
-                        rectTransform.anchorMin = new Vector2(0.62f, 0.88f);
+                        rectTransform.anchorMin = new Vector2(0.64f, 0.88f);
                         rectTransform.anchorMax = new Vector2(0.69f, 0.98f);
                     }
                 }
