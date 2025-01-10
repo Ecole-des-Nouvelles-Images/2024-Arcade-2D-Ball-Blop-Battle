@@ -48,7 +48,7 @@ There are **4 different blops**, each with its own unique **special spike** and 
 ## Game mechanics
 Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
 
-https://github.com/user-attachments/assets/9563e895-485a-4bd8-b5f4-4d2e855c7313
+https://github.com/user-attachments/assets/21fd09d4-ce86-439a-9fcd-63709f87ada4
 
 ---
 <div align="center">
