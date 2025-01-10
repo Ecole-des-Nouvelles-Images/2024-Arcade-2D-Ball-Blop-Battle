@@ -1,8 +1,8 @@
 ![IllustrationLoadingScreen](https://github.com/user-attachments/assets/a2b3d9a9-95d4-4461-aa9f-42438d908716)
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.47-blue?style=flat&logo=unity)](https://unity.com/)
-[![GitHub Release](https://img.shields.io/github/v/release/Ecole-des-Nouvelles-Images/Unity-Template)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)
-[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/Unity-Template)](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template/blob/main/LICENSE)
-[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/Unity-Template?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)
+[![GitHub Release](https://img.shields.io/github/v/release/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)
+[![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/blob/main/LICENSE)
+[![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)
 
 **Ball Blop Battle** is a side-view arcade-style sports and action game. The player controls a **blop** to **fight** his opponents in a revisited **volleyball** match.
 
@@ -30,10 +30,10 @@ The development process included **a preproduction, production and a postproduct
   <h2>Team</h2>
 </div>
 
-This game was brought to life by:
-- **Calvin Ovide**: Game Artist
-- **Dubreil Marion**: Game Artist
-- **Isambart Hugo**: Developer
+This game was brought to life by :
+- **Calvin Ovide :** Game Artist
+- **Dubreil Marion :** Game Artist
+- **Isambart Hugo :** Developer
 
 ![baniere_readme](https://github.com/user-attachments/assets/47f3a8a8-ad72-4476-ab63-7e2115d4a1c5)
 
@@ -44,10 +44,10 @@ This game was brought to life by:
 
 [Describe the core gameplay loop, mechanics, and objectives of the game. Include details like number of players, perspective, and unique gameplay features.]
 
-### Phase 1: [Phase Name]
+### Phase 1 : [Phase Name]
 [Describe the first phase of gameplay, objectives, and player actions.]
 
-### Phase 2: [Phase Name]
+### Phase 2 : [Phase Name]
 [Describe the second phase, any escalating challenges, and goals.]
 
 ![Gameplay Screenshot](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template/blob/main/MetaData/gameplay-screenshot.png)
@@ -82,7 +82,7 @@ If you encounter any bugs or have suggestions, please open an **[issue ticket](h
   <h2>Special Thanks</h2>
 </div>
 
-We would like to thank:
+We would like to thank :
 - **École des Nouvelles Images**
 
 ---
