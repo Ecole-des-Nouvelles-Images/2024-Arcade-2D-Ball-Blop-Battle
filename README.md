@@ -31,11 +31,7 @@ The development process included **a preproduction, production and a postproduct
 </div>
 
 This game was brought to life by :
-- **Calvin Ovide :** Game Artist
-- **Dubreil Marion :** Game Artist
-- **Isambart Hugo :** Developer
-
-![baniere_readme](https://github.com/user-attachments/assets/47f3a8a8-ad72-4476-ab63-7e2115d4a1c5)
+![baniere_readme3](https://github.com/user-attachments/assets/163b3ef1-d7d9-4fd6-9f82-01021287457a)
 
 ---
 <div align="center">
