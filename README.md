@@ -83,7 +83,7 @@ If you encounter any bugs or have suggestions, please open an **[issue ticket](h
 </div>
 
 We would like to thank :
-- **École des Nouvelles Images**
+- **L'École des Nouvelles Images**
 
 ---
 <div align="center">
