@@ -18,7 +18,7 @@
 
 ---
 <div align="center">
-  <h2>Introduction</h2>
+  <h1>Introduction</h1>
 </div>
 
 **Ball Blop Battle** is a arcade, sport and action game developed during **five weeks**.  
@@ -27,7 +27,7 @@ The development process included **a preproduction, production and a postproduct
 
 ---
 <div align="center">
-  <h2>Team</h2>
+  <h1>Team</h1>
 </div>
 
 This game was brought to life by :
@@ -35,29 +35,35 @@ This game was brought to life by :
 
 ---
 <div align="center">
-  <h2>Gameplay</h2>
+  <h1>Gameplay</h1>
 </div>
 
-[Describe the core gameplay loop, mechanics, and objectives of the game. Include details like number of players, perspective, and unique gameplay features.]
+**Ball Blop Battle** is a **1vs1** game in which each player controls a blop and must **win** the volleyball match revisited !
 
-### Phase 1 : [Phase Name]
-[Describe the first phase of gameplay, objectives, and player actions.]
+### Blops
+There are **4 different blops**, each with its own unique **special spike** and differentiated mainly by its **color** :
+|Blops      |Special Spike|
+|------------|--------------|
+|<img src="https://github.com/user-attachments/assets/84f189fe-df79-47c9-a50e-02c710f50bea" alt="Image" height="200" width="200">|Shoots a ball that shrinks and becomes harder to catch.|
+|<img src="https://github.com/user-attachments/assets/f37be142-7a07-4203-bc49-5d19cb83a3f1" alt="Image" height="200" width="200">|Shoots a balloon so fast that it becomes invisible, leaving only a trail of electricity.|
+|<img src="https://github.com/user-attachments/assets/4c1c0485-7e25-463a-a1bc-f069ac7df369" alt="Image" height="200" width="200">|Shoot three balloons one after the other, but only one is real.|
+|<img src="https://github.com/user-attachments/assets/ab426a4e-d6f8-4a7c-baa4-65d338e4611c" alt="Image" height="200" width="200">|Shoots the balloon and can then alter its trajectory to make it crash to the ground.|
 
-### Phase 2 : [Phase Name]
-[Describe the second phase, any escalating challenges, and goals.]
+### Game mechanics
+Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
 
-![Gameplay Screenshot](https://github.com/Ecole-des-Nouvelles-Images/Unity-Template/blob/main/MetaData/gameplay-screenshot.png)
+https://github.com/user-attachments/assets/9563e895-485a-4bd8-b5f4-4d2e855c7313
 
 ---
 <div align="center">
-  <h2>Universe</h2>
+  <h1>Universe</h1>
 </div>
 
 Les **blops**, des petites créatures rondes composées de slimes avec des **capacités spéciales**, s'adonnent aux batailles de Blop Battle à travers différentes **arènes**.
 
 ---
 <div align="center">
-  <h2>Release</h2>
+  <h1>Release</h1>
 </div>
 
 The game is available on windows and here is the link to **[dowload](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)** it.
@@ -66,7 +72,7 @@ This game supports **windows**.
 
 ---
 <div align="center">
-  <h2>Development</h2>
+  <h1>Development</h1>
 </div>
 
 This project is currently **in development**. Future updates might include **new arenas, new characters and bug fixes**.  
@@ -75,7 +81,7 @@ If you encounter any bugs or have suggestions, please open an **[issue ticket](h
 
 ---
 <div align="center">
-  <h2>Special Thanks</h2>
+  <h1>Special Thanks</h1>
 </div>
 
 We would like to thank :
@@ -83,7 +89,7 @@ We would like to thank :
 
 ---
 <div align="center">
-  <h2>Recommendations</h2>
+  <h1>Recommendations</h1>
 </div>
 
 For the best experience, we recommend playing with **controllers**.
