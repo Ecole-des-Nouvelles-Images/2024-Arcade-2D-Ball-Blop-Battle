@@ -40,16 +40,12 @@ This game was brought to life by :
 
 **Ball Blop Battle** is a **1vs1** game in which each player controls a blop and must **win** the volleyball match revisited !
 
-### Blops
+## Blops
 There are **4 different blops**, each with its own unique **special spike** and differentiated mainly by its **color** :
-|Blops      |Special Spike|
-|------------|--------------|
-|<img src="https://github.com/user-attachments/assets/84f189fe-df79-47c9-a50e-02c710f50bea" alt="Image" height="200" width="200">|Shoots a ball that shrinks and becomes harder to catch.|
-|<img src="https://github.com/user-attachments/assets/f37be142-7a07-4203-bc49-5d19cb83a3f1" alt="Image" height="200" width="200">|Shoots a balloon so fast that it becomes invisible, leaving only a trail of electricity.|
-|<img src="https://github.com/user-attachments/assets/4c1c0485-7e25-463a-a1bc-f069ac7df369" alt="Image" height="200" width="200">|Shoot three balloons one after the other, but only one is real.|
-|<img src="https://github.com/user-attachments/assets/ab426a4e-d6f8-4a7c-baa4-65d338e4611c" alt="Image" height="200" width="200">|Shoots the balloon and can then alter its trajectory to make it crash to the ground.|
 
-### Game mechanics
+<img src="https://github.com/user-attachments/assets/d6156c0e-b9c4-464a-82c8-40555a30213f" alt="Image" height="720" width="1280">
+
+## Game mechanics
 Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
 
 https://github.com/user-attachments/assets/9563e895-485a-4bd8-b5f4-4d2e855c7313
