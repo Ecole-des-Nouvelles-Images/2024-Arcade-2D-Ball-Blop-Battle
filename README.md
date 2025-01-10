@@ -60,7 +60,7 @@ This game was brought to life by:
   <h2>Universe</h2>
 </div>
 
-[Provide a brief story or lore for the game world, highlighting key characters, locations, or events. Explain how the story ties into the gameplay.]
+Les **blops**, des petites créatures rondes composées de slimes avec des **capacités spéciales**, s'adonnent aux batailles de Blop Battle à travers différentes **arènes**.
 
 ---
 
@@ -68,9 +68,9 @@ This game was brought to life by:
   <h2>Release</h2>
 </div>
 
-[Provide details about the platform, availability, and installation instructions. Mention if the game is available on PC, console, or mobile, and provide links to download or install.]
+The game is available on windows and here is the link to **[dowload](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)** it.
 
-This game supports **[platform requirements, e.g., Android 5.1+]**.
+This game supports **windows**.
 
 ---
 
@@ -97,5 +97,4 @@ We would like to thank:
   <h2>Recommendations</h2>
 </div>
 
-For the best experience, we recommend playing with **controllers**.  
-[Additional recommendations, such as tutorials or preparation tips.]
+For the best experience, we recommend playing with **controllers**.
