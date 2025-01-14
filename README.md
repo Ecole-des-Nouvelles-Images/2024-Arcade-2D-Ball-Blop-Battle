@@ -55,7 +55,7 @@ https://github.com/user-attachments/assets/21fd09d4-ce86-439a-9fcd-63709f87ada4
   <h1>Universe</h1>
 </div>
 
-Les **blops**, des petites créatures rondes composées de slimes avec des **capacités spéciales**, s'adonnent aux batailles de Blop Battle à travers différentes **arènes**.
+The **blops**, small round creatures made of slimes with **special abilities**, take part in Blop Battle through different **arenas**.
 
 ---
 <div align="center">
