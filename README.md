@@ -81,7 +81,7 @@ If you encounter any bugs or have suggestions, please open an **[issue ticket](h
 </div>
 
 We would like to thank :
-- **L'École des Nouvelles Images**
+- **[L'École des Nouvelles Images](https://www.nouvellesimages.xyz/)**
 
 ---
 <div align="center">
