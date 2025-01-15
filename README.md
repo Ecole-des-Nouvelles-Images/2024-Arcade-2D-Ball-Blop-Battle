@@ -8,13 +8,13 @@
 
 ## Table of Contents
 1. [Introduction](#introduction)
-2. [Team](#team)
-3. [Gameplay](#gameplay)
-4. [Universe](#universe)
-5. [Release](#release)
-6. [Development](#development)
-7. [Special Thanks](#special-thanks)
-8. [Recommendations](#recommendations)
+2. [Universe](#universe)
+3. [Team](#team)
+4. [Gameplay](#gameplay)
+6. [Release](#release)
+7. [Development](#development)
+8. [Special Thanks](#special-thanks)
+9. [Recommendations](#recommendations)
 
 ---
 <div align="center">
@@ -24,6 +24,13 @@
 **Ball Blop Battle** is a arcade, sport and action game developed during **five weeks**.  
 This project was created as part of **a school project**.  
 The development process included **a preproduction, production and a postproduction**.
+
+---
+<div align="center">
+  <h1>Universe</h1>
+</div>
+
+The **blops**, small round creatures made of slimes with **special abilities**, take part in Blop Battle through different **arenas**.
 
 ---
 <div align="center">
@@ -49,13 +56,6 @@ There are **4 different blops**, each with its own unique **special spike** and 
 Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
 
 https://github.com/user-attachments/assets/21fd09d4-ce86-439a-9fcd-63709f87ada4
-
----
-<div align="center">
-  <h1>Universe</h1>
-</div>
-
-The **blops**, small round creatures made of slimes with **special abilities**, take part in Blop Battle through different **arenas**.
 
 ---
 <div align="center">
