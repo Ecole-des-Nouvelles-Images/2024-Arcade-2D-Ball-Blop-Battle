@@ -59,6 +59,9 @@ namespace Hugo.Prototype.Scripts.Ball
         [Header("Green")]
         public GameObject VFXSpecialSpikeGreen;
         public ParticleSystem VFXSpecialSpikeGreenImpact;
+        
+        [Header("Celebrations")]
+        [SerializeField] private GameObject _celebrationPointObject;
 
         private void Awake()
         {
@@ -137,6 +140,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, false);
                 ResetVFXSpecialSpike();
+                Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
                 if (PlayerController.ScrollBackgroundObjects.Count > 0)
                 {
                     foreach (GameObject scroll in PlayerController.ScrollBackgroundObjects)
@@ -173,6 +177,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, false);
                 ResetVFXSpecialSpike();
+                Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
                 if (PlayerController.ScrollBackgroundObjects.Count > 0)
                 {
                     foreach (GameObject scroll in PlayerController.ScrollBackgroundObjects)
@@ -311,6 +316,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 _matchManager.DisplayScoreChange(false, false);
                 ResetVFXSpecialSpike();
                 _cameraHandler.ScoredShake();
+                Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
                 
                 Destroy();
             }
@@ -321,6 +327,7 @@ namespace Hugo.Prototype.Scripts.Ball
                 _matchManager.DisplayScoreChange(true, false);
                 ResetVFXSpecialSpike();
                 _cameraHandler.ScoredShake();
+                Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
 
                 Destroy();
             }

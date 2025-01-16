@@ -4942,6 +4942,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   _laserParticles: {fileID: 4399924575683536334}
+  _celebrationPointSprite: {fileID: 21300000, guid: bd558bbfaa4c7404c819ae9d2f57ce9c, type: 3}
   _cameraHandler: {fileID: 0}
 --- !u!82 &3338961460820805158
 AudioSource:

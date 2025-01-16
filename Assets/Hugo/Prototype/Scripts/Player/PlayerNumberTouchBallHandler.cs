@@ -14,6 +14,9 @@ namespace Hugo.Prototype.Scripts.Player
         [Header("References")]
         [SerializeField] private GameObject _canvasNumberTouchBallGameObject;
         
+        [Header("Celebrations")]
+        [SerializeField] private GameObject _celebrationPointObject;
+        
         private GameObject _ballGameObject;
         private MatchManager _matchManager;
         private CameraHandler _cameraHandler;
@@ -73,6 +76,8 @@ namespace Hugo.Prototype.Scripts.Player
                 MatchManager.PlayerOneScoreLast = true;
                 _matchManager.DisplayScoreChange(false, true);
                 
+                Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
+                
                 _cameraHandler.ScoredShake();
             }
             else
@@ -80,6 +85,8 @@ namespace Hugo.Prototype.Scripts.Player
                 MatchManager.ScorePlayerOne++;
                 MatchManager.PlayerOneScoreLast = false;
                 _matchManager.DisplayScoreChange(true, true);
+                
+                Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
                 
                 _cameraHandler.ScoredShake();
             }

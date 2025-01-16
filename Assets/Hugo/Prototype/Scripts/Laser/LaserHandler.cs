@@ -17,6 +17,9 @@ namespace Hugo.Prototype.Scripts.Laser
         
         [Header("Camera")]
         [SerializeField] private CameraHandler _cameraHandler;
+        
+        [Header("Celebrations")]
+        [SerializeField] private GameObject _celebrationPointObject;
 
         private bool _hasAlreadyHit;
         private bool _isplayerOneHit;
@@ -75,6 +78,9 @@ namespace Hugo.Prototype.Scripts.Laser
                     MatchManager.PlayerOneScoreLast = true;
                     _matchManager.DisplayScoreChange(false, true);
                     _cameraHandler.ScoredShake();
+                    
+                    Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
+                    
                     _ballGameObject.GetComponent<BallHandler>().Destroy();
                 }
             }
@@ -86,6 +92,9 @@ namespace Hugo.Prototype.Scripts.Laser
                     MatchManager.PlayerOneScoreLast = false;
                     _matchManager.DisplayScoreChange(true, true);
                     _cameraHandler.ScoredShake();
+                    
+                    Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
+                    
                     _ballGameObject.GetComponent<BallHandler>().Destroy();
                 }
             }

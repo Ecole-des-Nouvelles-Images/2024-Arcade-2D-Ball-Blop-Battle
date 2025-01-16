@@ -162,6 +162,7 @@ MonoBehaviour:
   VFXSpecialSpikeRed: {fileID: 9215905894587815827}
   VFXSpecialSpikeGreen: {fileID: 211621413244738929}
   VFXSpecialSpikeGreenImpact: {fileID: 609651125598384731}
+  _celebrationPointObject: {fileID: 5919759307934667811, guid: 971d3ed7f35e2e545a477e143176efe6, type: 3}
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using System;
 using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
+using Hugo.Prototype.Scripts.Celebrations;
 using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.UI;
 using Hugo.Prototype.Scripts.Utils;
@@ -42,6 +43,10 @@ namespace Hugo.Prototype.Scripts.Game
         [Header("Canvas")]
         [SerializeField] private GameObject _canvasNewSet;
         [SerializeField] private GameObject _canvasEndMatch;
+        
+        [Header("Celebrations")]
+        [SerializeField] private GameObject _celebrationPointObject;
+        [SerializeField] private GameObject _celebrationSetObject;
         
         [Header("Public Variables")]
         public int SetScorePlayerOne;
@@ -97,10 +102,15 @@ namespace Hugo.Prototype.Scripts.Game
             _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().PerfectReceptionCount = 0;
             _gameManager.SecondPlayerGameObject.GetComponent<PlayerController>().CanSpecialSpike = false;
             _gameManager.SecondPlayerGameObject.GetComponent<PlayerNumberTouchBallHandler>().NumberTouchBall = 0;
+
+            GameObject celebrationSetGameObject;
             
             if (ScorePlayerOne > ScorePlayerTwo)
             {
                 SetScorePlayerOne++;
+                
+                celebrationSetGameObject = Instantiate(_celebrationSetObject, new Vector3(0, -6, 0), Quaternion.identity);
+                celebrationSetGameObject.GetComponent<CelebrationSetHandler>().SetUp(true, SetScorePlayerOne);
                 
                 if (SetScorePlayerOne == 3)
                 {
@@ -111,6 +121,9 @@ namespace Hugo.Prototype.Scripts.Game
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    
+                    Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
+                    
                     Invoke(nameof(EndGame), 5f);
                 }
                 else
@@ -125,6 +138,9 @@ namespace Hugo.Prototype.Scripts.Game
             {
                 SetScorePlayerTwo++;
                 
+                celebrationSetGameObject = Instantiate(_celebrationSetObject, new Vector3(0, -6, 0), Quaternion.identity);
+                celebrationSetGameObject.GetComponent<CelebrationSetHandler>().SetUp(false, SetScorePlayerTwo);
+                
                 if (SetScorePlayerTwo == 3)
                 {
                     // Debug.Log(" Player Two WIN the match ");
@@ -134,6 +150,9 @@ namespace Hugo.Prototype.Scripts.Game
                     
                     _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    
+                    Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
+                    
                     Invoke(nameof(EndGame), 5f);
                 }
                 else
@@ -148,6 +167,9 @@ namespace Hugo.Prototype.Scripts.Game
             {
                 SetScorePlayerOne++;
                 SetScorePlayerTwo++;
+                
+                celebrationSetGameObject = Instantiate(_celebrationSetObject, new Vector3(0, -6, 0), Quaternion.identity);
+                celebrationSetGameObject.GetComponent<CelebrationSetHandler>().SetUp(true, SetScorePlayerOne);
                 
                 if (SetScorePlayerOne == 3)
                 {
