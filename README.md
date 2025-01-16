@@ -50,7 +50,9 @@ This game was brought to life by :
 ## Blops
 There are **4 different blops**, each with its own unique **special spike** and differentiated mainly by its **color** :
 
-<img src="https://github.com/user-attachments/assets/d6156c0e-b9c4-464a-82c8-40555a30213f" alt="Image" height="720" width="1280">
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/d6156c0e-b9c4-464a-82c8-40555a30213f" alt="Exemple d'image" style="max-width: 100%; height: auto;">
+</div>
 
 ## Game mechanics
 Each player can **move**, **jump**, **dash**, **attack**, **catch** and **receive** the ball. Players may **only move** if they are not in possession of the ball.
