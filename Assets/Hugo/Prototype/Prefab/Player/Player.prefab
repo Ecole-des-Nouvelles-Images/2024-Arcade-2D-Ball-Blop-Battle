@@ -235,7 +235,7 @@ MonoBehaviour:
   CanSpecialSpike: 0
   IsSpecialSpike: 0
   PlayerType: {fileID: 11400000, guid: d1f337d1024003f42949332e66097c96, type: 2}
-  _speed: 450
+  _speed: 350
   _jumpForce: 14
   _wallJumpForce: 10
   _jumpingSpeed: 10
