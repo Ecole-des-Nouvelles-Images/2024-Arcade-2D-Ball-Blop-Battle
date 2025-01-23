@@ -2398,7 +2398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 308884ad2f5782543a8da953dcb868de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _totalTimer: 5
+  _totalTimer: 45
   _timeBetweenSets: 4
   IsTimerRunning: 0
   _timerNewBall: 1

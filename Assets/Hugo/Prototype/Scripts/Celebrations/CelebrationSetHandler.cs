@@ -47,12 +47,14 @@ namespace Hugo.Prototype.Scripts.Celebrations
                 _spriteRenderer.sortingOrder = -7;
                 transform.DOMoveY(_animationVictoryEndPosition, _animationAppearTime).SetEase(_animationCurve);
                 transform.DOScaleY(_animationEndScale, _animationAppearTime).SetEase(_animationCurve);
+                transform.DOScaleX(_animationEndScale, _animationAppearTime).SetEase(_animationCurve);
                 Invoke(nameof(Disappear), _timeBeforeDisappear);
             }
             else
             {
                 transform.DOMoveY(transform.position.y + _animationEndPosition, _animationAppearTime).SetEase(_animationCurve);
                 transform.DOScaleY(_animationEndScale, _animationAppearTime).SetEase(_animationCurve);
+                transform.DOScaleX(_animationEndScale, _animationAppearTime).SetEase(_animationCurve);
                 Invoke(nameof(Disappear), _timeBeforeDisappear);
             }
         }

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 4969cc0e33d61c24c9a5ba336fb790b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d32b6fb72cc8284cb13c86ac58437e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,9 +101,9 @@ MonoBehaviour:
   _animationDisappearTime: 0.8
   _animationStartPosition: -6
   _animationStartScale: 1
-  _animationEndPosition: 2
-  _animationVictoryEndPosition: -2.5
-  _animationEndScale: 1.5
+  _animationEndPosition: 2.2
+  _animationVictoryEndPosition: -2.8
+  _animationEndScale: 1.2
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -129,6 +129,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _timeBeforeDisappear: 3
-  _firstSprite: {fileID: 21300000, guid: 4969cc0e33d61c24c9a5ba336fb790b0, type: 3}
-  _secondSprite: {fileID: 21300000, guid: 4969cc0e33d61c24c9a5ba336fb790b0, type: 3}
+  _firstSprite: {fileID: 21300000, guid: 8d32b6fb72cc8284cb13c86ac58437e1, type: 3}
+  _secondSprite: {fileID: 21300000, guid: 00e473d912b225f4dbf5da5c9c8390cf, type: 3}
   _interval: 0.5

@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -7
-  m_Sprite: {fileID: 21300000, guid: bd558bbfaa4c7404c819ae9d2f57ce9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: add474e85638d0a4f8c71170d8cabe3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animationAppearTime: 0.25
   _animationDisappearTime: 0.5
-  _animationEndPosition: 1.75
-  _animationEndScale: 1.5
+  _animationEndPosition: 1.25
+  _animationEndScale: 1.2
   _animationCurve:
     serializedVersion: 2
     m_Curve:
