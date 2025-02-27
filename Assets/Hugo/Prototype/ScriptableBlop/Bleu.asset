@@ -15,5 +15,6 @@ MonoBehaviour:
   PlayerName: Bleu
   Sprite: {fileID: 21300000, guid: 17c56a456031de44b9b68798e4034ed6, type: 3}
   SpeedSpecialSpike: 2.3
+  SpecialSpikeDescription: 
   PlayerAnimatorController: {fileID: 0}
   _becameSmallerTimer: 0

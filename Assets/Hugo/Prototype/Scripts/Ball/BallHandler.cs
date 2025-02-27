@@ -451,6 +451,13 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d.velocity = Vector2.zero;
             _rb2d.AddForce(Vector2.up * _speedPerfectReception / 10, ForceMode2D.Impulse);
         }
+        
+        public void DashReception()
+        {
+            Debug.Log("DashReception");
+            _rb2d.velocity /= 2;
+            _rb2d.AddForce(Vector2.up * _speedPerfectReception / 15, ForceMode2D.Impulse);
+        }
 
         // Special Spike
         public void SpecialSpikeActivation()
@@ -472,7 +479,7 @@ namespace Hugo.Prototype.Scripts.Ball
         {
             _isSmaller = !_isSmaller;
             
-            _transform.localScale = _isSmaller ? new Vector3(0.5f, 0.5f, 0.5f) : new Vector3(1f, 1f, 1f);
+            _transform.localScale = _isSmaller ? new Vector3(0.4f, 0.4f, 0.4f) : new Vector3(1f, 1f, 1f);
         }
         
         // Commitment

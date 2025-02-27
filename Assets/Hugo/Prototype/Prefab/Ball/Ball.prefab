@@ -147,7 +147,7 @@ MonoBehaviour:
   _speedPunch: 0.03
   _speedPerfectReception: 10
   _speedSpecialSpikeActivation: 3
-  _maxSpeed: 100
+  _maxSpeed: 50
   _rotationFactor: 10
   _maxRotationSpeed: 20
   BallBaseTrail: {fileID: 8883281880543543153}

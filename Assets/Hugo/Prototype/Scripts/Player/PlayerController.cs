@@ -244,6 +244,11 @@ namespace Hugo.Prototype.Scripts.Player
                         CanSpecialSpike = true;
                     }
                 }
+
+                if (_isDashing)
+                {
+                    _ball.GetComponent<BallHandler>().DashReception();
+                }
                 
                 Vector2 direction = new Vector2(_ball.transform.position.x - transform.position.x, _ball.transform.position.y - transform.position.y);
                 
