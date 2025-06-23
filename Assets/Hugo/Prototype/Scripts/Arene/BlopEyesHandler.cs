@@ -24,7 +24,6 @@ namespace Hugo.Prototype.Scripts.Arene
 
             if (_ballHandler)
             {
-                // Debug.Log(_ballHandler.IsPlayerOneSide);
                 if (_ballHandler.IsPlayerOneSide)
                 {
                     transform.DOMove(_leftPosition, _animationTime).SetEase(_animationCurve);
