@@ -1,3 +1,7 @@
+<div align="center">
+  <h1>Ball Blop Battle</h1>
+</div>
+
 ![IllustrationLoadingScreen](https://github.com/user-attachments/assets/a2b3d9a9-95d4-4461-aa9f-42438d908716)
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.47-blue?style=flat&logo=unity)](https://unity.com/)
 [![GitHub Release](https://badgen.net/github/release/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)
