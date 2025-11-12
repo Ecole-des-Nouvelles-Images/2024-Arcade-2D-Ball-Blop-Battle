@@ -20,7 +20,7 @@
 
 **Ball Blop Battle** est un jeu d'**action** et de **sport** de type **arcade** en vue latérale, où **deux joueurs** s'affrontent. Chaque joueur contrôle un **blop** pour affronter ses adversaires dans un match de **volley-ball revisité**.
 
-## Table of Contents
+## Table des matières
 1. [Introduction](#introduction)
 2. [Univers](#univers)
 3. [Équipe](#équipe)
@@ -35,7 +35,7 @@
   <h1>Introduction</h1>
 </div>
 
-**Ball Blop Battle** est un jeu d'**action** et de **sport** de type **arcade** développé en **cinqs semaines**.  
+**Ball Blop Battle** est un jeu d'**action** et de **sport** de type **arcade** développé en **cinq semaines**.  
 Ce projet a été créé dans le cadre d'un **projet scolaire**.  
 Le processus de développement comprenait **une préproduction (1 semaine), une production (3 semaines) et une postproduction (1 semaine)**.
 
