@@ -41,7 +41,12 @@ The **blops**, small round creatures made of slimes with **special abilities**, 
   <h1>Team</h1>
 </div>
 
-This game was brought to life by : Marion DUBREIL - Calvin OVIDE - Hugo ISAMBART
+This game was brought to life by :
+
+**Marion DUBREIL** - *Game Artist*  
+**Calvin OVIDE** - *Game Artist*  
+**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Game Developer*
+
 ![baniere_readme3](https://github.com/user-attachments/assets/163b3ef1-d7d9-4fd6-9f82-01021287457a)
 
 ---
