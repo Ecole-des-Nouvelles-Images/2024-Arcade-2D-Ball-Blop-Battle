@@ -1,4 +1,14 @@
 <div align="center">
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/blob/main/README.md">
+    <img width="128" height="128" alt="flag_angleterre" src="https://github.com/user-attachments/assets/79223af9-d6d8-48a1-aa17-7355c3c6b444" />
+  </a>
+  &nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/blob/main/README.fr.md">
+    <img width="128" height="128" alt="flag_france" src="https://github.com/user-attachments/assets/b98ca283-5441-4f57-a475-8cbf1f843485" />
+  </a>
+</div>
+
+<div align="center">
   <h1>Ball Blop Battle</h1>
 </div>
 
