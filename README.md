@@ -59,7 +59,7 @@ This game was brought to life by :
 
 **[Marion DUBREIL](https://github.com/Zamelkhia)** - *Game Artist*  
 **[Calvin OVIDE](https://github.com/CalvinOvide)** - *Game Artist*  
-**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Game Developer*
+**[Hugo ISAMBART](https://github.com/HIsambart)** - *Game Developer*
 
 ![baniere_readme3](https://github.com/user-attachments/assets/163b3ef1-d7d9-4fd6-9f82-01021287457a)
 
