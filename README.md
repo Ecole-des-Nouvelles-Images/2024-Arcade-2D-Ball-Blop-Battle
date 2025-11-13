@@ -18,7 +18,7 @@
 
 ![IllustrationLoadingScreen](https://github.com/user-attachments/assets/a2b3d9a9-95d4-4461-aa9f-42438d908716)
 [![Unity Version](https://img.shields.io/badge/Unity-2022.3.47-blue?style=flat&logo=unity)](https://unity.com/)
-[![GitHub Release](https://badgen.net/github/release/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)
+[![GitHub Release](https://img.shields.io/github/release/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/releases)
 [![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/blob/main/LICENSE)
 [![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)
 
