@@ -60,7 +60,7 @@ Este juego fue creado por:
 
 **[Marion DUBREIL](https://github.com/Zamelkhia)** - *Artista de Juego*  
 **[Calvin OVIDE](https://github.com/CalvinOvide)** - *Artista de Juego*  
-**[Hugo ISAMBART](https://github.com/Neiflheim)** - *Desarrollador de Juego*
+**[Hugo ISAMBART](https://github.com/HIsambart)** - *Desarrollador de Juego*
 
 ![baniere_readme3](https://github.com/user-attachments/assets/163b3ef1-d7d9-4fd6-9f82-01021287457a)
 
