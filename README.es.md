@@ -22,8 +22,7 @@
 [![License](https://img.shields.io/github/license/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle/blob/main/LICENSE)
 [![Repo Size](https://img.shields.io/github/repo-size/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle?color=lightgrey)](https://github.com/Ecole-des-Nouvelles-Images/2024-Arcade-2D-Ball-Blop-Battle)
 
-**Ball Blop Battle** es un juego **arcade de deportes y acción** en vista lateral 1vs1.  
-El jugador controla un **blop** para **luchar** contra sus oponentes en un partido de **vóley** revisitado.
+**Ball Blop Battle** es un juego **arcade de deportes y acción** en vista lateral 1vs1. El jugador controla un **blop** para **luchar** contra sus oponentes en un partido de **vóley** revisitado.
 
 ## Tabla de Contenidos
 1. [Introducción](#introducción)
