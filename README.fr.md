@@ -103,8 +103,12 @@ Si vous rencontrez des bugs ou avez des suggestions, veuillez ouvrir un **[ticke
   <h1>Remerciements</h1>
 </div>
 
-Nous tenons à remercier :
+Nous tenons à remercier notre **école** et nos **professeurs** :  
 - **[L'École des Nouvelles Images](https://www.nouvellesimages.xyz/)**
+- **[Frédéric BAST](https://github.com/FBast)** - *Soutien Dév*
+- **[Yvan BLADET](https://github.com/PopoteProf)** - *Soutien Dév / Intégration*
+- **[Jerome CROS](https://fr.linkedin.com/in/crospro)** - *Soutien Artistique*
+- **[Tommy HA PHUOC](https://fr.linkedin.com/in/tommyhaphuoc)** - *Soutien Gameplay*
 
 ---
 <div align="center">
