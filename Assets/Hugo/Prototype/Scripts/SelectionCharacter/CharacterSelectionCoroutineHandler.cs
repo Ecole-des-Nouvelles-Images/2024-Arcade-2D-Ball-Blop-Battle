@@ -78,8 +78,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
 
             SceneManager.LoadScene(3);
         }
-        
-        public void CancelLoadScene()
+
+        private void CancelLoadScene()
         {
             if (_loadSceneCoroutine != null)
             {
