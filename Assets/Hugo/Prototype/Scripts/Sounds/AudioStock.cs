@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using Hugo.Prototype.Scripts.Utils;
+using Int.Scripts.Utils.Singletons;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Sounds
 {
-    public class AudioStock : MonoBehaviourSingleton<AudioStock>
+    public class AudioStock : MonoBehaviourSingletonDontDestroyOnLoad<AudioStock>
     {
         [Header("Ball")]
         public List<AudioClip> BallClips;

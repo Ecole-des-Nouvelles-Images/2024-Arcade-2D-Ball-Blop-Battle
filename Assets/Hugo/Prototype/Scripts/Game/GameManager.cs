@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using Hugo.Prototype.Scripts.Player;
-using Hugo.Prototype.Scripts.Utils;
+using Int.Scripts.Utils.Singletons;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Game
 {
-    public class GameManager : MonoBehaviourSingleton<GameManager>
+    public class GameManager : MonoBehaviourSingletonDontDestroyOnLoad<GameManager>
     {
         // Players
         public GameObject FirstPlayerGameObject;

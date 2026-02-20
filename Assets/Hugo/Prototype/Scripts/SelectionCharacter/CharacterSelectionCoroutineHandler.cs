@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using Hugo.Prototype.Scripts.Game;
-using Hugo.Prototype.Scripts.Utils;
+using Int.Scripts.Utils.Singletons;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
