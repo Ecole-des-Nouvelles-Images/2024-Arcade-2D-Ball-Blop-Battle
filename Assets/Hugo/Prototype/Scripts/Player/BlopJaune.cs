@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 namespace Hugo.Prototype.Scripts.Player
 {
     [CreateAssetMenu(fileName = "BlopJaune", menuName = "PlayerData/BlopJaune")]
-    public class BlopJaune : PlayerType
+    public class BlopJaune : Blop
     {
         // Ball Components
         private PlayerController _playerController;

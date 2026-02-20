@@ -1,4 +1,5 @@
 using System;
+using Hugo.Refacto.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         private PlayerInput _playerInput;
         
-        private PlayerController _playerController;
+        private NewBlopController _newBlopController;
         
         private bool _isControllerConnected;
         
@@ -23,7 +24,7 @@ namespace Hugo.Prototype.Scripts.Player
         private void Awake()
         {
             _playerInput = GetComponent<PlayerInput>();
-            _playerController = GetComponent<PlayerController>();
+            _newBlopController = GetComponent<NewBlopController>();
         }
 
         private void OnEnable()
@@ -79,7 +80,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (InputAreEnable)
             {
-                _playerController.GetJoystickReadValue(context.ReadValue<Vector2>());
+                _newBlopController.GetJoystickReadValue(context.ReadValue<Vector2>());
             }
         }
         
@@ -87,7 +88,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (InputAreEnable)
             {
-                _playerController.GetSouthButtonReadValue(context.ReadValue<float>());
+                _newBlopController.GetSouthButtonReadValue(context.ReadValue<float>());
             }
         }
         
@@ -95,7 +96,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (InputAreEnable)
             {
-                _playerController.GetWestButtonReadValue(context.ReadValue<float>());
+                _newBlopController.GetWestButtonReadValue(context.ReadValue<float>());
             }
         }
         
@@ -103,7 +104,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (InputAreEnable)
             {
-                _playerController.GetEastButtonReadValue(context.ReadValue<float>());
+                _newBlopController.GetEastButtonReadValue(context.ReadValue<float>());
             }
         }
 
@@ -111,7 +112,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (InputAreEnable)
             {
-                _playerController.GetStartButtonReadValue(context.ReadValue<float>());
+                _newBlopController.GetStartButtonReadValue(context.ReadValue<float>());
             }
         }
     }

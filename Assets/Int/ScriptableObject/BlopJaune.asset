@@ -12,10 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69f0654c62f14a40a734bbe1b3254f8e, type: 3}
   m_Name: BlopJaune
   m_EditorClassIdentifier: 
+  BlopType: 0
   PlayerName: Jaune
   Sprite: {fileID: 21300000, guid: 03fe9fb39ba1d6048b0733a0691ebd4e, type: 3}
+  PlayerAnimatorController: {fileID: 9100000, guid: bf36f98d727855a479adb153011ef9bd, type: 2}
+  Speed: 350
+  JumpForce: 14
+  WallJumpForce: 10
+  JumpingSpeed: 10
+  AirControlFactor: 0.08
+  MaxAirSpeed: 5.5
+  TimeAppears: 0.5
+  TimeResetRotation: 0.2
+  DashSpeed: 15
+  DashDuration: 0.15
+  DashCooldown: 0.6
+  PerfectReceptionDuration: 0.5
+  PerfectReceptionCooldown: 0.75
+  RayGroundedLength: 0.2
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  RayWalledLength: 0.6
+  RayNetTouchedLength: 0.6
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 192
   SpeedSpecialSpike: 3.25
   SpecialSpikeDescription: "Tire un ballon si rapide qu'il devient invisible et laisse
     seulement une tra\xEEn\xE9e \xE9lectrique."
-  PlayerAnimatorController: {fileID: 9100000, guid: bf36f98d727855a479adb153011ef9bd, type: 2}
   _becameTransparentTimer: 0.3

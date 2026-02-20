@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Hugo.Prototype.Scripts.Player
 {
     [CreateAssetMenu(fileName = "BlopVert", menuName = "PlayerData/BlopVert")]
-    public class BlopVert : PlayerType
+    public class BlopVert : Blop
     {
         // Player Components
         private PlayerController _playerController;

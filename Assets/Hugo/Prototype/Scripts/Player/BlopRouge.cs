@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Hugo.Prototype.Scripts.Player
 {
     [CreateAssetMenu(fileName = "BlopRouge", menuName = "PlayerData/BlopRouge")]
-    public class BlopRouge : PlayerType
+    public class BlopRouge : Blop
     {
         // Random
         private bool _randomNumberAlreadyChoose = false;

@@ -4,6 +4,7 @@ using Hugo.Prototype.Scripts.Ball;
 using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Game;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -51,8 +52,8 @@ namespace Hugo.Prototype.Scripts.Player
         private bool _shootSpecialSpike;
         
         // Player Type
-        [Header("Player Type")]
-        public PlayerType PlayerType;
+        [FormerlySerializedAs("_blopType")] [FormerlySerializedAs("PlayerType")] [Header("Player Type")]
+        public Blop _blop;
         
         // Player Settings
         [Header("Player Settings")]
@@ -119,7 +120,7 @@ namespace Hugo.Prototype.Scripts.Player
             _animator = GetComponent<Animator>();
 
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
-            PlayerType = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstPlayerScriptableObject : GameManager.SecondPlayerScriptableObject;
+            _blop = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstBlopScriptableObject : GameManager.SecondBlopScriptableObject;
         }
 
         private void Start()
@@ -131,10 +132,10 @@ namespace Hugo.Prototype.Scripts.Player
             Invoke(nameof(ReverseCanMove), _timeAppears);
             Invoke(nameof(ReverseAppears), _timeAppears);
 
-            if (PlayerType)
+            if (_blop)
             {
-                _sr.sprite = PlayerType.Sprite;
-                _animator.runtimeAnimatorController = PlayerType.PlayerAnimatorController;
+                _sr.sprite = _blop.Sprite;
+                _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
             }
         }
 
@@ -405,7 +406,7 @@ namespace Hugo.Prototype.Scripts.Player
                     return;
                 }
 
-                if (PlayerType.PlayerName == "Vert" && CountShootSpecialSpike == 1)
+                if (_blop.PlayerName == "Vert" && CountShootSpecialSpike == 1)
                 {
                     ActiveSpecialSpike();
                     FlipSpriteAbsorbDrawn(_move);
@@ -492,7 +493,7 @@ namespace Hugo.Prototype.Scripts.Player
         {
             if (_ball)
             {
-                PlayerType.SpecialSpike(gameObject, _ball, _move);
+                _blop.SpecialSpike(gameObject, _ball, _move);
             }
             
             // Animation

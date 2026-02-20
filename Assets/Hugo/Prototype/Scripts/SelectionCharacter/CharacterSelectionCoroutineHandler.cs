@@ -30,14 +30,14 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
 
         private void Update()
         {
-            if (GameManager.FirstPlayerScriptableObject && GameManager.SecondPlayerScriptableObject && !GameManager.HasGameLoaded)
+            if (GameManager.FirstBlopScriptableObject && GameManager.SecondBlopScriptableObject && !GameManager.HasGameLoaded)
             {
                 GameManager.HasGameLoaded = true;
                 _panelTimer.SetActive(true);
                 _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay(3f));
             }
 
-            if (!GameManager.FirstPlayerScriptableObject || !GameManager.SecondPlayerScriptableObject)
+            if (!GameManager.FirstBlopScriptableObject || !GameManager.SecondBlopScriptableObject)
             {
                 _panelTimer.SetActive(false);
                 CancelLoadScene();

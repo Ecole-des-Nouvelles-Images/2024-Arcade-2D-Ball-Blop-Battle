@@ -262,22 +262,22 @@ namespace Hugo.Prototype.Scripts.Ball
                     }
                 }
 
-                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Bleu")
+                if (_currentPlayerGameObject.GetComponent<PlayerController>()._blop.PlayerName == "Bleu")
                 {
                     BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.25f, 0.57f, 0.75f);
                     BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.25f, 0.57f, 0.75f);
                 }
-                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Vert")
+                if (_currentPlayerGameObject.GetComponent<PlayerController>()._blop.PlayerName == "Vert")
                 {
                     BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.4f, 0.75f, 0.25f);
                     BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.4f, 0.75f, 0.25f);
                 }
-                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Jaune")
+                if (_currentPlayerGameObject.GetComponent<PlayerController>()._blop.PlayerName == "Jaune")
                 {
                     BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(1f, 1f, 0f);
                     BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(1f, 1f, 0f);
                 }
-                if (_currentPlayerGameObject.GetComponent<PlayerController>().PlayerType.PlayerName == "Rouge")
+                if (_currentPlayerGameObject.GetComponent<PlayerController>()._blop.PlayerName == "Rouge")
                 {
                     BallBaseTrail.GetComponent<TrailRenderer>().startColor = new Color(0.88f, 0.3f, 0.23f);
                     BallBaseTrail.GetComponent<TrailRenderer>().endColor = new Color(0.88f, 0.3f, 0.23f);

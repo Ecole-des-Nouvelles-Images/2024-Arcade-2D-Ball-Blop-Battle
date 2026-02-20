@@ -113,19 +113,19 @@ namespace Hugo.Prototype.Scripts.Player
 
             if (_vfxTrailBlue && _vfxTrailGreen && _vfxTrailYellow && _vfxTrailRed)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _vfxTrailBlue.SetActive(true);
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _vfxTrailGreen.SetActive(true);
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _vfxTrailYellow.SetActive(true);
                 }
-                if (_playerController.PlayerType.PlayerName == "Rouge")
+                if (_playerController._blop.PlayerName == "Rouge")
                 {
                     _vfxTrailRed.SetActive(true);
                 }
@@ -175,19 +175,19 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _vfxLandingBlue.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _vfxLandingGreen.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _vfxLandingYellow.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Rouge")
+                if (_playerController._blop.PlayerName == "Rouge")
                 {
                     _vfxLandingRed.Play();
                 }
@@ -235,19 +235,19 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (_vfxSpitOutBlue && _vfxSpitOutGreen && _vfxSpitOutYellow && _vfxSpitOutRed)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _vfxSpitOutBlue.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _vfxSpitOutGreen.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _vfxSpitOutYellow.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Rouge")
+                if (_playerController._blop.PlayerName == "Rouge")
                 {
                     _vfxSpitOutRed.Play();
                 }
@@ -277,22 +277,22 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (_vfxImpactBackGround)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _vfxImpactBackGround.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                     _playerController.ImpactBackgroundObject = Instantiate(_vfxImpactBackGround, Vector2.zero, Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _vfxImpactBackGround.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                     _playerController.ImpactBackgroundObject = Instantiate(_vfxImpactBackGround, Vector2.zero, Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _vfxImpactBackGround.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                     _playerController.ImpactBackgroundObject = Instantiate(_vfxImpactBackGround, Vector2.zero, Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Rouge")
+                if (_playerController._blop.PlayerName == "Rouge")
                 {
                     _vfxImpactBackGround.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                     _playerController.ImpactBackgroundObject = Instantiate(_vfxImpactBackGround, Vector2.zero, Quaternion.identity);
@@ -315,7 +315,7 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (_vfxShootSpecialSpikeBlue && _vfxShootSpecialSpikeGreen && _vfxShootSpecialSpikeYellow && _ballHandler !=null)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _ballHandler.BallBaseTrail.SetActive(false);
                     
@@ -323,14 +323,14 @@ namespace Hugo.Prototype.Scripts.Player
                     _ballHandler.VFXSpecialSpikeBlue.SetActive(true);
                     _ballHandler.VFXSpecialSpikeBlueImpact.Play();
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _ballHandler.BallBaseTrail.SetActive(false);
                     
                     _vfxShootSpecialSpikeGreen.Play();
                     _ballHandler.VFXSpecialSpikeGreen.SetActive(true);
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _ballHandler.BallBaseTrail.SetActive(false);
                     
@@ -347,22 +347,22 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (_vfxScroolBackGround)
             {
-                if (_playerController.PlayerType.PlayerName == "Bleu")
+                if (_playerController._blop.PlayerName == "Bleu")
                 {
                     _vfxScroolBackGround.GetComponent<SpriteRenderer>().color = new Color(0.38f, 0.71f, 0.87f);
                     Instantiate(_vfxScroolBackGround, new Vector2(0, -9), Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Vert")
+                if (_playerController._blop.PlayerName == "Vert")
                 {
                     _vfxScroolBackGround.GetComponent<SpriteRenderer>().color = new Color(0.45f, 0.77f, 0.28f);
                     Instantiate(_vfxScroolBackGround, new Vector2(0, -9), Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Jaune")
+                if (_playerController._blop.PlayerName == "Jaune")
                 {
                     _vfxScroolBackGround.GetComponent<SpriteRenderer>().color = new Color(0.96f, 0.86f, 0.44f);
                     Instantiate(_vfxScroolBackGround, new Vector2(0, -9), Quaternion.identity);
                 }
-                if (_playerController.PlayerType.PlayerName == "Rouge")
+                if (_playerController._blop.PlayerName == "Rouge")
                 {
                     _vfxScroolBackGround.GetComponent<SpriteRenderer>().color = new Color(0.9f, 0.3f, 0.25f);
                     Instantiate(_vfxScroolBackGround, new Vector2(0, -9), Quaternion.identity);
@@ -372,7 +372,7 @@ namespace Hugo.Prototype.Scripts.Player
             
             if (VfxShootSpecialSpikeRed)
             {
-                if (_playerController.PlayerType.PlayerName == "Rouge" && _ballHandler != null)
+                if (_playerController._blop.PlayerName == "Rouge" && _ballHandler != null)
                 {
                     _ballHandler.BallBaseTrail.SetActive(false);
                     

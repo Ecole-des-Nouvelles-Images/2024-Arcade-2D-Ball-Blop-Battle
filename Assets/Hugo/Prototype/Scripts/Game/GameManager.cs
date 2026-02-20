@@ -10,8 +10,8 @@ namespace Hugo.Prototype.Scripts.Game
         // Players
         public GameObject FirstPlayerGameObject;
         public GameObject SecondPlayerGameObject;
-        public static PlayerType FirstPlayerScriptableObject;
-        public static PlayerType SecondPlayerScriptableObject;
+        public static Blop FirstBlopScriptableObject;
+        public static Blop SecondBlopScriptableObject;
         
         // List DevicesID
         public static List<int> DevicesID = new List<int>();
