@@ -4,6 +4,7 @@ using Hugo.Prototype.Scripts.Camera;
 using Hugo.Prototype.Scripts.Celebrations;
 using Hugo.Prototype.Scripts.Player;
 using Hugo.Prototype.Scripts.UI;
+using Hugo.Refacto.Scripts;
 using Int.Scripts.Utils.Singletons;
 using JetBrains.Annotations;
 using UnityEngine;

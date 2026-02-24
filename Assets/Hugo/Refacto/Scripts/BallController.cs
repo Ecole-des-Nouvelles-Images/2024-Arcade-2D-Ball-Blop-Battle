@@ -1,4 +1,5 @@
 using UnityEngine;
+using EventBus = Int.Scripts.Utils.EventBus;
 
 namespace Hugo.Refacto.Scripts
 {
@@ -20,7 +21,19 @@ namespace Hugo.Refacto.Scripts
         
         [Header("States")]
         [SerializeField] private bool _isAbsorbed;
-        
+        [SerializeField] private bool _isCommitted = true;
+
+        private float _gravityScale;
+
+        private void Awake()
+        {
+            if (_isCommitted)
+            {
+                _gravityScale = _rb2d.gravityScale;
+                _rb2d.gravityScale = 0f;
+            }
+        }
+
         private void FixedUpdate()
         {
             // MAX SPEED
@@ -29,9 +42,24 @@ namespace Hugo.Refacto.Scripts
                 _rb2d.velocity = _rb2d.velocity.normalized * (_maxSpeed * Time.deltaTime);
             }
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            IsTouchingGround(other.gameObject.tag);
+            
+            if (other.gameObject.CompareTag("Player") && _isCommitted)
+            {
+                _isCommitted = false;
+                _rb2d.gravityScale = _gravityScale;
+                
+                EventBus.OnPlayerCommitment?.Invoke();
+            }
+        }
+
         private void OnTriggerEnter2D(Collider2D other)
         {
+            IsTouchingGround(other.gameObject.tag);
+            
             if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Selling"))
             {
                 Vector2 direction = _rb2d.velocity;
@@ -91,6 +119,25 @@ namespace Hugo.Refacto.Scripts
                 
                 _rb2d.AddForce(direction * _speedDrawn, ForceMode2D.Impulse);
             }
+        }
+
+        private void IsTouchingGround(string tag)
+        {
+            if (tag == "PlayerOneGround")
+            {
+                EventBus.OnPlayerScored?.Invoke(2);
+                IsDestroy();
+            }
+            else if (tag == "PlayerTwoGround")
+            {
+                EventBus.OnPlayerScored?.Invoke(1);
+                IsDestroy();
+            }
+        }
+
+        private void IsDestroy()
+        {
+            Destroy(gameObject);
         }
     }
 }
