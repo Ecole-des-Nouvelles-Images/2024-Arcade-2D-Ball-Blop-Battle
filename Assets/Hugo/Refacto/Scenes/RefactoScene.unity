@@ -1536,7 +1536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8282d836e5414f468b0711e878313d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _setDuration: 15
+  _setDuration: 3
   _setCountToWinAMatch: 3
   _timeBetweenCommitments: 2
   _timeBetweenSets: 4

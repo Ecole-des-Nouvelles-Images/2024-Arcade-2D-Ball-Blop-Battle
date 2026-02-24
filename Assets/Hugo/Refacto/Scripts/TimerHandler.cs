@@ -31,6 +31,12 @@ namespace Hugo.Refacto.Scripts
         {
             _isRunning = false;
         }
+        
+        public void ResetTimer()
+        {
+            CurrentTimer = _setDuration;
+            _isRunning = false;
+        }
 
         private void Update()
         {

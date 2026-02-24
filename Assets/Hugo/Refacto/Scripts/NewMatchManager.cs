@@ -2,6 +2,7 @@ using System.Collections;
 using Int.Scripts.Utils;
 using Int.Scripts.Utils.Singletons;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Hugo.Refacto.Scripts
 {
@@ -64,7 +65,7 @@ namespace Hugo.Refacto.Scripts
 
             if (!_isSetOver)
             {
-                StartCoroutine(CommitmentCoroutine(scoringPlayerId, _timeBetweenCommitments));
+                StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
             }
             else if (_isSetOver && PlayerOneScore != PlayerTwoScore)
             {
@@ -87,7 +88,7 @@ namespace Hugo.Refacto.Scripts
             }
             else if (_isSetOver && PlayerOneScore == PlayerTwoScore)
             {
-                StartCoroutine(CommitmentCoroutine(scoringPlayerId, _timeBetweenCommitments));
+                StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
             }
         }
         
@@ -123,21 +124,21 @@ namespace Hugo.Refacto.Scripts
             if (PlayerOneSetCount < _setCountToWinAMatch && PlayerTwoSetCount < _setCountToWinAMatch)
             {
                 _isSetOver = false;
-                PlayerOneScore = 0;
-                PlayerTwoScore = 0;
-                StartCoroutine(CommitmentCoroutine(winSetPlayerId, _timeBetweenSets));
+                StartCoroutine(CommitmentCoroutine(true, winSetPlayerId, _timeBetweenSets));
             }
             else if (PlayerOneSetCount == _setCountToWinAMatch)
             {
                 Debug.Log("VICTORY PLAYER ONE");
+                SceneManager.LoadScene(1);
             }
             else if (PlayerTwoSetCount == _setCountToWinAMatch)
             {
                 Debug.Log("VICTORY PLAYER TWO");
+                SceneManager.LoadScene(1);
             }
         }
         
-        private IEnumerator CommitmentCoroutine(int scoringPlayerId, float delay)
+        private IEnumerator CommitmentCoroutine(bool firstCommitment, int scoringPlayerId, float delay)
         {
             yield return new WaitForSeconds(delay);
             
@@ -148,6 +149,13 @@ namespace Hugo.Refacto.Scripts
             else if (scoringPlayerId == 2)
             {
                 Instantiate(_ball, _playerOneCommitmentPos, _ball.transform.rotation);
+            }
+
+            if (firstCommitment)
+            {
+                PlayerOneScore = 0;
+                PlayerTwoScore = 0;
+                TimerHandler.ResetTimer();
             }
         }
     }
