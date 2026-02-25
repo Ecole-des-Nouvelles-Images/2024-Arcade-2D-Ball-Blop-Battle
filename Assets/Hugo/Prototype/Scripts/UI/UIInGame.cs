@@ -68,8 +68,8 @@ namespace Hugo.Prototype.Scripts.UI
 
         private void ResetParameters()
         {
-            GameManager.FirstBlopScriptableObject = null;
-            GameManager.SecondBlopScriptableObject = null;
+            GameManager.Instance.FirstBlopScriptableObject = null;
+            GameManager.Instance.SecondBlopScriptableObject = null;
             GameManager.HasGameLoaded = false;
             GameManager.IsGamePaused = false;
 

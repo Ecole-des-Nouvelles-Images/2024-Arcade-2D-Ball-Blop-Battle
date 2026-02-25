@@ -120,7 +120,7 @@ namespace Hugo.Prototype.Scripts.Player
             _animator = GetComponent<Animator>();
 
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
-            _blop = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.FirstBlopScriptableObject : GameManager.SecondBlopScriptableObject;
+            _blop = _playerNumberTouchBallHandler.IsPlayerOne ? GameManager.Instance.FirstBlopScriptableObject : GameManager.Instance.SecondBlopScriptableObject;
         }
 
         private void Start()

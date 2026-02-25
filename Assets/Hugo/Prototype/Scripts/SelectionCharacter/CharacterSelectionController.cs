@@ -82,7 +82,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 _specialSpikeText.anchorMax = new Vector2(0.25f, 0.4f);
                 
                 // Clear deicesID
-                GameManager.DevicesID.Clear();
+                GameManager.Instance.DevicesID.Clear();
             }
             else
             {
@@ -96,7 +96,7 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             }
             
             // Stock deicesID
-            GameManager.DevicesID.Add(_playerInput.devices[0].deviceId);
+            GameManager.Instance.DevicesID.Add(_playerInput.devices[0].deviceId);
         }
 
         private void Update()
@@ -150,11 +150,11 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
             {
                 if (IsPlayerOne)
                 {
-                    GameManager.FirstBlopScriptableObject = blop;
+                    GameManager.Instance.FirstBlopScriptableObject = blop;
                 }
                 else
                 {
-                    GameManager.SecondBlopScriptableObject = blop;
+                    GameManager.Instance.SecondBlopScriptableObject = blop;
                 }
                 
                 _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBounce);
@@ -170,15 +170,15 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
         {
             if (_playerInput.actions["UI/Cancel"].triggered)
             {
-                if (GameManager.FirstBlopScriptableObject && IsPlayerOne || GameManager.SecondBlopScriptableObject && !IsPlayerOne)
+                if (GameManager.Instance.FirstBlopScriptableObject && IsPlayerOne || GameManager.Instance.SecondBlopScriptableObject && !IsPlayerOne)
                 {
                     if (IsPlayerOne)
                     {
-                        GameManager.FirstBlopScriptableObject = null;
+                        GameManager.Instance.FirstBlopScriptableObject = null;
                     }
                     else
                     {
-                        GameManager.SecondBlopScriptableObject = null;
+                        GameManager.Instance.SecondBlopScriptableObject = null;
                     }
                 
                     _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
@@ -191,8 +191,8 @@ namespace Hugo.Prototype.Scripts.SelectionCharacter
                 }
                 else
                 {
-                    GameManager.FirstBlopScriptableObject = null;
-                    GameManager.SecondBlopScriptableObject = null;
+                    GameManager.Instance.FirstBlopScriptableObject = null;
+                    GameManager.Instance.SecondBlopScriptableObject = null;
                     SceneManager.LoadScene(1);
                 }
                 

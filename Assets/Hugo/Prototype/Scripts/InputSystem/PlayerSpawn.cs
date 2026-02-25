@@ -35,7 +35,7 @@ namespace Hugo.Prototype.Scripts.InputSystem
         {
             int target = playerInput.devices[0].deviceId;
             
-            int index = GameManager.DevicesID.IndexOf(target);
+            int index = GameManager.Instance.DevicesID.IndexOf(target);
             
             playerInput.gameObject.transform.position = _firstSpawnPoints;
             

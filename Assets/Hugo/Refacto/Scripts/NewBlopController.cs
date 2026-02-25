@@ -41,6 +41,12 @@ namespace Hugo.Refacto.Scripts
         // BALL
         private BallController _ballController;
 
+        public void SetUp(Blop blop)
+        {
+            _blop = blop;
+            _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
+        }
+        
         private void Update()
         {
             Raycasts();
@@ -130,11 +136,6 @@ namespace Hugo.Refacto.Scripts
                     _rb2d.constraints = RigidbodyConstraints2D.FreezePosition;
                 }
             }
-        }
-
-        public void SetUp(Blop blop)
-        {
-            _blop = blop;
         }
 
         public void GetJoystickReadValue(Vector2 move)
