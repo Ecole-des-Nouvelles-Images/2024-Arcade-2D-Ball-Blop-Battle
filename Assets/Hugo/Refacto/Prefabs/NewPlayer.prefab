@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7818831952892591476}
   - component: {fileID: 5535092367925643827}
+  - component: {fileID: 9129448520297159264}
   - component: {fileID: 231906474129314894}
   - component: {fileID: 4158806001138468945}
   - component: {fileID: 1772796910958661415}
@@ -156,6 +157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf59e43943206a42bfed1265522d371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerId: 0
   _blop: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
   _rb2d: {fileID: 9091463944279118054}
   _sr: {fileID: 2973123922031502185}
@@ -164,8 +166,27 @@ MonoBehaviour:
   _isGrounded: 0
   _isWalledLeft: 0
   _isWalledRight: 0
+  _isDashing: 0
+  _isAbsorbing: 0
+  _isPerfectReception: 0
+  _isSpecialSpike: 0
   _canMove: 1
   _canDoubleJump: 0
+--- !u!114 &9129448520297159264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8243948108377192109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3111a549cc98a141862afa0f040fdba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxTouchCount: 3
+  _newBlopController: {fileID: 5535092367925643827}
+  _currentTouchCount: 0
 --- !u!114 &231906474129314894
 MonoBehaviour:
   m_ObjectHideFlags: 0

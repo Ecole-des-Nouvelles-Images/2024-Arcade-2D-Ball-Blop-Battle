@@ -171,6 +171,8 @@ namespace Hugo.Refacto.Scripts
 
         public void Foul(int playerId)
         {
+            Debug.Log("FOUL");
+            
             Destroy(_currentBall);
 
             if (playerId == 1)

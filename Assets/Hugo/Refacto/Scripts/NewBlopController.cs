@@ -7,9 +7,10 @@ namespace Hugo.Refacto.Scripts
 {
     public class NewBlopController : MonoBehaviour
     {
+        public int PlayerId;
+        
         [Header("Blop")]
         [SerializeField] private Blop _blop;
-        [SerializeField] private int _playerId;
         
         [Header("References")]
         [SerializeField] private Rigidbody2D _rb2d;
@@ -49,7 +50,7 @@ namespace Hugo.Refacto.Scripts
         public void SetUp(Blop blop, int playerId)
         {
             _blop = blop;
-            _playerId = playerId;
+            PlayerId = playerId;
             _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
         }
         
@@ -76,7 +77,7 @@ namespace Hugo.Refacto.Scripts
             // FOUL
             if (_hasTheBall && _isGrounded)
             {
-                NewMatchManager.Instance.Foul(_playerId);
+                NewMatchManager.Instance.Foul(PlayerId);
                 _hasTheBall = false;
                 _isAbsorbing = false;
             }
@@ -216,7 +217,7 @@ namespace Hugo.Refacto.Scripts
 
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (_canSpecialSpike && _playerId == NewMatchManager.Instance.BallSide)
+                if (_canSpecialSpike && PlayerId == NewMatchManager.Instance.BallSide)
                 {
                     _isSpecialSpike = true;
                     _perfectReceptionCount = 0;
