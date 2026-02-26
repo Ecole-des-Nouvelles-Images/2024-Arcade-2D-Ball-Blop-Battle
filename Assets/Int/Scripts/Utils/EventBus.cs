@@ -9,6 +9,9 @@ namespace Int.Scripts.Utils
         public static Action<int> OnSetChangement;
         public static Action OnSetIsOver;
         
+        // PLAYER
+        public static Action OnSpecialSpikeActivated;
+        
         // BALL
         public static Action OnPlayerCommitment;
     }

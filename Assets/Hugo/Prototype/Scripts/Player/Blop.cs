@@ -33,6 +33,7 @@ namespace Hugo.Prototype.Scripts.Player
         
         [Header("Is Grounded")]
         public float RayGroundedLength;
+        public float RayGroundedLengthHaveTheBall;
         public LayerMask GroundLayer;
         
         [Header("Is Walled")]

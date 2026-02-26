@@ -1,5 +1,6 @@
 using System;
 using Hugo.Prototype.Scripts.Player;
+using Int.Scripts.Utils;
 using UnityEngine;
 
 namespace Hugo.Refacto.Scripts
@@ -8,6 +9,7 @@ namespace Hugo.Refacto.Scripts
     {
         [Header("Blop")]
         [SerializeField] private Blop _blop;
+        [SerializeField] private int _playerId;
         
         [Header("References")]
         [SerializeField] private Rigidbody2D _rb2d;
@@ -21,11 +23,13 @@ namespace Hugo.Refacto.Scripts
         [SerializeField] private bool _isWalledRight;
         [SerializeField] private bool _isDashing;
         [SerializeField] private bool _isAbsorbing;
+        [SerializeField] private bool _isPerfectReception;
+        [SerializeField] private bool _isSpecialSpike;
         
         [Header("Permissions")]
         [SerializeField] private bool _canMove = true;
         [SerializeField] private bool _canDoubleJump;
-        [SerializeField] private bool _canPerfectReception;
+        [SerializeField] private bool _canSpecialSpike => _perfectReceptionCount >= 3;
 
         // MOVEMENT
         private Vector2 _move;
@@ -35,15 +39,17 @@ namespace Hugo.Refacto.Scripts
         private float _dashCooldownRemaining;
         
         // PERFECT RECEPTION
+        private float _perfectReceptionCount;
         private float _perfectReceptionTimeRemaining;
         private float _perfectReceptionCooldownRemaining;
         
         // BALL
         private BallController _ballController;
 
-        public void SetUp(Blop blop)
+        public void SetUp(Blop blop, int playerId)
         {
             _blop = blop;
+            _playerId = playerId;
             _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
         }
         
@@ -57,14 +63,22 @@ namespace Hugo.Refacto.Scripts
                 _perfectReceptionCooldownRemaining -= Time.deltaTime;
             }
             
-            if (_canPerfectReception)
+            if (_isPerfectReception)
             {
                 _perfectReceptionTimeRemaining -= Time.deltaTime;
                 
                 if (_perfectReceptionTimeRemaining <= 0)
                 {
-                    _canPerfectReception = false;
+                    _isPerfectReception = false;
                 }
+            }
+            
+            // FOUL
+            if (_hasTheBall && _isGrounded)
+            {
+                NewMatchManager.Instance.Foul(_playerId);
+                _hasTheBall = false;
+                _isAbsorbing = false;
             }
         }
 
@@ -122,9 +136,10 @@ namespace Hugo.Refacto.Scripts
             {
                 _ballController = other.gameObject.GetComponent<BallController>();
                 
-                if (_canPerfectReception)
+                if (_isPerfectReception)
                 {
                     _ballController.PerfectReception();
+                    _perfectReceptionCount = Mathf.Clamp(_perfectReceptionCount + 1, 0, 3);
                 }
                 else if (_isDashing)
                 {
@@ -132,8 +147,12 @@ namespace Hugo.Refacto.Scripts
                 }
                 else if (_isAbsorbing)
                 {
+                    _hasTheBall = true;
                     _ballController.Absorb(transform);
-                    _rb2d.constraints = RigidbodyConstraints2D.FreezePosition;
+                }
+                else if (_isSpecialSpike)
+                {
+                    
                 }
             }
         }
@@ -161,10 +180,10 @@ namespace Hugo.Refacto.Scripts
                 
                     _canMove = false;
                 }
-                else if (!_canPerfectReception && _isGrounded && _perfectReceptionCooldownRemaining <= 0
+                else if (!_isPerfectReception && _isGrounded && _perfectReceptionCooldownRemaining <= 0
                          && Mathf.Abs(_move.x) < 0.1f)
                 {
-                    _canPerfectReception = true;
+                    _isPerfectReception = true;
                     _perfectReceptionTimeRemaining = _blop.PerfectReceptionDuration;
                     _perfectReceptionCooldownRemaining = _blop.PerfectReceptionCooldown;
                 }
@@ -176,18 +195,17 @@ namespace Hugo.Refacto.Scripts
             }
             else if (Mathf.Approximately(buttonValue, 0))
             {
-                if (_isAbsorbing)
+                _isAbsorbing = false;
+                
+                if (_hasTheBall)
                 {
                     if (_ballController)
                     {
                         _ballController.Drawn(_move);
                         _ballController = null;
                     }
-
-                    _isAbsorbing = false;
                     
-                    _rb2d.constraints = RigidbodyConstraints2D.None;
-                    _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                    _hasTheBall = false;
                 }
             }
         }
@@ -195,6 +213,16 @@ namespace Hugo.Refacto.Scripts
         public void GetEastButtonReadValue(float buttonValue)
         {
             Debug.Log(buttonValue);
+
+            if (Mathf.Approximately(buttonValue, 1))
+            {
+                if (_canSpecialSpike && _playerId == NewMatchManager.Instance.BallSide)
+                {
+                    _isSpecialSpike = true;
+                    _perfectReceptionCount = 0;
+                    EventBus.OnSpecialSpikeActivated?.Invoke();
+                }
+            }
         }
         
         public void GetSouthButtonReadValue(float buttonValue)
@@ -241,8 +269,16 @@ namespace Hugo.Refacto.Scripts
 
         private void Raycasts()
         {
-            _isGrounded = Physics2D.Raycast(transform.position, Vector3.down, 
-                _blop.RayGroundedLength, _blop.GroundLayer);
+            if (!_hasTheBall)
+            {
+                _isGrounded = Physics2D.Raycast(transform.position, Vector3.down, 
+                    _blop.RayGroundedLength, _blop.GroundLayer);
+            }
+            else
+            {
+                _isGrounded = Physics2D.Raycast(transform.position, Vector3.down, 
+                    _blop.RayGroundedLengthHaveTheBall, _blop.GroundLayer);
+            }
             
             _isWalledLeft = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0), Vector3.left, 
                 _blop.RayWalledLength, _blop.WallLayer);
@@ -251,7 +287,15 @@ namespace Hugo.Refacto.Scripts
                 _blop.RayWalledLength, _blop.WallLayer);
             
             // DEBUG
-            Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLength, Color.red);
+            if (!_hasTheBall)
+            {
+                Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLength, Color.red);
+            }
+            else
+            {
+                Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLengthHaveTheBall, Color.red);
+
+            }
             Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.left * _blop.RayWalledLength, Color.red);
             Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
         }

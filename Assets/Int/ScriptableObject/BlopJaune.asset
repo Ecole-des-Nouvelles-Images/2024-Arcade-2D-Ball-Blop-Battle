@@ -30,6 +30,7 @@ MonoBehaviour:
   PerfectReceptionDuration: 0.5
   PerfectReceptionCooldown: 0.75
   RayGroundedLength: 0.2
+  RayGroundedLengthHaveTheBall: 0.6
   GroundLayer:
     serializedVersion: 2
     m_Bits: 8

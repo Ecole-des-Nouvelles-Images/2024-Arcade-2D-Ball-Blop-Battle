@@ -32,12 +32,12 @@ namespace Hugo.Refacto.Scripts
                     if (index == 0)
                     {
                         _playerOneInput.SwitchCurrentControlScheme(gamepad);
-                        _playerOneController.SetUp(GameManager.Instance.FirstBlopScriptableObject);
+                        _playerOneController.SetUp(GameManager.Instance.FirstBlopScriptableObject, 1);
                     }
                     else if (index == 1)
                     {
                         _playerTwoInput.SwitchCurrentControlScheme(gamepad);
-                        _playerTwoController.SetUp(GameManager.Instance.SecondBlopScriptableObject);
+                        _playerTwoController.SetUp(GameManager.Instance.SecondBlopScriptableObject, 2);
                     }
                 }
             }

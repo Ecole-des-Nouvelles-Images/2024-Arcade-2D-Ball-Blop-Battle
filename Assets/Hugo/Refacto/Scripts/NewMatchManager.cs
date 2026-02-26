@@ -15,8 +15,11 @@ namespace Hugo.Refacto.Scripts
         public int PlayerTwoScore { get; private set; }
         public int PlayerTwoSetCount { get; private set; }
         
-        // Timer
+        // TIMER
         public TimerHandler TimerHandler { get; private set; }
+        
+        // STATES
+        public int BallSide;
         
         [Header("Match Settings")]
         [SerializeField] private float _setDuration;
@@ -28,8 +31,10 @@ namespace Hugo.Refacto.Scripts
         [SerializeField] private Vector2 _playerOneCommitmentPos;
         [SerializeField] private Vector2 _playerTwoCommitmentPos;
         
-        [Header("References")]
+        [Header("Prefabs")]
         [SerializeField] private GameObject _ball;
+        
+        private GameObject _currentBall;
 
         private bool _isSetOver;
 
@@ -39,7 +44,12 @@ namespace Hugo.Refacto.Scripts
             TimerHandler.Setup(_setDuration);
         }
 
-        #region Events
+        private void Start()
+        {
+            StartCoroutine(CommitmentCoroutine(true, Random.Range(1, 3), _timeBetweenSets));
+        }
+
+        #region === EVENTS ===
 
         private void OnEnable()
         {
@@ -144,11 +154,11 @@ namespace Hugo.Refacto.Scripts
             
             if (scoringPlayerId == 1)
             {
-                Instantiate(_ball, _playerTwoCommitmentPos, _ball.transform.rotation);
+                _currentBall = Instantiate(_ball, _playerTwoCommitmentPos, _ball.transform.rotation);
             }
             else if (scoringPlayerId == 2)
             {
-                Instantiate(_ball, _playerOneCommitmentPos, _ball.transform.rotation);
+                _currentBall = Instantiate(_ball, _playerOneCommitmentPos, _ball.transform.rotation);
             }
 
             if (firstCommitment)
@@ -156,6 +166,20 @@ namespace Hugo.Refacto.Scripts
                 PlayerOneScore = 0;
                 PlayerTwoScore = 0;
                 TimerHandler.ResetTimer();
+            }
+        }
+
+        public void Foul(int playerId)
+        {
+            Destroy(_currentBall);
+
+            if (playerId == 1)
+            {
+                PlayerScored(2);
+            }
+            else if (playerId == 2)
+            {
+                PlayerScored(1);
             }
         }
     }
