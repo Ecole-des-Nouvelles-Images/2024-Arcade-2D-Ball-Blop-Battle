@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   InputAreEnable: 1
+  _playerInput: {fileID: 0}
 --- !u!58 &1772796910958661415
 CircleCollider2D:
   m_ObjectHideFlags: 0

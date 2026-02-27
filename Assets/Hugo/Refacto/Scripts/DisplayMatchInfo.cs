@@ -24,7 +24,6 @@ namespace Hugo.Refacto.Scripts
             if (time < 10f)
             {
                 _timer.text = time.ToString("F1");
-
             }
             else
             {

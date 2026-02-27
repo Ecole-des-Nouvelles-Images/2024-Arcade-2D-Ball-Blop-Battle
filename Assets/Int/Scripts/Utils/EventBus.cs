@@ -12,6 +12,7 @@ namespace Int.Scripts.Utils
         
         // PLAYER
         public static Action<int> OnPlayerTouchedBall;
+        public static Action<int ,int> OnPlayerPerfectReception;
         public static Action OnSpecialSpikeActivated;
         public static Action<int> OnPlayerDie;
         

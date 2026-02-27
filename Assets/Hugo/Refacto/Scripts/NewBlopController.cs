@@ -41,7 +41,7 @@ namespace Hugo.Refacto.Scripts
         private float _dashCooldownRemaining;
         
         // PERFECT RECEPTION
-        private float _perfectReceptionCount;
+        private int _perfectReceptionCount;
         private float _perfectReceptionTimeRemaining;
         private float _perfectReceptionCooldownRemaining;
         
@@ -153,6 +153,8 @@ namespace Hugo.Refacto.Scripts
                 {
                     _ballController.PerfectReception();
                     _perfectReceptionCount = Mathf.Clamp(_perfectReceptionCount + 1, 0, 3);
+                    
+                    EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
                 }
                 else if (_isDashing)
                 {
@@ -165,7 +167,9 @@ namespace Hugo.Refacto.Scripts
                 }
                 else if (_isSpecialSpike)
                 {
-                    
+                    _hasTheBall = true;
+                    _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
+                    _ballController.Absorb(transform);
                 }
                 
                 EventBus.OnPlayerTouchedBall?.Invoke(PlayerId);
@@ -196,19 +200,19 @@ namespace Hugo.Refacto.Scripts
                     _canMove = false;
                 }
                 else if (!_isPerfectReception && _isGrounded && _perfectReceptionCooldownRemaining <= 0
-                         && Mathf.Abs(_move.x) < 0.1f)
+                         && Mathf.Abs(_move.x) < 0.1f && !_isSpecialSpike)
                 {
                     _isPerfectReception = true;
                     _perfectReceptionTimeRemaining = _blop.PerfectReceptionDuration;
                     _perfectReceptionCooldownRemaining = _blop.PerfectReceptionCooldown;
                 }
 
-                if (!_isGrounded && !_isWalledLeft && !_isWalledRight)
+                if (!_isGrounded && !_isWalledLeft && !_isWalledRight && !_hasTheBall)
                 {
                     _isAbsorbing = true;
                 }
             }
-            else if (Mathf.Approximately(buttonValue, 0))
+            else if (Mathf.Approximately(buttonValue, 0) && !_isSpecialSpike)
             {
                 _isAbsorbing = false;
                 
@@ -234,7 +238,25 @@ namespace Hugo.Refacto.Scripts
                 {
                     _isSpecialSpike = true;
                     _perfectReceptionCount = 0;
+                    
                     EventBus.OnSpecialSpikeActivated?.Invoke();
+                    EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
+                }
+
+                if (_isSpecialSpike && _hasTheBall)
+                {
+                    if (_ballController)
+                    {
+                        Debug.Log("SPECIAL SPIKE");
+                        _ballController.Drawn(_move);
+                        // _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
+                        _ballController = null;
+                    }
+                    
+                    _isSpecialSpike = false;
+                    _hasTheBall = false;
+                    _rb2d.constraints = RigidbodyConstraints2D.None;
+                    _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
             }
         }
@@ -320,16 +342,29 @@ namespace Hugo.Refacto.Scripts
         {
             _laserTrigger.SetActive(true);
             
+            EventBus.OnPlayerScored += PlayerScored;
             EventBus.OnFoul += Foul;
+        }
+
+        private void PlayerScored(int playerId)
+        {
+            _hasTheBall = false;
+            _isSpecialSpike = false;
+            _rb2d.constraints = RigidbodyConstraints2D.None;
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
 
         private void Foul()
         {
             _hasTheBall = false;
+            _isSpecialSpike = false;
+            _rb2d.constraints = RigidbodyConstraints2D.None;
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         
         private void OnDisable()
         {
+            EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnFoul -= Foul;
         }
 
