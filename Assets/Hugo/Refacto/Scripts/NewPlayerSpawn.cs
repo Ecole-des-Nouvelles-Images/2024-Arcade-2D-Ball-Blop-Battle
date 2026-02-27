@@ -10,22 +10,21 @@ namespace Hugo.Refacto.Scripts
     {
         [Header("References")]
         [SerializeField] private GameObject _playerOne;
+        [SerializeField] private PlayerInput _playerOneInput;
         [SerializeField] private GameObject _playerTwo;
+        [SerializeField] private PlayerInput _playerTwoInput;
         
         [Header("Settings")]
         [SerializeField] private Vector2 _playerOneStartPos;
         [SerializeField] private Vector2 _playerTwoStartPos;
         
-        private PlayerInput _playerOneInput;
-        private PlayerInput _playerTwoInput;
+        
         
         private NewBlopController _playerOneController;
         private NewBlopController _playerTwoController;
         
         private void Start()
         {
-            _playerOneInput = _playerOne.GetComponent<PlayerInput>();
-            _playerTwoInput = _playerTwo.GetComponent<PlayerInput>();
             _playerOneController = _playerOne.GetComponent<NewBlopController>();
             _playerTwoController = _playerTwo.GetComponent<NewBlopController>();
 

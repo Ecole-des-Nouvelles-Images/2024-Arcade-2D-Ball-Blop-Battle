@@ -7,9 +7,11 @@ namespace Hugo.Prototype.Scripts.Player
 {
     public class PlayerInputHandler : MonoBehaviour
     {
-        public static event Action<bool> OnInputDeviceChanged;
+        [Header("Settings")]
+        public bool InputAreEnable = true;
+        [SerializeField] private PlayerInput _playerInput;
         
-        private PlayerInput _playerInput;
+        public static event Action<bool> OnInputDeviceChanged;
         
         private NewBlopController _newBlopController;
         
@@ -19,11 +21,8 @@ namespace Hugo.Prototype.Scripts.Player
         private float _westButtonReadValue;
         private float _leftButtonReadValue;
 
-        public bool InputAreEnable = true;
-
         private void Awake()
         {
-            _playerInput = GetComponent<PlayerInput>();
             _newBlopController = GetComponent<NewBlopController>();
         }
 

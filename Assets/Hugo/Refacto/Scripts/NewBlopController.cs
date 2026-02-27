@@ -59,6 +59,7 @@ namespace Hugo.Refacto.Scripts
         {
             // RESET
             gameObject.SetActive(false);
+            _move = Vector2.zero;
             _hasTheBall = false;
             _isAbsorbing = false;
             
