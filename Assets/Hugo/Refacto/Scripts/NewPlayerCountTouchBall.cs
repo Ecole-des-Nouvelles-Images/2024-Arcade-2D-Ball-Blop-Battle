@@ -1,4 +1,3 @@
-using System;
 using Int.Scripts.Utils;
 using UnityEngine;
 
@@ -19,12 +18,27 @@ namespace Hugo.Refacto.Scripts
 
         private void OnEnable()
         {
-            EventBus.OnPlayerScored += ResetTouchCount;
+            EventBus.OnPlayerScored += OnPlayerScored;
+            EventBus.OnPlayerTouchedBall += OnPlayerTouchedBall;
+        }
+
+        private void OnPlayerScored(int playerId)
+        {
+            ResetTouchCount();
+        }
+        
+        private void OnPlayerTouchedBall(int playerId)
+        {
+            if (playerId != _newBlopController.PlayerId)
+            {
+                ResetTouchCount();
+            }
         }
         
         private void OnDisable()
         {
-            EventBus.OnPlayerScored -= ResetTouchCount;
+            EventBus.OnPlayerScored -= OnPlayerScored;
+            EventBus.OnPlayerTouchedBall -= OnPlayerTouchedBall;
         }
 
         #endregion
@@ -39,12 +53,12 @@ namespace Hugo.Refacto.Scripts
                 if (_currentTouchCount >= _maxTouchCount)
                 {
                     NewMatchManager.Instance.Foul(_newBlopController.PlayerId);
-                    ResetTouchCount(0);
+                    ResetTouchCount();
                 }
             }
         }
 
-        private void ResetTouchCount(int playerId)
+        private void ResetTouchCount()
         {
             _currentTouchCount = 0;
         }

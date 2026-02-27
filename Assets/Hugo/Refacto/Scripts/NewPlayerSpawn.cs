@@ -1,4 +1,6 @@
+using System.Collections;
 using Hugo.Prototype.Scripts.Game;
+using Int.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +11,10 @@ namespace Hugo.Refacto.Scripts
         [Header("References")]
         [SerializeField] private GameObject _playerOne;
         [SerializeField] private GameObject _playerTwo;
+        
+        [Header("Settings")]
+        [SerializeField] private Vector2 _playerOneStartPos;
+        [SerializeField] private Vector2 _playerTwoStartPos;
         
         private PlayerInput _playerOneInput;
         private PlayerInput _playerTwoInput;
@@ -42,5 +48,40 @@ namespace Hugo.Refacto.Scripts
                 }
             }
         }
+
+        private IEnumerator PlayerRespawn(int playerId)
+        {
+            yield return new WaitForSeconds(1f);
+
+            if (playerId == 1)
+            {
+                _playerOne.transform.position = _playerOneStartPos;
+                _playerOne.SetActive(true);
+            }
+            else if (playerId == 2)
+            {
+                _playerTwo.transform.position = _playerTwoStartPos;
+                _playerTwo.SetActive(true);
+            }
+        }
+
+        #region === EVENTS ===
+
+        private void OnEnable()
+        {
+            EventBus.OnPlayerDie += PlayerDie;
+        }
+
+        private void PlayerDie(int playerId)
+        {
+            StartCoroutine(nameof(PlayerRespawn), playerId);
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.OnPlayerDie -= PlayerDie;
+        }
+
+        #endregion
     }
 }

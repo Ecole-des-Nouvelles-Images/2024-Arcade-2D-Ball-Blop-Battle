@@ -46,3 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerOne: {fileID: 0}
   _playerTwo: {fileID: 0}
+  _playerOneStartPos: {x: -6, y: -4}
+  _playerTwoStartPos: {x: 6, y: -4}

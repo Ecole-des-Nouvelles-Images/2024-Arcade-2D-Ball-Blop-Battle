@@ -16,6 +16,7 @@ namespace Hugo.Refacto.Scripts
         [SerializeField] private Rigidbody2D _rb2d;
         [SerializeField] private SpriteRenderer _sr;
         [SerializeField] private Animator _animator;
+        [SerializeField] private GameObject _laserTrigger;
         
         [Header("States")]
         [SerializeField] private bool _hasTheBall;
@@ -52,6 +53,16 @@ namespace Hugo.Refacto.Scripts
             _blop = blop;
             PlayerId = playerId;
             _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
+        }
+
+        public void Die()
+        {
+            // RESET
+            gameObject.SetActive(false);
+            _hasTheBall = false;
+            _isAbsorbing = false;
+            
+            EventBus.OnPlayerDie?.Invoke(PlayerId);
         }
         
         private void Update()
@@ -155,12 +166,14 @@ namespace Hugo.Refacto.Scripts
                 {
                     
                 }
+                
+                EventBus.OnPlayerTouchedBall?.Invoke(PlayerId);
             }
         }
 
         public void GetJoystickReadValue(Vector2 move)
         {
-            Debug.Log(move);
+            // Debug.Log(move);
             if (_canMove)
             {
                 _move = move;
@@ -169,7 +182,7 @@ namespace Hugo.Refacto.Scripts
         
         public void GetWestButtonReadValue(float buttonValue)
         {
-            Debug.Log(buttonValue);
+            // Debug.Log(buttonValue);
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (!_isDashing && _isGrounded && _dashCooldownRemaining <= 0
@@ -213,8 +226,7 @@ namespace Hugo.Refacto.Scripts
 
         public void GetEastButtonReadValue(float buttonValue)
         {
-            Debug.Log(buttonValue);
-
+            // Debug.Log(buttonValue);
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (_canSpecialSpike && PlayerId == NewMatchManager.Instance.BallSide)
@@ -228,7 +240,7 @@ namespace Hugo.Refacto.Scripts
         
         public void GetSouthButtonReadValue(float buttonValue)
         {
-            Debug.Log(buttonValue);
+            // Debug.Log(buttonValue);
             if (_hasTheBall) return;
 
             if (_isGrounded || _isWalledLeft || _isWalledRight)
@@ -300,5 +312,26 @@ namespace Hugo.Refacto.Scripts
             Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.left * _blop.RayWalledLength, Color.red);
             Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
         }
+
+        #region === EVENTS ===
+
+        private void OnEnable()
+        {
+            _laserTrigger.SetActive(true);
+            
+            EventBus.OnFoul += Foul;
+        }
+
+        private void Foul()
+        {
+            _hasTheBall = false;
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.OnFoul -= Foul;
+        }
+
+        #endregion
     }
 }

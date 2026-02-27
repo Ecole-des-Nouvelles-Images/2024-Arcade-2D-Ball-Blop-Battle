@@ -36,6 +36,7 @@ namespace Hugo.Refacto.Scripts
         
         private GameObject _currentBall;
 
+        private bool _isPlaying;
         private bool _isSetOver;
 
         private void Awake()
@@ -167,13 +168,18 @@ namespace Hugo.Refacto.Scripts
                 PlayerTwoScore = 0;
                 TimerHandler.ResetTimer();
             }
+
+            _isPlaying = true;
         }
 
         public void Foul(int playerId)
         {
+            if (!_isPlaying) return;
+            
             Debug.Log("FOUL");
             
             Destroy(_currentBall);
+            EventBus.OnFoul?.Invoke();
 
             if (playerId == 1)
             {
@@ -183,6 +189,8 @@ namespace Hugo.Refacto.Scripts
             {
                 PlayerScored(1);
             }
+
+            _isPlaying = false;
         }
     }
 }
