@@ -42,4 +42,6 @@ MonoBehaviour:
   SpeedSpecialSpike: 3.25
   SpecialSpikeDescription: "Tire un ballon si rapide qu'il devient invisible et laisse
     seulement une tra\xEEn\xE9e \xE9lectrique."
+  PlayerSpecialSpike: {fileID: 0}
+  BallSpecialSpike: {fileID: 5313623261539157370, guid: 26c99da736330534daa0685796148e64, type: 3}
   _becameTransparentTimer: 0.3

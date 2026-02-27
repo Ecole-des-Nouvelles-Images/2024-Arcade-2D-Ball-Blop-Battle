@@ -248,8 +248,7 @@ namespace Hugo.Refacto.Scripts
                     if (_ballController)
                     {
                         Debug.Log("SPECIAL SPIKE");
-                        _ballController.Drawn(_move);
-                        // _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
+                        _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
                         _ballController = null;
                     }
                     

@@ -42,4 +42,5 @@ MonoBehaviour:
   SpeedSpecialSpike: 3
   SpecialSpikeDescription: "Tire un ballon qui r\xE9tr\xE9cit et devient plus dur
     a r\xE9ceptionner."
-  _becameSmallerTimer: 0
+  PlayerSpecialSpike: {fileID: 0}
+  BallSpecialSpike: {fileID: 7543072385218274644, guid: f410cc0b70189ff4e8b9006639ba0b61, type: 3}

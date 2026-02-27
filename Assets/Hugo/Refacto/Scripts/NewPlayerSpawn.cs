@@ -18,8 +18,6 @@ namespace Hugo.Refacto.Scripts
         [SerializeField] private Vector2 _playerOneStartPos;
         [SerializeField] private Vector2 _playerTwoStartPos;
         
-        
-        
         private NewBlopController _playerOneController;
         private NewBlopController _playerTwoController;
         

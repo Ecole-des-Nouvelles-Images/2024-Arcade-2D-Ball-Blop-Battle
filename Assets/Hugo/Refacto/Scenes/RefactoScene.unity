@@ -1354,6 +1354,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1996590543}
     - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
+      propertyPath: _blop
+      value: 
+      objectReference: {fileID: 11400000, guid: 9374428f9cb1aa8458e2ffadd896fc4d, type: 2}
+    - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: PlayerId
       value: 1
       objectReference: {fileID: 0}
@@ -3100,7 +3104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5525469105817300568, guid: 9d28fe12b7d5f064994ce8c02dc71cbd, type: 3}
       propertyPath: _setDuration
-      value: 3
+      value: 45
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

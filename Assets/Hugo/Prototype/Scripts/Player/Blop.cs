@@ -44,6 +44,8 @@ namespace Hugo.Prototype.Scripts.Player
         [Header("Special Spike")]
         public float SpeedSpecialSpike;
         public string SpecialSpikeDescription;
+        public GameObject PlayerSpecialSpike;
+        public GameObject BallSpecialSpike;
 
         public abstract void SpecialSpike(GameObject player, GameObject ball, Vector2 direction);
     }

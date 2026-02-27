@@ -1,0 +1,42 @@
+using DG.Tweening;
+using UnityEngine;
+
+namespace Hugo.Refacto.Scripts
+{
+    public class BallSpacialSpikeBlue :  MonoBehaviour
+    {
+        [Header("Settings")]
+        [SerializeField] private float _minScaleValue = 0.5f;
+        [SerializeField] private float _delayDetection = 0.2f;
+
+        [Header("Animation")]
+        [SerializeField] private float _animationDuration = 0.25f;
+        [SerializeField] private AnimationCurve _animationCurve;
+        
+        private Transform _parentTransform;
+        private float _spawnTime;
+        
+        private void Start()
+        {
+            _spawnTime = Time.time;
+            _parentTransform = transform.parent;
+            _parentTransform.DOScale(_minScaleValue, _animationDuration).SetEase(_animationCurve);
+        }
+
+        private void Update()
+        {
+            if (Time.time < _spawnTime + _delayDetection) return;
+            
+            Collider2D[] hits = Physics2D.OverlapCircleAll(_parentTransform.position, _minScaleValue);
+
+            foreach (var hit in hits)
+            {
+                if (hit.CompareTag("Player"))
+                {
+                    _parentTransform.DOScale(1f, _animationDuration).SetEase(_animationCurve);
+                    Destroy(gameObject, _animationDuration * 1.2f);
+                }
+            }
+        }
+    }
+}

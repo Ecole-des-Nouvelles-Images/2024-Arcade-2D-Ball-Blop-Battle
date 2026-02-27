@@ -146,6 +146,28 @@ namespace Hugo.Refacto.Scripts
 
             _playerTransform = null;
         }
+        
+        public void DrawnSpacialSpike(Vector2 direction, float speed)
+        {
+            if (direction == Vector2.zero)
+            {
+                _rb2d.constraints = RigidbodyConstraints2D.None;
+                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _isAbsorbed = false;
+                
+                _rb2d.AddForce(Vector2.up * speed, ForceMode2D.Impulse);
+            }
+            else
+            {
+                _rb2d.constraints = RigidbodyConstraints2D.None;
+                _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+                _isAbsorbed = false;
+                
+                _rb2d.AddForce(direction * speed, ForceMode2D.Impulse);
+            }
+
+            _playerTransform = null;
+        }
 
         private void IsTouchingGround(string tag)
         {
