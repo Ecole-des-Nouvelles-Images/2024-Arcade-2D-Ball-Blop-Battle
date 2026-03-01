@@ -1,4 +1,4 @@
-using System;
+using Int.Scripts.Utils;
 using UnityEngine;
 
 namespace Hugo.Refacto.Scripts
@@ -12,5 +12,24 @@ namespace Hugo.Refacto.Scripts
             
             Destroy(gameObject);
         }
+        
+        #region === EVENTS ===
+
+        private void OnEnable()
+        {
+            EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
+        }
+
+        private void SpecialSpikeActivated()
+        {
+            Destroy(gameObject);
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
+        }
+
+        #endregion
     }
 }

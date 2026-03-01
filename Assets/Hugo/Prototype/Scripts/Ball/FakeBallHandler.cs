@@ -15,15 +15,7 @@ namespace Hugo.Prototype.Scripts.Ball
             _rb2d = GetComponent<Rigidbody2D>();
             _col2d = GetComponent<Collider2D>();
         }
-
-        private void OnCollisionEnter2D(Collision2D other)
-        {
-            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerOneGround") || other.gameObject.CompareTag("PlayerTwoGround"))
-            {
-                Destroy(gameObject);
-            }
-        }
-
+        
         private void Update()
         {
             // Touner le ballon dans sa direction
@@ -34,17 +26,27 @@ namespace Hugo.Prototype.Scripts.Ball
                 transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             }
         }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("PlayerOneGround") || other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                Destroy(gameObject);
+            }
+        }
         
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.CompareTag("Wall"))
+            if (other.gameObject.CompareTag("PlayerOneGround") || other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                Destroy(gameObject);
+            }
+            else if (other.gameObject.CompareTag("Wall"))
             {
                 Vector2 direction = _rb2d.velocity;
                 Vector2 newDirection = direction;
                 newDirection.x = -_rb2d.velocity.x;
                 _rb2d.velocity = newDirection;
-                
-                // Debug.Log(" Direction : " + direction + " New direction : " + newDirection);
             }
         }
 

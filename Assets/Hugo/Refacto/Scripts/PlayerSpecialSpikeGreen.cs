@@ -1,4 +1,5 @@
 using Hugo.Prototype.Scripts.Player;
+using Int.Scripts.Utils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,16 +20,23 @@ namespace Hugo.Refacto.Scripts
             _playerInput = GetComponentInParent<PlayerInputHandler>().PlayerInput;
             
             _playerInput.actions["EastButton"].performed += ActiveSecondHit;
+            EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
         }
         
         private void OnDisable()
         {
             _playerInput.actions["EastButton"].performed -= ActiveSecondHit;
+            EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
         }
 
         private void ActiveSecondHit(InputAction.CallbackContext context)
         {
             _ballSpecialSpikeGreen.SecondHit(_speed);
+            Destroy(gameObject);
+        }
+
+        private void SpecialSpikeActivated()
+        {
             Destroy(gameObject);
         }
     }

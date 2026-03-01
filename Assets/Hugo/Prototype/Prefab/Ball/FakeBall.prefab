@@ -155,9 +155,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2393506580369988007}
   - component: {fileID: 1685481063665196567}
+  - component: {fileID: -5036071354264543736}
   - component: {fileID: 3045336366238888851}
   - component: {fileID: 8752394035109270788}
-  - component: {fileID: -5036071354264543736}
   m_Layer: 10
   m_Name: FakeBall
   m_TagString: Untagged
@@ -223,7 +223,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 504f1be5edcb48e4f90b24ea661efac8, type: 3}
-  m_Color: {r: 0.88235295, g: 0.88235295, b: 0.88235295, a: 1}
+  m_Color: {r: 0.3679245, g: 0.3679245, b: 0.3679245, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -233,6 +233,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-5036071354264543736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7739952088009901526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61249583f03f77e42976a81421aa4ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -295,15 +307,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &-5036071354264543736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7739952088009901526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61249583f03f77e42976a81421aa4ab2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

@@ -42,6 +42,5 @@ MonoBehaviour:
   SpeedSpecialSpike: 3
   SpecialSpikeDescription: "Tire trois ballons les uns apr\xE8s les autres mais seulement
     un seul est le vrai."
-  PlayerSpecialSpike: {fileID: 0}
+  PlayerSpecialSpike: {fileID: 1894901590401890005, guid: 81581f1ec18b7604aab51e7c7b2e7255, type: 3}
   BallSpecialSpike: {fileID: 0}
-  _fakeBallPrefab: {fileID: 7739952088009901526, guid: 8c6839a5a37e63749b9c0c55de870c02, type: 3}

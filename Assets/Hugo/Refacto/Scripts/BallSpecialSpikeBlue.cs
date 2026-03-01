@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Int.Scripts.Utils;
 using UnityEngine;
 
 namespace Hugo.Refacto.Scripts
@@ -38,5 +39,25 @@ namespace Hugo.Refacto.Scripts
                 }
             }
         }
+
+        #region === EVENTS ===
+
+        private void OnEnable()
+        {
+            EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
+        }
+
+        private void SpecialSpikeActivated()
+        {
+            _parentTransform.DOScale(1f, _animationDuration).SetEase(_animationCurve);
+            Destroy(gameObject, _animationDuration * 1.2f);
+        }
+        
+        private void OnDisable()
+        {
+            EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
+        }
+
+        #endregion
     }
 }
