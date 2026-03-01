@@ -1,22 +1,18 @@
 using Managers;
 using UnityEngine;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace Player
 {
     public class PlayerCountTouchBall : MonoBehaviour
     {
+        public int CurrentTouchCount { get; private set; }
+        
         [Header("Settings")]
         [SerializeField] private int _maxTouchCount = 3;
         
-        [FormerlySerializedAs("blopController")]
-        [FormerlySerializedAs("_newBlopController")]
         [Header("References")]
         [SerializeField] private PlayerController playerController;
-        
-        [Header("Debug")]
-        [SerializeField] private int _currentTouchCount;
 
         #region === EVENTS ===
 
@@ -51,10 +47,10 @@ namespace Player
         {
             if (other.gameObject.CompareTag("Ball"))
             {
-                _currentTouchCount++;
-                Debug.Log("Touch : " + _currentTouchCount);
+                CurrentTouchCount++;
+                Debug.Log("Touch : " + CurrentTouchCount);
 
-                if (_currentTouchCount >= _maxTouchCount)
+                if (CurrentTouchCount >= _maxTouchCount)
                 {
                     MatchManager.Instance.Foul(playerController.PlayerId);
                     ResetTouchCount();
@@ -64,7 +60,7 @@ namespace Player
 
         private void ResetTouchCount()
         {
-            _currentTouchCount = 0;
+            CurrentTouchCount = 0;
         }
     }
 }

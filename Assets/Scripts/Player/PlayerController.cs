@@ -18,6 +18,7 @@ namespace Player
         [SerializeField] private Rigidbody2D _rb2d;
         [SerializeField] private SpriteRenderer _sr;
         [SerializeField] private Animator _animator;
+        [SerializeField] private PlayerCountTouchBall _playerCountTouchBall;
         [SerializeField] private GameObject _laserTrigger;
         
         [Header("States")]
@@ -210,7 +211,7 @@ namespace Player
                     _canMove = false;
                 }
                 else if (!_isPerfectReception && _isGrounded && _perfectReceptionCooldownRemaining <= 0
-                         && Mathf.Abs(_move.x) < 0.1f && !_isSpecialSpike)
+                         && Mathf.Abs(_move.x) < 0.1f && _playerCountTouchBall.CurrentTouchCount == 0 && !_isSpecialSpike)
                 {
                     _isPerfectReception = true;
                     _perfectReceptionTimeRemaining = _blop.PerfectReceptionDuration;

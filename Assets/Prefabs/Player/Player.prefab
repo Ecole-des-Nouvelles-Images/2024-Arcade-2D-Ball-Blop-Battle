@@ -229,6 +229,7 @@ MonoBehaviour:
   _rb2d: {fileID: 9091463944279118054}
   _sr: {fileID: 2973123922031502185}
   _animator: {fileID: 2250917969655826123}
+  _playerCountTouchBall: {fileID: 9129448520297159264}
   _laserTrigger: {fileID: 4138267508579912377}
   _hasTheBall: 0
   _isGrounded: 0
@@ -253,8 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTouchCount: 3
-  _newBlopController: {fileID: 5535092367925643827}
-  _currentTouchCount: 0
+  playerController: {fileID: 5535092367925643827}
 --- !u!114 &4158806001138468945
 MonoBehaviour:
   m_ObjectHideFlags: 0
