@@ -197,9 +197,15 @@ namespace Hugo.Refacto.Scripts
 
         private void SpecialSpikeActivated()
         {
-            _rb2d.gravityScale = _gravityScale;
             _rb2d.velocity /= 4;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation, ForceMode2D.Impulse);
+
+            if (_isCommitted)
+            {
+                _isCommitted = false;
+                _rb2d.gravityScale = _gravityScale;
+                EventBus.OnPlayerCommitment?.Invoke();
+            }
         }
         
         private void OnDisable()

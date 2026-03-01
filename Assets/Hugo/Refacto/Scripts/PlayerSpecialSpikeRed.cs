@@ -21,22 +21,23 @@ namespace Hugo.Refacto.Scripts
         private int _winningIndex;
         private int _drawnBallCount;
         
-        public void Setup(NewBlopController newBlopController, BallController ballController, float speed)
+        public void Setup(NewBlopController newBlopController, BallController ballController, Vector2 direction, float speed)
         {
             _newBlopController = newBlopController;
             _ballController = ballController;
+            _direction = direction;
             _speed = speed;
             _playerInput = GetComponentInParent<PlayerInputHandler>().PlayerInput;
             
             _winningIndex = Random.Range(0, 3);
             _drawnBallCount = 0;
             
-            DrawnBalls(new InputAction.CallbackContext());
-            
             _playerInput.actions["LeftJoystick"].performed += LeftJoystick;
             _playerInput.actions["EastButton"].performed += DrawnBalls;
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
             EventBus.OnPlayerScored += PlayerScored;
+            
+            DrawnBalls(new InputAction.CallbackContext());
         }
 
         private void OnDisable()

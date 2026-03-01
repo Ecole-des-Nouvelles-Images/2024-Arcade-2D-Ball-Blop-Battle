@@ -22,7 +22,7 @@ namespace Hugo.Prototype.Scripts.Player
                 player.transform.rotation, player.transform);
             
             playerSpecialSpike.GetComponent<PlayerSpecialSpikeRed>().Setup(_newBlopController, _ballHandler, 
-                SpeedSpecialSpike);
+                direction, SpeedSpecialSpike);
         }
     }
 }
