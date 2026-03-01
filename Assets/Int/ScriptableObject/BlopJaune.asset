@@ -24,7 +24,7 @@ MonoBehaviour:
   MaxAirSpeed: 5.5
   TimeAppears: 0.5
   TimeResetRotation: 0.2
-  DashSpeed: 15
+  DashSpeed: 1000
   DashDuration: 0.15
   DashCooldown: 0.6
   PerfectReceptionDuration: 0.5

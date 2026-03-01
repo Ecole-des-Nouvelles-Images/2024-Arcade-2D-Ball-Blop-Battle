@@ -36,6 +36,7 @@ namespace Hugo.Refacto.Scripts
             _playerInput.actions["LeftJoystick"].performed += LeftJoystick;
             _playerInput.actions["EastButton"].performed += DrawnBalls;
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
+            EventBus.OnPlayerScored += PlayerScored;
         }
 
         private void OnDisable()
@@ -43,6 +44,7 @@ namespace Hugo.Refacto.Scripts
             _playerInput.actions["LeftJoystick"].performed -= LeftJoystick;
             _playerInput.actions["EastButton"].performed -= DrawnBalls;
             EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
+            EventBus.OnPlayerScored -= PlayerScored;
         }
 
         private void LeftJoystick(InputAction.CallbackContext context)
@@ -76,6 +78,12 @@ namespace Hugo.Refacto.Scripts
         }
         
         private void SpecialSpikeActivated()
+        {
+            _newBlopController.ResetSpecialSpikeState();
+            Destroy(gameObject);
+        }
+        
+        private void PlayerScored(int obj)
         {
             _newBlopController.ResetSpecialSpikeState();
             Destroy(gameObject);
