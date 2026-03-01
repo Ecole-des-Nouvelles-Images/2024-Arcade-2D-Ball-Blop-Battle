@@ -9,6 +9,9 @@ namespace Laser
         [Header("Raycast Settings")]
         [SerializeField] private float _rayLaserLength;
         [SerializeField] private LayerMask _playerLayer;
+        
+        [Header("References")]
+        [SerializeField] private ParticleSystem _psLaser;
 
         private void Update()
         {
@@ -22,6 +25,9 @@ namespace Laser
                 PlayerController playerController = hitPlayer.transform.gameObject.GetComponent<PlayerController>();
                 playerController.Die();
                 MatchManager.Instance.Foul(playerController.PlayerId);
+                
+                // PS
+                _psLaser.Play();
             }
             
             // DEBUG
