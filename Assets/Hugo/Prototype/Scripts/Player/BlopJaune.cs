@@ -7,6 +7,7 @@ namespace Hugo.Prototype.Scripts.Player
     public class BlopJaune : Blop
     {
         // Ball Components
+        private NewBlopController _newBlopController;
         private BallController _ballHandler;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
@@ -14,20 +15,21 @@ namespace Hugo.Prototype.Scripts.Player
             Debug.Log(" YELLOW : SPECIAL SPIKE ! ");
             
             // Get Components
+            _newBlopController = player.GetComponent<NewBlopController>();
             _ballHandler = ball.GetComponent<BallController>();
             
             // Special Spike
             if (direction == Vector2.zero)
             {
-                _ballHandler.DrawnSpacialSpike(direction, SpeedSpecialSpike);
+                _ballHandler.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
             }
             else
             {
-                _ballHandler.DrawnSpacialSpike(direction, SpeedSpecialSpike);
+                _ballHandler.DrawnSpecialSpike(direction, SpeedSpecialSpike);
             }
             
-            GameObject go = Instantiate(BallSpecialSpike, ball.transform.position, ball.transform.rotation,
-                ball.transform);
+            Instantiate(BallSpecialSpike, ball.transform.position, ball.transform.rotation, ball.transform);
+            _newBlopController.ResetSpecialSpikeState();
         }
     }
 }

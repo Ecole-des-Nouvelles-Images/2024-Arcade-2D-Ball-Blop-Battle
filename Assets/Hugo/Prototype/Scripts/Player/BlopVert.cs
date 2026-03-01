@@ -1,4 +1,4 @@
-using Hugo.Prototype.Scripts.Ball;
+using Hugo.Refacto.Scripts;
 using UnityEngine;
 
 namespace Hugo.Prototype.Scripts.Player
@@ -6,50 +6,36 @@ namespace Hugo.Prototype.Scripts.Player
     [CreateAssetMenu(fileName = "BlopVert", menuName = "PlayerData/BlopVert")]
     public class BlopVert : Blop
     {
-        // Player Components
-        private PlayerController _playerController;
-        
         // Ball Components
-        private Rigidbody2D _rb2dBall;
-        private BallHandler _ballHandler;
+        private NewBlopController _newBlopController;
+        private BallController _ballHandler;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
-            Debug.Log(" VERT : SPECIAL SPIKE ! ");
+            Debug.Log(" GREEN : SPECIAL SPIKE ! ");
             
             // Get Components
-            _playerController = player.GetComponent<PlayerController>();
-            _rb2dBall = ball.GetComponent<Rigidbody2D>();
-            _ballHandler = ball.GetComponent<BallHandler>();
+            _newBlopController = player.GetComponent<NewBlopController>();
+            _ballHandler = ball.GetComponent<BallController>();
             
             // Special Spike
-            if (_playerController.CountShootSpecialSpike == 0)
+            if (direction == Vector2.zero)
             {
-                // Change Constraints
-                _rb2dBall.constraints = RigidbodyConstraints2D.None;
-                _rb2dBall.constraints = RigidbodyConstraints2D.FreezeRotation;
-                _ballHandler.ReversIsCatch();
-                
-                if (direction == Vector2.zero)
-                {
-                    _rb2dBall.AddForce(new Vector2(1,0) * SpeedSpecialSpike, ForceMode2D.Impulse);
-                }
-                else
-                {
-                    _rb2dBall.AddForce(direction * SpeedSpecialSpike, ForceMode2D.Impulse);
-                }
-                _playerController.CountShootSpecialSpike++;
-                _playerController.ResetStatesAfterSpecialSpike();
-                return;
+                _ballHandler.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
             }
-
-            if (_playerController.CountShootSpecialSpike == 1)
+            else
             {
-                _rb2dBall.velocity = Vector2.zero;
-                _rb2dBall.AddForce(Vector2.down * SpeedSpecialSpike, ForceMode2D.Impulse);
-                
-                _playerController.CountShootSpecialSpike = 0;
+                _ballHandler.DrawnSpecialSpike(direction, SpeedSpecialSpike);
             }
+            
+            GameObject playerSpecialSpike = Instantiate(PlayerSpecialSpike, player.transform.position, player.transform.rotation, 
+                player.transform);
+            GameObject ballSpecialSpike = Instantiate(BallSpecialSpike, ball.transform.position, ball.transform.rotation, 
+                ball.transform);
+            
+            playerSpecialSpike.GetComponent<PlayerSpecialSpikeGreen>().Setup(ballSpecialSpike.GetComponent<BallSpecialSpikeGreen>());
+            
+            _newBlopController.ResetSpecialSpikeState();
         }
     }
 }

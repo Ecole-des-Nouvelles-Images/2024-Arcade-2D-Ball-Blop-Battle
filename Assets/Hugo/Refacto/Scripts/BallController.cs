@@ -147,7 +147,7 @@ namespace Hugo.Refacto.Scripts
             _playerTransform = null;
         }
         
-        public void DrawnSpacialSpike(Vector2 direction, float speed)
+        public void DrawnSpecialSpike(Vector2 direction, float speed)
         {
             if (direction == Vector2.zero)
             {
@@ -197,6 +197,7 @@ namespace Hugo.Refacto.Scripts
 
         private void SpecialSpikeActivated()
         {
+            _rb2d.gravityScale = _gravityScale;
             _rb2d.velocity /= 4;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation, ForceMode2D.Impulse);
         }

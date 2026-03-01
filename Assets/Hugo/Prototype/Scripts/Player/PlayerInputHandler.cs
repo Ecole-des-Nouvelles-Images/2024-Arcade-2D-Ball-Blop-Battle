@@ -2,6 +2,7 @@ using System;
 using Hugo.Refacto.Scripts;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 namespace Hugo.Prototype.Scripts.Player
 {
@@ -9,7 +10,7 @@ namespace Hugo.Prototype.Scripts.Player
     {
         [Header("Settings")]
         public bool InputAreEnable = true;
-        [SerializeField] private PlayerInput _playerInput;
+        [FormerlySerializedAs("_playerInput")] public PlayerInput PlayerInput;
         
         public static event Action<bool> OnInputDeviceChanged;
         
@@ -31,16 +32,16 @@ namespace Hugo.Prototype.Scripts.Player
             UnityEngine.InputSystem.InputSystem.onDeviceChange += OnDeviceChange;
 
             // Bind input actions
-            _playerInput.actions["LeftJoystick"].performed += LeftJoystick;
-            _playerInput.actions["LeftJoystick"].canceled += LeftJoystick;
-            _playerInput.actions["SouthButton"].performed += SouthButton;
-            _playerInput.actions["SouthButton"].canceled += SouthButton;
-            _playerInput.actions["WestButton"].performed += WestButton;
-            _playerInput.actions["WestButton"].canceled += WestButton;
-            _playerInput.actions["EastButton"].performed += EastButton;
-            _playerInput.actions["EastButton"].canceled += EastButton;
-            _playerInput.actions["StartButton"].performed += StartButton;
-            _playerInput.actions["StartButton"].canceled += StartButton;
+            PlayerInput.actions["LeftJoystick"].performed += LeftJoystick;
+            PlayerInput.actions["LeftJoystick"].canceled += LeftJoystick;
+            PlayerInput.actions["SouthButton"].performed += SouthButton;
+            PlayerInput.actions["SouthButton"].canceled += SouthButton;
+            PlayerInput.actions["WestButton"].performed += WestButton;
+            PlayerInput.actions["WestButton"].canceled += WestButton;
+            PlayerInput.actions["EastButton"].performed += EastButton;
+            PlayerInput.actions["EastButton"].canceled += EastButton;
+            PlayerInput.actions["StartButton"].performed += StartButton;
+            PlayerInput.actions["StartButton"].canceled += StartButton;
         }
         
         private void OnDisable()
@@ -48,16 +49,16 @@ namespace Hugo.Prototype.Scripts.Player
             UnityEngine.InputSystem.InputSystem.onDeviceChange -= OnDeviceChange;
 
             // Unbind input actions
-            _playerInput.actions["LeftJoystick"].performed -= LeftJoystick;
-            _playerInput.actions["LeftJoystick"].canceled -= LeftJoystick;
-            _playerInput.actions["SouthButton"].performed -= SouthButton;
-            _playerInput.actions["SouthButton"].canceled -= SouthButton;
-            _playerInput.actions["WestButton"].performed -= WestButton;
-            _playerInput.actions["WestButton"].canceled -= WestButton;
-            _playerInput.actions["EastButton"].performed -= EastButton;
-            _playerInput.actions["EastButton"].canceled -= EastButton;
-            _playerInput.actions["StartButton"].performed -= StartButton;
-            _playerInput.actions["StartButton"].canceled -= StartButton;
+            PlayerInput.actions["LeftJoystick"].performed -= LeftJoystick;
+            PlayerInput.actions["LeftJoystick"].canceled -= LeftJoystick;
+            PlayerInput.actions["SouthButton"].performed -= SouthButton;
+            PlayerInput.actions["SouthButton"].canceled -= SouthButton;
+            PlayerInput.actions["WestButton"].performed -= WestButton;
+            PlayerInput.actions["WestButton"].canceled -= WestButton;
+            PlayerInput.actions["EastButton"].performed -= EastButton;
+            PlayerInput.actions["EastButton"].canceled -= EastButton;
+            PlayerInput.actions["StartButton"].performed -= StartButton;
+            PlayerInput.actions["StartButton"].canceled -= StartButton;
         }
 
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)

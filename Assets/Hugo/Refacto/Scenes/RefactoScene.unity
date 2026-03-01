@@ -536,6 +536,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4158806001138468945, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
+      propertyPath: PlayerInput
+      value: 
+      objectReference: {fileID: 135460433}
+    - target: {fileID: 4158806001138468945, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: _playerInput
       value: 
       objectReference: {fileID: 135460433}
@@ -1350,13 +1354,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4158806001138468945, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
+      propertyPath: PlayerInput
+      value: 
+      objectReference: {fileID: 1996590543}
+    - target: {fileID: 4158806001138468945, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: _playerInput
       value: 
       objectReference: {fileID: 1996590543}
     - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: _blop
       value: 
-      objectReference: {fileID: 11400000, guid: 9374428f9cb1aa8458e2ffadd896fc4d, type: 2}
+      objectReference: {fileID: 11400000, guid: d1f337d1024003f42949332e66097c96, type: 2}
     - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: PlayerId
       value: 1

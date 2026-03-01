@@ -65,6 +65,14 @@ namespace Hugo.Refacto.Scripts
             
             EventBus.OnPlayerDie?.Invoke(PlayerId);
         }
+
+        public void ResetSpecialSpikeState()
+        {
+            _hasTheBall = false;
+            _isSpecialSpike = false;
+            _rb2d.constraints = RigidbodyConstraints2D.None;
+            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
         
         private void Update()
         {
@@ -251,11 +259,6 @@ namespace Hugo.Refacto.Scripts
                         _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
                         _ballController = null;
                     }
-                    
-                    _isSpecialSpike = false;
-                    _hasTheBall = false;
-                    _rb2d.constraints = RigidbodyConstraints2D.None;
-                    _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
                 }
             }
         }
@@ -347,18 +350,12 @@ namespace Hugo.Refacto.Scripts
 
         private void PlayerScored(int playerId)
         {
-            _hasTheBall = false;
-            _isSpecialSpike = false;
-            _rb2d.constraints = RigidbodyConstraints2D.None;
-            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            ResetSpecialSpikeState();
         }
 
         private void Foul()
         {
-            _hasTheBall = false;
-            _isSpecialSpike = false;
-            _rb2d.constraints = RigidbodyConstraints2D.None;
-            _rb2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            ResetSpecialSpikeState();
         }
         
         private void OnDisable()
