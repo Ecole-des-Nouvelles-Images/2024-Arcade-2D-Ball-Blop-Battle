@@ -255,7 +255,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxTouchCount: 3
   _hitInterval: 0.1
+  _position: {x: 0.75, y: 1}
   playerController: {fileID: 5535092367925643827}
+  _canvasCountTouchBall: {fileID: 3934629697110937489, guid: b9dd51ed30233f34e9e3045218575c05, type: 3}
 --- !u!114 &4158806001138468945
 MonoBehaviour:
   m_ObjectHideFlags: 0

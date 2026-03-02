@@ -1,4 +1,5 @@
 using Managers;
+using UI;
 using UnityEngine;
 using Utils;
 
@@ -12,8 +13,14 @@ namespace Player
         [SerializeField] private int _maxTouchCount = 3;
         [SerializeField] private float _hitInterval = 0.2f;
         
+        [Header("Display")]
+        [SerializeField] private Vector2 _positionCanvas = new Vector2(0.75f, 1f);
+        
         [Header("References")]
         [SerializeField] private PlayerController playerController;
+        
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _canvasCountTouchBall;
 
         private bool _canHit = true;
         private float _time;
@@ -69,6 +76,22 @@ namespace Player
             {
                 CurrentTouchCount++;
                 Debug.Log("Touch : " + CurrentTouchCount);
+                
+                // Display
+                Vector3 localHitPoint = transform.InverseTransformPoint(other.contacts[0].point);
+                Vector3 spawnPos = new Vector3();
+                if (localHitPoint.x >= 0f)
+                {
+                    spawnPos = new Vector3(-_positionCanvas.x, _positionCanvas.y, 0f);
+                }
+                else
+                {
+                    spawnPos = new Vector3(_positionCanvas.x, _positionCanvas.y, 0f);
+                }
+                Vector3 finalSpawnPosition = transform.TransformPoint(spawnPos);
+
+                GameObject go = Instantiate(_canvasCountTouchBall, finalSpawnPosition, Quaternion.identity);
+                go.GetComponent<UICountTouchBall>().Setup(CurrentTouchCount);
 
                 if (CurrentTouchCount >= _maxTouchCount)
                 {

@@ -8,6 +8,7 @@ using JetBrains.Annotations;
 using Managers;
 using Player;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Utils.Singletons;
 using Random = UnityEngine.Random;
 
@@ -33,7 +34,7 @@ namespace _Branches.Hugo.OldScripts.Game
         [Header("References")]
         [SerializeField] private GameObject _ballPrefab;
         [SerializeField] private GameManager _gameManager;
-        [SerializeField] private HUDDisplay _hudDisplay;
+        [FormerlySerializedAs("_hudDisplay")] [SerializeField] private OldHUDDisplay oldHUDDisplay;
         [SerializeField] private CameraHandler _cameraHandler;
         
         [Header("Panels")]
@@ -242,7 +243,7 @@ namespace _Branches.Hugo.OldScripts.Game
 
         public void DisplayScoreChange(bool isPlayerOneScored, bool isFoul)
         {
-            _hudDisplay.DisplayScoreChange(isPlayerOneScored);
+            oldHUDDisplay.DisplayScoreChange(isPlayerOneScored);
             
             if (isPlayerOneScored)
             {

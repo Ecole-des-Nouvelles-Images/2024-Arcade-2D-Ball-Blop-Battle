@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace _Branches.Hugo.OldScripts.UI
 {
-    public class HUDDisplay : MonoBehaviour
+    public class OldHUDDisplay : MonoBehaviour
     {
         private RectTransform _rectTransformScorePlayerOne;
         private RectTransform _rectTransformScorePlayerTwo;

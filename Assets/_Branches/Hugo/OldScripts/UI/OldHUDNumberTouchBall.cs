@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _Branches.Hugo.OldScripts.UI
 {
-    public class HUDNumberTouchBall : MonoBehaviour
+    public class OldHUDNumberTouchBall : MonoBehaviour
     {
         private TextMeshProUGUI _textMeshProUGUI;
         
