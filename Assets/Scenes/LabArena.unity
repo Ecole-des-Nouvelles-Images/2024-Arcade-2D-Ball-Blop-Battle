@@ -1129,6 +1129,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1772796910958661415, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4158806001138468945, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: PlayerInput
       value: 
@@ -2529,6 +2533,10 @@ PrefabInstance:
     - target: {fileID: 1581977015298544327, guid: 9d28fe12b7d5f064994ce8c02dc71cbd, type: 3}
       propertyPath: m_Name
       value: MatchManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525469105817300568, guid: 9d28fe12b7d5f064994ce8c02dc71cbd, type: 3}
+      propertyPath: _setDuration
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

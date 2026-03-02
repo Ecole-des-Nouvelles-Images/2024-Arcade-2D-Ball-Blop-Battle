@@ -10,9 +10,13 @@ namespace Player
         
         [Header("Settings")]
         [SerializeField] private int _maxTouchCount = 3;
+        [SerializeField] private float _hitInterval = 0.2f;
         
         [Header("References")]
         [SerializeField] private PlayerController playerController;
+
+        private bool _canHit = true;
+        private float _time;
 
         #region === EVENTS ===
 
@@ -43,8 +47,24 @@ namespace Player
 
         #endregion
 
+        private void Update()
+        {
+            if (!_canHit)
+            {
+                _time += Time.deltaTime;
+
+                if (_time >= _hitInterval)
+                {
+                    _time = 0f;
+                    _canHit = true;
+                }
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
+            if (!_canHit) return;
+            
             if (other.gameObject.CompareTag("Ball"))
             {
                 CurrentTouchCount++;
@@ -55,6 +75,8 @@ namespace Player
                     MatchManager.Instance.Foul(playerController.PlayerId);
                     ResetTouchCount();
                 }
+
+                _canHit = false;
             }
         }
 

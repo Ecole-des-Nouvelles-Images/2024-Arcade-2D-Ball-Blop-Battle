@@ -254,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxTouchCount: 3
+  _hitInterval: 0.1
   playerController: {fileID: 5535092367925643827}
 --- !u!114 &4158806001138468945
 MonoBehaviour:

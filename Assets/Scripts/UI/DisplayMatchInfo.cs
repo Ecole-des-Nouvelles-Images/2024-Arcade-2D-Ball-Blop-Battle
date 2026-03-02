@@ -22,7 +22,7 @@ namespace UI
             _scorePlayerTwo.text = MatchManager.Instance.PlayerTwoScore.ToString();
 
             float time = MatchManager.Instance.TimerHandler.CurrentTimer;
-            if (time < 10f)
+            if (time <= 9.9f)
             {
                 _timer.text = time.ToString("F1");
             }
