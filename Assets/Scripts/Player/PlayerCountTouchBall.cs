@@ -31,6 +31,7 @@ namespace Player
         {
             EventBus.OnPlayerScored += OnPlayerScored;
             EventBus.OnPlayerTouchedBall += OnPlayerTouchedBall;
+            EventBus.OnFoul += Foul;
         }
 
         private void OnPlayerScored(int playerId)
@@ -46,10 +47,16 @@ namespace Player
             }
         }
         
+        private void Foul()
+        {
+            ResetTouchCount();
+        }
+        
         private void OnDisable()
         {
             EventBus.OnPlayerScored -= OnPlayerScored;
             EventBus.OnPlayerTouchedBall -= OnPlayerTouchedBall;
+            EventBus.OnFoul -= Foul;
         }
 
         #endregion

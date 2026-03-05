@@ -25,12 +25,7 @@ namespace UI
 
         private void PlayerPerfectReception(int playerID, int count)
         {
-            bool haveFullPerfectReception = false;
-            
-            if (count == _p1PerfectReceptions.Count)
-            {
-                haveFullPerfectReception = true;
-            }
+            bool haveFullPerfectReception = count == _p1PerfectReceptions.Count;
                 
             if (playerID == 1)
             {
@@ -62,7 +57,7 @@ namespace UI
                         continue;
                     }
                         
-                    if (i <= count)
+                    if (i < count)
                     {
                         _p2PerfectReceptions[i].color = _perfectReceptionActivatedColor;
                     }

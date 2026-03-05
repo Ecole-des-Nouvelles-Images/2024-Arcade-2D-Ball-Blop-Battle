@@ -59,7 +59,16 @@ namespace Balls
         {
             if (_isAbsorbed) return;
             
-            IsTouchingGround(other.gameObject.tag);
+            if (other.gameObject.CompareTag("PlayerOneGround"))
+            {
+                EventBus.OnPlayerScored?.Invoke(2);
+                IsDestroy();
+            }
+            else if (other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                EventBus.OnPlayerScored?.Invoke(1);
+                IsDestroy();
+            }
             
             if (other.gameObject.CompareTag("Player") && _isCommitted)
             {
@@ -74,7 +83,16 @@ namespace Balls
         {
             if (_isAbsorbed) return;
 
-            IsTouchingGround(other.gameObject.tag);
+            if (other.gameObject.CompareTag("PlayerOneGround"))
+            {
+                MatchManager.Instance.Foul(1);
+                IsDestroy();
+            }
+            else if (other.gameObject.CompareTag("PlayerTwoGround"))
+            {
+                MatchManager.Instance.Foul(2);
+                IsDestroy();
+            }
             
             if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Selling"))
             {
@@ -168,20 +186,6 @@ namespace Balls
             }
 
             _playerTransform = null;
-        }
-
-        private void IsTouchingGround(string tag)
-        {
-            if (tag == "PlayerOneGround")
-            {
-                EventBus.OnPlayerScored?.Invoke(2);
-                IsDestroy();
-            }
-            else if (tag == "PlayerTwoGround")
-            {
-                EventBus.OnPlayerScored?.Invoke(1);
-                IsDestroy();
-            }
         }
 
         private void IsDestroy()
