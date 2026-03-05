@@ -38,6 +38,7 @@ namespace Managers
 
         private bool _isPlaying;
         private bool _isSetOver;
+        private Coroutine _commitmentCoroutine;
 
         private void Awake()
         {
@@ -47,7 +48,8 @@ namespace Managers
 
         private void Start()
         {
-            StartCoroutine(CommitmentCoroutine(true, Random.Range(1, 3), _timeBetweenSets));
+            if (_commitmentCoroutine != null) return;
+            _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(true, Random.Range(1, 3), _timeBetweenSets));
         }
 
         #region === EVENTS ===
@@ -76,7 +78,8 @@ namespace Managers
 
             if (!_isSetOver)
             {
-                StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
+                if (_commitmentCoroutine != null) return;
+                _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
             }
             else if (_isSetOver && PlayerOneScore != PlayerTwoScore)
             {
@@ -99,7 +102,8 @@ namespace Managers
             }
             else if (_isSetOver && PlayerOneScore == PlayerTwoScore)
             {
-                StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
+                if (_commitmentCoroutine != null) return;
+                _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(false, scoringPlayerId, _timeBetweenCommitments));
             }
         }
         
@@ -135,7 +139,8 @@ namespace Managers
             if (PlayerOneSetCount < _setCountToWinAMatch && PlayerTwoSetCount < _setCountToWinAMatch)
             {
                 _isSetOver = false;
-                StartCoroutine(CommitmentCoroutine(true, winSetPlayerId, _timeBetweenSets));
+                if (_commitmentCoroutine != null) return;
+                _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(true, winSetPlayerId, _timeBetweenSets));
             }
             else if (PlayerOneSetCount == _setCountToWinAMatch)
             {
@@ -152,6 +157,8 @@ namespace Managers
         private IEnumerator CommitmentCoroutine(bool firstCommitment, int scoringPlayerId, float delay)
         {
             yield return new WaitForSeconds(delay);
+            
+            if (_currentBall) Destroy(_currentBall);
             
             if (scoringPlayerId == 1)
             {
@@ -170,16 +177,19 @@ namespace Managers
             }
 
             _isPlaying = true;
+            _commitmentCoroutine = null;
         }
 
         public void Foul(int playerId)
         {
-            if (!_isPlaying) return;
+            if (!_isPlaying || _commitmentCoroutine != null) return;
             
             Debug.Log("FOUL");
             
-            Destroy(_currentBall);
+            if (_currentBall) Destroy(_currentBall);
             EventBus.OnFoul?.Invoke();
+            
+            _isPlaying = false;
 
             if (playerId == 1)
             {
@@ -189,8 +199,6 @@ namespace Managers
             {
                 PlayerScored(1);
             }
-
-            _isPlaying = false;
         }
     }
 }

@@ -29,6 +29,8 @@ namespace Player
 
         private void OnEnable()
         {
+            ResetComponent();
+            
             EventBus.OnPlayerScored += OnPlayerScored;
             EventBus.OnPlayerTouchedBall += OnPlayerTouchedBall;
             EventBus.OnFoul += Foul;
@@ -108,6 +110,12 @@ namespace Player
 
                 _canHit = false;
             }
+        }
+        
+        private void ResetComponent()
+        {
+            _canHit = true;
+            CurrentTouchCount = 0;
         }
 
         private void ResetTouchCount()

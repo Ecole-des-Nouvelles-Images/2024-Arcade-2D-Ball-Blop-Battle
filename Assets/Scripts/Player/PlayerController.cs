@@ -345,6 +345,7 @@ namespace Player
 
         private void OnEnable()
         {
+            ResetSpecialSpikeState();
             _laserTrigger.SetActive(true);
             
             EventBus.OnPlayerScored += PlayerScored;
