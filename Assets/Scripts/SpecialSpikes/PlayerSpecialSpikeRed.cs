@@ -2,7 +2,6 @@ using Balls;
 using Player;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace SpecialSpikes
@@ -16,7 +15,7 @@ namespace SpecialSpikes
         [SerializeField] private BallController _ballController;
         [SerializeField] private Vector2 _direction;
         [SerializeField] private float _speed;
-        [FormerlySerializedAs("blopController")] [FormerlySerializedAs("_newBlopController")] [SerializeField] private PlayerController playerController;
+        [SerializeField] private PlayerController playerController;
         [SerializeField] private PlayerInput _playerInput;
         
         private int _winningIndex;
@@ -35,7 +34,9 @@ namespace SpecialSpikes
             
             _playerInput.actions["LeftJoystick"].performed += LeftJoystick;
             _playerInput.actions["EastButton"].performed += DrawnBalls;
+            
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
+            EventBus.OnPlayerTouchedBall += PlayerTouchedBall;
             EventBus.OnPlayerScored += PlayerScored;
             
             DrawnBalls(new InputAction.CallbackContext());
@@ -45,7 +46,9 @@ namespace SpecialSpikes
         {
             _playerInput.actions["LeftJoystick"].performed -= LeftJoystick;
             _playerInput.actions["EastButton"].performed -= DrawnBalls;
+            
             EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
+            EventBus.OnPlayerTouchedBall -= PlayerTouchedBall;
             EventBus.OnPlayerScored -= PlayerScored;
         }
 
@@ -69,17 +72,23 @@ namespace SpecialSpikes
                 go.GetComponent<FakeBallController>().Setup(shootDirection, _speed);
                 Debug.Log("Faux ballon tiré.");
             }
-
-            _drawnBallCount++;
-
-            if (_drawnBallCount >= 3)
+            
+            if (_drawnBallCount >= 2)
             {
                 playerController.ResetSpecialSpikeState();
                 Destroy(gameObject);
             }
+
+            _drawnBallCount++;
         }
         
         private void SpecialSpikeActivated()
+        {
+            playerController.ResetSpecialSpikeState();
+            Destroy(gameObject);
+        }
+        
+        private void PlayerTouchedBall(int obj)
         {
             playerController.ResetSpecialSpikeState();
             Destroy(gameObject);
