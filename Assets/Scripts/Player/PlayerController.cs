@@ -271,7 +271,7 @@ namespace Player
             // Debug.Log(buttonValue);
             if (_hasTheBall) return;
 
-            if (_isGrounded || _isWalledLeft || _isWalledRight)
+            if (_isGrounded)
             {
                 _canDoubleJump = false;
             }
@@ -288,11 +288,13 @@ namespace Player
                 {
                     Vector2 wallJumping = new Vector2(1,1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
+                    _canDoubleJump = true;
                 }
                 else if (_isWalledRight)
                 {
                     Vector2 wallJumping = new Vector2(-1,1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
+                    _canDoubleJump = true;
                 }
                 else if (_canDoubleJump)
                 {
@@ -320,12 +322,15 @@ namespace Player
                 _isGrounded = Physics2D.Raycast(transform.position, Vector3.down, 
                     _blop.RayGroundedLengthHaveTheBall, _blop.GroundLayer);
             }
+
+            if (_move.x < -0.1f)
+                _isWalledLeft = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0),
+                    Vector3.left, _blop.RayWalledLength, _blop.WallLayer);
+            else _isWalledLeft = false;
             
-            _isWalledLeft = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0), Vector3.left, 
-                _blop.RayWalledLength, _blop.WallLayer);
-            
-            _isWalledRight = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0), Vector3.right, 
-                _blop.RayWalledLength, _blop.WallLayer);
+            if (_move.x > 0.1f) _isWalledRight = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0), 
+                Vector3.right, _blop.RayWalledLength, _blop.WallLayer);
+            else _isWalledRight = false;
             
             // DEBUG
             if (!_hasTheBall)
@@ -337,8 +342,8 @@ namespace Player
                 Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLengthHaveTheBall, Color.red);
 
             }
-            Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.left * _blop.RayWalledLength, Color.red);
-            Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
+            if (_move.x < -0.1f) Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.left * _blop.RayWalledLength, Color.red);
+            if (_move.x > 0.1f) Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
         }
 
         #region === EVENTS ===
