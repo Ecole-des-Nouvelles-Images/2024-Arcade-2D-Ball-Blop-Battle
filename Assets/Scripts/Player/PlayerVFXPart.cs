@@ -10,6 +10,7 @@ namespace Player
 
         private void OnEnable()
         {
+            _playerController.PlayerEvents.OnAppears += PlayerEventsOnOnAppears;
             _playerController.PlayerEvents.OnJump += PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnDoubleJump += PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnWallJump += PlayerEventsOnOnJump;
@@ -19,10 +20,12 @@ namespace Player
             _playerController.PlayerEvents.OnLand += PlayerEventsOnOnLand;
             _playerController.PlayerEvents.OnActiveSpecialSpike += PlayerEventsOnOnActiveSpecialSpike;
             _playerController.PlayerEvents.OnShootSpecialSpike += PlayerEventsOnOnShootSpecialSpike;
+            _playerController.PlayerEvents.OnDeath += PlayerEventsOnOnDeath;
         }
-        
+
         private void OnDisable()
         {
+            _playerController.PlayerEvents.OnAppears -= PlayerEventsOnOnAppears;
             _playerController.PlayerEvents.OnJump -= PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnDoubleJump -= PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnWallJump -= PlayerEventsOnOnJump;
@@ -32,6 +35,12 @@ namespace Player
             _playerController.PlayerEvents.OnLand -= PlayerEventsOnOnLand;
             _playerController.PlayerEvents.OnActiveSpecialSpike -= PlayerEventsOnOnActiveSpecialSpike;
             _playerController.PlayerEvents.OnShootSpecialSpike -= PlayerEventsOnOnShootSpecialSpike;
+            _playerController.PlayerEvents.OnDeath -= PlayerEventsOnOnDeath;
+        }
+        
+        private void PlayerEventsOnOnAppears(Blop blop)
+        {
+            Instantiate(blop.PSAppears, transform.position, transform.rotation);
         }
 
         private void PlayerEventsOnOnJump(Blop blop)
@@ -67,6 +76,11 @@ namespace Player
         private void PlayerEventsOnOnShootSpecialSpike(Blop blop)
         {
             Instantiate(blop.PSShootSpecialSpike, transform.position, transform.rotation);
+        }
+        
+        private void PlayerEventsOnOnDeath(Blop blop)
+        {
+            Instantiate(blop.PSDeath, transform.position, transform.rotation);
         }
     }
 }

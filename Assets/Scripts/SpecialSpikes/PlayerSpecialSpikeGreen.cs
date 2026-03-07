@@ -10,7 +10,7 @@ namespace SpecialSpikes
         [Header("Settings")]
         [SerializeField] private float _speed;
         
-        [Header("References")]
+        [Header("Debug")]
         [SerializeField] private BallSpecialSpikeGreen _ballSpecialSpikeGreen;
         [SerializeField] private PlayerInput _playerInput;
         
@@ -31,7 +31,7 @@ namespace SpecialSpikes
 
         private void ActiveSecondHit(InputAction.CallbackContext context)
         {
-            _ballSpecialSpikeGreen.SecondHit(_speed);
+            if (_ballSpecialSpikeGreen) _ballSpecialSpikeGreen.SecondHit(_speed);
             Destroy(gameObject);
         }
 

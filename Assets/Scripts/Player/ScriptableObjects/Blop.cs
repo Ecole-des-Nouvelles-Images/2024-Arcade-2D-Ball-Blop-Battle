@@ -49,6 +49,8 @@ namespace Player.ScriptableObjects
         
         [Header("Particles Systems")]
         public GameObject PSTrailRenderer;
+        public GameObject PSAppears;
+        public GameObject PSDeath;
         public GameObject PSJump;
         public GameObject PSChocWave;
         public GameObject PSSpitOut;

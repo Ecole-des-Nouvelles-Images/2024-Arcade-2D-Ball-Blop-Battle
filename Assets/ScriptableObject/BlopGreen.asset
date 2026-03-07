@@ -45,6 +45,8 @@ MonoBehaviour:
   PlayerSpecialSpike: {fileID: 283492145330749576, guid: 5a1e61e774980c644985e7aaa7720390, type: 3}
   BallSpecialSpike: {fileID: 3897551041237783943, guid: 62ed37709032fa3419e7fe47c5a5601a, type: 3}
   PSTrailRenderer: {fileID: 5909720993275184721, guid: 054594f15220a1749864030c4fec2dc2, type: 3}
+  PSAppears: {fileID: 5912243416285748733, guid: 25d3c3e8139a7ba45ac59c16b93e96a5, type: 3}
+  PSDeath: {fileID: 5912243416285748733, guid: 25d3c3e8139a7ba45ac59c16b93e96a5, type: 3}
   PSJump: {fileID: 1562553828129078914, guid: 2559a5f0118d1294bab137620559abac, type: 3}
   PSChocWave: {fileID: 2083551104891385030, guid: f22e9c8c0ddf303489f01a32685bb65a, type: 3}
   PSSpitOut: {fileID: 5912243416285748733, guid: 25d3c3e8139a7ba45ac59c16b93e96a5, type: 3}

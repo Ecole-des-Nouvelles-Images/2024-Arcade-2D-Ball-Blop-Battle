@@ -18,7 +18,7 @@ namespace Managers
         // TIMER
         public TimerHandler TimerHandler { get; private set; }
         
-        // STATES
+        [Header("Match Infos")]
         public int BallSide;
         
         [Header("Match Settings")]

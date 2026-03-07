@@ -3,29 +3,29 @@ using UnityEngine;
 
 namespace Player.ScriptableObjects
 {
-    [CreateAssetMenu(fileName = "BlopJaune", menuName = "PlayerData/BlopJaune")]
-    public class BlopJaune : Blop
+    [CreateAssetMenu(fileName = "BlopBleu", menuName = "PlayerData/BlopBleu")]
+    public class BlopBlue : Blop
     {
         // Ball Components
         private PlayerController _playerController;
-        private BallController _ballHandler;
+        private BallController _ballController;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
-            Debug.Log(" YELLOW : SPECIAL SPIKE ! ");
+            Debug.Log(" BLEU : SPECIAL SPIKE ! ");
             
             // Get Components
             _playerController = player.GetComponent<PlayerController>();
-            _ballHandler = ball.GetComponent<BallController>();
+            _ballController = ball.GetComponent<BallController>();
             
             // Special Spike
             if (direction == Vector2.zero)
             {
-                _ballHandler.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
+                _ballController.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
             }
             else
             {
-                _ballHandler.DrawnSpecialSpike(direction, SpeedSpecialSpike);
+                _ballController.DrawnSpecialSpike(direction, SpeedSpecialSpike);
             }
             
             Instantiate(BallSpecialSpike, ball.transform.position, ball.transform.rotation, ball.transform);

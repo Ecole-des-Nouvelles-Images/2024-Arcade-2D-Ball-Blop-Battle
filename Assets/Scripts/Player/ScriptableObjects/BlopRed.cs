@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "BlopRouge", menuName = "PlayerData/BlopRouge")]
-    public class BlopRouge : Blop
+    public class BlopRed : Blop
     {
         // Ball Components
         private PlayerController _playerController;

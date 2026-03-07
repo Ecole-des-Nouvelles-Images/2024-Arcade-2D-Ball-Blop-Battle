@@ -45,10 +45,12 @@ MonoBehaviour:
   PlayerSpecialSpike: {fileID: 0}
   BallSpecialSpike: {fileID: 5313623261539157370, guid: 26c99da736330534daa0685796148e64, type: 3}
   PSTrailRenderer: {fileID: 6989830784125450374, guid: 4736d3564827cad44afb01feabb2b30f, type: 3}
+  PSAppears: {fileID: 5912243416285748733, guid: 3018d9fcf8dc4f0439a702467264a3eb, type: 3}
+  PSDeath: {fileID: 5912243416285748733, guid: 3018d9fcf8dc4f0439a702467264a3eb, type: 3}
   PSJump: {fileID: 1562553828129078914, guid: 2559a5f0118d1294bab137620559abac, type: 3}
   PSChocWave: {fileID: 2083551104891385030, guid: f22e9c8c0ddf303489f01a32685bb65a, type: 3}
-  PSSpitOut: {fileID: 5912243416285748733, guid: 210c43bc9f0e7fa44836800cd59d8597, type: 3}
+  PSSpitOut: {fileID: 5912243416285748733, guid: 3018d9fcf8dc4f0439a702467264a3eb, type: 3}
   PSPerfectReception: {fileID: 3838647169397798274, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
-  PSLanding: {fileID: 1122944454073200289, guid: 04237f6e9e897dc4e9811c976225e339, type: 3}
+  PSLanding: {fileID: 1122944454073200289, guid: cd2832600df6f95488539b97b749520f, type: 3}
   PSActiveSpecialSpike: {fileID: 5677235554576504653, guid: 8d29b86dbab93444aadbe3a73b6b2cf3, type: 3}
-  PSShootSpecialSpike: {fileID: 8252428279917890593, guid: 121b258f2f90e8c4dae382564a735974, type: 3}
+  PSShootSpecialSpike: {fileID: 5230853136912673148, guid: 739fef0e1a380a44d98ec3a6be186417, type: 3}

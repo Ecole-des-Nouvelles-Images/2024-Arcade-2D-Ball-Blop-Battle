@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Player.ScriptableObjects
 {
     [CreateAssetMenu(fileName = "BlopVert", menuName = "PlayerData/BlopVert")]
-    public class BlopVert : Blop
+    public class BlopGreen : Blop
     {
         // Ball Components
         private PlayerController _playerController;
@@ -35,6 +35,7 @@ namespace Player.ScriptableObjects
                 ball.transform);
             
             playerSpecialSpike.GetComponent<PlayerSpecialSpikeGreen>().Setup(ballSpecialSpike.GetComponent<BallSpecialSpikeGreen>());
+            ballSpecialSpike.GetComponent<BallSpecialSpikeGreen>().Setup(playerSpecialSpike.GetComponent<PlayerSpecialSpikeGreen>());
             
             _playerController.ResetSpecialSpikeState();
         }
