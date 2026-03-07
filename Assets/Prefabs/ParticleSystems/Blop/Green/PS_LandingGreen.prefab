@@ -4901,7 +4901,7 @@ GameObject:
   - component: {fileID: 6429655951441224388}
   - component: {fileID: 7315189307927858678}
   m_Layer: 0
-  m_Name: Tombe_G
+  m_Name: PS_LandingGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

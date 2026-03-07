@@ -175,6 +175,8 @@ namespace Player
                     _perfectReceptionCount = Mathf.Clamp(_perfectReceptionCount + 1, 0, 3);
                     
                     EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
+                    
+                    PlayerEvents.PerfectReception(_blop);
                 }
                 else if (_isDashing)
                 {
@@ -232,8 +234,6 @@ namespace Player
                     _isPerfectReception = true;
                     _perfectReceptionTimeRemaining = _blop.PerfectReceptionDuration;
                     _perfectReceptionCooldownRemaining = _blop.PerfectReceptionCooldown;
-                    
-                    PlayerEvents.PerfectReception(_blop);
                 }
 
                 if (!_isGrounded && !_isWalledLeft && !_isWalledRight && !_hasTheBall)

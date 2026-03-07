@@ -11,6 +11,8 @@ namespace Player
         private void OnEnable()
         {
             _playerController.PlayerEvents.OnJump += PlayerEventsOnOnJump;
+            _playerController.PlayerEvents.OnDoubleJump += PlayerEventsOnOnJump;
+            _playerController.PlayerEvents.OnWallJump += PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnPunch += PlayerEventsOnOnPunch;
             _playerController.PlayerEvents.OnDrawn += PlayerEventsOnOnDrawn;
             _playerController.PlayerEvents.OnPerfectReception += PlayerEventsOnOnPerfectReception;
@@ -22,6 +24,8 @@ namespace Player
         private void OnDisable()
         {
             _playerController.PlayerEvents.OnJump -= PlayerEventsOnOnJump;
+            _playerController.PlayerEvents.OnDoubleJump -= PlayerEventsOnOnJump;
+            _playerController.PlayerEvents.OnWallJump -= PlayerEventsOnOnJump;
             _playerController.PlayerEvents.OnPunch -= PlayerEventsOnOnPunch;
             _playerController.PlayerEvents.OnDrawn -= PlayerEventsOnOnDrawn;
             _playerController.PlayerEvents.OnPerfectReception -= PlayerEventsOnOnPerfectReception;

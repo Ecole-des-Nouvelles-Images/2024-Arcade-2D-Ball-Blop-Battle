@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 2988903178527757882}
   - component: {fileID: 2988461993766391912}
   m_Layer: 0
-  m_Name: Lance_CS_R
+  m_Name: PS_ShootSpecialSpikeRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
