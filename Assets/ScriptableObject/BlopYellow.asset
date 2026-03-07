@@ -44,7 +44,7 @@ MonoBehaviour:
     seulement une tra\xEEn\xE9e \xE9lectrique."
   PlayerSpecialSpike: {fileID: 0}
   BallSpecialSpike: {fileID: 5313623261539157370, guid: 26c99da736330534daa0685796148e64, type: 3}
-  PSTrailRenderer: {fileID: 6989830784125450374, guid: 4736d3564827cad44afb01feabb2b30f, type: 3}
+  PSTrailRenderer: {fileID: 1346839902090245841, guid: e9b572fa0fd86fe41ab2f6aded4e7b82, type: 3}
   PSAppears: {fileID: 5912243416285748733, guid: 3018d9fcf8dc4f0439a702467264a3eb, type: 3}
   PSDeath: {fileID: 5912243416285748733, guid: 3018d9fcf8dc4f0439a702467264a3eb, type: 3}
   PSJump: {fileID: 1562553828129078914, guid: 2559a5f0118d1294bab137620559abac, type: 3}
