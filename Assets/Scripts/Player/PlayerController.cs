@@ -11,6 +11,9 @@ namespace Player
     {
         public int PlayerId;
         
+        // EVENTS
+        public PlayerEvents PlayerEvents { get; private set; } =  new ();
+        
         [Header("Blop")]
         [SerializeField] private Blop _blop;
         
@@ -51,11 +54,17 @@ namespace Player
         // BALL
         private BallController _ballController;
 
+        private void Start()
+        {
+            SetUp(_blop, 1);
+        }
+
         public void SetUp(Blop blop, int playerId)
         {
             _blop = blop;
             PlayerId = playerId;
             _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
+            Instantiate(_blop.PSTrailRenderer, transform);
         }
 
         public void Die()
@@ -175,15 +184,20 @@ namespace Player
                 {
                     _hasTheBall = true;
                     _ballController.Absorb(transform);
+                    
+                    PlayerEvents.Absorb(_blop);
                 }
                 else if (_isSpecialSpike)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ballController.Absorb(transform);
+                    
+                    PlayerEvents.AbsorbSpecialSpike(_blop);
                 }
                 
                 EventBus.OnPlayerTouchedBall?.Invoke(PlayerId);
+                PlayerEvents.Punch(_blop);
             }
         }
 
@@ -209,6 +223,8 @@ namespace Player
                     _dashCooldownRemaining = _blop.DashCooldown;
                 
                     _canMove = false;
+                    
+                    PlayerEvents.Dash(_blop);
                 }
                 else if (!_isPerfectReception && _isGrounded && _perfectReceptionCooldownRemaining <= 0
                          && Mathf.Abs(_move.x) < 0.1f && _playerCountTouchBall.CurrentTouchCount == 0 && !_isSpecialSpike)
@@ -216,11 +232,15 @@ namespace Player
                     _isPerfectReception = true;
                     _perfectReceptionTimeRemaining = _blop.PerfectReceptionDuration;
                     _perfectReceptionCooldownRemaining = _blop.PerfectReceptionCooldown;
+                    
+                    PlayerEvents.PerfectReception(_blop);
                 }
 
                 if (!_isGrounded && !_isWalledLeft && !_isWalledRight && !_hasTheBall)
                 {
                     _isAbsorbing = true;
+                    
+                    PlayerEvents.CanAbsorb(_blop);
                 }
             }
             else if (Mathf.Approximately(buttonValue, 0) && !_isSpecialSpike)
@@ -233,6 +253,8 @@ namespace Player
                     {
                         _ballController.Drawn(_move);
                         _ballController = null;
+                        
+                        PlayerEvents.Drawn(_blop);
                     }
                     
                     _hasTheBall = false;
@@ -252,6 +274,8 @@ namespace Player
                     
                     EventBus.OnSpecialSpikeActivated?.Invoke();
                     EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
+                    
+                    PlayerEvents.ActiveSpecialSpike(_blop);
                 }
 
                 if (_isSpecialSpike && _hasTheBall)
@@ -261,6 +285,8 @@ namespace Player
                         Debug.Log("SPECIAL SPIKE");
                         _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
                         _ballController = null;
+                        
+                        PlayerEvents.ShootSpecialSpike(_blop);
                     }
                 }
             }
@@ -283,24 +309,32 @@ namespace Player
                     float jumping = 1f * _blop.JumpForce;
                     _rb2d.velocity = new Vector3(_rb2d.velocity.x, jumping);
                     _canDoubleJump = true;
+                    
+                    PlayerEvents.Jump(_blop);
                 }
                 else if (_isWalledLeft)
                 {
                     Vector2 wallJumping = new Vector2(1,1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
                     _canDoubleJump = true;
+                    
+                    PlayerEvents.WallJump(_blop);
                 }
                 else if (_isWalledRight)
                 {
                     Vector2 wallJumping = new Vector2(-1,1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
                     _canDoubleJump = true;
+                    
+                    PlayerEvents.WallJump(_blop);
                 }
                 else if (_canDoubleJump)
                 {
                     float jumping = 1f * _blop.JumpForce;
                     _rb2d.velocity = new Vector3(_rb2d.velocity.x, jumping);
                     _canDoubleJump = false;
+                    
+                    PlayerEvents.DoubleJump(_blop);
                 }
             }
         }
@@ -312,6 +346,10 @@ namespace Player
 
         private void Raycasts()
         {
+            bool lastIsGrounded = _isGrounded;
+            bool lastIsWalledLeft = _isWalledLeft;
+            bool lastIsWalledRight = _isWalledRight;
+            
             if (!_hasTheBall)
             {
                 _isGrounded = Physics2D.Raycast(transform.position, Vector3.down, 
@@ -331,6 +369,18 @@ namespace Player
             if (_move.x > 0.1f) _isWalledRight = Physics2D.Raycast(transform.position + new Vector3(0, .5f, 0), 
                 Vector3.right, _blop.RayWalledLength, _blop.WallLayer);
             else _isWalledRight = false;
+            
+            // EVENTS
+            if (_isGrounded && lastIsGrounded != _isGrounded)
+            {
+                PlayerEvents.Land(_blop);
+            }
+
+            if (_isWalledLeft && lastIsWalledLeft != _isWalledLeft 
+                || _isWalledRight && lastIsWalledRight != _isWalledRight)
+            {
+                PlayerEvents.IsWalled(_blop);
+            }
             
             // DEBUG
             if (!_hasTheBall)
@@ -355,6 +405,8 @@ namespace Player
             
             EventBus.OnPlayerScored += PlayerScored;
             EventBus.OnFoul += Foul;
+            
+            PlayerEvents.Appears(_blop);
         }
 
         private void PlayerScored(int playerId)
@@ -371,6 +423,8 @@ namespace Player
         {
             EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnFoul -= Foul;
+            
+            PlayerEvents.Death(_blop);
         }
 
         #endregion

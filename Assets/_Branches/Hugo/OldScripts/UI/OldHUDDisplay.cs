@@ -63,113 +63,113 @@ namespace _Branches.Hugo.OldScripts.UI
             
             // Perfect Reception
             // Player One
-            if (_gameManager.FirstPlayerGameObject)
-            {
-                int perfectReceptionCount = _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount;
-                if (perfectReceptionCount == 0)
-                {
-                    _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-                    _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-                    _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-                    
-                    if (_displayPressBGameObjectPlayerOne)
-                    {
-                        Destroy(_displayPressBGameObjectPlayerOne);
-                    }
-                }
-                
-                if (perfectReceptionCount == 1)
-                {
-                    _firstPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
-                }
-
-                if (perfectReceptionCount == 2)
-                {
-                    _secondPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
-                }
-
-                if (perfectReceptionCount == 3)
-                {
-                    _firstPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
-                    _secondPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
-                    _thirdPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
-                    
-                    if (!_displayPressBGameObjectPlayerOne)
-                    {
-                        _displayPressBGameObjectPlayerOne = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
-                        
-                        Canvas canvas = _displayPressBGameObjectPlayerOne.GetComponent<Canvas>();
-                        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                        canvas.sortingOrder = 25;
-                        
-                        Image image = canvas.GetComponentInChildren<Image>();
-                        RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
-                        rectTransform.anchorMin = new Vector2(0.31f, 0.88f);
-                        rectTransform.anchorMax = new Vector2(0.36f, 0.98f);
-                    }
-                }
-            }
-            else
-            {
-                _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-                _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-                _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
-            }
+            // if (_gameManager.FirstPlayerGameObject)
+            // {
+            //     int perfectReceptionCount = _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount;
+            //     if (perfectReceptionCount == 0)
+            //     {
+            //         _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            //         _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            //         _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            //         
+            //         if (_displayPressBGameObjectPlayerOne)
+            //         {
+            //             Destroy(_displayPressBGameObjectPlayerOne);
+            //         }
+            //     }
+            //     
+            //     if (perfectReceptionCount == 1)
+            //     {
+            //         _firstPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
+            //     }
+            //
+            //     if (perfectReceptionCount == 2)
+            //     {
+            //         _secondPerfectReceptionPlayerOne.color = _colorFillPerfectReception;
+            //     }
+            //
+            //     if (perfectReceptionCount == 3)
+            //     {
+            //         _firstPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+            //         _secondPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+            //         _thirdPerfectReceptionPlayerOne.color = _colorReadyPerfectReception;
+            //         
+            //         if (!_displayPressBGameObjectPlayerOne)
+            //         {
+            //             _displayPressBGameObjectPlayerOne = Instantiate(_displayPressB, new Vector3(-3.75f, 4.25f, 0), Quaternion.identity);
+            //             
+            //             Canvas canvas = _displayPressBGameObjectPlayerOne.GetComponent<Canvas>();
+            //             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            //             canvas.sortingOrder = 25;
+            //             
+            //             Image image = canvas.GetComponentInChildren<Image>();
+            //             RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
+            //             rectTransform.anchorMin = new Vector2(0.31f, 0.88f);
+            //             rectTransform.anchorMax = new Vector2(0.36f, 0.98f);
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     _firstPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            //     _secondPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            //     _thirdPerfectReceptionPlayerOne.color = _colorEmptyPerfectReception;
+            // }
             
             // Player Two
-            if (_gameManager.SecondPlayerGameObject)
-            {
-                int perfectReceptionCount = _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount;
-                
-                if (perfectReceptionCount == 0)
-                {
-                    _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-                    _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-                    _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-                    
-                    if (_displayPressBGameObjectPlayerTwo)
-                    {
-                        Destroy(_displayPressBGameObjectPlayerTwo);
-                    }
-                }
-                
-                if (perfectReceptionCount == 1)
-                {
-                    _firstPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
-                }
-
-                if (perfectReceptionCount == 2)
-                {
-                    _secondPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
-                }
-
-                if (perfectReceptionCount == 3)
-                {
-                    _firstPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
-                    _secondPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
-                    _thirdPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
-
-                    if (!_displayPressBGameObjectPlayerTwo)
-                    {
-                        _displayPressBGameObjectPlayerTwo = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
-                        
-                        Canvas canvas = _displayPressBGameObjectPlayerTwo.GetComponent<Canvas>();
-                        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-                        canvas.sortingOrder = 25;
-
-                        Image image = canvas.GetComponentInChildren<Image>();
-                        RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
-                        rectTransform.anchorMin = new Vector2(0.64f, 0.88f);
-                        rectTransform.anchorMax = new Vector2(0.69f, 0.98f);
-                    }
-                }
-            }
-            else
-            {
-                _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-                _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-                _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
-            }
+            // if (_gameManager.SecondPlayerGameObject)
+            // {
+            //     int perfectReceptionCount = _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount;
+            //     
+            //     if (perfectReceptionCount == 0)
+            //     {
+            //         _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            //         _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            //         _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            //         
+            //         if (_displayPressBGameObjectPlayerTwo)
+            //         {
+            //             Destroy(_displayPressBGameObjectPlayerTwo);
+            //         }
+            //     }
+            //     
+            //     if (perfectReceptionCount == 1)
+            //     {
+            //         _firstPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
+            //     }
+            //
+            //     if (perfectReceptionCount == 2)
+            //     {
+            //         _secondPerfectReceptionPlayerTwo.color = _colorFillPerfectReception;
+            //     }
+            //
+            //     if (perfectReceptionCount == 3)
+            //     {
+            //         _firstPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+            //         _secondPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+            //         _thirdPerfectReceptionPlayerTwo.color = _colorReadyPerfectReception;
+            //
+            //         if (!_displayPressBGameObjectPlayerTwo)
+            //         {
+            //             _displayPressBGameObjectPlayerTwo = Instantiate(_displayPressB, new Vector3(3.75f, 4.25f, 0), Quaternion.identity);
+            //             
+            //             Canvas canvas = _displayPressBGameObjectPlayerTwo.GetComponent<Canvas>();
+            //             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            //             canvas.sortingOrder = 25;
+            //
+            //             Image image = canvas.GetComponentInChildren<Image>();
+            //             RectTransform rectTransform = image.gameObject.GetComponent<RectTransform>();
+            //             rectTransform.anchorMin = new Vector2(0.64f, 0.88f);
+            //             rectTransform.anchorMax = new Vector2(0.69f, 0.98f);
+            //         }
+            //     }
+            // }
+            // else
+            // {
+            //     _firstPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            //     _secondPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            //     _thirdPerfectReceptionPlayerTwo.color = _colorEmptyPerfectReception;
+            // }
             
             // Set Display
             if (oldMatchManager)

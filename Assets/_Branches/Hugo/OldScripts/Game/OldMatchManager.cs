@@ -58,14 +58,14 @@ namespace _Branches.Hugo.OldScripts.Game
 
         private void Update()
         {
-            if (_gameManager.FirstPlayerGameObject && _gameManager.SecondPlayerGameObject && !_inGame)
-            {
-                _canvasNewSet.SetActive(true);
-                Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
-                
-                Invoke(nameof(StartTimer), _timeBetweenSets);
-                _inGame = true;
-            }
+            // if (_gameManager.FirstPlayerGameObject && _gameManager.SecondPlayerGameObject && !_inGame)
+            // {
+            //     _canvasNewSet.SetActive(true);
+            //     Invoke(nameof(CanvasSetActiveFalse), _timeBetweenSets - 0.5f);
+            //     
+            //     Invoke(nameof(StartTimer), _timeBetweenSets);
+            //     _inGame = true;
+            // }
             
             // Timer
             if (IsTimerRunning)
@@ -99,12 +99,12 @@ namespace _Branches.Hugo.OldScripts.Game
         private void OnTimerEnd()
         {
             IsSetOver = true;
-            _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
-            _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().CanSpecialSpike = false;
-            _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerNumberTouchBallHandler>().NumberTouchBall = 0;
-            _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
-            _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().CanSpecialSpike = false;
-            _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerNumberTouchBallHandler>().NumberTouchBall = 0;
+            // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
+            // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().CanSpecialSpike = false;
+            // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerNumberTouchBallHandler>().NumberTouchBall = 0;
+            // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
+            // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().CanSpecialSpike = false;
+            // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerNumberTouchBallHandler>().NumberTouchBall = 0;
 
             GameObject celebrationSetGameObject;
             
@@ -119,11 +119,11 @@ namespace _Branches.Hugo.OldScripts.Game
                 {
                     // Debug.Log(" Player One WIN the match ");
                     
-                    _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
-                    _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
-                    
-                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
+                    //
+                    // _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     
                     Instantiate(_celebrationPointObject, new Vector3(-8, 2, 0), Quaternion.identity);
                     
@@ -148,11 +148,11 @@ namespace _Branches.Hugo.OldScripts.Game
                 {
                     // Debug.Log(" Player Two WIN the match ");
                     
-                    _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
-                    _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
-                    
-                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
+                    //
+                    // _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     
                     Instantiate(_celebrationPointObject, new Vector3(8, 2, 0), Quaternion.identity);
                     
@@ -178,28 +178,28 @@ namespace _Branches.Hugo.OldScripts.Game
                 {
                     // Debug.Log(" Player One WIN the match ");
                     
-                    _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
-                    _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
-                    
-                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
+                    //
+                    // _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 if (SetScorePlayerTwo == 3)
                 {
                     // Debug.Log(" Player Two WIN the match ");
                     
-                    _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
-                    _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
-                    
-                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.FirstPlayerGameObject.GetComponent<OldPlayerController>().LoseTheMatch = true;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<OldPlayerController>().WinTheMatch = true;
+                    //
+                    // _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 if (SetScorePlayerOne == 3 && SetScorePlayerTwo == 3)
                 {
-                    _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
-                    _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.FirstPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
+                    // _gameManager.SecondPlayerGameObject.GetComponent<PlayerInputHandler>().InputAreEnable = false;
                     Invoke(nameof(EndGame), 5f);
                 }
                 else

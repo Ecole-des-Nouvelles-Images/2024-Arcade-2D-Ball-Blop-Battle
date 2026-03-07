@@ -46,6 +46,17 @@ namespace Player.ScriptableObjects
         public string SpecialSpikeDescription;
         public GameObject PlayerSpecialSpike;
         public GameObject BallSpecialSpike;
+        
+        [Header("Particles Systems")]
+        public GameObject PSTrailRenderer;
+        public GameObject PSJump;
+        public GameObject PSChocWave;
+        public GameObject PSSpitOut;
+        public GameObject PSPerfectReception;
+        public GameObject PSLanding;
+        public GameObject PSActiveSpecialSpike;
+        public GameObject PSShootSpecialSpike;
+
 
         public abstract void SpecialSpike(GameObject player, GameObject ball, Vector2 direction);
     }

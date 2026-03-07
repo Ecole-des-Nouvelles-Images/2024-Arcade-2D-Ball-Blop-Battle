@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69f0654c62f14a40a734bbe1b3254f8e, type: 3}
+  m_Name: BlopYellow
+  m_EditorClassIdentifier: 
+  BlopType: 2
+  PlayerName: Yellow
+  Sprite: {fileID: 21300000, guid: 03fe9fb39ba1d6048b0733a0691ebd4e, type: 3}
+  PlayerAnimatorController: {fileID: 9100000, guid: bf36f98d727855a479adb153011ef9bd, type: 2}
+  Speed: 350
+  JumpForce: 14
+  WallJumpForce: 10
+  JumpingSpeed: 10
+  AirControlFactor: 0.08
+  MaxAirSpeed: 5.5
+  TimeAppears: 0.5
+  TimeResetRotation: 0.2
+  DashSpeed: 1000
+  DashDuration: 0.15
+  DashCooldown: 0.6
+  PerfectReceptionDuration: 0.5
+  PerfectReceptionCooldown: 0.75
+  RayGroundedLength: 0.2
+  RayGroundedLengthHaveTheBall: 0.6
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  RayWalledLength: 0.6
+  RayNetTouchedLength: 0.6
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 192
+  SpeedSpecialSpike: 3.25
+  SpecialSpikeDescription: "Tire un ballon si rapide qu'il devient invisible et laisse
+    seulement une tra\xEEn\xE9e \xE9lectrique."
+  PlayerSpecialSpike: {fileID: 0}
+  BallSpecialSpike: {fileID: 5313623261539157370, guid: 26c99da736330534daa0685796148e64, type: 3}
+  PSTrailRenderer: {fileID: 6989830784125450374, guid: 4736d3564827cad44afb01feabb2b30f, type: 3}
+  PSJump: {fileID: 1562553828129078914, guid: 2559a5f0118d1294bab137620559abac, type: 3}
+  PSChocWave: {fileID: 2083551104891385030, guid: f22e9c8c0ddf303489f01a32685bb65a, type: 3}
+  PSSpitOut: {fileID: 5912243416285748733, guid: 210c43bc9f0e7fa44836800cd59d8597, type: 3}
+  PSPerfectReception: {fileID: 3838647169397798274, guid: 2c692cab934ea6c4fa4353ae9fc9ef32, type: 3}
+  PSLanding: {fileID: 1122944454073200289, guid: 04237f6e9e897dc4e9811c976225e339, type: 3}
+  PSActiveSpecialSpike: {fileID: 5677235554576504653, guid: 8d29b86dbab93444aadbe3a73b6b2cf3, type: 3}
+  PSShootSpecialSpike: {fileID: 8252428279917890593, guid: 121b258f2f90e8c4dae382564a735974, type: 3}

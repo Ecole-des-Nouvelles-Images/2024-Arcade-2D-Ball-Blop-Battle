@@ -35,24 +35,24 @@ namespace _Branches.Hugo.OldScripts.InputSystem
         {
             int target = playerInput.devices[0].deviceId;
             
-            int index = GameManager.Instance.DevicesID.IndexOf(target);
-            
-            playerInput.gameObject.transform.position = _firstSpawnPoints;
-            
-            if (index == 0)
-            {
-                // _gameManager.FirstPlayerGameObject = playerInput.gameObject;
-                playerInput.gameObject.transform.position = _firstSpawnPoints;
-                
-                playerInput.gameObject.GetComponent<OldPlayerNumberTouchBallHandler>().IsPlayerOne = true;
-            }
-            else if (index == 1)
-            {
-                // _gameManager.SecondPlayerGameObject = playerInput.gameObject;
-                playerInput.gameObject.transform.position = _secondSpawnPoints;
-                
-                playerInput.gameObject.GetComponent<OldPlayerNumberTouchBallHandler>().IsPlayerOne = false;
-            }
+            // int index = GameManager.Instance.DevicesID.IndexOf(target);
+            //
+            // playerInput.gameObject.transform.position = _firstSpawnPoints;
+            //
+            // if (index == 0)
+            // {
+            //     // _gameManager.FirstPlayerGameObject = playerInput.gameObject;
+            //     playerInput.gameObject.transform.position = _firstSpawnPoints;
+            //     
+            //     playerInput.gameObject.GetComponent<OldPlayerNumberTouchBallHandler>().IsPlayerOne = true;
+            // }
+            // else if (index == 1)
+            // {
+            //     // _gameManager.SecondPlayerGameObject = playerInput.gameObject;
+            //     playerInput.gameObject.transform.position = _secondSpawnPoints;
+            //     
+            //     playerInput.gameObject.GetComponent<OldPlayerNumberTouchBallHandler>().IsPlayerOne = false;
+            // }
         }
     }
 }

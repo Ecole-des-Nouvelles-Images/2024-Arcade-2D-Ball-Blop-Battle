@@ -375,38 +375,38 @@ namespace _Branches.Hugo.OldScripts.Ball
             }
             
             GameObject gameManager = GameObject.FindGameObjectWithTag("GameManager");
-            if (gameManager)
-            {
-                if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject)
-                {
-                    if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb)
-                    {
-                        gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
-                        gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().IsSpecialSpike = false;
-                        gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb = false;
-                    }
-
-                    if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject)
-                    {
-                        Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject);
-                    }
-                }
-
-                if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject)
-                {
-                    if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb)
-                    {
-                        gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
-                        gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().IsSpecialSpike = false;
-                        gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb = false;
-                    }
-
-                    if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject)
-                    {
-                        Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject);
-                    }
-                }
-            }
+            // if (gameManager)
+            // {
+            //     if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject)
+            //     {
+            //         if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb)
+            //         {
+            //             gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
+            //             gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().IsSpecialSpike = false;
+            //             gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb = false;
+            //         }
+            //
+            //         if (gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject)
+            //         {
+            //             Destroy(gameManager.GetComponent<GameManager>().FirstPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject);
+            //         }
+            //     }
+            //
+            //     if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject)
+            //     {
+            //         if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb)
+            //         {
+            //             gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().PerfectReceptionCount = 0;
+            //             gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().IsSpecialSpike = false;
+            //             gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().CanAbsorb = false;
+            //         }
+            //
+            //         if (gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject)
+            //         {
+            //             Destroy(gameManager.GetComponent<GameManager>().SecondPlayerGameObject.GetComponent<OldPlayerController>().ImpactBackgroundObject);
+            //         }
+            //     }
+            // }
         }
 
         // Actions Player-Ball

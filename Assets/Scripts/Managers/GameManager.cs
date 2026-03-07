@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Player.ScriptableObjects;
-using UnityEngine;
 using Utils.Singletons;
 
 namespace Managers
@@ -8,8 +7,6 @@ namespace Managers
     public class GameManager : MonoBehaviourSingletonDontDestroyOnLoad<GameManager>
     {
         // Players
-        public GameObject FirstPlayerGameObject;
-        public GameObject SecondPlayerGameObject;
         public Blop FirstBlopScriptableObject;
         public Blop SecondBlopScriptableObject;
         
