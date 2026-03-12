@@ -27,26 +27,38 @@ namespace InputSystem
             _playerOneController = _playerOne.GetComponent<PlayerController>();
             _playerTwoController = _playerTwo.GetComponent<PlayerController>();
 
-            foreach (var gamepad in Gamepad.all)
+            if (GameManager.Instance.DevicesID.Count > 0)
             {
-                if (GameManager.Instance.DevicesID.Contains(gamepad.deviceId))
+                foreach (var gamepad in Gamepad.all)
                 {
-                    int index = GameManager.Instance.DevicesID.IndexOf(gamepad.deviceId);
 
-                    if (index == 0)
+                    if (GameManager.Instance.DevicesID.Contains(gamepad.deviceId))
                     {
-                        _playerOneInput.SwitchCurrentControlScheme(gamepad);
-                        _playerOneController.SetUp(GameManager.Instance.FirstBlopScriptableObject, 1);
-                    }
-                    else if (index == 1)
-                    {
-                        _playerTwoInput.SwitchCurrentControlScheme(gamepad);
-                        _playerTwoController.SetUp(GameManager.Instance.SecondBlopScriptableObject, 2);
+                        int index = GameManager.Instance.DevicesID.IndexOf(gamepad.deviceId);
+
+                        if (index == 0)
+                        {
+                            _playerOneInput.SwitchCurrentControlScheme(gamepad);
+                            _playerOneController.SetUp(GameManager.Instance.FirstBlopScriptableObject, 1);
+                        }
+                        else if (index == 1)
+                        {
+                            _playerTwoInput.SwitchCurrentControlScheme(gamepad);
+                            _playerTwoController.SetUp(GameManager.Instance.SecondBlopScriptableObject, 2);
+                        }
                     }
                 }
             }
+            else
+            {
+                _playerOneInput.SwitchCurrentControlScheme(Gamepad.all[0]);
+                _playerOneController.DebugSetUp(1);
+                
+                _playerTwoInput.SwitchCurrentControlScheme(Gamepad.all[1]);
+                _playerTwoController.DebugSetUp(2);
+            }
         }
-
+        
         private IEnumerator PlayerRespawn(int playerId)
         {
             yield return new WaitForSeconds(1f);
@@ -62,8 +74,8 @@ namespace InputSystem
                 _playerTwo.SetActive(true);
             }
         }
-
-        #region === EVENTS ===
+        
+        #region ===== EVENTS =====
 
         private void OnEnable()
         {

@@ -146,11 +146,15 @@ namespace Managers
             {
                 Debug.Log("VICTORY PLAYER ONE");
                 SceneManager.LoadScene(1);
+                
+                EventBus.OnMatchOver?.Invoke(1);
             }
             else if (PlayerTwoSetCount == _setCountToWinAMatch)
             {
                 Debug.Log("VICTORY PLAYER TWO");
                 SceneManager.LoadScene(1);
+                
+                EventBus.OnMatchOver?.Invoke(2);
             }
         }
         

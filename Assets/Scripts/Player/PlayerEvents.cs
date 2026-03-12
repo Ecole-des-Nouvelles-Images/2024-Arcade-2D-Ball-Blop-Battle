@@ -23,7 +23,6 @@ namespace Player
         public event Action<Blop> OnActiveSpecialSpike;
         public event Action<Blop> OnShootSpecialSpike;
         public event Action<Blop> OnAbsorbSpecialSpike;
-        public event Action<Blop> OnDeath;
         
         public void Appears(Blop blop) => OnAppears?.Invoke(blop);
         public void Move(Blop blop) => OnMove?.Invoke(blop);
@@ -41,6 +40,5 @@ namespace Player
         public void ActiveSpecialSpike(Blop blop) => OnActiveSpecialSpike?.Invoke(blop);
         public void ShootSpecialSpike(Blop blop) => OnShootSpecialSpike?.Invoke(blop);
         public void AbsorbSpecialSpike(Blop blop) => OnAbsorbSpecialSpike?.Invoke(blop);
-        public void Death(Blop blop) => OnDeath?.Invoke(blop);
     }
 }

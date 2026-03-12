@@ -15,7 +15,7 @@ MonoBehaviour:
   BlopType: 0
   PlayerName: Blue
   Sprite: {fileID: 21300000, guid: 8af49cbc149bc4946b6ae8353dd7dae5, type: 3}
-  PlayerAnimatorController: {fileID: 9100000, guid: 1417f446827ed414e9adab59499138bb, type: 2}
+  PlayerAnimatorController: {fileID: 9100000, guid: b08a02d06567cfe43a45f8112b7c72e8, type: 2}
   Speed: 350
   JumpForce: 14
   WallJumpForce: 10

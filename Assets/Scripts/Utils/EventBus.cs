@@ -9,6 +9,7 @@ namespace Utils
         public static Action<int> OnSetChangement;
         public static Action OnSetIsOver;
         public static Action OnFoul;
+        public static Action<int> OnMatchOver;
         
         // PLAYER
         public static Action<int> OnPlayerTouchedBall;

@@ -15,7 +15,7 @@ MonoBehaviour:
   BlopType: 3
   PlayerName: Red
   Sprite: {fileID: 21300000, guid: 79ac69feb401b6347b6ca65bfcb057ee, type: 3}
-  PlayerAnimatorController: {fileID: 9100000, guid: 35ae509de6ee6db4792c285ba11cafa9, type: 2}
+  PlayerAnimatorController: {fileID: 9100000, guid: 62c43a39b6eac06469878af26b3c810d, type: 2}
   Speed: 350
   JumpForce: 14
   WallJumpForce: 10

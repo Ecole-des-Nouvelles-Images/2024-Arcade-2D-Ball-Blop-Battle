@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 954817538, guid: 5be2606d08c38dd4eba177bb54760134, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 2.5585713, y: 1.8771429}
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 533313504731827826}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1417f446827ed414e9adab59499138bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: b08a02d06567cfe43a45f8112b7c72e8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -246,7 +246,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 954817538, guid: 5be2606d08c38dd4eba177bb54760134, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 0.627451}
   m_FlipX: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 1772796910958661415}
   - component: {fileID: 2297622667508597015}
   - component: {fileID: 9091463944279118054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -370,7 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acf59e43943206a42bfed1265522d371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerId: 1
+  PlayerId: 2
   _blop: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
   _rb2d: {fileID: 9091463944279118054}
   _sr: {fileID: 2973123922031502185}
@@ -385,6 +385,7 @@ MonoBehaviour:
   _isAbsorbing: 0
   _isPerfectReception: 0
   _isSpecialSpike: 0
+  _isPunchingBall: 0
   _canMove: 1
   _canDoubleJump: 0
 --- !u!114 &9129448520297159264

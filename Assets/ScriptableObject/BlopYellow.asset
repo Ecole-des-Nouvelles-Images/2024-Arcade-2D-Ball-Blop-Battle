@@ -15,7 +15,7 @@ MonoBehaviour:
   BlopType: 2
   PlayerName: Yellow
   Sprite: {fileID: 21300000, guid: 03fe9fb39ba1d6048b0733a0691ebd4e, type: 3}
-  PlayerAnimatorController: {fileID: 9100000, guid: bf36f98d727855a479adb153011ef9bd, type: 2}
+  PlayerAnimatorController: {fileID: 9100000, guid: f5cbd8e3be7a7724bb058bcd3b61560c, type: 2}
   Speed: 350
   JumpForce: 14
   WallJumpForce: 10

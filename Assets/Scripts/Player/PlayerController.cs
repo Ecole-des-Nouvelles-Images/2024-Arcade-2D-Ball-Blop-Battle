@@ -11,8 +11,9 @@ namespace Player
     {
         public int PlayerId;
         
-        // EVENTS
+        // PROPERTIES
         public PlayerEvents PlayerEvents { get; private set; } =  new ();
+        public BlopType BlopType { get; private set; }
         
         [Header("Blop")]
         [SerializeField] private Blop _blop;
@@ -33,6 +34,7 @@ namespace Player
         [SerializeField] private bool _isAbsorbing;
         [SerializeField] private bool _isPerfectReception;
         [SerializeField] private bool _isSpecialSpike;
+        [SerializeField] private bool _isPunchingBall;
         
         [Header("Permissions")]
         [SerializeField] private bool _canMove = true;
@@ -54,17 +56,23 @@ namespace Player
         // BALL
         private BallController _ballController;
 
-        private void Start()
-        {
-            SetUp(_blop, 1);
-        }
-
         public void SetUp(Blop blop, int playerId)
         {
             _blop = blop;
             PlayerId = playerId;
             _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
             Instantiate(_blop.PSTrailRenderer, transform);
+            
+            BlopType = blop.BlopType;
+        }
+        
+        public void DebugSetUp(int playerId)
+        {
+            PlayerId = playerId;
+            _animator.runtimeAnimatorController = _blop.PlayerAnimatorController;
+            Instantiate(_blop.PSTrailRenderer, transform);
+            
+            BlopType = _blop.BlopType;
         }
 
         public void Die()
@@ -106,6 +114,11 @@ namespace Player
                 }
             }
             
+            if (_isGrounded && _isAbsorbing)
+            {
+                _isAbsorbing = false;
+            }
+            
             // FOUL
             if (_hasTheBall && _isGrounded)
             {
@@ -113,6 +126,15 @@ namespace Player
                 _hasTheBall = false;
                 _isAbsorbing = false;
             }
+            
+            // ANIMATOR
+            _animator.SetBool("IsGrounded", _isGrounded);
+            _animator.SetBool("IsWalled", _isWalledLeft || _isWalledRight);
+            _animator.SetBool("IsDashing", _isDashing);
+            _animator.SetBool("IsPerfectReception", _isPerfectReception);
+            _animator.SetBool("IsPunchingBall", _isPunchingBall);
+            _animator.SetBool("IsAbsorbing", _isAbsorbing);
+            _animator.SetBool("HasTheBall", _hasTheBall);
         }
 
         private void FixedUpdate()
@@ -161,6 +183,12 @@ namespace Player
                     _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
                 }
             }
+            
+            FlipSprite(_move.x);
+            
+            // ANIMATOR
+            _animator.SetFloat("VelocityX", Mathf.Abs(_rb2d.velocity.x));
+            _animator.SetFloat("VelocityY", _rb2d.velocity.y);
         }
 
         private void OnCollisionEnter2D(Collision2D other)
@@ -196,6 +224,11 @@ namespace Player
                     _ballController.Absorb(transform);
                     
                     PlayerEvents.AbsorbSpecialSpike(_blop);
+                }
+                else
+                {
+                    _isPunchingBall = true;
+                    Invoke(nameof(ReverseIsPunchingBall), 0.2f);
                 }
                 
                 EventBus.OnPlayerTouchedBall?.Invoke(PlayerId);
@@ -258,6 +291,9 @@ namespace Player
                     }
                     
                     _hasTheBall = false;
+                    
+                    // ANIMATOR
+                    _animator.SetTrigger("DrawnBall");
                 }
             }
         }
@@ -311,6 +347,9 @@ namespace Player
                     _canDoubleJump = true;
                     
                     PlayerEvents.Jump(_blop);
+                    
+                    // ANIMATOR
+                    _animator.SetTrigger("Jumping");
                 }
                 else if (_isWalledLeft)
                 {
@@ -319,6 +358,9 @@ namespace Player
                     _canDoubleJump = true;
                     
                     PlayerEvents.WallJump(_blop);
+                    
+                    // ANIMATOR
+                    _animator.SetTrigger("JumpingWall");
                 }
                 else if (_isWalledRight)
                 {
@@ -327,6 +369,9 @@ namespace Player
                     _canDoubleJump = true;
                     
                     PlayerEvents.WallJump(_blop);
+                    
+                    // ANIMATOR
+                    _animator.SetTrigger("JumpingWall");
                 }
                 else if (_canDoubleJump)
                 {
@@ -335,6 +380,9 @@ namespace Player
                     _canDoubleJump = false;
                     
                     PlayerEvents.DoubleJump(_blop);
+                    
+                    // ANIMATOR
+                    _animator.SetTrigger("Jumping");
                 }
             }
         }
@@ -396,7 +444,12 @@ namespace Player
             if (_move.x > 0.1f) Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
         }
 
-        #region === EVENTS ===
+        private void ReverseIsPunchingBall()
+        {
+            _isPunchingBall = false;
+        }
+
+        #region ===== EVENTS =====
 
         private void OnEnable()
         {
@@ -405,6 +458,7 @@ namespace Player
             
             EventBus.OnPlayerScored += PlayerScored;
             EventBus.OnFoul += Foul;
+            EventBus.OnMatchOver += MatchOver;
             
             PlayerEvents.Appears(_blop);
         }
@@ -419,14 +473,46 @@ namespace Player
             ResetSpecialSpikeState();
         }
         
+        private void MatchOver(int playerId)
+        {
+            // ANIMATOR
+            if (PlayerId == playerId)
+            {
+                _animator.SetTrigger("WinMatch");
+            }
+            else
+            {
+                _animator.SetTrigger("LoseMatch");
+            }
+        }
+        
         private void OnDisable()
         {
             EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnFoul -= Foul;
-            
-            PlayerEvents.Death(_blop);
+            EventBus.OnMatchOver -= MatchOver;
+
+            // Instantiate(_blop.PSDeath, transform.position, transform.rotation);
         }
 
+        #endregion
+        
+        #region ===== ANIMATOR =====
+        
+        private void FlipSprite(float movement)
+        {
+            if (_isWalledLeft || _isWalledRight) return;
+            
+            if (movement > 0.1f)
+            {
+                _sr.flipX = false;
+            }
+            else if (movement < -0.1f)
+            {
+                _sr.flipX = true;
+            }
+        }
+        
         #endregion
     }
 }
