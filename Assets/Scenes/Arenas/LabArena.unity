@@ -406,7 +406,7 @@ PrefabInstance:
     - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: _blop
       value: 
-      objectReference: {fileID: 11400000, guid: d1f337d1024003f42949332e66097c96, type: 2}
+      objectReference: {fileID: 11400000, guid: 48a6d79ed3545f44893566638677709b, type: 2}
     - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: Isplayer1
       value: 0
@@ -1132,6 +1132,10 @@ PrefabInstance:
       propertyPath: PlayerInput
       value: 
       objectReference: {fileID: 1996590543}
+    - target: {fileID: 5535092367925643827, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
+      propertyPath: _blop
+      value: 
+      objectReference: {fileID: 11400000, guid: d1f337d1024003f42949332e66097c96, type: 2}
     - target: {fileID: 7818831952892591476, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6

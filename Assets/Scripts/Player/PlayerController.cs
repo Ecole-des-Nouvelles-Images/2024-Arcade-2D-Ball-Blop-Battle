@@ -119,6 +119,11 @@ namespace Player
                 _isAbsorbing = false;
             }
             
+            if (!_isGrounded)
+            {
+                _isPerfectReception = false;
+            }
+            
             // FOUL
             if (_hasTheBall && _isGrounded)
             {
