@@ -299,12 +299,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df9e8a5e42a908240b8a30f75152bf2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedDicrase: 0.5
-  _spBlop: {fileID: 0}
+  _durationFadeOut: 1.5
+  _animationFadeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.1614287
+      outSlope: 3.1614287
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.047973555
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   _spFront: {fileID: 1627635469715816174}
   _srImpact: {fileID: 4569084261210650054}
   _spBackground: {fileID: 8509467581570703157}
-  _blue: {fileID: 21300000, guid: 8af49cbc149bc4946b6ae8353dd7dae5, type: 3}
-  _yellow: {fileID: 21300000, guid: 03fe9fb39ba1d6048b0733a0691ebd4e, type: 3}
-  _green: {fileID: 21300000, guid: 1452e30d034902e43b99a181a7e5a438, type: 3}
-  _red: {fileID: 21300000, guid: 79ac69feb401b6347b6ca65bfcb057ee, type: 3}

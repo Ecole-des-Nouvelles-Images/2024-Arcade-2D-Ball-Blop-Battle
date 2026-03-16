@@ -1,12 +1,14 @@
+using DG.Tweening;
 using Player.ScriptableObjects;
 using UnityEngine;
 
 namespace Arene
 {
-    public class SpecialSpikeImpact : MonoBehaviour
+    public class ArenaSpecialSpikeImpact : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private float _speedDicrase;
+        [SerializeField] private float _durationFadeOut;
+        [SerializeField] private AnimationCurve _animationFadeCurve;
         
         [Header("References")]
         [SerializeField] private SpriteRenderer _spFront;
@@ -34,16 +36,8 @@ namespace Arene
             }
             
             _spBackground.color = _color;
-        }
-
-        private void Update()
-        {
-            if (!Mathf.Approximately(_spFront.color.a, 0))
-            {
-                var colorFront = _spFront.color;
-                colorFront.a -= _speedDicrase * Time.deltaTime;
-                _spFront.color = colorFront;
-            }
+            
+            _spFront.DOFade(0f, _durationFadeOut).SetEase(_animationFadeCurve);
         }
     }
 }

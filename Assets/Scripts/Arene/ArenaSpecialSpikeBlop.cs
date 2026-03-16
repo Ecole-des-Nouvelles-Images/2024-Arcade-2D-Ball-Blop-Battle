@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace Arene
 {
-    public class SpecialSpikeBlop : MonoBehaviour
+    public class ArenaSpecialSpikeBlop : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private float _speedDicrase;
-        [SerializeField] private AnimationCurve _animationCurve;
+        [SerializeField] private float _durationFadeIn;
+        [SerializeField] private float _durationMovement;
+        [SerializeField] private AnimationCurve _animationFadeCurve;
+        [SerializeField] private AnimationCurve _animationMovementCurve;
         
         [Header("References")]
         [SerializeField] private SpriteRenderer _spBlop;
@@ -41,30 +43,31 @@ namespace Arene
             {
                 _spBlop.flipX = false;
                 var vector3 = _spBlop.transform.localPosition;
-                vector3.x = -5f;
+                vector3.x = -10f;
                 _spBlop.transform.localPosition = vector3;
                 
-                transform.DOMoveX(transform.position.x - 10f, _speedDicrase).SetEase(_animationCurve);
+                _spBlop.transform.DOMoveX(_spBlop.transform.position.x + 5f, _durationMovement)
+                    .SetEase(_animationMovementCurve);
             }
             else if (playerId == 2)
             {
                 _spBlop.flipX = true;
                 var vector3 = _spBlop.transform.localPosition;
-                vector3.x = 5f;
+                vector3.x = 10f;
                 _spBlop.transform.localPosition = vector3;
                 
-                transform.DOMoveX(transform.position.x + 10f, _speedDicrase).SetEase(_animationCurve);
+                _spBlop.transform.DOMoveX(_spBlop.transform.position.x - 5f, _durationMovement)
+                    .SetEase(_animationMovementCurve);
             }
+            
+            _spBlop.DOFade(1f, _durationFadeIn).SetEase(_animationFadeCurve);
+            
+            Invoke(nameof(FadeOut), _durationMovement * 0.9f);
         }
 
-        private void Update()
+        private void FadeOut()
         {
-            if (!Mathf.Approximately(_spBlop.color.a, 0))
-            {
-                var colorFront = _spBlop.color;
-                colorFront.a -= _speedDicrase * Time.deltaTime;
-                _spBlop.color = colorFront;
-            }
+            _spBlop.DOFade(0f, _durationMovement * 0.1f).SetEase(_animationFadeCurve);
         }
     }
 }

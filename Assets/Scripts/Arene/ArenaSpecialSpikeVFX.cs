@@ -12,10 +12,20 @@ namespace Arene
         [SerializeField] private GameObject _backgroundImpact;
         [SerializeField] private GameObject _backgroundBlop;
         [SerializeField] private GameObject _backgroundScroll;
+        
+        [Header("Debug")]
+        [SerializeField] private int _playerId;
+        [SerializeField] private BlopType _blopType;
 
         private GameObject _currentBackgroundImpact;
         private GameObject _currentBackgroundBlop;
         private GameObject _currentBackgroundScroll;
+
+        [ContextMenu("DebugTest")]
+        public void DebugTest()
+        {
+            SpecialSpikeActivated(_playerId, _blopType);
+        }
 
         #region ===== EVENTS =====
 
@@ -25,6 +35,7 @@ namespace Arene
             EventBus.OnAbsorbedSpecialSpike += AbsorbedSpecialSpike;
             EventBus.OnPlayerScored += PlayerScored;
             EventBus.OnFoul += DestroyBackground;
+            // EventBus.OnPlayerTouchedBall += PlayerScored;
         }
 
         private void DestroyBackground()
@@ -45,6 +56,7 @@ namespace Arene
             EventBus.OnAbsorbedSpecialSpike -= AbsorbedSpecialSpike;
             EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnFoul -= DestroyBackground;
+            // EventBus.OnPlayerTouchedBall -= PlayerScored;
         }
 
         private void SpecialSpikeActivated(int playerId, BlopType blopType)
@@ -61,16 +73,16 @@ namespace Arene
             }
             
             _currentBackgroundImpact = Instantiate(_backgroundImpact, transform.position, Quaternion.identity);
-            _currentBackgroundImpact.GetComponent<SpecialSpikeImpact>().Setup(playerId, blopType);
+            _currentBackgroundImpact.GetComponent<ArenaSpecialSpikeImpact>().Setup(playerId, blopType);
             
             _currentBackgroundBlop = Instantiate(_backgroundBlop, transform.position, Quaternion.identity);
-            _currentBackgroundBlop.GetComponent<SpecialSpikeBlop>().Setup(playerId, blopType);
+            _currentBackgroundBlop.GetComponent<ArenaSpecialSpikeBlop>().Setup(playerId, blopType);
         }
         
         private void AbsorbedSpecialSpike(int playerId, BlopType blopType)
         {
             _currentBackgroundScroll = Instantiate(_backgroundScroll, transform.position, Quaternion.identity);
-            _currentBackgroundScroll.GetComponent<SpecialSpikeScroll>().Setup(blopType);
+            _currentBackgroundScroll.GetComponent<ArenaSpecialSpikeScroll>().Setup(blopType);
 
             if (_currentBackgroundImpact) Destroy(_currentBackgroundImpact);
             if (_currentBackgroundBlop) Destroy(_currentBackgroundBlop);

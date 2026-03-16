@@ -35,7 +35,7 @@ namespace Balls
             if (_isCommitted)
             {
                 _gravityScale = _rb2d.gravityScale;
-                // _rb2d.gravityScale = 0f;
+                _rb2d.gravityScale = 0f;
             }
         }
 

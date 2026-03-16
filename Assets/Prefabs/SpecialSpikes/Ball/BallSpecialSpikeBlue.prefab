@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _minScaleValue: 0.5
-  _duration: 3
+  _delayDetection: 0.2
   _animationDuration: 0.25
   _animationCurve:
     serializedVersion: 2
@@ -71,3 +71,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _psSizeRedusction: {fileID: 7750468415861213679, guid: e97bbb7727e339545b395d6b86256c4b, type: 3}

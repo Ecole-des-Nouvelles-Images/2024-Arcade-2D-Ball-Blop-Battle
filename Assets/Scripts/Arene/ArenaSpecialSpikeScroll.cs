@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Arene
 {
-    public class SpecialSpikeScroll : MonoBehaviour
+    public class ArenaSpecialSpikeScroll : MonoBehaviour
     {
         [Header("Settings")]
         [SerializeField] private float _speed;
