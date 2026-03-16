@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Player.ScriptableObjects;
 using UnityEngine;
 using Utils;
 
@@ -55,7 +56,7 @@ namespace SpecialSpikes
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
         }
 
-        private void SpecialSpikeActivated()
+        private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
             _parentTransform.DOScale(1f, _animationDuration).SetEase(_animationCurve);
             Destroy(gameObject, _animationDuration * 1.2f);

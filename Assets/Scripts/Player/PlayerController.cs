@@ -236,6 +236,7 @@ namespace Player
                     _ballController.Absorb(transform);
                     
                     PlayerEvents.AbsorbSpecialSpike(_blop, _ballController.transform);
+                    EventBus.OnAbsorbedSpecialSpike?.Invoke(PlayerId, _blop.BlopType);
                 }
                 else
                 {
@@ -320,7 +321,7 @@ namespace Player
                     _isSpecialSpike = true;
                     _perfectReceptionCount = 0;
                     
-                    EventBus.OnSpecialSpikeActivated?.Invoke();
+                    EventBus.OnSpecialSpikeActivated?.Invoke(PlayerId, _blop.BlopType);
                     EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
                     
                     PlayerEvents.ActiveSpecialSpike(_blop);

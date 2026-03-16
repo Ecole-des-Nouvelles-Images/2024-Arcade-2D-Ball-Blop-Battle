@@ -1,4 +1,5 @@
 using Managers;
+using Player.ScriptableObjects;
 using UnityEngine;
 using EventBus = Utils.EventBus;
 
@@ -34,7 +35,7 @@ namespace Balls
             if (_isCommitted)
             {
                 _gravityScale = _rb2d.gravityScale;
-                _rb2d.gravityScale = 0f;
+                // _rb2d.gravityScale = 0f;
             }
         }
 
@@ -190,6 +191,8 @@ namespace Balls
 
         private void IsDestroy()
         {
+            MatchManager.Instance.BallSide = 0;
+            
             Destroy(gameObject);
         }
 
@@ -200,7 +203,7 @@ namespace Balls
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
         }
 
-        private void SpecialSpikeActivated()
+        private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
             _rb2d.velocity /= 4;
             _rb2d.AddForce(Vector2.up * _speedSpecialSpikeActivation, ForceMode2D.Impulse);

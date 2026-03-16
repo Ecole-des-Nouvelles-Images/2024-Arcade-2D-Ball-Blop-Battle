@@ -1,4 +1,5 @@
 using System;
+using Player.ScriptableObjects;
 
 namespace Utils
 {
@@ -14,7 +15,8 @@ namespace Utils
         // PLAYER
         public static Action<int> OnPlayerTouchedBall;
         public static Action<int ,int> OnPlayerPerfectReception;
-        public static Action OnSpecialSpikeActivated;
+        public static Action<int, BlopType> OnSpecialSpikeActivated;
+        public static Action<int, BlopType> OnAbsorbedSpecialSpike;
         public static Action<int> OnPlayerDie;
         
         // BALL

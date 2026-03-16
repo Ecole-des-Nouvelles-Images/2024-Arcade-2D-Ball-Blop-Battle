@@ -1,4 +1,5 @@
 using Player;
+using Player.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -35,7 +36,7 @@ namespace SpecialSpikes
             Destroy(gameObject);
         }
 
-        private void SpecialSpikeActivated()
+        private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
             Destroy(gameObject);
         }

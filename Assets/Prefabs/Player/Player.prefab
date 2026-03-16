@@ -130,7 +130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7029324906559428093}
   - component: {fileID: 7251286260839271565}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: LaserTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,6 @@ MonoBehaviour:
   PlayerId: 0
   _blop: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
   _rb2d: {fileID: 9091463944279118054}
-  _sr: {fileID: 2973123922031502185}
   _animator: {fileID: 2250917969655826123}
   _playerCountTouchBall: {fileID: 9129448520297159264}
   _laserTrigger: {fileID: 4138267508579912377}

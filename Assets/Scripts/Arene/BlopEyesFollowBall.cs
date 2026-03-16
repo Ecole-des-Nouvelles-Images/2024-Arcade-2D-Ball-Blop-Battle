@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Arene
 {
-    public class BlopEyesHandler : MonoBehaviour
+    public class BlopEyesFollowBall : MonoBehaviour
     {
         private OldBallHandler _oldBallHandler;
         

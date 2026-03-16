@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Player.ScriptableObjects;
 using UnityEngine;
 using Utils;
 
@@ -60,7 +61,7 @@ namespace SpecialSpikes
             EventBus.OnSpecialSpikeActivated += SpecialSpikeActivated;
         }
 
-        private void SpecialSpikeActivated()
+        private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
             _spriteRenderer.DOFade(1f, 0.1f).SetEase(_animationCurve);
             

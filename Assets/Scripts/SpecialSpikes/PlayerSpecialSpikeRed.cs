@@ -1,5 +1,6 @@
 using Balls;
 using Player;
+using Player.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Utils;
@@ -82,7 +83,7 @@ namespace SpecialSpikes
             _drawnBallCount++;
         }
         
-        private void SpecialSpikeActivated()
+        private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
             playerController.ResetSpecialSpikeState();
             Destroy(gameObject);

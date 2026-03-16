@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8243948108377192109, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_Name
-      value: Player (1)
+      value: Player_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1135,17 +1135,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &832119383 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7557273585464197114, guid: 872db294730bf3545848cd9c1794bb24, type: 3}
-  m_PrefabInstance: {fileID: 90033299571373553}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb3120c50b7348b44be240f027c0a744, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &905169670
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,7 +2018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8243948108377192109, guid: ccc8474e4a65c0048a79daf4d6eed090, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player_1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2518,7 +2507,7 @@ MonoBehaviour:
   _timerNewBall: 1
   _ballPrefab: {fileID: 7739952088009901526, guid: 529e28658a8424444bf61b708acfb1c7, type: 3}
   _gameManager: {fileID: 2071482333}
-  _hudDisplay: {fileID: 832119383}
+  oldHUDDisplay: {fileID: 0}
   _cameraHandler: {fileID: 741620795}
   _playerOneFoulPanel: {fileID: 1175073602}
   _playerTwoFoulPanel: {fileID: 2117202202}
@@ -3157,8 +3146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40643a392869f834280f941c1f657d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstPlayerGameObject: {fileID: 0}
-  SecondPlayerGameObject: {fileID: 0}
+  FirstBlopScriptableObject: {fileID: 0}
+  SecondBlopScriptableObject: {fileID: 0}
+  DevicesID: 
 --- !u!4 &2071482334
 Transform:
   m_ObjectHideFlags: 0
@@ -3452,17 +3442,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 827506891087986490, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1671589199874327673, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
       propertyPath: m_Name
       value: Arene_Canvas_PS
-      objectReference: {fileID: 0}
-    - target: {fileID: 1671589199874327673, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1772792451078598763, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
       propertyPath: m_Camera
@@ -3472,10 +3454,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 741620793}
-    - target: {fileID: 7086650490750335038, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7434181565897710022, guid: b2867edd5fd4f0e40a468a1728ddfefa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
