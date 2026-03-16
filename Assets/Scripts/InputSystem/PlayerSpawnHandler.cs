@@ -7,7 +7,7 @@ using Utils;
 
 namespace InputSystem
 {
-    public class PlayerSpawn : MonoBehaviour
+    public class PlayerSpawnHandler : MonoBehaviour
     {
         [Header("References")]
         [SerializeField] private GameObject _playerOne;

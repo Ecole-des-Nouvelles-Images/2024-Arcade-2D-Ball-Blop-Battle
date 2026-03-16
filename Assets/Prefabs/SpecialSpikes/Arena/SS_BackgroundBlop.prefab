@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec289699947445bfbeb8bc5290b285f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _durationFadeIn: 1.5
-  _durationMovement: 2
+  _durationFadeIn: 1
+  _durationMovement: 1.5
   _animationFadeCurve:
     serializedVersion: 2
     m_Curve:

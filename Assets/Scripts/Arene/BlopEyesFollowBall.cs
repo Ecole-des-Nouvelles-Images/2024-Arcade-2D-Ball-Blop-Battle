@@ -1,39 +1,30 @@
-using _Branches.Hugo.OldScripts.Ball;
 using DG.Tweening;
+using Managers;
 using UnityEngine;
 
 namespace Arene
 {
     public class BlopEyesFollowBall : MonoBehaviour
     {
-        private OldBallHandler _oldBallHandler;
-        
         [Header("Settings")]
         [SerializeField] private Vector3 _basePosition;
         [SerializeField] private Vector3 _leftPosition;
         [SerializeField] private Vector3 _rightPosition;
         [SerializeField] private float _animationTime;
         [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+        
 
         private void Update()
         {
-            if (GameObject.FindGameObjectWithTag("Ball"))
+            if (MatchManager.Instance.BallSide == 1)
             {
-                _oldBallHandler = GameObject.FindGameObjectWithTag("Ball").GetComponent<OldBallHandler>();
+                transform.DOMove(_leftPosition, _animationTime).SetEase(_animationCurve);
             }
-
-            if (_oldBallHandler)
+            else if (MatchManager.Instance.BallSide == 2)
             {
-                if (_oldBallHandler.IsPlayerOneSide)
-                {
-                    transform.DOMove(_leftPosition, _animationTime).SetEase(_animationCurve);
-                }
-                else
-                {
-                    transform.DOMove(_rightPosition, _animationTime).SetEase(_animationCurve);
-                }
+                transform.DOMove(_rightPosition, _animationTime).SetEase(_animationCurve);
             }
-            else
+            else if (MatchManager.Instance.BallSide == 0)
             {
                 transform.DOMove(_basePosition, _animationTime).SetEase(_animationCurve);
             }
