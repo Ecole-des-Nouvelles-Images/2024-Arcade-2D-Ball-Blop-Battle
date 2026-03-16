@@ -17,6 +17,7 @@ namespace Player.ScriptableObjects
         public float JumpingSpeed;
         public float AirControlFactor;
         public float MaxAirSpeed;
+        public float DownwardsForce = 1f;
         
         [Header("To Named")]
         public float TimeAppears;

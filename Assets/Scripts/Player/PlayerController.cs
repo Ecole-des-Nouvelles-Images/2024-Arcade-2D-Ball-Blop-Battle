@@ -184,7 +184,15 @@ namespace Player
                 {
                     float airSpeed = _move.x * _blop.Speed * _blop.AirControlFactor;
                     float newMovement = Math.Clamp(_rb2d.velocity.x + airSpeed * Time.fixedDeltaTime, -_blop.MaxAirSpeed, _blop.MaxAirSpeed);
-                    _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
+
+                    if (_move.y <= -0.5f)
+                    {
+                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y - _blop.DownwardsForce);
+                    }
+                    else
+                    {
+                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
+                    }
                 }
             }
             

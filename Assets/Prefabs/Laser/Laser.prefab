@@ -4937,7 +4937,7 @@ MonoBehaviour:
   _rayLaserLength: 4.5
   _playerLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   _psLaser: {fileID: 6010650365171807529}
 --- !u!82 &9062716239911567292
 AudioSource:
