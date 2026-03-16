@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e05fd9cf2aa67647ac4d8d78dcb8c81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _delayDetection: 0.2
+  _psSecondHit: {fileID: 3701540655526514127, guid: ad19940d46021ab4385803e2dc7b92ef, type: 3}
+  _playerSpecialSpikeGreen: {fileID: 0}

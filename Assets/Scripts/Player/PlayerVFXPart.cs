@@ -51,7 +51,7 @@ namespace Player
             Instantiate(blop.PSChocWave, transform.position, transform.rotation);
         }
 
-        private void PlayerEventsOnOnDrawn(Blop blop)
+        private void PlayerEventsOnOnDrawn(Blop blop, Transform ballTransform)
         {
             Instantiate(blop.PSSpitOut, transform.position, transform.rotation);
         }

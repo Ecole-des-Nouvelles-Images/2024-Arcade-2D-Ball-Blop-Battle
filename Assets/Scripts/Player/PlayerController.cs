@@ -20,7 +20,6 @@ namespace Player
         
         [Header("References")]
         [SerializeField] private Rigidbody2D _rb2d;
-        [SerializeField] private SpriteRenderer _sr;
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerCountTouchBall _playerCountTouchBall;
         [SerializeField] private GameObject _laserTrigger;
@@ -220,7 +219,7 @@ namespace Player
                     _hasTheBall = true;
                     _ballController.Absorb(transform);
                     
-                    PlayerEvents.Absorb(_blop);
+                    PlayerEvents.Absorb(_blop, _ballController.transform);
                 }
                 else if (_isSpecialSpike)
                 {
@@ -228,7 +227,7 @@ namespace Player
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
                     _ballController.Absorb(transform);
                     
-                    PlayerEvents.AbsorbSpecialSpike(_blop);
+                    PlayerEvents.AbsorbSpecialSpike(_blop, _ballController.transform);
                 }
                 else
                 {
@@ -290,12 +289,12 @@ namespace Player
                     if (_ballController)
                     {
                         _ballController.Drawn(_move);
-                        _ballController = null;
                         
-                        PlayerEvents.Drawn(_blop);
+                        PlayerEvents.Drawn(_blop, _ballController.transform);
                     }
                     
                     _hasTheBall = false;
+                    _ballController = null;
                     
                     // ANIMATOR
                     _animator.SetTrigger("DrawnBall");
@@ -510,11 +509,11 @@ namespace Player
             
             if (movement > 0.1f)
             {
-                _sr.flipX = false;
+                transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z);
             }
             else if (movement < -0.1f)
             {
-                _sr.flipX = true;
+                transform.rotation = Quaternion.Euler(0, 180, transform.rotation.eulerAngles.z);
             }
         }
         

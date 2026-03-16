@@ -8,6 +8,9 @@ namespace SpecialSpikes
         [Header("Settings")]
         [SerializeField] private float _delayDetection = 0.2f;
         
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _psSecondHit;
+        
         [Header("Debug")]
         [SerializeField] private PlayerSpecialSpikeGreen _playerSpecialSpikeGreen;
 
@@ -22,7 +25,7 @@ namespace SpecialSpikes
         {
             if (Time.time < _spawnTime + _delayDetection) return;
             
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.55f);
 
             foreach (var hit in hits)
             {
@@ -43,6 +46,8 @@ namespace SpecialSpikes
         {
             Rigidbody2D rb2d = GetComponentInParent<Rigidbody2D>();
             rb2d.velocity = new Vector2(0f, -speed);
+            
+            Instantiate(_psSecondHit, transform.position, Quaternion.identity);
             
             Destroy(gameObject);
         }

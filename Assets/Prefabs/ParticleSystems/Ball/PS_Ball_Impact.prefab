@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1821216856194041603}
   - component: {fileID: 1321632757715627317}
   - component: {fileID: 890943237243360496}
+  - component: {fileID: 5724797350344471543}
   m_Layer: 0
-  m_Name: PS_ImpacteBall
+  m_Name: PS_Ball_Impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,7 +54,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4891,6 +4892,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5724797350344471543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2083551104891385030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9daf423ec2d31a4b9238a9cf5347126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3430687006797753818
 GameObject:
   m_ObjectHideFlags: 0
@@ -4941,7 +4954,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9829,7 +9842,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14717,7 +14730,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:

@@ -14,6 +14,9 @@ namespace SpecialSpikes
         [SerializeField] private float _animationDuration = 0.25f;
         [SerializeField] private AnimationCurve _animationCurve;
         
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _psImpact;
+        
         private SpriteRenderer _spriteRenderer;
         private float _spawnTime;
         
@@ -28,14 +31,24 @@ namespace SpecialSpikes
         {
             if (Time.time < _spawnTime + _delayDetection) return;
             
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 1f);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.55f);
 
             foreach (var hit in hits)
             {
                 if (hit.CompareTag("Player"))
                 {
                     _spriteRenderer.DOFade(1f, 0.1f).SetEase(_animationCurve);
+                    
+                    Instantiate(_psImpact, transform.position, Quaternion.identity);
+                    
                     Destroy(gameObject, _animationDuration * 1.2f);
+                }
+                else if (hit.CompareTag("Wall") || hit.CompareTag("Selling") || hit.CompareTag("PlayerOneGround") 
+                         || hit.CompareTag("PlayerTwoGround"))
+                {
+                    Instantiate(_psImpact, transform.position, Quaternion.identity);
+                    
+                    _spawnTime = Time.time;
                 }
             }
         }
@@ -50,6 +63,9 @@ namespace SpecialSpikes
         private void SpecialSpikeActivated()
         {
             _spriteRenderer.DOFade(1f, 0.1f).SetEase(_animationCurve);
+            
+            Instantiate(_psImpact, transform.position, Quaternion.identity);
+            
             Destroy(gameObject, _animationDuration * 1.2f);
         }
         

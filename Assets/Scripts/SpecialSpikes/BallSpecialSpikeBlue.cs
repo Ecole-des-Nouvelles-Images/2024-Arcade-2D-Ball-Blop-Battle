@@ -14,9 +14,17 @@ namespace SpecialSpikes
         [SerializeField] private float _animationDuration = 0.25f;
         [SerializeField] private AnimationCurve _animationCurve;
         
+        [Header("Prefabs")]
+        [SerializeField] private GameObject _psSizeRedusction;
+        
         private Transform _parentTransform;
         private float _spawnTime;
-        
+
+        private void Awake()
+        {
+            Instantiate(_psSizeRedusction, transform.position, Quaternion.identity, transform);
+        }
+
         private void Start()
         {
             _spawnTime = Time.time;

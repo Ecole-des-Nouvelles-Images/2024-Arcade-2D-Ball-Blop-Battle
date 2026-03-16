@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8444466096697730047}
   - component: {fileID: 5355458899300710710}
   m_Layer: 0
-  m_Name: CS-J-Impact
+  m_Name: PS_Ball_Yellow_SSImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4940,7 +4940,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
