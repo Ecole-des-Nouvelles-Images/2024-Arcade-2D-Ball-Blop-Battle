@@ -10,7 +10,6 @@ namespace Utils
     public class SceneLoaderManager : MonoBehaviourSingletonDontDestroyOnLoad<SceneLoaderManager>
     {
         [Header("Loading Settings")]
-        [SerializeField] private bool _showLogo = true;
         [SerializeField] private float _durationLoading = 1f;
         
         [Header("Fade Settings")]
@@ -18,17 +17,19 @@ namespace Utils
         [SerializeField] private AnimationCurve _curveFade;
         
         [Header("Logo Settings")]
-        [SerializeField] private float _loopScale = 0.5f;
-        [SerializeField] private float _durationScale = 1f;
-        [SerializeField] private AnimationCurve _curveScale;
+        [SerializeField] private float _durationMove = 1f;
+        [SerializeField] private float _endPos = -1500f;
+        [SerializeField] private AnimationCurve _curveMove;
         
         [Header("References")]
         [SerializeField] private Image _imageBackground;
         [SerializeField] private Image _imageLogo;
+        
+        private Vector3 _startPos;
 
         private void Start()
         {
-            _imageLogo.transform.localScale = Vector3.zero;
+            _startPos = _imageLogo.rectTransform.position;
         }
 
         private void Update()
@@ -37,6 +38,8 @@ namespace Utils
             {
                 StartCoroutine(AnimationCoroutine(2));
             }
+            
+            _imageBackground.rectTransform.position = _imageLogo.rectTransform.position;
         }
 
         private IEnumerator AnimationCoroutine(int sceneIndex)
@@ -47,25 +50,28 @@ namespace Utils
             
             SceneManager.LoadSceneAsync(sceneIndex);
 
-            if (_showLogo)
-            {
-                _imageLogo.transform.DOScale(1f, _durationScale)
-                    .OnComplete(() =>
-                    {
-                        _imageLogo.transform.DOScale(_loopScale, _durationScale)
-                            .SetEase(_curveScale)
-                            .SetLoops(-1, LoopType.Yoyo);
-                    });
+            _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
+                .SetEase(_curveMove);
 
-                _imageLogo.transform.DORotate(new Vector3(0f, 0f, 180f), 1f, RotateMode.FastBeyond360)
-                    .SetEase(Ease.Linear)
-                    .SetLoops(-1, LoopType.Incremental);
-            }
+            _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, 360f), 1f, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Incremental);
             
-            yield return new WaitForSeconds(_durationLoading);
+            yield return new WaitForSeconds(_durationMove);
             
-            _imageBackground.DOFade(0f, _durationFade).SetEase(_curveFade);
-            if (_showLogo) _imageLogo.DOFade(0f, _durationFade).SetEase(_curveFade);
+            ResetState();
+        }
+
+        private void ResetState()
+        {
+            DOTween.KillAll();
+            
+            _imageLogo.rectTransform.rotation = Quaternion.identity;
+            var color = _imageBackground.color;
+            color.a = 0f;
+            _imageBackground.color = color;
+            
+            _imageLogo.rectTransform.position = _startPos;
         }
     }
 }
