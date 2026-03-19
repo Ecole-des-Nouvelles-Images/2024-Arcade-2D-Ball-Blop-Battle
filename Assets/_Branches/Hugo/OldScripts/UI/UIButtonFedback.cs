@@ -7,11 +7,6 @@ namespace _Branches.Hugo.OldScripts.UI
 {
     public class UIButtonFedback : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler
     {
-        // [SerializeField] private bool _playSounds = true;
-        // [SerializeField] private AudioElement _acPointerEntrer;
-        // [SerializeField] private AudioElement _acPointerExit;
-        // [SerializeField] private AudioElement _acPointerDown;
-        
         private AudioSource _audioSource;
 
         [SerializeField] private bool _playTweening = true;
@@ -27,10 +22,6 @@ namespace _Branches.Hugo.OldScripts.UI
 
         public void OnPointerEnter(PointerEventData eventData)
         {
-            // if (_playSounds) {
-            //     AudioManager.Instance?.PlaySFX(_acPointerEntrer);
-            // }
-
             if (_playTweening)
             {
                 transform.DOPause();
@@ -52,10 +43,6 @@ namespace _Branches.Hugo.OldScripts.UI
 
         public void OnPointerExit(PointerEventData eventData)
         {
-            // if (_playSounds) {
-            //     AudioManager.Instance?.PlaySFX(_acPointerExit);
-            // }
-            
             if (_playTweening) {
                 transform.DOPause();
                 transform.DOScale(1, _animationTime).SetEase(_animationCurve).SetUpdate(true);
@@ -64,9 +51,7 @@ namespace _Branches.Hugo.OldScripts.UI
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            // if (_playSounds) {
-            //     AudioManager.Instance?.PlaySFX(_acPointerDown);
-            // }
+            
         }
 
         public void OnSelect(BaseEventData eventData)
