@@ -120,9 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f0f2b03bd71804499e273f37e98916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _showLogo: 1
   _durationLoading: 1
-  _durationFade: 0.5
+  _durationFade: 0.75
   _curveFade:
     serializedVersion: 2
     m_Curve:
@@ -147,7 +146,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _durationMove: 1
+  _durationMove: 1.5
+  _speedRotation: 270
   _endPos: -1500
   _curveMove:
     serializedVersion: 2

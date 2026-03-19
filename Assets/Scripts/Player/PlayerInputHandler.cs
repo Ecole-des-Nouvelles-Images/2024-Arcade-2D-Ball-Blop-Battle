@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Serialization;
+using Utils;
 
 namespace Player
 {
@@ -41,8 +42,12 @@ namespace Player
             PlayerInput.actions["EastButton"].canceled += EastButton;
             PlayerInput.actions["StartButton"].performed += StartButton;
             PlayerInput.actions["StartButton"].canceled += StartButton;
+            
+            // Game
+            EventBus.OnGamePaused += GamePaused;
+            EventBus.OnGameResumed += GameResumed;
         }
-        
+
         private void OnDisable()
         {
             UnityEngine.InputSystem.InputSystem.onDeviceChange -= OnDeviceChange;
@@ -58,6 +63,10 @@ namespace Player
             PlayerInput.actions["EastButton"].canceled -= EastButton;
             PlayerInput.actions["StartButton"].performed -= StartButton;
             PlayerInput.actions["StartButton"].canceled -= StartButton;
+            
+            // Game
+            EventBus.OnGamePaused -= GamePaused;
+            EventBus.OnGameResumed -= GameResumed;
         }
 
         private void OnDeviceChange(InputDevice device, InputDeviceChange change)
@@ -113,6 +122,16 @@ namespace Player
             {
                 _playerController.GetStartButtonReadValue(context.ReadValue<float>());
             }
+        }
+        
+        private void GamePaused()
+        {
+            InputAreEnable = false;
+        }
+        
+        private void GameResumed()
+        {
+            InputAreEnable = true;
         }
     }
 }

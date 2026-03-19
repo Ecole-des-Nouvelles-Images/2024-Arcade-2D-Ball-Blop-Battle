@@ -252,6 +252,7 @@ namespace Player
         public void GetJoystickReadValue(Vector2 move)
         {
             // Debug.Log(move);
+            
             if (_canMove)
             {
                 _move = move;
@@ -402,7 +403,20 @@ namespace Player
 
         public void GetStartButtonReadValue(float buttonValue)
         {
-            Debug.Log(buttonValue);
+            // Debug.Log(buttonValue);
+            
+            if (Mathf.Approximately(buttonValue, 1))
+            {
+                if (!GameManager.IsGamePaused)
+                {
+                    EventBus.OnGamePaused?.Invoke();
+                }
+                else
+                {
+                    EventBus.OnGameResumed?.Invoke();
+                }
+                
+            }
         }
 
         private void Raycasts()

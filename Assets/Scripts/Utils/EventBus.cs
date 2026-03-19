@@ -5,6 +5,11 @@ namespace Utils
 {
     public static class EventBus
     {
+        // GAME
+        public static Action OnGameLaunched;
+        public static Action OnGamePaused;
+        public static Action OnGameResumed;
+        
         // MATCH
         public static Action<int> OnPlayerScored;
         public static Action<int> OnSetChangement;

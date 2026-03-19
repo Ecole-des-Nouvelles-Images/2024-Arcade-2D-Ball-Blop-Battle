@@ -18,6 +18,7 @@ namespace Utils
         
         [Header("Logo Settings")]
         [SerializeField] private float _durationMove = 1f;
+        [SerializeField] private float _speedRotation = 360f;
         [SerializeField] private float _endPos = -1500f;
         [SerializeField] private AnimationCurve _curveMove;
         
@@ -34,12 +35,12 @@ namespace Utils
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartCoroutine(AnimationCoroutine(2));
-            }
-            
             _imageBackground.rectTransform.position = _imageLogo.rectTransform.position;
+        }
+
+        public void LoadScene(int sceneIndex)
+        {
+            StartCoroutine(AnimationCoroutine(sceneIndex));
         }
 
         private IEnumerator AnimationCoroutine(int sceneIndex)
@@ -53,7 +54,7 @@ namespace Utils
             _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
                 .SetEase(_curveMove);
 
-            _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, 360f), 1f, RotateMode.FastBeyond360)
+            _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, _speedRotation), 1f, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear)
                 .SetLoops(-1, LoopType.Incremental);
             

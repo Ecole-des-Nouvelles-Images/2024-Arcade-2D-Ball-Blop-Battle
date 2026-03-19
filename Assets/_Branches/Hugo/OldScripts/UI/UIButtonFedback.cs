@@ -34,7 +34,7 @@ namespace _Branches.Hugo.OldScripts.UI
             if (_playTweening)
             {
                 transform.DOPause();
-                transform.DOScale(_animationEndScale, _animationTime).SetEase(_animationCurve);
+                transform.DOScale(_animationEndScale, _animationTime).SetEase(_animationCurve).SetUpdate(true);
             }
             
             // SFX
@@ -58,7 +58,7 @@ namespace _Branches.Hugo.OldScripts.UI
             
             if (_playTweening) {
                 transform.DOPause();
-                transform.DOScale(1, _animationTime).SetEase(_animationCurve);
+                transform.DOScale(1, _animationTime).SetEase(_animationCurve).SetUpdate(true);
             }
         }
 

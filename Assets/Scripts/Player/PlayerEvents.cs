@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class PlayerEvents : MonoBehaviour
+    public class PlayerEvents
     {
         // Events
         public event Action<Blop> OnAppears;
