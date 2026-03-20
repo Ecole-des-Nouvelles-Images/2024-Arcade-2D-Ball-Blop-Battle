@@ -49,7 +49,7 @@ namespace Managers
                 _isRunning = false;
                 CurrentTimer = 0f;
                 
-                EventBus.OnSetIsOver?.Invoke();
+                EventBus.OnTimerSetIsOver?.Invoke();
             }
         }
     }

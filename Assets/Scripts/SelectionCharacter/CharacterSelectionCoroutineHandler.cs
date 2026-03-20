@@ -1,9 +1,9 @@
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 using Utils.Singletons;
 
 namespace SelectionCharacter
@@ -14,14 +14,14 @@ namespace SelectionCharacter
         
         // Coroutine
         private Coroutine _loadSceneCoroutine;
+        
+        [Header("Settings")]
+        [SerializeField] private float _delay;
 
         [Header("Text Timer")]
         [SerializeField] private GameObject _panelBackGround;
         [SerializeField] private GameObject _panelTimer;
-        [SerializeField] private Sprite _spriteThree;
-        [SerializeField] private Sprite _spriteTwo;
-        [SerializeField] private Sprite _spriteOne;
-        [SerializeField] private Sprite _spriteGo;
+        [SerializeField] private List<Sprite> _countdownSprites;
 
         private void Awake()
         {
@@ -34,7 +34,7 @@ namespace SelectionCharacter
             {
                 GameManager.HasGameLoaded = true;
                 _panelTimer.SetActive(true);
-                _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay(3f));
+                _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
             }
 
             if (!GameManager.Instance.FirstBlopScriptableObject || !GameManager.Instance.SecondBlopScriptableObject)
@@ -44,39 +44,21 @@ namespace SelectionCharacter
             }
         }
 
-        private IEnumerator LoadSceneWithDelay(float delay)
+        private IEnumerator LoadSceneWithDelay()
         {
-            float remainingTime = delay;
-            
             _panelBackGround.SetActive(true);
+            int index = 0;
 
-            while (remainingTime > 0f)
+            while (index < _countdownSprites.Count)
             {
-                if (Math.Abs(remainingTime - 3f) < 0.2f)
-                {
-                    _panelTimerImage.sprite = _spriteThree;
-                }
-                if (Math.Abs(remainingTime - 2f) < 0.2f)
-                {
-                    _panelTimerImage.sprite = _spriteTwo;
-                }
-                if (Math.Abs(remainingTime - 1f) < 0.2f)
-                {
-                    _panelTimerImage.sprite = _spriteOne;
-                }
-                if (Math.Abs(remainingTime - 0.1f) < 0.1f)
-                {
-                    _panelTimerImage.sprite = _spriteGo;
-                }
-                
-                yield return null;
-                
-                remainingTime -= Time.deltaTime;
+                _panelTimerImage.sprite = _countdownSprites[index];
+                index++;
+                yield return new WaitForSeconds(_delay);
             }
             
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(_delay);
 
-            SceneManager.LoadScene(3);
+            SceneLoaderManager.Instance.LoadScene(3);
         }
 
         private void CancelLoadScene()

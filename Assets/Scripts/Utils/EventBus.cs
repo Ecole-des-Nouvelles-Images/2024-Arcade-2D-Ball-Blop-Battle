@@ -13,7 +13,8 @@ namespace Utils
         // MATCH
         public static Action<int> OnPlayerScored;
         public static Action<int> OnSetChangement;
-        public static Action OnSetIsOver;
+        public static Action OnTimerSetIsOver;
+        public static Action<float> OnSetIsOver;
         public static Action OnFoul;
         public static Action<int> OnMatchOver;
         

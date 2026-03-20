@@ -52,13 +52,13 @@ namespace Managers
             _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(true, Random.Range(1, 3), _timeBetweenSets));
         }
 
-        #region === EVENTS ===
+        #region ===== EVENTS =====
 
         private void OnEnable()
         {
             EventBus.OnPlayerScored += PlayerScored;
             EventBus.OnPlayerCommitment += PlayerCommitment;
-            EventBus.OnSetIsOver += SetIsOver;
+            EventBus.OnTimerSetIsOver += SetIsOver;
         }
 
         private void PlayerScored(int scoringPlayerId)
@@ -128,7 +128,7 @@ namespace Managers
         {
             EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnPlayerCommitment -= PlayerCommitment;
-            EventBus.OnSetIsOver -= SetIsOver;
+            EventBus.OnTimerSetIsOver -= SetIsOver;
 
         }
 
@@ -141,18 +141,18 @@ namespace Managers
                 _isSetOver = false;
                 if (_commitmentCoroutine != null) return;
                 _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(true, winSetPlayerId, _timeBetweenSets));
+                
+                EventBus.OnSetIsOver?.Invoke(_timeBetweenSets);
             }
             else if (PlayerOneSetCount == _setCountToWinAMatch)
             {
                 Debug.Log("VICTORY PLAYER ONE");
-                SceneManager.LoadScene(1);
                 
                 EventBus.OnMatchOver?.Invoke(1);
             }
             else if (PlayerTwoSetCount == _setCountToWinAMatch)
             {
                 Debug.Log("VICTORY PLAYER TWO");
-                SceneManager.LoadScene(1);
                 
                 EventBus.OnMatchOver?.Invoke(2);
             }

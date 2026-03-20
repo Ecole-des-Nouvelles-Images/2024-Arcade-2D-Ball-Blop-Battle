@@ -1,40 +1,32 @@
-using _Branches.Hugo.OldScripts.Game;
+using Managers;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _Branches.Hugo.OldScripts.UI
 {
     public class UICanvasEndMatch : MonoBehaviour
     {
-        [FormerlySerializedAs("_matchManager")]
         [Header("References")]
-        [SerializeField] private OldMatchManager oldMatchManager;
         [SerializeField] private TextMeshProUGUI _textCountSetScorePlayerOne;
         [SerializeField] private TextMeshProUGUI _textCountSetScorePlayerTwo;
-        [SerializeField] private TextMeshProUGUI _textWinLosePlayerOne;
-        [SerializeField] private TextMeshProUGUI _textWinLosePlayerTwo;
+        [SerializeField] private TextMeshProUGUI _textWin;
 
         private void OnEnable()
         {
-            _textCountSetScorePlayerOne.text = oldMatchManager.SetScorePlayerOne.ToString();
-            _textCountSetScorePlayerTwo.text = oldMatchManager.SetScorePlayerTwo.ToString();
+            _textCountSetScorePlayerOne.text = MatchManager.Instance.PlayerOneSetCount.ToString();
+            _textCountSetScorePlayerTwo.text = MatchManager.Instance.PlayerTwoSetCount.ToString();
 
-            if (oldMatchManager.SetScorePlayerOne > oldMatchManager.SetScorePlayerTwo)
+            if (MatchManager.Instance.PlayerOneSetCount > MatchManager.Instance.PlayerTwoSetCount)
             {
-                _textWinLosePlayerOne.color = Color.green;
-                _textWinLosePlayerOne.text = "Gagné !";
-                
-                _textWinLosePlayerTwo.color = Color.red;
-                _textWinLosePlayerTwo.text = "Perdu !";
+                _textWin.text = " Victoire joueur 1 !";
+                _textCountSetScorePlayerOne.color = Color.green;
+                _textCountSetScorePlayerTwo.color = Color.red;
             }
             else
             {
-                _textWinLosePlayerOne.color = Color.red;
-                _textWinLosePlayerOne.text = "Perdu !";
-                
-                _textWinLosePlayerTwo.color = Color.green;
-                _textWinLosePlayerTwo.text = "Gagné !";
+                _textWin.text = " Victoire joueur 2 !";
+                _textCountSetScorePlayerOne.color = Color.red;
+                _textCountSetScorePlayerTwo.color = Color.green;
             }
         }
     }
