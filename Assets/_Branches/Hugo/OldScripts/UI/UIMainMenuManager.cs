@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Utils;
 
 namespace _Branches.Hugo.OldScripts.UI
 {
@@ -7,7 +7,7 @@ namespace _Branches.Hugo.OldScripts.UI
     {
         public void ChangeScene(int index)
         {
-            SceneManager.LoadScene(index);
+            SceneLoaderManager.Instance.LoadScene(index);
         }
 
         public void QuitGame()
