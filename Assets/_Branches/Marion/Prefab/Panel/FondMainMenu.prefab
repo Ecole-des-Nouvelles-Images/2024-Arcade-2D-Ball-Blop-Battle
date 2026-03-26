@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4342603424220548088}
   - component: {fileID: 6202814243749966532}
   - component: {fileID: 5376502674572459602}
-  - component: {fileID: 7452836147673121978}
+  - component: {fileID: 2542951056360502639}
   m_Layer: 5
   m_Name: Sprite_LogoFond
   m_TagString: Untagged
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7452836147673121978
+--- !u!114 &2542951056360502639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,12 +85,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568622201551902139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a5c8bf7756f7e47b0373bf3cfc120b, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e04729cd7c02544f9efe8cb93a8b90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 2
-  _animationLeftRotation: {x: 0, y: 0, z: 3}
-  _animationRightRotation: {x: 0, y: 0, z: -3}
+  _duration: 2
+  _delay: 0
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -115,6 +114,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _playOnEnable: 1
+  _isLooping: 1
+  _loopType: 1
+  _startRotation: {x: 0, y: 0, z: -10}
+  _endRotation: {x: 0, y: 0, z: 10}
+  _direction: 0
 --- !u!1 &1596636516560921436
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +439,7 @@ GameObject:
   - component: {fileID: 9204497735729157256}
   - component: {fileID: 7191040171873371393}
   - component: {fileID: 6537044395596235445}
-  - component: {fileID: 5652871734128943623}
+  - component: {fileID: 8316360527715512346}
   m_Layer: 5
   m_Name: Sprite_LogoAvant
   m_TagString: Untagged
@@ -499,7 +504,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5652871734128943623
+--- !u!114 &8316360527715512346
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -508,12 +513,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5697016632163949779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 198a8d38b0c574c4d83465c4992d977f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e04729cd7c02544f9efe8cb93a8b90c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 2
-  _animationLeftRotation: {x: 0, y: 0, z: 3}
-  _animationRightRotation: {x: 0, y: 0, z: -3}
+  _duration: 2
+  _delay: 0
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -538,6 +542,12 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _playOnEnable: 1
+  _isLooping: 1
+  _loopType: 1
+  _startRotation: {x: 0, y: 0, z: 10}
+  _endRotation: {x: 0, y: 0, z: -10}
+  _direction: 0
 --- !u!1 &5723326069592434305
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +634,8 @@ GameObject:
   - component: {fileID: 6465193422790246954}
   - component: {fileID: 3218322912739277469}
   - component: {fileID: 6677958972878152288}
-  - component: {fileID: 759576762434677076}
+  - component: {fileID: 1301579227394237296}
+  - component: {fileID: 5055067380515758532}
   m_Layer: 5
   m_Name: MainMenu_AuraVert
   m_TagString: Untagged
@@ -689,7 +700,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &759576762434677076
+--- !u!225 &1301579227394237296
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269095096134026327}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &5055067380515758532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -698,20 +721,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 6269095096134026327}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927e85a8acb6aba44a3f6a8f283739c6, type: 3}
+  m_Script: {fileID: 11500000, guid: ad3543df8b8f7284886a538fbb47f9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 3
-  _animationStartFade: 1
-  _animationEndFade: 0.25
+  _duration: 3
+  _delay: 0
   _animationCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -728,6 +750,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _playOnEnable: 1
+  _isLooping: 1
+  _loopType: 1
+  _startAlpha: 0.3
+  _endAlpha: 1
 --- !u!1 &6652639728440543119
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,7 +841,7 @@ GameObject:
   - component: {fileID: 7511678789630000445}
   - component: {fileID: 2019333398249360042}
   - component: {fileID: 4889800553046458465}
-  - component: {fileID: 4992381687272922608}
+  - component: {fileID: 8671149672040310582}
   m_Layer: 5
   m_Name: MainMenu_BlopJaune
   m_TagString: Untagged
@@ -879,7 +906,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4992381687272922608
+--- !u!114 &8671149672040310582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -888,12 +915,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8069935683659573139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d6d4eff94346a4faf71c9cc35a4b63, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7c270188c644646a084933833b1993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 1
-  _animationStartScale: 1
-  _animationEndScale: 1.4
+  _duration: 1
+  _delay: 0
   _animationCurve:
     serializedVersion: 2
     m_Curve:
@@ -918,6 +944,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _playOnEnable: 1
+  _isLooping: 1
+  _loopType: 1
+  _startScale: {x: 1, y: 1, z: 1}
+  _endScale: {x: 1, y: 1.4, z: 1}
 --- !u!1 &8196909659308838276
 GameObject:
   m_ObjectHideFlags: 0

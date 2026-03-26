@@ -37,8 +37,18 @@ namespace Utils
         {
             _imageBackground.rectTransform.position = _imageLogo.rectTransform.position;
         }
-
+        
+        public void QuitGame()
+        {
+            Application.Quit();
+        }
+        
         public void LoadScene(int sceneIndex)
+        {
+            SceneManager.LoadSceneAsync(sceneIndex);
+        }
+
+        public void LoadSceneAnimation(int sceneIndex)
         {
             StartCoroutine(AnimationCoroutine(sceneIndex));
         }

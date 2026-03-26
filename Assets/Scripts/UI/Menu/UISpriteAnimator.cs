@@ -1,14 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace UI.Menu
 {
     [RequireComponent(typeof(Image))]
     public class UISpriteAnimator : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private Sprite[] _sprites; // Ta liste de sprites
-        [SerializeField] private float _frameRate = 0.1f; // Temps entre chaque image (ex: 10 FPS = 0.1s)
+        [SerializeField] private Sprite[] _sprites;
+        [SerializeField] private float _frameRate = 0.1f;
         [SerializeField] private bool _loop = true;
 
         private Image _imageComponent;

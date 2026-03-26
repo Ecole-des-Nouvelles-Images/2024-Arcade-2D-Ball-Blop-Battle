@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using Utils;
 
-namespace UI
+namespace UI.InGame
 {
     public class DisplayMatchAdvancementInfo : MonoBehaviour
     {

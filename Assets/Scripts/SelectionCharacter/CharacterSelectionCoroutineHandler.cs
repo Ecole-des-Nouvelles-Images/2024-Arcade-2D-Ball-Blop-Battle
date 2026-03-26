@@ -58,7 +58,7 @@ namespace SelectionCharacter
             
             yield return new WaitForSeconds(_delay);
 
-            SceneLoaderManager.Instance.LoadScene(3);
+            SceneLoaderManager.Instance.LoadSceneAnimation(3);
         }
 
         private void CancelLoadScene()

@@ -12,7 +12,7 @@ namespace _Branches.Hugo.OldScripts.UI
 
         public void QuitGame()
         {
-            Application.Quit();
+            SceneLoaderManager.Instance.QuitGame();
         }
     }
 }

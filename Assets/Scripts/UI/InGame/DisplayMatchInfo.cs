@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utils;
 
-namespace UI
+namespace UI.InGame
 {
     public class DisplayMatchInfo : MonoBehaviour
     {

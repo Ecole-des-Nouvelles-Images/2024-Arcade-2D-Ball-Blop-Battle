@@ -1,5 +1,6 @@
 using Managers;
 using UI;
+using UI.InGame;
 using UnityEngine;
 using Utils;
 

@@ -21,13 +21,13 @@ namespace _Branches.Hugo.OldScripts.UI
             
             Time.timeScale = 1;
             
-            SceneLoaderManager.Instance.LoadScene(3);
+            SceneLoaderManager.Instance.LoadSceneAnimation(3);
         }
         
         public void BackMenu()
         {
             GameManager.Instance.ResetGameState();
-            SceneLoaderManager.Instance.LoadScene(1);
+            SceneLoaderManager.Instance.LoadSceneAnimation(1);
         }
         
         public void Quit()

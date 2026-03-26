@@ -1,9 +1,8 @@
-using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace UI
+namespace UI.InGame
 {
     public class UICountTouchBall : MonoBehaviour
     {
