@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.Menu
+namespace UI.Menu.AnimationFedback
 {
     public class UIRotationAnimation : UIAnimationBase
     {

@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 99595347546561143a0a67572a828f63
   - enabled: 1
+    path: Assets/Scenes/Selections/GameModeSelection.unity
+    guid: 94f7ec321ff71a44381caf3206d32897
+  - enabled: 1
     path: Assets/Scenes/Selections/BlopSelection.unity
     guid: 75c46bd0e52c4024a9872a5b1d397296
+  - enabled: 1
+    path: Assets/Scenes/Selections/ArenaSelection.unity
+    guid: d7c0eb192544191408c7e416526f951c
   - enabled: 1
     path: Assets/Scenes/Arenas/LabArena.unity
     guid: 1f7fdd35de0069041b1ae562fd739831

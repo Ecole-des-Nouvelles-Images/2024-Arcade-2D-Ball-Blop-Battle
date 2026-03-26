@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Menu
+namespace UI.Menu.AnimationFedback
 {
     [RequireComponent(typeof(Image))]
     public class UISpriteAnimator : MonoBehaviour

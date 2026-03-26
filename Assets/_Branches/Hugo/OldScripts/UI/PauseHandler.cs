@@ -21,13 +21,13 @@ namespace _Branches.Hugo.OldScripts.UI
             
             Time.timeScale = 1;
             
-            SceneLoaderManager.Instance.LoadSceneAnimation(3);
+            SceneLoaderManager.Instance.LoadSceneAnimation("LabArena");
         }
         
         public void BackMenu()
         {
             GameManager.Instance.ResetGameState();
-            SceneLoaderManager.Instance.LoadSceneAnimation(1);
+            SceneLoaderManager.Instance.LoadSceneAnimation("BlopSelection");
         }
         
         public void Quit()

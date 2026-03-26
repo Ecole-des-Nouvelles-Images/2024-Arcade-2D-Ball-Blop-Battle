@@ -5,8 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Utils;
 
 namespace SelectionCharacter
 {
@@ -80,9 +80,6 @@ namespace SelectionCharacter
                 
                 _specialSpikeText.anchorMin = new Vector2(0f, 0.02f);
                 _specialSpikeText.anchorMax = new Vector2(0.25f, 0.4f);
-                
-                // Clear deicesID
-                GameManager.Instance.DevicesID.Clear();
             }
             else
             {
@@ -94,9 +91,6 @@ namespace SelectionCharacter
                 _specialSpikeText.anchorMin = new Vector2(0.75f, 0.02f);
                 _specialSpikeText.anchorMax = new Vector2(1f, 0.4f);
             }
-            
-            // Stock deicesID
-            GameManager.Instance.DevicesID.Add(_playerInput.devices[0].deviceId);
         }
 
         private void Update()
@@ -150,11 +144,11 @@ namespace SelectionCharacter
             {
                 if (IsPlayerOne)
                 {
-                    GameManager.Instance.FirstBlopScriptableObject = blop;
+                    GameManager.Instance.Players.Add(new PlayerData(1, _playerInput.devices[0].deviceId, blop));
                 }
                 else
                 {
-                    GameManager.Instance.SecondBlopScriptableObject = blop;
+                    GameManager.Instance.Players.Add(new PlayerData(2, _playerInput.devices[0].deviceId, blop));
                 }
                 
                 _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBounce);
@@ -170,32 +164,24 @@ namespace SelectionCharacter
         {
             if (_playerInput.actions["UI/Cancel"].triggered)
             {
-                if (GameManager.Instance.FirstBlopScriptableObject && IsPlayerOne || GameManager.Instance.SecondBlopScriptableObject && !IsPlayerOne)
+                PlayerData player = GameManager.Instance.Players.Find(p => p.DeviceId == _playerInput.devices[0].deviceId);
+
+                if (player == null)
                 {
-                    if (IsPlayerOne)
-                    {
-                        GameManager.Instance.FirstBlopScriptableObject = null;
-                    }
-                    else
-                    {
-                        GameManager.Instance.SecondBlopScriptableObject = null;
-                    }
-                
-                    _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
-                    _currentButtonSelected.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
-                    _textSpecialSpike.text = null;
-                
-                    var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
-                    navigation.mode = _enableNavigation;
-                    _currentButtonSelected.GetComponent<Button>().navigation = navigation;
-                }
-                else
-                {
-                    GameManager.Instance.FirstBlopScriptableObject = null;
-                    GameManager.Instance.SecondBlopScriptableObject = null;
-                    SceneManager.LoadScene(1);
+                    GameManager.Instance.Players.Clear();
+                    SceneLoaderManager.Instance.LoadScene("MainMenu");
+                    return;
                 }
                 
+                GameManager.Instance.Players.Remove(player);
+                
+                _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
+                _currentButtonSelected.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
+                _textSpecialSpike.text = null;
+                
+                var navigation = _currentButtonSelected.GetComponent<Button>().navigation;
+                navigation.mode = _enableNavigation;
+                _currentButtonSelected.GetComponent<Button>().navigation = navigation;
             }
         }
     }

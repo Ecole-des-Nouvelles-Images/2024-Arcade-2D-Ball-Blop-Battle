@@ -27,25 +27,23 @@ namespace InputSystem
             _playerOneController = _playerOne.GetComponent<PlayerController>();
             _playerTwoController = _playerTwo.GetComponent<PlayerController>();
 
-            if (GameManager.Instance.DevicesID.Count > 0)
+            if (GameManager.Instance.Players.Count > 0)
             {
                 foreach (var gamepad in Gamepad.all)
                 {
+                    PlayerData player = GameManager.Instance.Players.Find(p => p.DeviceId == gamepad.deviceId);
 
-                    if (GameManager.Instance.DevicesID.Contains(gamepad.deviceId))
+                    if (player == null) return;
+                    
+                    if (player.PlayerId == 1)
                     {
-                        int index = GameManager.Instance.DevicesID.IndexOf(gamepad.deviceId);
-
-                        if (index == 0)
-                        {
-                            _playerOneInput.SwitchCurrentControlScheme(gamepad);
-                            _playerOneController.SetUp(GameManager.Instance.FirstBlopScriptableObject, 1);
-                        }
-                        else if (index == 1)
-                        {
-                            _playerTwoInput.SwitchCurrentControlScheme(gamepad);
-                            _playerTwoController.SetUp(GameManager.Instance.SecondBlopScriptableObject, 2);
-                        }
+                        _playerOneInput.SwitchCurrentControlScheme(gamepad);
+                        _playerOneController.SetUp(player.Blop, player.PlayerId);
+                    }
+                    else if (player.PlayerId == 2)
+                    {
+                        _playerTwoInput.SwitchCurrentControlScheme(gamepad);
+                        _playerTwoController.SetUp(player.Blop, player.PlayerId);
                     }
                 }
             }

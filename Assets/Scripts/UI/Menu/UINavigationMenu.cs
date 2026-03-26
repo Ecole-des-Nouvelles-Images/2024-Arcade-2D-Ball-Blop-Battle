@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace _Branches.Hugo.OldScripts.UI
+namespace UI.Menu
 {
     public class UINavigationMenu : MonoBehaviour
     {

@@ -122,7 +122,7 @@ namespace _Branches.Hugo.OldScripts.Player
             _animator = GetComponent<Animator>();
 
             _cameraHandler = GameObject.FindWithTag("MainCamera").GetComponent<CameraHandler>();
-            _blop = _oldPlayerNumberTouchBallHandler.IsPlayerOne ? GameManager.Instance.FirstBlopScriptableObject : GameManager.Instance.SecondBlopScriptableObject;
+            // _blop = _oldPlayerNumberTouchBallHandler.IsPlayerOne ? GameManager.Instance.FirstBlopScriptableObject : GameManager.Instance.SecondBlopScriptableObject;
         }
 
         private void Start()

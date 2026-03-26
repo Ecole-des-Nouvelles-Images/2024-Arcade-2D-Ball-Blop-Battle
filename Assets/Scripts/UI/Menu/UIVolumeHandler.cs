@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace _Branches.Hugo.OldScripts.UI
+namespace UI.Menu
 {
     public class UIVolumeHandler : MonoBehaviour
     {

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Player.ScriptableObjects;
 using UnityEngine;
@@ -8,21 +9,19 @@ namespace Managers
 {
     public class GameManager : MonoBehaviourSingletonDontDestroyOnLoad<GameManager>
     {
-        // Players
-        public Blop FirstBlopScriptableObject;
-        public Blop SecondBlopScriptableObject;
+        [Header("===== SETTINGS =====")]
+        public List<PlayerData> Players = new();
+        public int Timer;
+        public int SetCountToWinAMatch;
+        public string MatchSceneName;
         
-        // List DevicesID
-        public List<int> DevicesID = new();
-        
-        // States of Game
+        [Header("===== GAME STATES =====")]
         public static bool HasGameLoaded = false;
         public static bool IsGamePaused = false;
 
         public void ResetGameState()
         {
-            Instance.FirstBlopScriptableObject = null;
-            Instance.SecondBlopScriptableObject = null;
+            Players.Clear();
             HasGameLoaded = false;
             IsGamePaused = false;
             
@@ -54,5 +53,20 @@ namespace Managers
         }
 
         #endregion
+    }
+
+    [Serializable]
+    public class PlayerData
+    {
+        public int PlayerId;
+        public int DeviceId;
+        public Blop Blop;
+
+        public PlayerData(int playerId, int deviceId, Blop blop)
+        {
+            PlayerId = playerId;
+            DeviceId = deviceId;
+            Blop = blop;
+        }
     }
 }

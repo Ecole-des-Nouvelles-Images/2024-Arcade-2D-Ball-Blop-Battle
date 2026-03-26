@@ -30,14 +30,13 @@ namespace SelectionCharacter
 
         private void Update()
         {
-            if (GameManager.Instance.FirstBlopScriptableObject && GameManager.Instance.SecondBlopScriptableObject && !GameManager.HasGameLoaded)
+            if (GameManager.Instance.Players.Count == 2 && !GameManager.HasGameLoaded)
             {
                 GameManager.HasGameLoaded = true;
                 _panelTimer.SetActive(true);
                 _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
             }
-
-            if (!GameManager.Instance.FirstBlopScriptableObject || !GameManager.Instance.SecondBlopScriptableObject)
+            else if (GameManager.Instance.Players.Count < 2)
             {
                 _panelTimer.SetActive(false);
                 CancelLoadScene();
@@ -58,7 +57,7 @@ namespace SelectionCharacter
             
             yield return new WaitForSeconds(_delay);
 
-            SceneLoaderManager.Instance.LoadSceneAnimation(3);
+            SceneLoaderManager.Instance.LoadSceneAnimation("LabArena");
         }
 
         private void CancelLoadScene()

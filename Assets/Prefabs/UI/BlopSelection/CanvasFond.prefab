@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4095728559549451032}
   - component: {fileID: 6028432312151777596}
   - component: {fileID: 8757795979035354088}
-  - component: {fileID: 5824976567582585012}
   m_Layer: 5
   m_Name: TMP_PressAPlayerOne
   m_TagString: Untagged
@@ -135,46 +134,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5824976567582585012
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297103283143130945}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262e06a7156790b429d33bd7b8cb159d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animationTime: 0.3
-  _animationStartScale: 1
-  _animationEndScale: 1.5
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _timeBetweenAnimations: 0.5
 --- !u!1 &1827965029424888930
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,7 +145,6 @@ GameObject:
   - component: {fileID: 5448228325451559333}
   - component: {fileID: 2382542962107142559}
   - component: {fileID: 8248648528543915537}
-  - component: {fileID: 1021081648445765674}
   m_Layer: 5
   m_Name: TMP_PressAPlayerOne
   m_TagString: Untagged
@@ -310,46 +268,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1021081648445765674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1827965029424888930}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 262e06a7156790b429d33bd7b8cb159d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _animationTime: 0.3
-  _animationStartScale: 1
-  _animationEndScale: 1.5
-  _animationCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _timeBetweenAnimations: 0.5
 --- !u!1 &2367752235818310063
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +279,7 @@ GameObject:
   - component: {fileID: 6138930557184958733}
   - component: {fileID: 466315197695743346}
   - component: {fileID: 8901869332453365771}
-  - component: {fileID: 2743152547059850688}
+  - component: {fileID: 6800472823492024525}
   m_Layer: 5
   m_Name: Image_PressA
   m_TagString: Untagged
@@ -426,7 +344,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2743152547059850688
+--- !u!114 &6800472823492024525
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,12 +353,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2367752235818310063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e98ccc4f966ae4b9860c1032d771db, type: 3}
+  m_Script: {fileID: 11500000, guid: 467453e445840034980130765cc673e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pressedBSprite: {fileID: 21300000, guid: cefc1f7791ba6d34f85ee7d25198ef49, type: 3}
-  _releasedBSprite: {fileID: 21300000, guid: 1ca6939f755d2dc4f94bc1481126e07b, type: 3}
-  _interval: 0.5
+  _sprites:
+  - {fileID: 21300000, guid: 1ca6939f755d2dc4f94bc1481126e07b, type: 3}
+  - {fileID: 21300000, guid: cefc1f7791ba6d34f85ee7d25198ef49, type: 3}
+  _frameRate: 0.5
+  _loop: 1
 --- !u!1 &2840577126025466568
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,10 +435,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -781,7 +701,7 @@ GameObject:
   - component: {fileID: 7953046614401844939}
   - component: {fileID: 4764705016587436324}
   - component: {fileID: 5539109461437887547}
-  - component: {fileID: 1309905881390703989}
+  - component: {fileID: 1453009729449550966}
   m_Layer: 5
   m_Name: Image_PressA
   m_TagString: Untagged
@@ -846,7 +766,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1309905881390703989
+--- !u!114 &1453009729449550966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -855,12 +775,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6103920961323892567}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e98ccc4f966ae4b9860c1032d771db, type: 3}
+  m_Script: {fileID: 11500000, guid: 467453e445840034980130765cc673e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pressedBSprite: {fileID: 21300000, guid: cefc1f7791ba6d34f85ee7d25198ef49, type: 3}
-  _releasedBSprite: {fileID: 21300000, guid: 1ca6939f755d2dc4f94bc1481126e07b, type: 3}
-  _interval: 0.5
+  _sprites:
+  - {fileID: 21300000, guid: 1ca6939f755d2dc4f94bc1481126e07b, type: 3}
+  - {fileID: 21300000, guid: cefc1f7791ba6d34f85ee7d25198ef49, type: 3}
+  _frameRate: 0.5
+  _loop: 1
 --- !u!1 &6209726544733484874
 GameObject:
   m_ObjectHideFlags: 0

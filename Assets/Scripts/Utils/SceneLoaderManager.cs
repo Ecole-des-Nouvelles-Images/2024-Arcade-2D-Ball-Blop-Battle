@@ -43,23 +43,23 @@ namespace Utils
             Application.Quit();
         }
         
-        public void LoadScene(int sceneIndex)
+        public void LoadScene(string sceneName)
         {
-            SceneManager.LoadSceneAsync(sceneIndex);
+            SceneManager.LoadScene(sceneName);
         }
 
-        public void LoadSceneAnimation(int sceneIndex)
+        public void LoadSceneAnimation(string sceneName)
         {
-            StartCoroutine(AnimationCoroutine(sceneIndex));
+            StartCoroutine(AnimationCoroutine(sceneName));
         }
 
-        private IEnumerator AnimationCoroutine(int sceneIndex)
+        private IEnumerator AnimationCoroutine(string sceneName)
         {
             _imageBackground.DOFade(1f, _durationFade).SetEase(_curveFade);
             
             yield return new WaitForSeconds(_durationFade);
             
-            SceneManager.LoadSceneAsync(sceneIndex);
+            SceneManager.LoadSceneAsync(sceneName);
 
             _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
                 .SetEase(_curveMove);
