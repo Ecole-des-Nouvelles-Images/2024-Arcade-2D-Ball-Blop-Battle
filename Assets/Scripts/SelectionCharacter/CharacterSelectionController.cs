@@ -14,16 +14,6 @@ namespace SelectionCharacter
     {
         public bool IsPlayerOne;
         
-        // Components
-        private PlayerInput _playerInput;
-        private Image _currentSelectedBlopImage;
-        private RectTransform _currentSelectedBlopRectTransform;
-        private GameObject _currentButtonSelected;
-        
-        // Navigation
-        private Navigation.Mode _disableNavigation = Navigation.Mode.None;
-        private Navigation.Mode _enableNavigation = Navigation.Mode.Explicit;
-
         [Header("Blops")]
         [SerializeField] private Blop _bleuBlop;
         [SerializeField] private Blop _rougeBlop;
@@ -46,6 +36,16 @@ namespace SelectionCharacter
         [Header("Sprites")]
         [SerializeField] private Sprite _selectedBlopPlayerOne;
         [SerializeField] private Sprite _selectedBlopPlayerTwo;
+        
+        // Components
+        private PlayerInput _playerInput;
+        private Image _currentSelectedBlopImage;
+        private RectTransform _currentSelectedBlopRectTransform;
+        private GameObject _currentButtonSelected;
+        
+        // Navigation
+        private Navigation.Mode _disableNavigation = Navigation.Mode.None;
+        private Navigation.Mode _enableNavigation = Navigation.Mode.Explicit;
 
         private void Awake()
         {
