@@ -9,12 +9,30 @@ namespace UI.InGame
 {
     public class DisplayMatchInfo : MonoBehaviour
     {
-        [Header("Links")]
+        [Header("===== REFERENCES =====")]
         [SerializeField] private TextMeshProUGUI _scorePlayerOne;
         [SerializeField] private TextMeshProUGUI _scorePlayerTwo;
         [SerializeField] private TextMeshProUGUI _timer;
-        [SerializeField] private List<Image> _setsPlayerOne;
-        [SerializeField] private List<Image> _setsPlayerTwo;
+        [SerializeField] private Transform _containerSetsPlayerOne;
+        [SerializeField] private Transform _containerSetsPlayerTwo;
+        
+        [Header("===== PREFABS =====")]
+        [SerializeField] private GameObject _prefabImageSet;
+        
+        private List<Image> _setsPlayerOne = new();
+        private List<Image> _setsPlayerTwo = new();
+
+        private void Start()
+        {
+            for (int i = 0; i < GameManager.Instance.SetCountToWinAMatch; i++)
+            {
+                GameObject goP1 = Instantiate(_prefabImageSet, _containerSetsPlayerOne);
+                _setsPlayerOne.Add(goP1.GetComponent<Image>());
+                
+                GameObject goP2 =Instantiate(_prefabImageSet, _containerSetsPlayerTwo);
+                _setsPlayerTwo.Add(goP2.GetComponent<Image>());
+            }
+        }
 
         private void Update()
         {

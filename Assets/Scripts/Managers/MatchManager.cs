@@ -42,11 +42,14 @@ namespace Managers
         private void Awake()
         {
             TimerHandler = GetComponent<TimerHandler>();
-            TimerHandler.Setup(_setDuration);
         }
 
         private void Start()
         {
+            _setCountToWinAMatch = GameManager.Instance.SetCountToWinAMatch;
+            _setDuration = GameManager.Instance.SetDuration;
+            TimerHandler.Setup(_setDuration);
+            
             if (_commitmentCoroutine != null) return;
             _commitmentCoroutine = StartCoroutine(CommitmentCoroutine(true, Random.Range(1, 3), _timeBetweenSets));
         }

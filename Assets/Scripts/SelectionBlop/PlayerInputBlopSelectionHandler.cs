@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace SelectionCharacter
+namespace SelectionBlop
 {
     public class PlayerInputBlopSelectionHandler : MonoBehaviour
     {

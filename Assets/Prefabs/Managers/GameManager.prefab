@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40643a392869f834280f941c1f657d7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FirstPlayerGameObject: {fileID: 0}
-  SecondPlayerGameObject: {fileID: 0}
-  FirstBlopScriptableObject: {fileID: 0}
-  SecondBlopScriptableObject: {fileID: 0}
-  DevicesID: 
+  Players: []
+  GameMode: 
+  SetDuration: 45
+  SetCountToWinAMatch: 3
+  ArenaSceneName: 

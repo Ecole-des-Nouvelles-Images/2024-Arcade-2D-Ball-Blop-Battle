@@ -11,9 +11,10 @@ namespace Managers
     {
         [Header("===== SETTINGS =====")]
         public List<PlayerData> Players = new();
-        public int Timer;
+        public string GameMode;
+        public int SetDuration;
         public int SetCountToWinAMatch;
-        public string MatchSceneName;
+        public string ArenaSceneName;
         
         [Header("===== GAME STATES =====")]
         public static bool HasGameLoaded = false;

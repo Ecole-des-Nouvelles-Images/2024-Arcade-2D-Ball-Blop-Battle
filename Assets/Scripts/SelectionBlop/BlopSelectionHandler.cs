@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using Utils;
 using Utils.Singletons;
 
-namespace SelectionCharacter
+namespace SelectionBlop
 {
     public class BlopSelectionHandler : MonoBehaviourSingleton<BlopSelectionHandler>
     {
@@ -57,7 +57,7 @@ namespace SelectionCharacter
             
             yield return new WaitForSeconds(_delay);
 
-            SceneLoaderManager.Instance.LoadSceneAnimation("LabArena");
+            SceneLoaderManager.Instance.LoadScene("ArenaSelection");
         }
 
         private void CancelLoadScene()

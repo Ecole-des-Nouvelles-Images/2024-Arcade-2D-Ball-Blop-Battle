@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using Utils;
 
-namespace SelectionCharacter
+namespace SelectionBlop
 {
     public class BlopSelectionController : MonoBehaviour
     {
