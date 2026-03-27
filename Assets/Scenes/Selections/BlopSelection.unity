@@ -360,10 +360,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbc89e7f1a94dba4f975b0eb31395338, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textJoinPlayerOne: {fileID: 808451202}
-  _imageJoinPlayerOne: {fileID: 1480869983}
-  _textJoinPlayerTwo: {fileID: 956208248}
-  _imageJoinPlayerTwo: {fileID: 1877175767}
+  _p1Visuals:
+  - {fileID: 808451202}
+  - {fileID: 1480869983}
+  _p2Visuals:
+  - {fileID: 956208248}
+  - {fileID: 1877175767}
 --- !u!1 &625125504 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1685935886303779092, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
@@ -385,7 +387,7 @@ GameObject:
   - component: {fileID: 888238705}
   - component: {fileID: 888238706}
   m_Layer: 0
-  m_Name: CharacterSelectionHandler
+  m_Name: BlopSelectionHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

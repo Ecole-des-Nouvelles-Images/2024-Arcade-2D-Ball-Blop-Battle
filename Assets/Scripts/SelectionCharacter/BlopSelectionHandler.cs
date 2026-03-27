@@ -8,7 +8,7 @@ using Utils.Singletons;
 
 namespace SelectionCharacter
 {
-    public class CharacterSelectionCoroutineHandler : MonoBehaviourSingleton<CharacterSelectionCoroutineHandler>
+    public class BlopSelectionHandler : MonoBehaviourSingleton<BlopSelectionHandler>
     {
         private Image _panelTimerImage;
         

@@ -10,7 +10,7 @@ using Utils;
 
 namespace SelectionCharacter
 {
-    public class CharacterSelectionController : MonoBehaviour
+    public class BlopSelectionController : MonoBehaviour
     {
         public bool IsPlayerOne;
         
