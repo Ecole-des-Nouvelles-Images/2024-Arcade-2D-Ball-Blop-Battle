@@ -9,6 +9,14 @@ namespace UI.Menu
         [Header("First Selected Button")]
         [SerializeField] private GameObject _firstSelectedButton;
 
+        public void SelectFirstButton(GameObject firstSelectedButton)
+        {
+            if (EventSystem.current)
+            {
+                EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+            }
+        }
+
         private void OnEnable()
         {
             StartCoroutine(SelectFirstDelayed());

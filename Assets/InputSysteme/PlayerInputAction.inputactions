@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerInputAction",
     "maps": [
         {
             "name": "Player",
@@ -260,6 +260,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Random",
+                    "type": "Button",
+                    "id": "076a19c1-3d32-48af-86be-c7c190af18b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -350,6 +359,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "45878066-6761-40f8-8c75-5073f4dec009",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Random",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
