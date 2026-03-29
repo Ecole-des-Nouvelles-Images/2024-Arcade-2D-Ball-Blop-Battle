@@ -122,6 +122,81 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &224381763
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 224381764}
+  - component: {fileID: 224381766}
+  - component: {fileID: 224381765}
+  m_Layer: 5
+  m_Name: Image_Countdown
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &224381764
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224381763}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3267597133107331030}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &224381765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224381763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &224381766
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224381763}
+  m_CullTransparentMesh: 1
 --- !u!1001 &273542393
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -669,7 +744,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonsContainer: {fileID: 657123332}
   _uiFirstSelectedButton: {fileID: 7800762502072315616}
+  _imageTimer: {fileID: 224381765}
   _arenaButtonPrefab: {fileID: 2192824442444728038, guid: 15fb0fcfa3726fb44916af0b6c3868c1, type: 3}
+  _countdownSprites:
+  - {fileID: 21300000, guid: 1aca21d37f6d22941bc177f98b8e1299, type: 3}
+  - {fileID: 21300000, guid: 3dd6ed823cb7c454b94ffbf6fa24213c, type: 3}
+  - {fileID: 21300000, guid: fbe97a13647ec0f44af9ec1066d7f83a, type: 3}
+  - {fileID: 21300000, guid: 822a77c740c6b98479c2c96b1024de3b, type: 3}
 --- !u!1001 &2059749878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -821,9 +902,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2766333371831235141, guid: 2e35ef4cf942d264983651ee51aaf34c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 224381764}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e35ef4cf942d264983651ee51aaf34c, type: 3}
+--- !u!224 &3267597133107331030 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 2766333371831235141, guid: 2e35ef4cf942d264983651ee51aaf34c, type: 3}
+  m_PrefabInstance: {fileID: 3267597133107331029}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7800762502072315616 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 845888270418882613, guid: 2e35ef4cf942d264983651ee51aaf34c, type: 3}

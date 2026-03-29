@@ -45,15 +45,15 @@ namespace SelectionBlop
 
         private IEnumerator LoadSceneWithDelay()
         {
-            _panelBackGround.SetActive(true);
-            int index = 0;
-
-            while (index < _countdownSprites.Count)
-            {
-                _panelTimerImage.sprite = _countdownSprites[index];
-                index++;
-                yield return new WaitForSeconds(_delay);
-            }
+            // _panelBackGround.SetActive(true);
+            // int index = 0;
+            //
+            // while (index < _countdownSprites.Count)
+            // {
+            //     _panelTimerImage.sprite = _countdownSprites[index];
+            //     index++;
+            //     yield return new WaitForSeconds(_delay);
+            // }
             
             yield return new WaitForSeconds(_delay);
 
