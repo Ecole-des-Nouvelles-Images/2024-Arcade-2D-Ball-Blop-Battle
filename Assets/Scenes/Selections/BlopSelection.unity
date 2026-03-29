@@ -366,11 +366,6 @@ MonoBehaviour:
   _p2Visuals:
   - {fileID: 956208248}
   - {fileID: 1877175767}
---- !u!1 &625125504 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1685935886303779092, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
-  m_PrefabInstance: {fileID: 3161950183697037560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &808451202 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1297103283143130945, guid: 6b410be7837879a498c10f0bf6de7070, type: 3}
@@ -421,13 +416,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _delay: 1
-  _panelBackGround: {fileID: 1214104248}
-  _panelTimer: {fileID: 625125504}
-  _countdownSprites:
-  - {fileID: 21300000, guid: 1aca21d37f6d22941bc177f98b8e1299, type: 3}
-  - {fileID: 21300000, guid: 3dd6ed823cb7c454b94ffbf6fa24213c, type: 3}
-  - {fileID: 21300000, guid: fbe97a13647ec0f44af9ec1066d7f83a, type: 3}
-  - {fileID: 21300000, guid: 822a77c740c6b98479c2c96b1024de3b, type: 3}
 --- !u!1 &956208248 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1827965029424888930, guid: 6b410be7837879a498c10f0bf6de7070, type: 3}
@@ -568,11 +556,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26079f487d625c444bddf28962139524, type: 3}
---- !u!1 &1214104248 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5945876595445672059, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
-  m_PrefabInstance: {fileID: 3161950183697037560}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1380359366
 GameObject:
   m_ObjectHideFlags: 0
@@ -864,6 +847,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasFond
       objectReference: {fileID: 0}
+    - target: {fileID: 2840577126025466568, guid: 6b410be7837879a498c10f0bf6de7070, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7800762502645503710, guid: 6b410be7837879a498c10f0bf6de7070, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1088,10 +1075,6 @@ PrefabInstance:
     - target: {fileID: 3906343114122610483, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7900949546539532592, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8682205320250922973, guid: 2b61b5c224180ea4791e6df4f8cba98e, type: 3}
       propertyPath: m_AnchorMax.y

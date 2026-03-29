@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Managers;
 using UnityEngine;
-using UnityEngine.UI;
 using Utils;
 using Utils.Singletons;
 
@@ -10,35 +8,21 @@ namespace SelectionBlop
 {
     public class BlopSelectionHandler : MonoBehaviourSingleton<BlopSelectionHandler>
     {
-        private Image _panelTimerImage;
+        [Header("Settings")]
+        [SerializeField] private float _delay;
         
         // Coroutine
         private Coroutine _loadSceneCoroutine;
-        
-        [Header("Settings")]
-        [SerializeField] private float _delay;
-
-        [Header("Text Timer")]
-        [SerializeField] private GameObject _panelBackGround;
-        [SerializeField] private GameObject _panelTimer;
-        [SerializeField] private List<Sprite> _countdownSprites;
-
-        private void Awake()
-        {
-            _panelTimerImage = _panelTimer.GetComponent<Image>();
-        }
 
         private void Update()
         {
             if (GameManager.Instance.Players.Count == 2 && !GameManager.HasGameLoaded)
             {
                 GameManager.HasGameLoaded = true;
-                _panelTimer.SetActive(true);
                 _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
             }
             else if (GameManager.Instance.Players.Count < 2)
             {
-                _panelTimer.SetActive(false);
                 CancelLoadScene();
             }
         }
@@ -54,7 +38,6 @@ namespace SelectionBlop
         {
             if (_loadSceneCoroutine != null)
             {
-                _panelBackGround.SetActive(false);
                 StopCoroutine(_loadSceneCoroutine);
                 _loadSceneCoroutine = null;
                 GameManager.HasGameLoaded = false;
