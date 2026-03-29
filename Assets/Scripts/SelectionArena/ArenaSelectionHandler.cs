@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UI.Menu;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils;
 
@@ -38,7 +39,7 @@ namespace SelectionArena
         
         private void SelectArena(string arenaName)
         {
-            // SceneLoaderManager.Instance.LoadSceneAnimation(arenaName);
+            EventSystem.current.enabled = false;
             StartCoroutine(LoadSceneWithDelay(arenaName));
         }
         
