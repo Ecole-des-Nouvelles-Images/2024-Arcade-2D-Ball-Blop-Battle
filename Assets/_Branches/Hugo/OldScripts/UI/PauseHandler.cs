@@ -27,7 +27,7 @@ namespace _Branches.Hugo.OldScripts.UI
         public void BackMenu()
         {
             GameManager.Instance.ResetGameState();
-            SceneLoaderManager.Instance.LoadSceneAnimation("BlopSelection");
+            SceneLoaderManager.Instance.LoadSceneAnimation("MainMenu");
         }
         
         public void Quit()

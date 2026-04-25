@@ -11,9 +11,9 @@ namespace UI.Menu.AnimationFedback
 
         [Header("Animation Settings")]
         [SerializeField] private bool _playTweening = true;
-        [SerializeField] private float _animationTime = 0.2f;
+        [SerializeField] private float _animationTime = 0.3f;
         [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-        [SerializeField] private float _animationEndScale = 1.15f;
+        [SerializeField] private float _animationEndScale = 1.2f;
         [SerializeField] private bool _isSlimeButton;
 
         private void Awake() => _audioSource = GetComponent<AudioSource>();
