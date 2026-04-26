@@ -26,4 +26,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arenas/RecyclingCenterArena.unity
     guid: c191ba7102d21aa4fafc01c1e0293665
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 69688712518dc0f43b85bce0ca91550c, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 96ffea30a4a14764ca2fa565228e30ef, type: 2}

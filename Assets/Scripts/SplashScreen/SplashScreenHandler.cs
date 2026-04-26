@@ -70,7 +70,6 @@ namespace SplashScreen
 
         private void AnimateLoadingText()
         {
-            string baseText = "Chargement";
             int dots = 0;
 
             // On crée un intervalle de X secondes, qui boucle à l'infini (-1)
@@ -78,7 +77,7 @@ namespace SplashScreen
                 .AppendInterval(_dotInterval)
                 .OnStepComplete(() => {
                     dots = (dots + 1) % 4;
-                    _textChargement.text = baseText + new string('.', dots);
+                    _textChargement.text = new string('.', dots);
                 })
                 .SetLoops(-1); 
         }

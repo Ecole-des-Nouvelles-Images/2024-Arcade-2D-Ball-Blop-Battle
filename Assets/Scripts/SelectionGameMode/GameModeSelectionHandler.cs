@@ -29,9 +29,9 @@ namespace SelectionGameMode
         {
             _timerSlider.onValueChanged.AddListener(OnTimerChanged);
             _setCountSlider.onValueChanged.AddListener(OnSetCountChanged);
-            
-            GameManager.Instance.SetDuration = (int) _timerSlider.value;
-            GameManager.Instance.SetCountToWinAMatch = (int) _setCountSlider.value;
+
+            _timerSlider.value = GameManager.Instance.SetDuration;
+            _setCountSlider.value = GameManager.Instance.SetCountToWinAMatch;
         }
 
         private void OnTimerChanged(float value)

@@ -1,0 +1,260 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StringTable_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: d8b305913d4122545b392c5681d56280, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 487020568576
+    m_Localized: Loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2260393271296
+    m_Localized: Tutorial
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2422016581632
+    m_Localized: Play
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2459194892288
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2512865206272
+    m_Localized: Credits
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2634978172928
+    m_Localized: Quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4318190116864
+    m_Localized: 'Producer
+
+
+      Game Artist
+
+      Game Artist
+
+
+      Developer'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5031888691200
+    m_Localized: Languages
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5347119996928
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3925397741568
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551701368832
+    m_Localized: General
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5659461427200
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5740298248192
+    m_Localized: Atmosphere
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5815669891072
+    m_Localized: VFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7712023781376
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8001950851072
+    m_Localized: Blop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8074147405824
+    m_Localized: Blep (Green)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8156611616768
+    m_Localized: Blop (Red)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8232432050176
+    m_Localized: Blup (Blue)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8452385546240
+    m_Localized: Blap (Yellow)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9203493117952
+    m_Localized: Jump - Double Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9340437143552
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9371575656448
+    m_Localized: Perfect Reception
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9692586713088
+    m_Localized: Absorption - Throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9915627216896
+    m_Localized: Special Spikes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10057864454144
+    m_Localized: Points - Fouls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13230217895936
+    m_Localized: 'Allows the player to jump.
+
+      
+
+      
+
+      Key : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13097220710400
+    m_Localized: Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13153520852992
+    m_Localized: Double Jump
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13552575324160
+    m_Localized: 'Allows the player to jump a second time while in the air.
+
+      
+
+      
+
+      Key
+      :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15318368919552
+    m_Localized: 'Allows the player to perform a brief vertical jump, only while
+      on the ground.
+
+      
+
+      
+
+      Key :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716949434368
+    m_Localized: "This move allows you to send the ball directly above your blop
+      at moderate speed. It also increases your special move gauge by 1.\r\nTo perform
+      it, press \u201CX\u201D just before hitting the ball while standing still.\r\n\r\nKey
+      :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16117945868288
+    m_Localized: Absorption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16178268348416
+    m_Localized: Throw
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16326159507456
+    m_Localized: "Allows you to catch the ball and keep it inside the blob. Press
+      and hold \u201CX\u201D to catch the ball and keep it inside the blob.\r\n\r\nKey
+      :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16361991446528
+    m_Localized: 'Allows you to shoot the ball if you have previously caught it.
+
+      
+
+      
+
+      Key
+      :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17124264255488
+    m_Localized: "\r\n   - Points: \r\n\r\nTo score a point, the ball must touch
+      the ground on the opponent's side.\r\n\r\n\r\n   - Fouls : These result in
+      a point for the opponent\r\n\r\n \u2022 Touching the ball three times in a
+      row without the opponent touching it\r\n \u2022 Touching the ground with the
+      ball in your possession\r\n \u2022 Stepping into the opponent's court"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17592579268608
+    m_Localized: "Special moves are unlocked after three Perfect Receives.\r\n\r\nTo
+      activate it, simply press \u201CB\u201D when the ball is on your side of the
+      court to slow it down, then jump to catch it. If the ball hits the ground,
+      the special move is lost.\r\n\r\nOnce the ball is caught, simply press \u201CB\u201D
+      again to shoot using your blop's special move.\r\n\r\n\r\n                                                                                                                              
+      Key :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18466076631040
+    m_Localized: "\r\nBlep is agile!\r\n\r\nHe can change the ball's trajectory after
+      it's been hit!\r\n\r\nPress \u201CB\u201D after hitting the ball to change
+      its trajectory and smash it into the ground."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18807144849408
+    m_Localized: "\r\nBlop is quite the magician!\r\n\r\nHe can pull out three balloons,
+      two of which will be fake.\r\n\r\nPress \u201CB\u201D three times to pull out
+      the three balloons."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19114209845248
+    m_Localized: '
+
+      Blup is a renowned magician.
+
+      
+
+      Once the
+      ball is kicked, it shrinks, making it harder to catch. The ball returns to
+      its normal size upon first contact with an opposing player or the ground.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19408729677824
+    m_Localized: '
+
+      Blap is as fast as lightning
+
+      
+
+      He fires
+      a bullet so fast that it becomes invisible, leaving only an electric trail
+      in its wake.'
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

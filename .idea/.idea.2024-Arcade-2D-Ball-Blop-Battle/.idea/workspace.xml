@@ -6,24 +6,27 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Button_Arena.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Button_Arena.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Arenas/ArenaData_RecyclingCenter.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Arenas/ArenaData_RecyclingCenter.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Arenas/LabArena.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Arenas/LabArena.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelCrédit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelCrédit.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelMainMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelMainMenu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelOptions.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelOptions.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopBlue.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopBlue.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopGreen.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopGreen.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopRed.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopRed.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopYellow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopYellow.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/ArenaSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/ArenaSelection.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/GameModeSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/GameModeSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIButtonFedback.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIButtonFedback.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Absorber_Lancer.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Absorber_Lancer.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Bleu.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Bleu.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Jaune.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Jaune.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Rouge.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Rouge.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Vert.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Vert.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Dash.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Dash.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/DoubleSaut.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/DoubleSaut.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/ReceptionParfaite.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/ReceptionParfaite.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Saut.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Saut.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Touches_CS.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Touches_CS.renderTexture" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Hugo/OldScripts/UI/PauseHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Hugo/OldScripts/UI/PauseHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Marion/UI/Sprite/UIFondTutoriel3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Marion/UI/Sprite/UIFondTutoriel3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +43,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerVFXPart.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/Blop.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menu/UILocaleSelector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Plugins/UI/InputSystemUIInputModuleEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Plugins/UI/MultiplayerEventSystem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.7/Scripts/Runtime/TMP_SubMeshUI.cs" root0="SKIP_HIGHLIGHTING" />
@@ -60,22 +64,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "new__dev__hugo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new__dev__hugo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Unity.exe" />
@@ -132,6 +136,7 @@
       <workItem from="1774301106362" duration="2784000" />
       <workItem from="1774789995677" duration="9441000" />
       <workItem from="1777149740201" duration="2170000" />
+      <workItem from="1777230328372" duration="3709000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,226 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: StringTable_fr
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: fr
+  m_SharedData: {fileID: 11400000, guid: d8b305913d4122545b392c5681d56280, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 487020568576
+    m_Localized: Chargement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2260393271296
+    m_Localized: Tutoriel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2422016581632
+    m_Localized: Jouer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2459194892288
+    m_Localized: Options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2512865206272
+    m_Localized: "Cr\xE9dits"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2634978172928
+    m_Localized: Quitter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4318190116864
+    m_Localized: "Producteur\n\nGame Artist\nGame Artist\n\nD\xE9veloppeur"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5031888691200
+    m_Localized: Langues
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5347119996928
+    m_Localized: Volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3925397741568
+    m_Localized: Retour
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5551701368832
+    m_Localized: "G\xE9n\xE9ral"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5659461427200
+    m_Localized: Musique
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5740298248192
+    m_Localized: Ambiance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5815669891072
+    m_Localized: VFX
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7712023781376
+    m_Localized: Commandes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8001950851072
+    m_Localized: Blop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8074147405824
+    m_Localized: Blep (Vert)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8156611616768
+    m_Localized: Blop (Rouge)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8232432050176
+    m_Localized: Blup (Bleue)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 8452385546240
+    m_Localized: Blap (Jaune)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9203493117952
+    m_Localized: Saut - Double Saut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9340437143552
+    m_Localized: Dash
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9371575656448
+    m_Localized: "R\xE9ception Parfaite"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9692586713088
+    m_Localized: Absorption - Lancer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9915627216896
+    m_Localized: "Coups Sp\xE9ciaux"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10057864454144
+    m_Localized: Points - Fautes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13230217895936
+    m_Localized: 'Permet au joueur de sauter.
+
+
+
+      Touche : '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13097220710400
+    m_Localized: Saut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13153520852992
+    m_Localized: Double Saut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13552575324160
+    m_Localized: "Permet au joueur de pouvoir sauter une deuxi\xE8me fois en l'air.\n\n\nTouche
+      : "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15318368919552
+    m_Localized: 'Permet au joueur d''avoir une courte acceleration verticale, uniquement
+      au sol.
+
+
+
+      Touche :'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15716949434368
+    m_Localized: "Elle permet d'envoyer le ballon pile au-dessus de son blop avec
+      une vitesse moyenne. Elle augment \xE9galement la charge de coup sp\xE9cial
+      de 1.\nPour l'effectuer, il faut appuyer sur \"X\" juste avant de toucher la
+      balle en \xE9tant immobile.\n\nTouche :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16117945868288
+    m_Localized: Absorption
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16178268348416
+    m_Localized: Lancer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16326159507456
+    m_Localized: "Permet d'attraper le ballon et de le garder \xE0 l'int\xE9rieur
+      du blop. Il faut appuyer et rester appuy\xE9 sur \"X\" pour attraper le ballon
+      et le garder en soi.\n\nTouche :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16361991446528
+    m_Localized: "Permet de tirer le ballon si vous l'avez absorb\xE9 pr\xE9alablement.\n\n\nTouche
+      : "
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17124264255488
+    m_Localized: "\n   - Points :\n\nPour marquer un point, il faut que le ballon
+      touche le sol du c\xF4t\xE9 adverse.\n\n\n   - Fautes : elles donnent le point
+      \xE0 l'adversaire\n\n \u2022 Toucher le ballon 3 fois de suite sans que l'adversaire
+      le touche\n \u2022 Toucher le sol avec le ballon en soi\n \u2022 Aller dans
+      le camp adverse"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 17592579268608
+    m_Localized: "Les coups sp\xE9ciaux s'obtiennent au bout de trois R\xE9ceptions
+      Parfaites.\n\nPour l'activer il suffit d'appuyer sur \"B\" quand la balle est
+      de son c\xF4t\xE9 du terrain pour ralentir le ballon. Et sauter pour l'attraper.
+      Si le ballon touche le sol le coup sp\xE9cial est perdu.\n\nUne fois le ballon
+      attrap\xE9 il suffit de rappuyer sur \"B\" pour tirer avec le coup sp\xE9cial
+      de son blop.\n\n\n                                                                                                                              
+      Touche :"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18466076631040
+    m_Localized: "\nBlep est agile !\n\nIl peut modifier la trajectoire du ballon
+      une fois lanc\xE9 !\n\nAppuyer sur \"B\" une fois le ballon tir\xE9 pour changer
+      sa trajectoire et le smasher au sol."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 18807144849408
+    m_Localized: "\nBlop est un sacr\xE9 illusionniste !\n\nIl peut  tirer trois
+      ballons, et parmi elles deux seront des fausses.\n\nAppuyer trois fois sur
+      \"B\" pour tirer  les trois ballons."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19114209845248
+    m_Localized: "\nBlup est un magicien renomm\xE9.\n\nUne fois le ballon tir\xE9,
+      celui-ci r\xE9tr\xE9cit et devient donc plus difficile \xE0 r\xE9ceptionner.
+      Le ballon reprend sa taille au premier impact avec le joueur adverse ou le
+      sol."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 19408729677824
+    m_Localized: "\nBlap est aussi rapide qu'un \xE9clair\n\nIl tire une balle si
+      rapide qu'elle devient invisible et laisse sur son passage seulement une tra\xEEn\xE9e
+      \xE9lectrique."
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

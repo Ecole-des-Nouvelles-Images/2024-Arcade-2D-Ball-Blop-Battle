@@ -184,7 +184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chooses The Arena
+  m_text: "Choisir l'Ar\xE8ne"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
   m_sharedMaterial: {fileID: 3601461320400585367, guid: 9e215cb9a9fa7d443a48a826aaf048e3, type: 2}
