@@ -4,30 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelCrédit.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelCrédit.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelMainMenu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelMainMenu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelOptions.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelOptions.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopBlue.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopBlue.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopGreen.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopGreen.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopRed.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopRed.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Blops/BlopYellow.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Blops/BlopYellow.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/ArenaSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/ArenaSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/GameModeSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/GameModeSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Marion/UI/Sprite/UIFondTutoriel3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Marion/UI/Sprite/UIFondTutoriel3.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-    </list>
+    <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +113,7 @@
       <workItem from="1774301106362" duration="2784000" />
       <workItem from="1774789995677" duration="9441000" />
       <workItem from="1777149740201" duration="2170000" />
-      <workItem from="1777230328372" duration="3709000" />
+      <workItem from="1777230328372" duration="4306000" />
     </task>
     <servers />
   </component>

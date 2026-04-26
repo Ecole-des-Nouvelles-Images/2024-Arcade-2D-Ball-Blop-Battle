@@ -133,9 +133,9 @@ MonoBehaviour:
   - m_Id: 13230217895936
     m_Localized: 'Allows the player to jump.
 
-      
 
-      
+
+
 
       Key : '
     m_Metadata:
@@ -151,9 +151,9 @@ MonoBehaviour:
   - m_Id: 13552575324160
     m_Localized: 'Allows the player to jump a second time while in the air.
 
-      
 
-      
+
+
 
       Key
       :'
@@ -163,9 +163,9 @@ MonoBehaviour:
     m_Localized: 'Allows the player to perform a brief vertical jump, only while
       on the ground.
 
-      
 
-      
+
+
 
       Key :'
     m_Metadata:
@@ -194,9 +194,9 @@ MonoBehaviour:
   - m_Id: 16361991446528
     m_Localized: 'Allows you to shoot the ball if you have previously caught it.
 
-      
 
-      
+
+
 
       Key
       :'
@@ -236,11 +236,11 @@ MonoBehaviour:
 
       Blup is a renowned magician.
 
-      
 
-      Once the
-      ball is kicked, it shrinks, making it harder to catch. The ball returns to
-      its normal size upon first contact with an opposing player or the ground.'
+
+      Once the ball is
+      kicked, it shrinks, making it harder to catch. The ball returns to its normal
+      size upon first contact with an opposing player or the ground.'
     m_Metadata:
       m_Items: []
   - m_Id: 19408729677824
@@ -248,11 +248,62 @@ MonoBehaviour:
 
       Blap is as fast as lightning
 
-      
 
-      He fires
-      a bullet so fast that it becomes invisible, leaving only an electric trail
-      in its wake.'
+
+      He fires a bullet
+      so fast that it becomes invisible, leaving only an electric trail in its wake.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36187598233600
+    m_Localized: Game Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36255441100800
+    m_Localized: 1 Vs 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324697448448
+    m_Localized: Duration of a set
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36751212027904
+    m_Localized: Number of sets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37530861838336
+    m_Localized: to join
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38758626893824
+    m_Localized: Choose the Arena
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39464570200064
+    m_Localized: Player 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39466713489408
+    m_Localized: Player 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41108523458560
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41252329365504
+    m_Localized: Resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41293538402304
+    m_Localized: Restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41429022810112
+    m_Localized: Back Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42094369447936
+    m_Localized: Score
     m_Metadata:
       m_Items: []
   references:

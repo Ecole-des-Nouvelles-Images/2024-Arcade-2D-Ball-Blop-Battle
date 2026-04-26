@@ -183,6 +183,58 @@ MonoBehaviour:
     m_Key: description_blapyellow
     m_Metadata:
       m_Items: []
+  - m_Id: 36187598233600
+    m_Key: game_mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36255441100800
+    m_Key: 1Vs1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324697448448
+    m_Key: set_duration
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36751212027904
+    m_Key: sets_count
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37530861838336
+    m_Key: to_join
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38758626893824
+    m_Key: arena_choose
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39464570200064
+    m_Key: player1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39466713489408
+    m_Key: player2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41108523458560
+    m_Key: pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41252329365504
+    m_Key: resume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41293538402304
+    m_Key: restart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41429022810112
+    m_Key: back_menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42094369447936
+    m_Key: score
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

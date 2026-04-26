@@ -221,6 +221,58 @@ MonoBehaviour:
       \xE9lectrique."
     m_Metadata:
       m_Items: []
+  - m_Id: 36187598233600
+    m_Localized: Mode de Jeu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36255441100800
+    m_Localized: 1 Vs 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324697448448
+    m_Localized: "Dur\xE9e d'un set"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36751212027904
+    m_Localized: Nombre de sets
+    m_Metadata:
+      m_Items: []
+  - m_Id: 37530861838336
+    m_Localized: pour rejoindre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38758626893824
+    m_Localized: Choisir l'Arene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39464570200064
+    m_Localized: Joueur 1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39466713489408
+    m_Localized: Joueur 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41108523458560
+    m_Localized: Pause
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41252329365504
+    m_Localized: Reprendre
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41293538402304
+    m_Localized: Recommencer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41429022810112
+    m_Localized: Retour Menu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 42094369447936
+    m_Localized: Score
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
