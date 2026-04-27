@@ -851,10 +851,22 @@ PrefabInstance:
       propertyPath: _panelMainMenu
       value: 
       objectReference: {fileID: 1701801791}
+    - target: {fileID: 4463529392755044256, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 5629834484146946944, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 5917508101426138902, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1701801791}
+    - target: {fileID: 6764257673944954489, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 27.000122
+      objectReference: {fileID: 0}
     - target: {fileID: 7392693082944420119, guid: 568e0a7800450f3468f9ec2486442c9a, type: 3}
       propertyPath: m_Name
       value: "PanelCr\xE9dit"

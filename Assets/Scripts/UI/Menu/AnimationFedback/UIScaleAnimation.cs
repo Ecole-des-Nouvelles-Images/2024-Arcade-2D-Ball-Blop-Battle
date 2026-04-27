@@ -16,7 +16,8 @@ namespace UI.Menu.AnimationFedback
 
             _currentTween = transform.DOScale(_endScale, _duration)
                 .SetDelay(_delay)
-                .SetEase(_animationCurve);
+                .SetEase(_animationCurve)
+                .SetUpdate(true);
 
             if (_isLooping) _currentTween.SetLoops(-1, _loopType);
         }
