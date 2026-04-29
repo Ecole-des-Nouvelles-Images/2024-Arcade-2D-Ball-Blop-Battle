@@ -21,7 +21,9 @@ namespace UI.Menu.AnimationFedback
             
             _currentTween = _canvasGroup.DOFade(_endAlpha, _duration)
                 .SetDelay(_delay)
-                .SetEase(_animationCurve);
+                .SetEase(_animationCurve)
+                .SetUpdate(true)
+                .SetLink(gameObject);
 
             if (_isLooping) _currentTween.SetLoops(-1, _loopType);
         }

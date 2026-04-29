@@ -24,6 +24,11 @@ namespace UI.Menu.AnimationFedback
         {
             _currentTween?.Kill();
         }
+        
+        protected virtual void OnDestroy()
+        {
+            _currentTween?.Kill(false); 
+        }
 
         public abstract void Play();
 

@@ -22,6 +22,7 @@ namespace Player
         [SerializeField] private Rigidbody2D _rb2d;
         [SerializeField] private Animator _animator;
         [SerializeField] private PlayerCountTouchBall _playerCountTouchBall;
+        [SerializeField] private PlayerInputHandler _playerInputHandler;
         [SerializeField] private GameObject _laserTrigger;
         
         [Header("States")]
@@ -502,6 +503,9 @@ namespace Player
         
         private void MatchOver(int playerId)
         {
+            _playerInputHandler.InputAreEnable = false;
+            _move = Vector2.zero;
+            
             // ANIMATOR
             if (PlayerId == playerId)
             {

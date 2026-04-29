@@ -385,10 +385,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerId: 0
-  _blop: {fileID: 11400000, guid: 6a22c12da3f7f044fb5a976628a96de7, type: 2}
+  _blop: {fileID: 11400000, guid: 9374428f9cb1aa8458e2ffadd896fc4d, type: 2}
   _rb2d: {fileID: 9091463944279118054}
   _animator: {fileID: 2250917969655826123}
   _playerCountTouchBall: {fileID: 9129448520297159264}
+  _playerInputHandler: {fileID: 4158806001138468945}
   _laserTrigger: {fileID: 4138267508579912377}
   _hasTheBall: 0
   _isGrounded: 0

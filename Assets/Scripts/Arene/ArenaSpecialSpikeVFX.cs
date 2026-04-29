@@ -45,7 +45,7 @@ namespace Arene
             if (_currentBackgroundScroll) Destroy(_currentBackgroundScroll);
         }
 
-        private void PlayerScored(int obj)
+        private void PlayerScored(int playerId)
         {
             DestroyBackground();
         }

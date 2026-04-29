@@ -24,7 +24,8 @@ namespace UI.Menu.AnimationFedback
             _currentTween = transform.DOLocalRotate(_endRotation, _duration, mode)
                 .SetDelay(_delay)
                 .SetEase(_animationCurve)
-                .SetUpdate(true);
+                .SetUpdate(true)
+                .SetLink(gameObject);
 
             if (_isLooping) _currentTween.SetLoops(-1, _loopType);
         }

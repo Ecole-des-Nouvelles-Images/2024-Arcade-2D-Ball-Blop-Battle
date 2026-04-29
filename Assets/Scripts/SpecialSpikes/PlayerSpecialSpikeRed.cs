@@ -16,7 +16,7 @@ namespace SpecialSpikes
         [SerializeField] private BallController _ballController;
         [SerializeField] private Vector2 _direction;
         [SerializeField] private float _speed;
-        [SerializeField] private PlayerController playerController;
+        [SerializeField] private PlayerController _playerController;
         [SerializeField] private PlayerInput _playerInput;
         
         private int _winningIndex;
@@ -24,7 +24,7 @@ namespace SpecialSpikes
         
         public void Setup(PlayerController playerController, BallController ballController, Vector2 direction, float speed)
         {
-            this.playerController = playerController;
+            _playerController = playerController;
             _ballController = ballController;
             _direction = direction;
             _speed = speed;
@@ -76,7 +76,7 @@ namespace SpecialSpikes
             
             if (_drawnBallCount >= 2)
             {
-                playerController.ResetSpecialSpikeState();
+                _playerController.ResetSpecialSpikeState();
                 Destroy(gameObject);
             }
 
@@ -85,19 +85,19 @@ namespace SpecialSpikes
         
         private void SpecialSpikeActivated(int playerId, BlopType blopType)
         {
-            playerController.ResetSpecialSpikeState();
+            _playerController.ResetSpecialSpikeState();
             Destroy(gameObject);
         }
         
         private void PlayerTouchedBall(int obj)
         {
-            playerController.ResetSpecialSpikeState();
+            _playerController.ResetSpecialSpikeState();
             Destroy(gameObject);
         }
         
         private void PlayerScored(int obj)
         {
-            playerController.ResetSpecialSpikeState();
+            _playerController.ResetSpecialSpikeState();
             Destroy(gameObject);
         }
     }
