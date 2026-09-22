@@ -1,0 +1,58 @@
+# À placer dans .github/workflows/unity-build.yml
+name: Unity Build (self-hosted)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: [self-hosted, windows, unity]
+    timeout-minutes: 90
+    env:
+      BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
+      # Pour Android signé, décommente et crée les secrets :
+      # ANDROID_KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+      # ANDROID_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+          clean: false   # IMPORTANT : garde le dossier Library entre deux builds
+
+      - name: Build Unity
+        shell: powershell
+        run: |
+          $version = (Select-String -Path ProjectSettings/ProjectVersion.txt -Pattern '^m_EditorVersion: (.+)$').Matches[0].Groups[1].Value.Trim()
+          $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
+          if (-not (Test-Path $unity)) { throw "Unity $version introuvable sur le runner : installe-la via le Hub" }
+
+          Remove-Item -Recurse -Force Build -ErrorAction SilentlyContinue
+          Remove-Item -Force build.log -ErrorAction SilentlyContinue
+
+          $unityArgs = @(
+            '-batchmode', '-nographics', '-quit',
+            '-projectPath', "`"$PWD`"",
+            '-buildTarget', $env:BUILD_TARGET,
+            '-executeMethod', 'BuildScript.Build',
+            '-customBuildPath', 'Build',
+            '-logFile', 'build.log'
+          )
+
+          Write-Host "Unity $version -> $env:BUILD_TARGET"
+          $p = Start-Process -FilePath $unity -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
+          Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
+          if ($p.ExitCode -ne 0) { throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log" }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build-${{ env.BUILD_TARGET }}
+          path: Build
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: build-log
+          path: build.log
