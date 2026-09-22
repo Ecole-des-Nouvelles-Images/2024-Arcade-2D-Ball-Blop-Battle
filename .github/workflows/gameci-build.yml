@@ -8,7 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Github runner
+    # runs-on: ubuntu-latest
+    # Local runner
+    runs-on: [self-hosted, windows]
     timeout-minutes: 90
     strategy:
       fail-fast: false
