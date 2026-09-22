@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, windows, unity]
+    runs-on: [self-hosted, windows]
     timeout-minutes: 90
     env:
       BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
