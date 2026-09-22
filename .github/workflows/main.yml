@@ -1,1 +1,44 @@
+# À placer dans .github/workflows/gameci-build.yml
+name: Unity Build (GameCI)
 
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        targetPlatform:
+          - StandaloneWindows64   # ajoute Android, StandaloneLinux64, WebGL... si besoin
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/cache@v4
+        with:
+          path: Library
+          key: Library-${{ matrix.targetPlatform }}-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
+          restore-keys: |
+            Library-${{ matrix.targetPlatform }}-
+            Library-
+
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          # UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}  # uniquement si tu récupères un jour un .ulf
+        with:
+          targetPlatform: ${{ matrix.targetPlatform }}
+          # unityVersion: auto  # lu depuis ProjectSettings/ProjectVersion.txt
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}
