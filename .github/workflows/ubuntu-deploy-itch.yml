@@ -1,5 +1,5 @@
 # Variante runner GitHub : .github/workflows/itch-deploy.yml
-name: Deploy to itch.io
+name: Deploy to itch.io (ubuntu)
 
 on:
   release:
