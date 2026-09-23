@@ -2,6 +2,11 @@ name: Deploy Release to itch.io
 
 on:
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'latest'
+        required: true
+        default: 'latest'
   release:
     types: [published]
 
@@ -13,20 +18,28 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 1. Récupère le tag de la release (ex: v1.0.2)
-      - name: Get Release Tag
-        id: get_version
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      # 1. Déterminer la version/tag selon le mode de déclenchement
+      - name: Set Release Tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "RELEASE_TAG=${{ github.event.inputs.tag_name }}" >> $GITHUB_ENV
+          else
+            echo "RELEASE_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+          fi
 
-      # 2. Télécharge l'asset de la Release GitHub
+      # 2. Télécharger les assets de la Release GitHub
       - name: Download GH Release Asset
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           mkdir -p ./build_files
-          gh release download ${{ env.VERSION }} --dir ./build_files
+          if [ "${{ env.RELEASE_TAG }}" = "latest" ]; then
+            gh release download --dir ./build_files
+          else
+            gh release download "${{ env.RELEASE_TAG }}" --dir ./build_files
+          fi
 
-      # 3. Décompresse l'archive si c'est un ZIP
+      # 3. Décompresser l'archive si c'est un ZIP
       - name: Unpack build
         run: |
           mkdir -p ./dist
@@ -36,7 +49,7 @@ jobs:
             cp -r ./build_files/* ./dist/
           fi
 
-      # 4. Installe Butler
+      # 4. Installer Butler
       - name: Install Butler
         run: |
           curl -L -o butler.zip https://dl.itch.ovh/butler/linux-amd64/head/archive/default
@@ -48,4 +61,4 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
         run: |
-          ./butler push ./dist neiflheim/ball-blop-battle:windows --userversion ${{ env.VERSION }}
+          ./butler push ./dist neiflheim/ball-blop-battle:windows --userversion "${{ env.RELEASE_TAG }}"
