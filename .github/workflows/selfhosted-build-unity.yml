@@ -2,13 +2,10 @@
 name: Unity Build (self-hosted)
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       version:
-        description: "Version de la release (ex: 0.1.0). Vide = lit la version dans ProjectSettings"
+        description: "Version de la release (ex: 0.1.0). Vide = v0.0.<numero de run>"
         required: false
         default: ""
       prerelease:
@@ -17,84 +14,70 @@ on:
         default: true
 
 permissions:
-  contents: write
+  contents: write   # nécessaire pour créer le tag et la release
 
 jobs:
   build:
     runs-on: [self-hosted, windows]
     timeout-minutes: 90
     env:
-      BUILD_TARGET: StandaloneWindows64
+      BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
+      # Pour Android signé, décommente et crée les secrets :
+      # ANDROID_KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+      # ANDROID_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
     steps:
       - uses: actions/checkout@v4
         with:
           lfs: true
-          clean: false
+          clean: false   # IMPORTANT : garde le dossier Library entre deux builds
 
       - name: Build Unity
         shell: powershell
         run: |
-          $verLine = Select-String -Path "ProjectSettings/ProjectVersion.txt" -Pattern '^m_EditorVersion: (.+)$'$version = $verLine.Matches[0].Groups[1].Value.Trim()$unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
-
-          if (-not (Test-Path $unity)) {
-              throw "Unity $version introuvable sur le runner"
-          }
+          $version = (Select-String -Path ProjectSettings/ProjectVersion.txt -Pattern '^m_EditorVersion: (.+)$').Matches[0].Groups[1].Value.Trim()
+          $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
+          if (-not (Test-Path $unity)) { throw "Unity $version introuvable sur le runner : installe-la via le Hub" }
 
           Remove-Item -Recurse -Force Build -ErrorAction SilentlyContinue
           Remove-Item -Force build.log -ErrorAction SilentlyContinue
 
           $unityArgs = @(
-            '-batchmode',
-            '-nographics',
-            '-quit',
+            '-batchmode', '-nographics', '-quit',
             '-projectPath', "`"$PWD`"",
             '-buildTarget', $env:BUILD_TARGET,
-            '-executeMethod', 'Editor.BuildRunner.BuildWindows',
+            '-executeMethod', 'BuildScript.Build',
             '-customBuildPath', 'Build',
             '-logFile', 'build.log'
           )
 
-          Write-Host "Unity $version ->$env:BUILD_TARGET"
-          $p = Start-Process -FilePath $unity -ArgumentList$unityArgs -Wait -PassThru -NoNewWindow
+          Write-Host "Unity $version -> $env:BUILD_TARGET"
+          $p = Start-Process -FilePath $unity -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
           Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
-
-          if ($p.ExitCode -ne 0) {
-              throw "Build Unity échoué (code $($p.ExitCode))"
-          }
+          if ($p.ExitCode -ne 0) { throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log" }
 
       - name: Zip du build
         id: package
         shell: powershell
         run: |
           $tag = "${{ inputs.version }}"
-
-          if ([string]::IsNullOrWhiteSpace($tag)) {$match = Select-String -Path "ProjectSettings/ProjectSettings.asset" -Pattern 'bundleVersion:\s*(.+)'
-            if ($match) {
-              $tag =$match.Matches[0].Groups[1].Value.Trim()
-            } else {
-              $tag = "0.0.${{ github.run_number }}"
-            }
-          }
-
+          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
           if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
 
-          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
+          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip" 
           Remove-Item -Force $zip -ErrorAction SilentlyContinue
           Add-Type -AssemblyName System.IO.Compression.FileSystem
           [System.IO.Compression.ZipFile]::CreateFromDirectory("$PWD\Build", "$PWD\$zip")
-
-          "tag=$tag" \vert{} Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "zip=$zip" \vert{} Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-
+ 
+          "tag=$tag"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "zip=$zip"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+ 
       - name: Créer la release GitHub
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.package.outputs.tag }}
           name: ${{ steps.package.outputs.tag }}
           prerelease: ${{ inputs.prerelease }}
-          make_latest: true
-          force_update: true
           generate_release_notes: true
           files: ${{ steps.package.outputs.zip }}
 
