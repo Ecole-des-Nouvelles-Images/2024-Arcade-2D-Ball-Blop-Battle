@@ -49,9 +49,9 @@ jobs:
             cp -r ./build_files/* ./dist/
           fi
 
-      # 4. Installe Butler proprement via l'action dédiée
-      - name: Install Butler
-        uses: Ruckus/setup-butler@v1
+      # 4. Installation de Butler via l'action maintenue à jour (Broth API)
+      - name: Setup Butler
+        uses: remarkablegames/setup-butler@v3
 
       # 5. Push sur itch.io
       - name: Push to itch.io
