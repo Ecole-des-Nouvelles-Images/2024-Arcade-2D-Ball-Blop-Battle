@@ -64,7 +64,7 @@ jobs:
           if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
           if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
  
-          $zip = "MinMax-$env:BUILD_TARGET-$tag.zip"
+          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
           Remove-Item -Force $zip -ErrorAction SilentlyContinue
           Compress-Archive -Path Build\* -DestinationPath $zip
  
