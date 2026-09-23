@@ -3,20 +3,32 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ball
+  - AboveNet
+  - Wall
+  - Selling
+  - FakeBall
+  - PlayerOneGround
+  - PlayerTwoGround
+  - PlayerOneSide
+  - PlayerTwoSide
+  - MatchManager
+  - GameManager
+  - ArenaParticleSystem
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - Net
+  - Player
+  - Ball
+  - FakeBall
+  - PlayerLaser
   - 
   - 
   - 

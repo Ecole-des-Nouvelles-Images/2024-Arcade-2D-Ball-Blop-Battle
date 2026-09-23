@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1412570792555691048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2405306004149293758}
+  - component: {fileID: 6996804298290817671}
+  m_Layer: 0
+  m_Name: AudioStock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2405306004149293758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412570792555691048}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6996804298290817671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412570792555691048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f135ec7373377449b46f10bd3ba039b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BlopClips:
+  - {fileID: 8300000, guid: 02b0d908d3588b64daa6013cd18c6af3, type: 3}
+  - {fileID: 8300000, guid: 601074bca5e093141991a21578fd9eec, type: 3}
+  - {fileID: 8300000, guid: ca2b427e618636543ad6ff0a2dab2859, type: 3}
+  - {fileID: 8300000, guid: 49435c95c11a83e4d9945b4b961254a5, type: 3}
+  BallClips:
+  - {fileID: 8300000, guid: d3025f52717b2934aa0f4418c0e0a5de, type: 3}
+  - {fileID: 8300000, guid: dcc29c98d1dec6749b96cf39c8aa9ae5, type: 3}
+  - {fileID: 8300000, guid: 1507902b6b954794fafca0987f3f71fe, type: 3}
+  - {fileID: 8300000, guid: 618a312d3872935408126cc955008907, type: 3}
+  LaserClips:
+  - {fileID: 8300000, guid: 5c7e19b2cbb397d49b1314dee77e3e39, type: 3}
+  SlimeButtonClip: {fileID: 8300000, guid: 10ee30c4701ff39429d61aabbcde6cb7, type: 3}
+  ClassicButtonClip: {fileID: 8300000, guid: f1d97336ec9192841aedb0ac29ed7b08, type: 3}
