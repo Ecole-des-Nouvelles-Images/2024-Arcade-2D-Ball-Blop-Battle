@@ -6,8 +6,6 @@ using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-namespace Editor
-{
     public static class BuildScript
     {
         // Appelé via : Unity.exe -batchmode -buildTarget <cible> -executeMethod BuildScript.Build -customBuildPath <dossier>
@@ -58,4 +56,3 @@ namespace Editor
             return i >= 0 && i + 1 < args.Length ? args[i + 1] : null;
         }
     }
-}

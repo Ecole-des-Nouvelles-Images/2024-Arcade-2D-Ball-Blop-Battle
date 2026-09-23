@@ -4,8 +4,6 @@ using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-namespace Editor
-{
     public static class BuildRunner
     {
         private static string OutputDir => Path.Combine("Builds", "Windows", $"{Application.productName}_v{Application.version}");
@@ -116,4 +114,3 @@ namespace Editor
                 EditorApplication.Exit(1);
         }
     }
-}
