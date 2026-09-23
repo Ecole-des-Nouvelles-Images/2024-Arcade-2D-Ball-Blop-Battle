@@ -1,0 +1,50 @@
+name: Deploy Release to itch.io
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 1. Récupère le tag de la release (ex: v1.0.2)
+      - name: Get Release Tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      # 2. Télécharge l'asset de la Release GitHub
+      - name: Download GH Release Asset
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mkdir -p ./build_files
+          gh release download ${{ env.VERSION }} --dir ./build_files
+
+      # 3. Décompresse l'archive si c'est un ZIP
+      - name: Unpack build
+        run: |
+          mkdir -p ./dist
+          if ls ./build_files/*.zip 1> /dev/null 2>&1; then
+            unzip ./build_files/*.zip -d ./dist
+          else
+            cp -r ./build_files/* ./dist/
+          fi
+
+      # 4. Installe Butler
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://dl.itch.ovh/butler/linux-amd64/head/archive/default
+          unzip butler.zip
+          chmod +x butler
+
+      # 5. Push sur itch.io
+      - name: Push to itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_CREDENTIALS }}
+        run: |
+          ./butler push ./dist neiflheim/ball-blop-battle:windows --userversion ${{ env.VERSION }}
