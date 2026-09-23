@@ -38,6 +38,30 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
           # unityVersion: auto  # lu depuis ProjectSettings/ProjectVersion.txt
 
+      - name: Zip du build
+        id: package
+        shell: powershell
+        run: |
+          $tag = "${{ inputs.version }}"
+          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
+          if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
+ 
+          $zip = "MinMax-$env:BUILD_TARGET-$tag.zip"
+          Remove-Item -Force $zip -ErrorAction SilentlyContinue
+          Compress-Archive -Path Build\* -DestinationPath $zip
+ 
+          "tag=$tag"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "zip=$zip"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+ 
+      - name: Créer la release GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.package.outputs.tag }}
+          name: ${{ steps.package.outputs.tag }}
+          prerelease: ${{ inputs.prerelease }}
+          generate_release_notes: true
+          files: ${{ steps.package.outputs.zip }}
+
       - uses: actions/upload-artifact@v4
         with:
           name: Build-${{ matrix.targetPlatform }}
