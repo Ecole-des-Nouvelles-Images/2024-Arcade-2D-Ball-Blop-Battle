@@ -1,5 +1,5 @@
 # À placer dans .github/workflows/gameci-build.yml
-name: Unity Build (ubuntu-GameCI)
+name: Ubuntu (GameCI) - Unity Build
 
 on:
   # push:
