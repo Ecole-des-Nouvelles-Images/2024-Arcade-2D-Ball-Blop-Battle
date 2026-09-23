@@ -1,5 +1,5 @@
 # À placer dans .github/workflows/itch-deploy.yml
-name: Deploy to itch.io (self-hosted)
+name: Self-Hosted - Deploy to itch.io
 
 on:
   release:
