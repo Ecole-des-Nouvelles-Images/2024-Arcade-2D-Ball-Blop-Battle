@@ -2,6 +2,10 @@
 name: Self-Hosted - Unity Build
 
 on:
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
     inputs:
       prerelease:
@@ -24,13 +28,142 @@ jobs:
       # ANDROID_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           lfs: true
           clean: false
+          fetch-depth: 0
+
+      - name: Vérifier si la version Unity a changé
+        id: version_check
+        shell: powershell
+        run: |
+          # Un lancement manuel force toujours le build
+          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            Write-Host "Workflow lancé manuellement."
+            Write-Host "Le build sera forcé."
+
+            "should_build=true" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+
+            exit 0
+          }
+
+          $currentSettingsFile = "ProjectSettings/ProjectSettings.asset"
+
+          if (-not (Test-Path $currentSettingsFile)) {
+            throw "Fichier $currentSettingsFile introuvable."
+          }
+
+          # Récupérer la version actuelle
+          $currentVersionMatches = Select-String `
+            -Path $currentSettingsFile `
+            -Pattern '^\s*bundleVersion:\s*(.+)$'
+
+          if ($currentVersionMatches.Count -eq 0) {
+            throw "Impossible de récupérer bundleVersion depuis $currentSettingsFile."
+          }
+
+          $currentVersion = $currentVersionMatches[0].Matches[0].Groups[1].Value.Trim()
+          $currentVersion = $currentVersion.Trim('"')
+
+          if ([string]::IsNullOrWhiteSpace($currentVersion)) {
+            throw "La version Unity actuelle est vide."
+          }
+
+          # SHA avant le push
+          $beforeSha = "${{ github.event.before }}"
+          $currentSha = "${{ github.sha }}"
+
+          # Cas particulier : premier push / historique inexistant
+          if (
+            [string]::IsNullOrWhiteSpace($beforeSha) -or
+            $beforeSha -eq "0000000000000000000000000000000000000000"
+          ) {
+            Write-Host "Impossible de déterminer la version précédente."
+            Write-Host "Le build sera effectué."
+
+            "should_build=true" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+
+            exit 0
+          }
+
+          Write-Host "Commit précédent : $beforeSha"
+          Write-Host "Commit actuel    : $currentSha"
+          Write-Host "Version actuelle : $currentVersion"
+
+          # Récupérer ProjectSettings.asset du commit précédent
+          $previousSettingsContent = git show "$beforeSha`:ProjectSettings/ProjectSettings.asset" 2>$null
+
+          if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($previousSettingsContent)) {
+            Write-Host "Impossible de récupérer ProjectSettings.asset du commit précédent."
+            Write-Host "Le build sera effectué."
+
+            "should_build=true" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+
+            exit 0
+          }
+
+          # Extraire la version précédente
+          $previousVersionMatch = [regex]::Match(
+            $previousSettingsContent,
+            '(?m)^\s*bundleVersion:\s*(.+)$'
+          )
+
+          if (-not $previousVersionMatch.Success) {
+            Write-Host "Impossible de récupérer bundleVersion du commit précédent."
+            Write-Host "Le build sera effectué."
+
+            "should_build=true" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+
+            exit 0
+          }
+
+          $previousVersion = $previousVersionMatch.Groups[1].Value.Trim()
+          $previousVersion = $previousVersion.Trim('"')
+
+          Write-Host "Version précédente : $previousVersion"
+          Write-Host "Version actuelle   : $currentVersion"
+
+          if ($previousVersion -eq $currentVersion) {
+            Write-Host "========================================"
+            Write-Host "La bundleVersion n'a pas changé."
+            Write-Host "Aucun build Unity nécessaire."
+            Write-Host "========================================"
+
+            "should_build=false" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+          }
+          else {
+            Write-Host "========================================"
+            Write-Host "La bundleVersion a changé !"
+            Write-Host "$previousVersion -> $currentVersion"
+            Write-Host "Le build Unity va être effectué."
+            Write-Host "========================================"
+
+            "should_build=true" | Out-File `
+              -FilePath $env:GITHUB_OUTPUT `
+              -Append `
+              -Encoding utf8
+          }
 
       - name: Récupérer les informations du projet Unity
         id: unity_version
+        if: steps.version_check.outputs.should_build == 'true'
         shell: powershell
         run: |
           $projectVersionFile = "ProjectSettings/ProjectVersion.txt"
@@ -130,6 +263,7 @@ jobs:
             -Encoding utf8
 
       - name: Build Unity
+        if: steps.version_check.outputs.should_build == 'true'
         shell: powershell
         run: |
           $version = "${{ steps.unity_version.outputs.editor_version }}"
@@ -187,6 +321,7 @@ jobs:
 
       - name: Zip du build
         id: package
+        if: steps.version_check.outputs.should_build == 'true'
         shell: powershell
         run: |
           $version = "${{ steps.unity_version.outputs.bundle_version }}"
@@ -241,22 +376,24 @@ jobs:
             -Encoding utf8
 
       - name: Créer ou mettre à jour la release GitHub
+        if: steps.version_check.outputs.should_build == 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.package.outputs.tag }}
           name: ${{ steps.package.outputs.release_name }}
-          prerelease: ${{ inputs.prerelease }}
+          prerelease: ${{ inputs.prerelease || false }}
           generate_release_notes: true
           files: ${{ steps.package.outputs.zip }}
           overwrite_files: true
 
       - uses: actions/upload-artifact@v4
+        if: steps.version_check.outputs.should_build == 'true'
         with:
           name: build-${{ env.BUILD_TARGET }}
           path: Build
 
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && steps.version_check.outputs.should_build == 'true'
         with:
           name: build-log
           path: build.log
