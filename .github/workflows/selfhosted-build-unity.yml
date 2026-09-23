@@ -7,7 +7,7 @@ on:
       prerelease:
         description: "Marquer la release comme pre-release"
         type: boolean
-        default: true
+        default: false
 
 permissions:
   contents: write
@@ -29,7 +29,7 @@ jobs:
           lfs: true
           clean: false
 
-      - name: Récupérer les versions Unity
+      - name: Récupérer les informations du projet Unity
         id: unity_version
         shell: powershell
         run: |
@@ -59,6 +59,7 @@ jobs:
             throw "Fichier $projectSettingsFile introuvable."
           }
 
+          # Récupérer la version du jeu
           $bundleVersionMatches = Select-String `
             -Path $projectSettingsFile `
             -Pattern '^\s*bundleVersion:\s*(.+)$'
@@ -68,7 +69,6 @@ jobs:
           }
 
           $bundleVersion = $bundleVersionMatches[0].Matches[0].Groups[1].Value.Trim()
-
           $bundleVersion = $bundleVersion.Trim('"')
 
           if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
@@ -79,9 +79,40 @@ jobs:
             throw "Version du jeu invalide : '$bundleVersion'. Format attendu : X.Y.Z"
           }
 
+          # Récupérer le Product Name
+          $productNameMatches = Select-String `
+            -Path $projectSettingsFile `
+            -Pattern '^\s*productName:\s*(.+)$'
+
+          if ($productNameMatches.Count -eq 0) {
+            throw "Impossible de récupérer le Product Name depuis ProjectSettings.asset."
+          }
+
+          $productName = $productNameMatches[0].Matches[0].Groups[1].Value.Trim()
+          $productName = $productName.Trim('"')
+
+          if ([string]::IsNullOrWhiteSpace($productName)) {
+            throw "Le Product Name est vide."
+          }
+
+          # Nettoyer le Product Name pour qu'il soit utilisable comme nom de fichier Windows
+          $invalidCharacters = [System.IO.Path]::GetInvalidFileNameChars()
+
+          foreach ($character in $invalidCharacters) {
+            $productName = $productName.Replace($character, '_')
+          }
+
+          # Évite également un nom de fichier qui se termine par un espace ou un point
+          $productName = $productName.TrimEnd(' ', '.')
+
+          if ([string]::IsNullOrWhiteSpace($productName)) {
+            throw "Le Product Name est invalide après nettoyage."
+          }
+
           Write-Host "========================================"
           Write-Host "Unity Editor : $editorVersion"
           Write-Host "Game Version : $bundleVersion"
+          Write-Host "Product Name : $productName"
           Write-Host "========================================"
 
           "editor_version=$editorVersion" | Out-File `
@@ -94,11 +125,17 @@ jobs:
             -Append `
             -Encoding utf8
 
+          "product_name=$productName" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
       - name: Build Unity
         shell: powershell
         run: |
           $version = "${{ steps.unity_version.outputs.editor_version }}"
           $gameVersion = "${{ steps.unity_version.outputs.bundle_version }}"
+          $productName = "${{ steps.unity_version.outputs.product_name }}"
 
           $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
 
@@ -130,6 +167,7 @@ jobs:
 
           Write-Host "Unity Editor : $version"
           Write-Host "Game Version : $gameVersion"
+          Write-Host "Product Name : $productName"
           Write-Host "Build Target : $env:BUILD_TARGET"
 
           $p = Start-Process `
@@ -153,13 +191,14 @@ jobs:
         shell: powershell
         run: |
           $version = "${{ steps.unity_version.outputs.bundle_version }}"
+          $productName = "${{ steps.unity_version.outputs.product_name }}"
           $tag = "v$version"
 
           if (-not (Test-Path "Build")) {
             throw "Le dossier Build n'existe pas après le build Unity."
           }
 
-          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
+          $zip = "$productName-$env:BUILD_TARGET-$tag.zip"
 
           Remove-Item `
             -Force `
@@ -174,9 +213,10 @@ jobs:
           )
 
           Write-Host "========================================"
-          Write-Host "Version : $version"
-          Write-Host "Tag     : $tag"
-          Write-Host "ZIP     : $zip"
+          Write-Host "Product Name : $productName"
+          Write-Host "Version      : $version"
+          Write-Host "Tag          : $tag"
+          Write-Host "ZIP          : $zip"
           Write-Host "========================================"
 
           "version=$version" | Out-File `
