@@ -1,4 +1,3 @@
-# À placer dans .github/workflows/itch-deploy.yml
 name: Self-Hosted - Deploy to itch.io
 
 on:
@@ -7,6 +6,7 @@ on:
       - "Self-Hosted - Unity Build"
     types:
       - completed
+
   workflow_dispatch:
     inputs:
       tag:
@@ -19,83 +19,345 @@ permissions:
 
 jobs:
   deploy:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
+
     runs-on: [self-hosted, windows]
     timeout-minutes: 30
+
     env:
-      # Valeurs par défaut déduites du repo ; surchargeables par des variables
-      # de repo (Settings > Secrets and variables > Actions > Variables)
       ITCH_USER: ${{ vars.ITCH_USER || github.repository_owner }}
       ITCH_GAME: ${{ vars.ITCH_GAME || github.event.repository.name }}
 
     steps:
-      - name: Récupérer le zip de la release
+      - name: Déterminer la release
+        id: release
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $repo = "${{ github.repository }}"
+
+          if ("${{ github.event_name }}" -eq "workflow_dispatch") {
+            $requestedTag = "${{ inputs.tag }}"
+
+            if ([string]::IsNullOrWhiteSpace($requestedTag)) {
+              Write-Host "Aucun tag fourni. Recherche de la dernière release."
+
+              $releases = Invoke-RestMethod `
+                -Uri "https://api.github.com/repos/$repo/releases?per_page=100" `
+                -Headers @{
+                  Authorization = "Bearer $env:GH_TOKEN"
+                  Accept = "application/vnd.github+json"
+                }
+
+              $release = $releases |
+                Where-Object { -not $_.draft } |
+                Select-Object -First 1
+
+              if ($null -eq $release) {
+                throw "Aucune release GitHub trouvée."
+              }
+
+              $tag = $release.tag_name
+            }
+            else {
+              $tag = $requestedTag
+            }
+          }
+          else {
+            $workflowSha = "${{ github.event.workflow_run.head_sha }}"
+
+            if ([string]::IsNullOrWhiteSpace($workflowSha)) {
+              throw "Impossible de récupérer le SHA du workflow Unity."
+            }
+
+            Write-Host "SHA du workflow Unity : $workflowSha"
+            Write-Host "Recherche de la release correspondant à ce commit..."
+
+            $releases = Invoke-RestMethod `
+              -Uri "https://api.github.com/repos/$repo/releases?per_page=100" `
+              -Headers @{
+                Authorization = "Bearer $env:GH_TOKEN"
+                Accept = "application/vnd.github+json"
+              }
+
+            $matchingRelease = $null
+
+            foreach ($candidate in $releases) {
+              if ($candidate.draft) {
+                continue
+              }
+
+              $ref = Invoke-RestMethod `
+                -Uri "https://api.github.com/repos/$repo/git/ref/tags/$($candidate.tag_name)" `
+                -Headers @{
+                  Authorization = "Bearer $env:GH_TOKEN"
+                  Accept = "application/vnd.github+json"
+                } `
+                -ErrorAction SilentlyContinue
+
+              if ($null -eq $ref) {
+                continue
+              }
+
+              $tagObjectSha = $ref.object.sha
+
+              if ($ref.object.type -eq "tag") {
+                $tagObject = Invoke-RestMethod `
+                  -Uri "https://api.github.com/repos/$repo/git/tags/$tagObjectSha" `
+                  -Headers @{
+                    Authorization = "Bearer $env:GH_TOKEN"
+                    Accept = "application/vnd.github+json"
+                  } `
+                  -ErrorAction SilentlyContinue
+
+                if ($null -ne $tagObject) {
+                  $tagObjectSha = $tagObject.object.sha
+                }
+              }
+
+              if ($tagObjectSha -eq $workflowSha) {
+                $matchingRelease = $candidate
+                break
+              }
+            }
+
+            if ($null -eq $matchingRelease) {
+              throw "Impossible de trouver une release GitHub correspondant au commit $workflowSha."
+            }
+
+            $tag = $matchingRelease.tag_name
+          }
+
+          Write-Host "========================================"
+          Write-Host "Release sélectionnée : $tag"
+          Write-Host "========================================"
+
+          "tag=$tag" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+      - name: Récupérer la release GitHub
         id: rel
         shell: powershell
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          $headers = @{
-            Authorization = "Bearer ${{ secrets.GITHUB_TOKEN }}"
-            Accept        = "application/vnd.github+json"
-          }
           $repo = "${{ github.repository }}"
-          $tag  = "${{ github.event.release.tag_name }}"
-          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "${{ inputs.tag }}" }
+          $tag = "${{ steps.release.outputs.tag }}"
 
-          $url = if ([string]::IsNullOrWhiteSpace($tag)) {
-            "https://api.github.com/repos/$repo/releases/latest"
-          } else {
-            "https://api.github.com/repos/$repo/releases/tags/$tag"
+          Write-Host "Récupération de la release : $tag"
+
+          $release = Invoke-RestMethod `
+            -Uri "https://api.github.com/repos/$repo/releases/tags/$tag" `
+            -Headers @{
+              Authorization = "Bearer $env:GH_TOKEN"
+              Accept = "application/vnd.github+json"
+            }
+
+          if ($null -eq $release) {
+            throw "Release GitHub introuvable pour le tag $tag."
           }
 
-          $release = Invoke-RestMethod -Uri $url -Headers $headers
-          $asset = $release.assets | Where-Object { $_.name -like '*.zip' } | Select-Object -First 1
-          if (-not $asset) { throw "Aucun zip trouvé dans la release $($release.tag_name)" }
+          $zipAsset = $release.assets |
+            Where-Object {
+              $_.name -like "*.zip"
+            } |
+            Select-Object -First 1
 
-          New-Item -ItemType Directory -Force -Path dist | Out-Null
-          $zip = "dist/$($asset.name)"
-          $dl = @{ Authorization = $headers.Authorization; Accept = "application/octet-stream" }
-          Invoke-WebRequest -Uri $asset.url -Headers $dl -OutFile $zip
-
-          # Canal itch déduit de la plateforme présente dans le nom du zip
-          $channel = switch -Wildcard ($asset.name) {
-            "*StandaloneWindows64*" { "windows" }
-            "*StandaloneLinux64*"   { "linux" }
-            "*StandaloneOSX*"       { "osx" }
-            "*WebGL*"               { "html5" }
-            "*Android*"             { "android" }
-            default                 { throw "Plateforme non reconnue dans $($asset.name)" }
+          if ($null -eq $zipAsset) {
+            throw "Aucun fichier ZIP trouvé dans la release $tag."
           }
 
-          $version = $release.tag_name -replace '^v', ''
-          Write-Host "$($asset.name) -> canal $channel (version $version)"
+          Write-Host "========================================"
+          Write-Host "Release : $($release.name)"
+          Write-Host "Tag     : $($release.tag_name)"
+          Write-Host "Version : $($release.tag_name.TrimStart('v'))"
+          Write-Host "ZIP     : $($zipAsset.name)"
+          Write-Host "========================================"
 
-          "zip=$zip"         | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "channel=$channel" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "version=$version" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+          $downloadPath = Join-Path $PWD $zipAsset.name
 
-      - name: Installer butler (si absent)
+          Invoke-WebRequest `
+            -Uri $zipAsset.browser_download_url `
+            -Headers @{
+              Authorization = "Bearer $env:GH_TOKEN"
+              Accept = "application/octet-stream"
+            } `
+            -OutFile $downloadPath
+
+          if (-not (Test-Path $downloadPath)) {
+            throw "Le ZIP n'a pas pu être téléchargé."
+          }
+
+          $downloadedFile = Get-Item $downloadPath
+
+          if ($downloadedFile.Length -le 0) {
+            throw "Le ZIP téléchargé est vide."
+          }
+
+          $version = $release.tag_name.TrimStart('v')
+
+          "zip=$downloadPath" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+          "zip_name=$($zipAsset.name)" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+          "version=$version" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+      - name: Déterminer le channel itch.io
+        id: channel
         shell: powershell
         run: |
-          $dir = "$env:USERPROFILE\butler"
-          if (-not (Test-Path "$dir\butler.exe")) {
-            New-Item -ItemType Directory -Force -Path $dir | Out-Null
-            Invoke-WebRequest -Uri "https://broth.itch.zone/butler/windows-amd64/LATEST/archive/default" -OutFile "$env:TEMP\butler.zip"
-            Expand-Archive -Path "$env:TEMP\butler.zip" -DestinationPath $dir -Force
-          }
-          "$dir" | Out-File $env:GITHUB_PATH -Append -Encoding utf8
+          $zipName = "${{ steps.rel.outputs.zip_name }}"
 
-      - name: Push vers itch.io
+          Write-Host "Nom du ZIP : $zipName"
+
+          if ($zipName -match "StandaloneWindows64") {
+            $channel = "windows"
+          }
+          elseif ($zipName -match "StandaloneLinux64") {
+            $channel = "linux"
+          }
+          elseif ($zipName -match "StandaloneOSX") {
+            $channel = "osx"
+          }
+          elseif ($zipName -match "WebGL") {
+            $channel = "html5"
+          }
+          elseif ($zipName -match "Android") {
+            $channel = "android"
+          }
+          else {
+            throw "Impossible de déterminer le channel itch.io depuis le nom du ZIP : $zipName"
+          }
+
+          Write-Host "Channel itch.io : $channel"
+
+          "channel=$channel" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+      - name: Installer Butler
+        shell: powershell
+        run: |
+          $butlerPath = Join-Path $env:RUNNER_TEMP "butler.exe"
+
+          if (-not (Test-Path $butlerPath)) {
+            Write-Host "Butler introuvable. Téléchargement..."
+
+            $butlerArchive = Join-Path $env:RUNNER_TEMP "butler.zip"
+
+            Invoke-WebRequest `
+              -Uri "https://broth.itch.zone/butler/windows-amd64/LATEST/archive/default" `
+              -OutFile $butlerArchive
+
+            if (-not (Test-Path $butlerArchive)) {
+              throw "Impossible de télécharger Butler."
+            }
+
+            Expand-Archive `
+              -Path $butlerArchive `
+              -DestinationPath $env:RUNNER_TEMP `
+              -Force
+
+            $extractedButler = Get-ChildItem `
+              -Path $env:RUNNER_TEMP `
+              -Filter "butler.exe" `
+              -Recurse |
+              Select-Object -First 1
+
+            if ($null -eq $extractedButler) {
+              throw "butler.exe introuvable après extraction."
+            }
+
+            Copy-Item `
+              -Path $extractedButler.FullName `
+              -Destination $butlerPath `
+              -Force
+          }
+
+          if (-not (Test-Path $butlerPath)) {
+            throw "Butler est introuvable : $butlerPath"
+          }
+
+          Write-Host "Butler : $butlerPath"
+
+          $butlerDirectory = Split-Path $butlerPath
+
+          "$butlerDirectory" | Out-File `
+            -FilePath $env:GITHUB_PATH `
+            -Append `
+            -Encoding utf8
+
+      - name: Vérifier Butler
+        shell: powershell
+        run: |
+          butler --version
+
+      - name: Publier sur itch.io
         shell: powershell
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-          butler -V
-          $target = "$env:ITCH_USER/$env:ITCH_GAME" + ":" + "${{ steps.rel.outputs.channel }}"
-          Write-Host "Envoi vers $target"
-          butler push "${{ steps.rel.outputs.zip }}" $target --userversion "${{ steps.rel.outputs.version }}"
-          if ($LASTEXITCODE -ne 0) { throw "butler push a échoué (code $LASTEXITCODE)" }
-          butler status "$env:ITCH_USER/$env:ITCH_GAME"
+          $zipPath = "${{ steps.rel.outputs.zip }}"
+          $zipName = "${{ steps.rel.outputs.zip_name }}"
+          $version = "${{ steps.rel.outputs.version }}"
+          $channel = "${{ steps.channel.outputs.channel }}"
+
+          $target = "$env:ITCH_USER/$env:ITCH_GAME`:$channel"
+
+          if (-not (Test-Path $zipPath)) {
+            throw "ZIP introuvable : $zipPath"
+          }
+
+          Write-Host "========================================"
+          Write-Host "Publication itch.io"
+          Write-Host "User    : $env:ITCH_USER"
+          Write-Host "Game    : $env:ITCH_GAME"
+          Write-Host "Channel : $channel"
+          Write-Host "Version : $version"
+          Write-Host "ZIP     : $zipName"
+          Write-Host "Target  : $target"
+          Write-Host "========================================"
+
+          butler push `
+            "$zipPath" `
+            "$target" `
+            --userversion "$version"
+
+          if ($LASTEXITCODE -ne 0) {
+            throw "La publication itch.io a échoué (code $LASTEXITCODE)."
+          }
+
+          Write-Host "========================================"
+          Write-Host "Publication itch.io terminée."
+          Write-Host "ZIP envoyé : $zipName"
+          Write-Host "========================================"
 
       - name: Nettoyage
         if: always()
         shell: powershell
-        run: Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue
+        run: |
+          $zipPath = "${{ steps.rel.outputs.zip }}"
+
+          if (-not [string]::IsNullOrWhiteSpace($zipPath)) {
+            Remove-Item `
+              -Path $zipPath `
+              -Force `
+              -ErrorAction SilentlyContinue
+          }
+
+          Write-Host "Nettoyage terminé."
