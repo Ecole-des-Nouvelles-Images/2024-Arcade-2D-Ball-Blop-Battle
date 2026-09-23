@@ -7,7 +7,7 @@ on:
       prerelease:
         description: "Marquer la release comme pre-release"
         type: boolean
-        default: false
+        default: true
 
 permissions:
   contents: write
@@ -95,14 +95,13 @@ jobs:
             throw "Le Product Name est vide."
           }
 
-          # Nettoyer le Product Name pour qu'il soit utilisable comme nom de fichier Windows
+          # Nettoyer le Product Name pour les noms de fichiers Windows
           $invalidCharacters = [System.IO.Path]::GetInvalidFileNameChars()
 
           foreach ($character in $invalidCharacters) {
             $productName = $productName.Replace($character, '_')
           }
 
-          # Évite également un nom de fichier qui se termine par un espace ou un point
           $productName = $productName.TrimEnd(' ', '.')
 
           if ([string]::IsNullOrWhiteSpace($productName)) {
@@ -199,6 +198,7 @@ jobs:
           }
 
           $zip = "$productName-$env:BUILD_TARGET-$tag.zip"
+          $releaseName = "$productName-$tag"
 
           Remove-Item `
             -Force `
@@ -216,6 +216,7 @@ jobs:
           Write-Host "Product Name : $productName"
           Write-Host "Version      : $version"
           Write-Host "Tag          : $tag"
+          Write-Host "Release Name : $releaseName"
           Write-Host "ZIP          : $zip"
           Write-Host "========================================"
 
@@ -234,11 +235,16 @@ jobs:
             -Append `
             -Encoding utf8
 
+          "release_name=$releaseName" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
       - name: Créer ou mettre à jour la release GitHub
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.package.outputs.tag }}
-          name: ${{ steps.package.outputs.tag }}
+          name: ${{ steps.package.outputs.release_name }}
           prerelease: ${{ inputs.prerelease }}
           generate_release_notes: true
           files: ${{ steps.package.outputs.zip }}
