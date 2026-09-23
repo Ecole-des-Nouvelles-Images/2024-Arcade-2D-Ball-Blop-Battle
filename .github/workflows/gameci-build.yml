@@ -5,6 +5,15 @@ on:
   # push:
   #   branches: [main]
   workflow_dispatch:
+    inputs:
+      version:
+        description: "Version de la release (ex: 0.1.0). Vide = v0.0.<numero de run>"
+        required: false
+        default: ""
+      prerelease:
+        description: "Marquer la release comme pre-release"
+        type: boolean
+        default: true
 
 jobs:
   build:
