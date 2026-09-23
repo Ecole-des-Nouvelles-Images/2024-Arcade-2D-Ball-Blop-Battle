@@ -2,10 +2,13 @@
 name: Unity Build (self-hosted)
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       version:
-        description: "Version de la release (ex: 0.1.0). Vide = v0.0.<numero de run>"
+        description: "Version de la release (ex: 0.1.0). Vide = lit la version dans ProjectSettings"
         required: false
         default: ""
       prerelease:
@@ -22,9 +25,6 @@ jobs:
     timeout-minutes: 90
     env:
       BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
-      # Pour Android signé, décommente et crée les secrets :
-      # ANDROID_KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
-      # ANDROID_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
 
     steps:
       - uses: actions/checkout@v4
@@ -35,8 +35,7 @@ jobs:
       - name: Build Unity
         shell: powershell
         run: |
-          $version = (Select-String -Path ProjectSettings/ProjectVersion.txt -Pattern '^m_EditorVersion: (.+)$').Matches[0].Groups[1].Value.Trim()
-          $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
+          $version = (Select-String -Path ProjectSettings/ProjectVersion.txt -Pattern '^m_EditorVersion: (.+)$').Matches[0].Groups[1].Value.Trim()$unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
           if (-not (Test-Path $unity)) { throw "Unity $version introuvable sur le runner : installe-la via le Hub" }
 
           Remove-Item -Recurse -Force Build -ErrorAction SilentlyContinue
@@ -46,13 +45,13 @@ jobs:
             '-batchmode', '-nographics', '-quit',
             '-projectPath', "`"$PWD`"",
             '-buildTarget', $env:BUILD_TARGET,
-            '-executeMethod', 'BuildScript.Build',
+            '-executeMethod', 'Editor.BuildRunner.BuildWindows',
             '-customBuildPath', 'Build',
             '-logFile', 'build.log'
           )
 
-          Write-Host "Unity $version -> $env:BUILD_TARGET"
-          $p = Start-Process -FilePath $unity -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
+          Write-Host "Unity $version ->$env:BUILD_TARGET"
+          $p = Start-Process -FilePath $unity -ArgumentList$unityArgs -Wait -PassThru -NoNewWindow
           Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
           if ($p.ExitCode -ne 0) { throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log" }
 
@@ -61,7 +60,16 @@ jobs:
         shell: powershell
         run: |
           $tag = "${{ inputs.version }}"
-          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
+          
+          # Si la version n'est pas renseignée en input, on lit bundleVersion dans ProjectSettings.asset
+          if ([string]::IsNullOrWhiteSpace($tag)) {$match = Select-String -Path ProjectSettings/ProjectSettings.asset -Pattern 'bundleVersion:\s*(.+)'
+            if ($match) {
+              $tag =$match.Matches[0].Groups[1].Value.Trim()
+            } else {
+              $tag = "0.0.${{ github.run_number }}"
+            }
+          }
+          
           if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
 
           $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip" 
@@ -69,8 +77,8 @@ jobs:
           Add-Type -AssemblyName System.IO.Compression.FileSystem
           [System.IO.Compression.ZipFile]::CreateFromDirectory("$PWD\Build", "$PWD\$zip")
  
-          "tag=$tag"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "zip=$zip"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "tag=$tag"   \vert{} Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "zip=$zip"   \vert{} Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
  
       - name: Créer la release GitHub
         uses: softprops/action-gh-release@v2
@@ -78,6 +86,8 @@ jobs:
           tag_name: ${{ steps.package.outputs.tag }}
           name: ${{ steps.package.outputs.tag }}
           prerelease: ${{ inputs.prerelease }}
+          make_latest: true
+          force_update: true   # Remplace les fichiers de la release si le tag existe déjà
           generate_release_notes: true
           files: ${{ steps.package.outputs.zip }}
 
