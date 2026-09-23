@@ -1,5 +1,5 @@
 # À placer dans .github/workflows/unity-build.yml
-name: Unity Build (self-hosted)
+name: Self-Hosted - Unity Build
 
 on:
   workflow_dispatch:
