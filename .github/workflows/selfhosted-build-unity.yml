@@ -54,7 +54,6 @@ jobs:
           $p = Start-Process -FilePath $unity -ArgumentList$unityArgs -Wait -PassThru -NoNewWindow
           Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
           if ($p.ExitCode -ne 0) { throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log" }
-
       - name: Zip du build
         id: package
         shell: powershell
