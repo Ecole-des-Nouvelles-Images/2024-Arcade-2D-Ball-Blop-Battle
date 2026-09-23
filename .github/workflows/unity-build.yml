@@ -63,10 +63,11 @@ jobs:
           $tag = "${{ inputs.version }}"
           if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
           if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
- 
-          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
+
+          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip" 
           Remove-Item -Force $zip -ErrorAction SilentlyContinue
-          Compress-Archive -Path Build\* -DestinationPath $zip
+          Add-Type -AssemblyName System.IO.Compression.FileSystem
+          [System.IO.Compression.ZipFile]::CreateFromDirectory("$PWD\Build", "$PWD\$zip")
  
           "tag=$tag"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
           "zip=$zip"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8

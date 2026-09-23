@@ -1,0 +1,98 @@
+# À placer dans .github/workflows/itch-deploy.yml
+name: Deploy to itch.io
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag de la release à publier (vide = latest)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, windows]
+    timeout-minutes: 30
+    env:
+      # Valeurs par défaut déduites du repo ; surchargeables par des variables
+      # de repo (Settings > Secrets and variables > Actions > Variables)
+      ITCH_USER: ${{ vars.ITCH_USER || github.repository_owner }}
+      ITCH_GAME: ${{ vars.ITCH_GAME || github.event.repository.name }}
+
+    steps:
+      - name: Récupérer le zip de la release
+        id: rel
+        shell: powershell
+        run: |
+          $headers = @{
+            Authorization = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+            Accept        = "application/vnd.github+json"
+          }
+          $repo = "${{ github.repository }}"
+          $tag  = "${{ github.event.release.tag_name }}"
+          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "${{ inputs.tag }}" }
+
+          $url = if ([string]::IsNullOrWhiteSpace($tag)) {
+            "https://api.github.com/repos/$repo/releases/latest"
+          } else {
+            "https://api.github.com/repos/$repo/releases/tags/$tag"
+          }
+
+          $release = Invoke-RestMethod -Uri $url -Headers $headers
+          $asset = $release.assets | Where-Object { $_.name -like '*.zip' } | Select-Object -First 1
+          if (-not $asset) { throw "Aucun zip trouvé dans la release $($release.tag_name)" }
+
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          $zip = "dist/$($asset.name)"
+          $dl = @{ Authorization = $headers.Authorization; Accept = "application/octet-stream" }
+          Invoke-WebRequest -Uri $asset.url -Headers $dl -OutFile $zip
+
+          # Canal itch déduit de la plateforme présente dans le nom du zip
+          $channel = switch -Wildcard ($asset.name) {
+            "*StandaloneWindows64*" { "windows" }
+            "*StandaloneLinux64*"   { "linux" }
+            "*StandaloneOSX*"       { "osx" }
+            "*WebGL*"               { "html5" }
+            "*Android*"             { "android" }
+            default                 { throw "Plateforme non reconnue dans $($asset.name)" }
+          }
+
+          $version = $release.tag_name -replace '^v', ''
+          Write-Host "$($asset.name) -> canal $channel (version $version)"
+
+          "zip=$zip"         | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "channel=$channel" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "version=$version" | Out-File $env:GITHUB_OUTPUT -Append -Encoding utf8
+
+      - name: Installer butler (si absent)
+        shell: powershell
+        run: |
+          $dir = "$env:USERPROFILE\butler"
+          if (-not (Test-Path "$dir\butler.exe")) {
+            New-Item -ItemType Directory -Force -Path $dir | Out-Null
+            Invoke-WebRequest -Uri "https://broth.itch.zone/butler/windows-amd64/LATEST/archive/default" -OutFile "$env:TEMP\butler.zip"
+            Expand-Archive -Path "$env:TEMP\butler.zip" -DestinationPath $dir -Force
+          }
+          "$dir" | Out-File $env:GITHUB_PATH -Append -Encoding utf8
+
+      - name: Push vers itch.io
+        shell: powershell
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          butler -V
+          $target = "$env:ITCH_USER/$env:ITCH_GAME" + ":" + "${{ steps.rel.outputs.channel }}"
+          Write-Host "Envoi vers $target"
+          butler push "${{ steps.rel.outputs.zip }}" $target --userversion "${{ steps.rel.outputs.version }}"
+          if ($LASTEXITCODE -ne 0) { throw "butler push a échoué (code $LASTEXITCODE)" }
+          butler status "$env:ITCH_USER/$env:ITCH_GAME"
+
+      - name: Nettoyage
+        if: always()
+        shell: powershell
+        run: Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue

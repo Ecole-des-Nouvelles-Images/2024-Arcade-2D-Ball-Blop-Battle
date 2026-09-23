@@ -1,0 +1,77 @@
+# Variante runner GitHub : .github/workflows/itch-deploy.yml
+name: Deploy to itch.io
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag de la release à publier (vide = latest)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      # Déduits du repo ; surchargeables par des variables de repo
+      # (Settings > Secrets and variables > Actions > Variables)
+      ITCH_USER: ${{ vars.ITCH_USER || github.repository_owner }}
+      ITCH_GAME: ${{ vars.ITCH_GAME || github.event.repository.name }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Récupérer le zip de la release
+        id: rel
+        run: |
+          set -euo pipefail
+
+          TAG="${{ github.event.release.tag_name }}"
+          [ -z "$TAG" ] && TAG="${{ inputs.tag }}"
+          if [ -z "$TAG" ]; then
+            TAG=$(gh release view --repo "${{ github.repository }}" --json tagName -q .tagName)
+          fi
+
+          mkdir -p dist
+          gh release download "$TAG" --repo "${{ github.repository }}" --pattern '*.zip' --dir dist
+          ZIP=$(ls dist/*.zip | head -n1)
+
+          case "$ZIP" in
+            *StandaloneWindows64*) CHANNEL=windows ;;
+            *StandaloneLinux64*)   CHANNEL=linux ;;
+            *StandaloneOSX*)       CHANNEL=osx ;;
+            *WebGL*)               CHANNEL=html5 ;;
+            *Android*)             CHANNEL=android ;;
+            *) echo "Plateforme non reconnue dans $ZIP" >&2; exit 1 ;;
+          esac
+
+          echo "$ZIP -> canal $CHANNEL (version ${TAG#v})"
+          {
+            echo "zip=$ZIP"
+            echo "channel=$CHANNEL"
+            echo "version=${TAG#v}"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Installer butler
+        run: |
+          set -euo pipefail
+          curl -sL -o butler.zip https://broth.itch.zone/butler/linux-amd64/LATEST/archive/default
+          unzip -q butler.zip -d "$HOME/butler"
+          chmod +x "$HOME/butler/butler"
+          echo "$HOME/butler" >> "$GITHUB_PATH"
+
+      - name: Push vers itch.io
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          set -euo pipefail
+          butler -V
+          TARGET="$ITCH_USER/$ITCH_GAME:${{ steps.rel.outputs.channel }}"
+          echo "Envoi vers $TARGET"
+          butler push "${{ steps.rel.outputs.zip }}" "$TARGET" --userversion "${{ steps.rel.outputs.version }}"
+          butler status "$ITCH_USER/$ITCH_GAME"
