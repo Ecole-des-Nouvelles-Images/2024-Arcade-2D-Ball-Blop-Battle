@@ -3,6 +3,12 @@
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
+  <component name="CMakeProjectFlavorService">
+    <option name="flavorId" value="CMakePlainProjectFlavor" />
+  </component>
+  <component name="CMakeSettings">
+    <configurations />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
@@ -39,6 +45,68 @@
     <commands />
     <urls />
   </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000251341297264" />
+      <entry key="MS500" value="1.1332349457329212" />
+      <entry key="S2" value="2.420624496890226" />
+      <entry key="S5" value="3.9984720687132627" />
+      <entry key="S10" value="5.0814833758007145" />
+      <entry key="S30" value="6.397437272112861" />
+      <entry key="S60" value="7.811022405602412" />
+      <entry key="M2" value="10.580885999911933" />
+      <entry key="M5" value="17.017710370393658" />
+      <entry key="M10" value="24.0330186282096" />
+      <entry key="M15" value="28.328537183142828" />
+      <entry key="M30" value="34.63453560602177" />
+      <entry key="H1" value="39.123477918569854" />
+      <entry key="H2" value="42.07063825506531" />
+      <entry key="H4" value="43.867465425885406" />
+      <entry key="D1" value="45.6156416303279" />
+      <entry key="W1" value="45.94429289747697" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="7.543981654582379E-65" />
+      <entry key="MS500" value="1.498029589010252E-13" />
+      <entry key="S2" value="6.395471481451679E-4" />
+      <entry key="S5" value="0.06467129293192297" />
+      <entry key="S10" value="0.3402837021758226" />
+      <entry key="S30" value="1.1476965260480225" />
+      <entry key="S60" value="1.7838998500540975" />
+      <entry key="M2" value="2.5614288702263903" />
+      <entry key="M5" value="4.022518034738487" />
+      <entry key="M10" value="5.571703749443695" />
+      <entry key="M15" value="6.522629374266296" />
+      <entry key="M30" value="7.909349802843551" />
+      <entry key="H1" value="8.843881052949559" />
+      <entry key="H2" value="9.390688436210576" />
+      <entry key="H4" value="9.687033445426717" />
+      <entry key="D1" value="9.946639619271462" />
+      <entry key="W1" value="9.99234711151244" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.21464893589211914" />
+      <entry key="MS500" value="0.8411219481437578" />
+      <entry key="S2" value="2.224760316505851" />
+      <entry key="S5" value="3.85559244510657" />
+      <entry key="S10" value="5.181720955963823" />
+      <entry key="S30" value="7.339781056619423" />
+      <entry key="S60" value="9.442208308603458" />
+      <entry key="M2" value="13.037711088628075" />
+      <entry key="M5" value="20.97955795564297" />
+      <entry key="M10" value="29.566061988498266" />
+      <entry key="M15" value="34.82230315155358" />
+      <entry key="M30" value="42.527309831821746" />
+      <entry key="H1" value="47.958351453536174" />
+      <entry key="H2" value="51.45659993155497" />
+      <entry key="H4" value="53.55207048636127" />
+      <entry key="D1" value="55.56186633012706" />
+      <entry key="W1" value="55.93658046636456" />
+    </decayedShown>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Toolset" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -55,9 +123,13 @@
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new__dev__hugo&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Int&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
