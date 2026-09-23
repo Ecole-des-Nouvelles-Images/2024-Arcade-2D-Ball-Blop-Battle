@@ -4,10 +4,6 @@ name: Self-Hosted - Unity Build
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: "Version de la release (ex: 0.1.0). Vide = v0.0.<numero de run>"
-        required: false
-        default: ""
       prerelease:
         description: "Marquer la release comme pre-release"
         type: boolean
@@ -20,6 +16,7 @@ jobs:
   build:
     runs-on: [self-hosted, windows]
     timeout-minutes: 90
+
     env:
       BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
       # Pour Android signé, décommente et crée les secrets :
@@ -32,18 +29,73 @@ jobs:
           lfs: true
           clean: false   # IMPORTANT : garde le dossier Library entre deux builds
 
+      - name: Récupérer la version Unity
+        id: unity_version
+        shell: powershell
+        run: |
+          $projectVersionFile = "ProjectSettings/ProjectVersion.txt"
+
+          if (-not (Test-Path $projectVersionFile)) {
+            throw "Fichier $projectVersionFile introuvable."
+          }
+
+          $editorVersion = (
+            Select-String `
+              -Path $projectVersionFile `
+              -Pattern '^m_EditorVersion: (.+)$'
+          ).Matches[0].Groups[1].Value.Trim()
+
+          if ([string]::IsNullOrWhiteSpace($editorVersion)) {
+            throw "Impossible de récupérer la version de l'éditeur Unity."
+          }
+
+          $projectSettingsFile = "ProjectSettings/ProjectSettings.asset"
+
+          if (-not (Test-Path $projectSettingsFile)) {
+            throw "Fichier $projectSettingsFile introuvable."
+          }
+
+          $bundleVersion = (
+            Select-String `
+              -Path $projectSettingsFile `
+              -Pattern '^\s*bundleVersion:\s*(.+)$'
+          ).Matches[0].Groups[1].Value.Trim()
+
+          if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
+            throw "Impossible de récupérer la version du jeu depuis ProjectSettings.asset."
+          }
+
+          # Supprime éventuellement les guillemets
+          $bundleVersion = $bundleVersion.Trim('"')
+
+          # Vérifie que la version respecte un format du type 1.2.3
+          if ($bundleVersion -notmatch '^\d+\.\d+\.\d+$') {
+            throw "Version Unity invalide : '$bundleVersion'. Format attendu : X.Y.Z"
+          }
+
+          Write-Host "Version Unity Editor : $editorVersion"
+          Write-Host "Version du jeu : $bundleVersion"
+
+          "editor_version=$editorVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "bundle_version=$bundleVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
       - name: Build Unity
         shell: powershell
         run: |
-          $version = (Select-String -Path ProjectSettings/ProjectVersion.txt -Pattern '^m_EditorVersion: (.+)$').Matches[0].Groups[1].Value.Trim()
+          $version = "${{ steps.unity_version.outputs.editor_version }}"
           $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
-          if (-not (Test-Path $unity)) { throw "Unity $version introuvable sur le runner : installe-la via le Hub" }
+
+          if (-not (Test-Path $unity)) {
+            throw "Unity $version introuvable sur le runner : installe-la via le Hub"
+          }
 
           Remove-Item -Recurse -Force Build -ErrorAction SilentlyContinue
           Remove-Item -Force build.log -ErrorAction SilentlyContinue
 
           $unityArgs = @(
-            '-batchmode', '-nographics', '-quit',
+            '-batchmode',
+            '-nographics',
+            '-quit',
             '-projectPath', "`"$PWD`"",
             '-buildTarget', $env:BUILD_TARGET,
             '-executeMethod', 'BuildScript.Build',
@@ -52,26 +104,47 @@ jobs:
           )
 
           Write-Host "Unity $version -> $env:BUILD_TARGET"
-          $p = Start-Process -FilePath $unity -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
+          Write-Host "Game version -> ${{ steps.unity_version.outputs.bundle_version }}"
+
+          $p = Start-Process `
+            -FilePath $unity `
+            -ArgumentList $unityArgs `
+            -Wait `
+            -PassThru `
+            -NoNewWindow
+
           Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
-          if ($p.ExitCode -ne 0) { throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log" }
+
+          if ($p.ExitCode -ne 0) {
+            throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log"
+          }
 
       - name: Zip du build
         id: package
         shell: powershell
         run: |
-          $tag = "${{ inputs.version }}"
-          if ([string]::IsNullOrWhiteSpace($tag)) { $tag = "0.0.${{ github.run_number }}" }
-          if (-not $tag.StartsWith("v")) { $tag = "v$tag" }
+          $version = "${{ steps.unity_version.outputs.bundle_version }}"
+          $tag = "v$version"
 
-          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip" 
+          $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
+
           Remove-Item -Force $zip -ErrorAction SilentlyContinue
+
           Add-Type -AssemblyName System.IO.Compression.FileSystem
-          [System.IO.Compression.ZipFile]::CreateFromDirectory("$PWD\Build", "$PWD\$zip")
- 
-          "tag=$tag"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "zip=$zip"   | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
- 
+
+          [System.IO.Compression.ZipFile]::CreateFromDirectory(
+            "$PWD\Build",
+            "$PWD\$zip"
+          )
+
+          Write-Host "Version : $version"
+          Write-Host "Tag : $tag"
+          Write-Host "ZIP : $zip"
+
+          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "tag=$tag"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "zip=$zip"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+
       - name: Créer la release GitHub
         uses: softprops/action-gh-release@v2
         with:
