@@ -69,7 +69,6 @@ jobs:
 
           $bundleVersion = $bundleVersionMatches[0].Matches[0].Groups[1].Value.Trim()
 
-          # Supprime éventuellement les guillemets
           $bundleVersion = $bundleVersion.Trim('"')
 
           if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
@@ -195,40 +194,7 @@ jobs:
             -Append `
             -Encoding utf8
 
-      - name: Supprimer la release existante
-        shell: powershell
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          $tag = "${{ steps.package.outputs.tag }}"
-
-          Write-Host "Recherche de la release $tag..."
-
-          gh release view `
-            $tag `
-            --repo "${{ github.repository }}" *> $null
-
-          if ($LASTEXITCODE -eq 0) {
-            Write-Host "La release $tag existe déjà."
-            Write-Host "Suppression de la release et du tag..."
-
-            gh release delete `
-              $tag `
-              --repo "${{ github.repository }}" `
-              --yes `
-              --cleanup-tag
-
-            if ($LASTEXITCODE -ne 0) {
-              throw "Impossible de supprimer la release $tag."
-            }
-
-            Write-Host "Release $tag supprimée avec succès."
-          }
-          else {
-            Write-Host "Aucune release $tag existante."
-          }
-
-      - name: Créer la release GitHub
+      - name: Créer ou mettre à jour la release GitHub
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ steps.package.outputs.tag }}
@@ -236,6 +202,7 @@ jobs:
           prerelease: ${{ inputs.prerelease }}
           generate_release_notes: true
           files: ${{ steps.package.outputs.zip }}
+          overwrite_files: true
 
       - uses: actions/upload-artifact@v4
         with:
