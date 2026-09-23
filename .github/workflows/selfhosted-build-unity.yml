@@ -10,7 +10,7 @@ on:
         default: true
 
 permissions:
-  contents: write   # nécessaire pour créer le tag et la release
+  contents: write
 
 jobs:
   build:
@@ -18,7 +18,7 @@ jobs:
     timeout-minutes: 90
 
     env:
-      BUILD_TARGET: StandaloneWindows64   # ou Android, StandaloneLinux64, WebGL...
+      BUILD_TARGET: StandaloneWindows64
       # Pour Android signé, décommente et crée les secrets :
       # ANDROID_KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
       # ANDROID_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
@@ -27,9 +27,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           lfs: true
-          clean: false   # IMPORTANT : garde le dossier Library entre deux builds
+          clean: false
 
-      - name: Récupérer la version Unity
+      - name: Récupérer les versions Unity
         id: unity_version
         shell: powershell
         run: |
@@ -39,14 +39,18 @@ jobs:
             throw "Fichier $projectVersionFile introuvable."
           }
 
-          $editorVersion = (
-            Select-String `
-              -Path $projectVersionFile `
-              -Pattern '^m_EditorVersion: (.+)$'
-          ).Matches[0].Groups[1].Value.Trim()
+          $editorVersionMatches = Select-String `
+            -Path $projectVersionFile `
+            -Pattern '^m_EditorVersion: (.+)$'
+
+          if ($editorVersionMatches.Count -eq 0) {
+            throw "Impossible de récupérer la version de l'éditeur Unity."
+          }
+
+          $editorVersion = $editorVersionMatches[0].Matches[0].Groups[1].Value.Trim()
 
           if ([string]::IsNullOrWhiteSpace($editorVersion)) {
-            throw "Impossible de récupérer la version de l'éditeur Unity."
+            throw "La version de l'éditeur Unity est vide."
           }
 
           $projectSettingsFile = "ProjectSettings/ProjectSettings.asset"
@@ -55,42 +59,64 @@ jobs:
             throw "Fichier $projectSettingsFile introuvable."
           }
 
-          $bundleVersion = (
-            Select-String `
-              -Path $projectSettingsFile `
-              -Pattern '^\s*bundleVersion:\s*(.+)$'
-          ).Matches[0].Groups[1].Value.Trim()
+          $bundleVersionMatches = Select-String `
+            -Path $projectSettingsFile `
+            -Pattern '^\s*bundleVersion:\s*(.+)$'
 
-          if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
+          if ($bundleVersionMatches.Count -eq 0) {
             throw "Impossible de récupérer la version du jeu depuis ProjectSettings.asset."
           }
+
+          $bundleVersion = $bundleVersionMatches[0].Matches[0].Groups[1].Value.Trim()
 
           # Supprime éventuellement les guillemets
           $bundleVersion = $bundleVersion.Trim('"')
 
-          # Vérifie que la version respecte un format du type 1.2.3
-          if ($bundleVersion -notmatch '^\d+\.\d+\.\d+$') {
-            throw "Version Unity invalide : '$bundleVersion'. Format attendu : X.Y.Z"
+          if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
+            throw "La version du jeu est vide."
           }
 
-          Write-Host "Version Unity Editor : $editorVersion"
-          Write-Host "Version du jeu : $bundleVersion"
+          if ($bundleVersion -notmatch '^\d+\.\d+\.\d+$') {
+            throw "Version du jeu invalide : '$bundleVersion'. Format attendu : X.Y.Z"
+          }
 
-          "editor_version=$editorVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "bundle_version=$bundleVersion" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          Write-Host "========================================"
+          Write-Host "Unity Editor : $editorVersion"
+          Write-Host "Game Version : $bundleVersion"
+          Write-Host "========================================"
+
+          "editor_version=$editorVersion" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+          "bundle_version=$bundleVersion" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
 
       - name: Build Unity
         shell: powershell
         run: |
           $version = "${{ steps.unity_version.outputs.editor_version }}"
+          $gameVersion = "${{ steps.unity_version.outputs.bundle_version }}"
+
           $unity = "C:\Program Files\Unity\Hub\Editor\$version\Editor\Unity.exe"
 
           if (-not (Test-Path $unity)) {
             throw "Unity $version introuvable sur le runner : installe-la via le Hub"
           }
 
-          Remove-Item -Recurse -Force Build -ErrorAction SilentlyContinue
-          Remove-Item -Force build.log -ErrorAction SilentlyContinue
+          Remove-Item `
+            -Recurse `
+            -Force `
+            Build `
+            -ErrorAction SilentlyContinue
+
+          Remove-Item `
+            -Force `
+            build.log `
+            -ErrorAction SilentlyContinue
 
           $unityArgs = @(
             '-batchmode',
@@ -103,8 +129,9 @@ jobs:
             '-logFile', 'build.log'
           )
 
-          Write-Host "Unity $version -> $env:BUILD_TARGET"
-          Write-Host "Game version -> ${{ steps.unity_version.outputs.bundle_version }}"
+          Write-Host "Unity Editor : $version"
+          Write-Host "Game Version : $gameVersion"
+          Write-Host "Build Target : $env:BUILD_TARGET"
 
           $p = Start-Process `
             -FilePath $unity `
@@ -113,7 +140,10 @@ jobs:
             -PassThru `
             -NoNewWindow
 
-          Get-Content build.log -Tail 150 -ErrorAction SilentlyContinue
+          Get-Content `
+            build.log `
+            -Tail 150 `
+            -ErrorAction SilentlyContinue
 
           if ($p.ExitCode -ne 0) {
             throw "Build Unity échoué (code $($p.ExitCode)) - voir l'artefact build-log"
@@ -126,9 +156,16 @@ jobs:
           $version = "${{ steps.unity_version.outputs.bundle_version }}"
           $tag = "v$version"
 
+          if (-not (Test-Path "Build")) {
+            throw "Le dossier Build n'existe pas après le build Unity."
+          }
+
           $zip = "${{ github.event.repository.name }}-$env:BUILD_TARGET-$tag.zip"
 
-          Remove-Item -Force $zip -ErrorAction SilentlyContinue
+          Remove-Item `
+            -Force `
+            $zip `
+            -ErrorAction SilentlyContinue
 
           Add-Type -AssemblyName System.IO.Compression.FileSystem
 
@@ -137,13 +174,59 @@ jobs:
             "$PWD\$zip"
           )
 
+          Write-Host "========================================"
           Write-Host "Version : $version"
-          Write-Host "Tag : $tag"
-          Write-Host "ZIP : $zip"
+          Write-Host "Tag     : $tag"
+          Write-Host "ZIP     : $zip"
+          Write-Host "========================================"
 
-          "version=$version" | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "tag=$tag"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
-          "zip=$zip"       | Out-File -FilePath $env:GITHUB_OUTPUT -Append -Encoding utf8
+          "version=$version" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+          "tag=$tag" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+          "zip=$zip" | Out-File `
+            -FilePath $env:GITHUB_OUTPUT `
+            -Append `
+            -Encoding utf8
+
+      - name: Supprimer la release existante
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $tag = "${{ steps.package.outputs.tag }}"
+
+          Write-Host "Recherche de la release $tag..."
+
+          gh release view `
+            $tag `
+            --repo "${{ github.repository }}" *> $null
+
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "La release $tag existe déjà."
+            Write-Host "Suppression de la release et du tag..."
+
+            gh release delete `
+              $tag `
+              --repo "${{ github.repository }}" `
+              --yes `
+              --cleanup-tag
+
+            if ($LASTEXITCODE -ne 0) {
+              throw "Impossible de supprimer la release $tag."
+            }
+
+            Write-Host "Release $tag supprimée avec succès."
+          }
+          else {
+            Write-Host "Aucune release $tag existante."
+          }
 
       - name: Créer la release GitHub
         uses: softprops/action-gh-release@v2
