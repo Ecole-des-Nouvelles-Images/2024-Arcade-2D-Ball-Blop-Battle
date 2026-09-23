@@ -86,14 +86,12 @@ jobs:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
           butler -V
-          $channel = "${{ steps.rel.outputs.channel }}"
-          if ([string]::IsNullOrWhiteSpace($channel)) { $channel = "windows" }
-          $target = "$env:ITCH_USER/$env:ITCH_GAME`:$channel"
+          $target = "$env:ITCH_USER/$env:ITCH_GAME" + ":" + "${{ steps.rel.outputs.channel }}"
           Write-Host "Envoi vers $target"
           butler push "${{ steps.rel.outputs.zip }}" $target --userversion "${{ steps.rel.outputs.version }}"
           if ($LASTEXITCODE -ne 0) { throw "butler push a échoué (code $LASTEXITCODE)" }
           butler status "$env:ITCH_USER/$env:ITCH_GAME"
-          
+
       - name: Nettoyage
         if: always()
         shell: powershell
