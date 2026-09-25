@@ -9,11 +9,6 @@ on:
       - completed
 
   workflow_dispatch:
-    inputs:
-      tag:
-        description: "Tag de la release à publier (vide = version du projet Unity)"
-        required: false
-        default: ""
 
 permissions:
   contents: read
@@ -34,185 +29,43 @@ jobs:
     steps:
 
       # ============================================================
-      # CHECKOUT
+      # RÉCUPÉRER LA DERNIÈRE RELEASE
       # ============================================================
 
-      - name: Checkout du projet Unity
-        uses: actions/checkout@v4
-        with:
-          lfs: true
-          clean: false
-          fetch-depth: 1
-          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.ref }}
-
-      # ============================================================
-      # INFORMATIONS UNITY
-      # ============================================================
-
-      - name: Récupérer les informations du projet Unity
-        id: unity_info
-        shell: powershell
-        run: |
-          $projectSettingsFile = "ProjectSettings/ProjectSettings.asset"
-
-          if (-not (Test-Path $projectSettingsFile)) {
-            throw "Fichier $projectSettingsFile introuvable."
-          }
-
-          # ========================================================
-          # Product Name
-          # ========================================================
-
-          $productNameMatches = Select-String `
-            -Path $projectSettingsFile `
-            -Pattern '^\s*productName:\s*(.+)$'
-
-          if ($productNameMatches.Count -eq 0) {
-            throw "Impossible de récupérer productName depuis $projectSettingsFile."
-          }
-
-          $productName = $productNameMatches[0].Matches[0].Groups[1].Value.Trim()
-          $productName = $productName.Trim('"')
-
-          if ([string]::IsNullOrWhiteSpace($productName)) {
-            throw "Le Product Name Unity est vide."
-          }
-
-          # Nettoyage des caractères interdits Windows
-          $invalidCharacters = [System.IO.Path]::GetInvalidFileNameChars()
-
-          foreach ($character in $invalidCharacters) {
-            $productName = $productName.Replace($character, '_')
-          }
-
-          $productName = $productName.TrimEnd(' ', '.')
-
-          # ========================================================
-          # Bundle Version
-          # ========================================================
-
-          $bundleVersionMatches = Select-String `
-            -Path $projectSettingsFile `
-            -Pattern '^\s*bundleVersion:\s*(.+)$'
-
-          if ($bundleVersionMatches.Count -eq 0) {
-            throw "Impossible de récupérer bundleVersion depuis $projectSettingsFile."
-          }
-
-          $bundleVersion = $bundleVersionMatches[0].Matches[0].Groups[1].Value.Trim()
-          $bundleVersion = $bundleVersion.Trim('"')
-
-          if ([string]::IsNullOrWhiteSpace($bundleVersion)) {
-            throw "La Bundle Version Unity est vide."
-          }
-
-          # ========================================================
-          # Tag
-          # ========================================================
-
-          $inputTag = "${{ inputs.tag }}"
-
-          if (
-            "${{ github.event_name }}" -eq "workflow_dispatch" -and
-            -not [string]::IsNullOrWhiteSpace($inputTag)
-          ) {
-            $tag = $inputTag
-
-            if (-not $tag.StartsWith("v")) {
-              $tag = "v$tag"
-            }
-          }
-          else {
-            $tag = "v$bundleVersion"
-          }
-
-          Write-Host "========================================"
-          Write-Host "Product Name  : $productName"
-          Write-Host "Bundle Version: $bundleVersion"
-          Write-Host "Tag           : $tag"
-          Write-Host "========================================"
-
-          "product_name=$productName" | Out-File `
-            $env:GITHUB_OUTPUT `
-            -Append `
-            -Encoding utf8
-
-          "bundle_version=$bundleVersion" | Out-File `
-            $env:GITHUB_OUTPUT `
-            -Append `
-            -Encoding utf8
-
-          "tag=$tag" | Out-File `
-            $env:GITHUB_OUTPUT `
-            -Append `
-            -Encoding utf8
-
-      # ============================================================
-      # RÉCUPÉRER LA RELEASE
-      # ============================================================
-
-      - name: Récupérer la release GitHub
-        id: rel
+      - name: Récupérer le ZIP de la dernière release
+        id: release
         shell: powershell
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $repo = "${{ github.repository }}"
-          $tag = "${{ steps.unity_info.outputs.tag }}"
 
           $headers = @{
             Authorization = "Bearer $env:GITHUB_TOKEN"
-            Accept = "application/vnd.github+json"
+            Accept        = "application/vnd.github+json"
           }
 
           Write-Host "========================================"
-          Write-Host "Recherche de la release"
+          Write-Host "Recherche de la dernière release..."
           Write-Host "Repository : $repo"
-          Write-Host "Tag        : $tag"
           Write-Host "========================================"
 
-          # ========================================================
-          # Récupérer toutes les releases
-          #
-          # On utilise /releases plutôt que /releases/tags/$tag
-          # afin d'être plus robuste avec workflow_run.
-          # ========================================================
+          # Récupérer la dernière release publiée
+          $url = "https://api.github.com/repos/$repo/releases/latest"
 
-          $releasesUrl = "https://api.github.com/repos/$repo/releases?per_page=100"
-
-          $releases = Invoke-RestMethod `
-            -Uri $releasesUrl `
+          $release = Invoke-RestMethod `
+            -Uri $url `
             -Headers $headers
 
-          if ($null -eq $releases) {
-            throw "Impossible de récupérer les releases GitHub."
-          }
-
-          # ========================================================
-          # Chercher la release correspondant au tag
-          # ========================================================
-
-          $release = $releases |
-            Where-Object {
-              $_.tag_name -eq $tag
-            } |
-            Select-Object -First 1
-
           if ($null -eq $release) {
-            Write-Host "Releases disponibles :"
-
-            foreach ($availableRelease in $releases) {
-              Write-Host " - $($availableRelease.tag_name)"
-            }
-
-            throw "Aucune release trouvée pour le tag $tag."
+            throw "Impossible de récupérer la dernière release GitHub."
           }
 
           Write-Host "Release trouvée : $($release.tag_name)"
           Write-Host "Nom             : $($release.name)"
 
           # ========================================================
-          # Récupérer le ZIP
+          # Récupérer le premier ZIP de la release
           # ========================================================
 
           $asset = $release.assets |
@@ -225,10 +78,10 @@ jobs:
             throw "Aucun fichier ZIP trouvé dans la release $($release.tag_name)."
           }
 
-          Write-Host "Asset trouvé : $($asset.name)"
+          Write-Host "ZIP trouvé : $($asset.name)"
 
           # ========================================================
-          # Déterminer la plateforme
+          # Déterminer le channel itch.io
           # ========================================================
 
           $channel = switch -Wildcard ($asset.name) {
@@ -264,51 +117,17 @@ jobs:
           }
 
           # ========================================================
-          # Vérification du nom attendu
+          # Version
           # ========================================================
 
-          $productName = "${{ steps.unity_info.outputs.product_name }}"
-          $bundleVersion = "${{ steps.unity_info.outputs.bundle_version }}"
-
-          if ($asset.name -like "*StandaloneWindows64*") {
-            $buildTarget = "StandaloneWindows64"
-          }
-          elseif ($asset.name -like "*StandaloneLinux64*") {
-            $buildTarget = "StandaloneLinux64"
-          }
-          elseif ($asset.name -like "*StandaloneOSX*") {
-            $buildTarget = "StandaloneOSX"
-          }
-          elseif ($asset.name -like "*WebGL*") {
-            $buildTarget = "WebGL"
-          }
-          elseif ($asset.name -like "*Android*") {
-            $buildTarget = "Android"
-          }
-          else {
-            throw "Impossible de déterminer le Build Target."
-          }
-
-          $expectedZipName = "$productName-$buildTarget-v$bundleVersion.zip"
-
-          Write-Host "========================================"
-          Write-Host "ZIP de la release : $($asset.name)"
-          Write-Host "ZIP attendu       : $expectedZipName"
-          Write-Host "========================================"
-
-          if ($asset.name -ne $expectedZipName) {
-            Write-Warning "Le nom du ZIP GitHub ne correspond pas exactement au nom attendu."
-
-            Write-Warning "ZIP GitHub : $($asset.name)"
-            Write-Warning "Attendu    : $expectedZipName"
-
-            # On utilise volontairement le vrai nom du ZIP GitHub.
-            # Cela garantit que le fichier envoyé à itch.io est
-            # exactement celui de la release.
-          }
+          $version = $release.tag_name -replace '^v', ''
 
           # ========================================================
           # Télécharger le ZIP
+          #
+          # IMPORTANT :
+          # On utilise directement $asset.name.
+          # Aucun renommage n'est effectué.
           # ========================================================
 
           New-Item `
@@ -322,10 +141,10 @@ jobs:
 
           $downloadHeaders = @{
             Authorization = $headers.Authorization
-            Accept = "application/octet-stream"
+            Accept        = "application/octet-stream"
           }
 
-          Write-Host "Téléchargement de : $($asset.name)"
+          Write-Host "Téléchargement : $($asset.name)"
 
           Invoke-WebRequest `
             -Uri $asset.url `
@@ -342,10 +161,14 @@ jobs:
             throw "Le ZIP téléchargé est vide."
           }
 
-          # ========================================================
-          # Outputs
-          # ========================================================
+          Write-Host "========================================"
+          Write-Host "Release  : $($release.tag_name)"
+          Write-Host "ZIP      : $($asset.name)"
+          Write-Host "Channel  : $channel"
+          Write-Host "Version  : $version"
+          Write-Host "========================================"
 
+          # Outputs
           "zip=$zip" | Out-File `
             $env:GITHUB_OUTPUT `
             -Append `
@@ -361,13 +184,13 @@ jobs:
             -Append `
             -Encoding utf8
 
-          "version=$bundleVersion" | Out-File `
+          "version=$version" | Out-File `
             $env:GITHUB_OUTPUT `
             -Append `
             -Encoding utf8
 
       # ============================================================
-      # BUTLER
+      # INSTALLER BUTLER
       # ============================================================
 
       - name: Installer butler (si absent)
@@ -398,7 +221,7 @@ jobs:
             -Encoding utf8
 
       # ============================================================
-      # PUSH ITCH.IO
+      # PUBLICATION ITCH.IO
       # ============================================================
 
       - name: Push vers itch.io
@@ -406,22 +229,21 @@ jobs:
         env:
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-
           butler -V
 
-          $target = "$env:ITCH_USER/$env:ITCH_GAME" + ":" + "${{ steps.rel.outputs.channel }}"
+          $target = "$env:ITCH_USER/$env:ITCH_GAME:${{ steps.release.outputs.channel }}"
 
           Write-Host "========================================"
           Write-Host "Publication itch.io"
           Write-Host "Target  : $target"
-          Write-Host "ZIP     : ${{ steps.rel.outputs.zip_name }}"
-          Write-Host "Version : ${{ steps.rel.outputs.version }}"
+          Write-Host "ZIP     : ${{ steps.release.outputs.zip_name }}"
+          Write-Host "Version : ${{ steps.release.outputs.version }}"
           Write-Host "========================================"
 
           butler push `
-            "${{ steps.rel.outputs.zip }}" `
+            "${{ steps.release.outputs.zip }}" `
             "$target" `
-            --userversion "${{ steps.rel.outputs.version }}"
+            --userversion "${{ steps.release.outputs.version }}"
 
           if ($LASTEXITCODE -ne 0) {
             throw "butler push a échoué (code $LASTEXITCODE)"
