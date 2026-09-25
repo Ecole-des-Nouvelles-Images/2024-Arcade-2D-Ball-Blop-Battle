@@ -2,9 +2,9 @@
 name: Self-Hosted - Unity Build
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
   workflow_dispatch:
     inputs:
