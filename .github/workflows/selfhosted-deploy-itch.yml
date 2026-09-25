@@ -50,7 +50,6 @@ jobs:
           Write-Host "Repository : $repo"
           Write-Host "========================================"
 
-          # Récupérer la dernière release publiée
           $url = "https://api.github.com/repos/$repo/releases/latest"
 
           $release = Invoke-RestMethod `
@@ -65,7 +64,7 @@ jobs:
           Write-Host "Nom             : $($release.name)"
 
           # ========================================================
-          # Récupérer le premier ZIP de la release
+          # RÉCUPÉRER LE PREMIER ZIP
           # ========================================================
 
           $asset = $release.assets |
@@ -81,7 +80,7 @@ jobs:
           Write-Host "ZIP trouvé : $($asset.name)"
 
           # ========================================================
-          # Déterminer le channel itch.io
+          # DÉTERMINER LE CHANNEL ITCH.IO
           # ========================================================
 
           $channel = switch -Wildcard ($asset.name) {
@@ -117,17 +116,16 @@ jobs:
           }
 
           # ========================================================
-          # Version
+          # VERSION
           # ========================================================
 
           $version = $release.tag_name -replace '^v', ''
 
           # ========================================================
-          # Télécharger le ZIP
+          # TÉLÉCHARGER LE ZIP
           #
           # IMPORTANT :
-          # On utilise directement $asset.name.
-          # Aucun renommage n'est effectué.
+          # Le nom original du ZIP est conservé.
           # ========================================================
 
           New-Item `
@@ -231,10 +229,19 @@ jobs:
         run: |
           butler -V
 
-          $target = "$env:ITCH_USER/$env:ITCH_GAME:${{ steps.release.outputs.channel }}"
+          # Construire la target séparément pour éviter
+          # les problèmes d'interpolation PowerShell avec ":"
+          $itchUser = $env:ITCH_USER
+          $itchGame = $env:ITCH_GAME
+          $channel = "${{ steps.release.outputs.channel }}"
+
+          $target = "$itchUser/$itchGame" + ":" + $channel
 
           Write-Host "========================================"
           Write-Host "Publication itch.io"
+          Write-Host "User    : $itchUser"
+          Write-Host "Game    : $itchGame"
+          Write-Host "Channel : $channel"
           Write-Host "Target  : $target"
           Write-Host "ZIP     : ${{ steps.release.outputs.zip_name }}"
           Write-Host "Version : ${{ steps.release.outputs.version }}"
@@ -249,7 +256,7 @@ jobs:
             throw "butler push a échoué (code $LASTEXITCODE)"
           }
 
-          butler status "$env:ITCH_USER/$env:ITCH_GAME"
+          butler status "$itchUser/$itchGame"
 
       # ============================================================
       # NETTOYAGE
