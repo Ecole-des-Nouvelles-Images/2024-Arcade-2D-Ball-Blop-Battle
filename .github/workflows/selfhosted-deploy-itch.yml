@@ -1,9 +1,13 @@
 # À placer dans .github/workflows/itch-deploy.yml
-name: Deploy to itch.io
+name: Self-Hosted - Deploy to itch.io
 
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows:
+      - "Self-Hosted - Unity Build"
+    types:
+      - completed
+      
   workflow_dispatch:
     inputs:
       tag:
