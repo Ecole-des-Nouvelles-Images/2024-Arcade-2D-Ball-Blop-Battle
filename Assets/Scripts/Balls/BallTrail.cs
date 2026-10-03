@@ -7,15 +7,15 @@ namespace Balls
     public class BallTrail : MonoBehaviour
     {
         [Header("Settings")]
-        [SerializeField] private float _detectionRadius = 0.55f;
+        [SerializeField] private float _detectionRadius = 1.5f;
         [SerializeField] private LayerMask _playerLayer;
 
         private TrailRenderer _trailRenderer;
         private BlopType? _currentType;
-        
-        // On augmente la taille à 4 pour être sûr de capter le joueur 
+
+        // On augmente la taille à 8 pour être sûr de capter le joueur 
         // même s'il y a d'autres colliders (trigger, etc.) autour.
-        private readonly Collider2D[] _results = new Collider2D[4];
+        private readonly Collider2D[] _results = new Collider2D[8];
 
         private readonly Color _colorBlue = new(0.25f, 0.57f, 0.75f);
         private readonly Color _colorYellow = new(1f, 1f, 0f);

@@ -12,6 +12,13 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,8 +29,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50e5acd061cd4a73b7fc8eecbf07e915176600/00/0e009e10/Object.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/72/5ff32114/EventHandler.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerVFXPart.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/Blop.cs" root0="FORCE_HIGHLIGHTING" />

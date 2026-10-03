@@ -23,12 +23,12 @@ namespace SplashScreen
 
         private Sequence _mainSequence;
 
-        private void Start()
+        private void OnEnable()
         {
             SetupInitialState();
-            
+
             BuildAndPlaySequence();
-            
+
             AnimateLoadingText();
         }
 

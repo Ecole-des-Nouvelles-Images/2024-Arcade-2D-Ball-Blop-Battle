@@ -242,7 +242,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 38758626893824
-    m_Localized: Choisir l'Arene
+    m_Localized: "Choisir l'Ar\xE8ne"
     m_Metadata:
       m_Items: []
   - m_Id: 39464570200064

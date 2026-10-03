@@ -25,8 +25,11 @@ namespace Utils
         [Header("References")]
         [SerializeField] private Image _imageBackground;
         [SerializeField] private Image _imageLogo;
-        
+
         private Vector3 _startPos;
+        private Tween _backgroundFadeTween;
+        private Tween _logoMoveTween;
+        private Tween _logoRotateTween;
 
         private void Start()
         {
@@ -55,33 +58,35 @@ namespace Utils
 
         private IEnumerator AnimationCoroutine(string sceneName)
         {
-            _imageBackground.DOFade(1f, _durationFade).SetEase(_curveFade);
-            
+            _backgroundFadeTween = _imageBackground.DOFade(1f, _durationFade).SetEase(_curveFade);
+
             yield return new WaitForSeconds(_durationFade);
-            
+
             SceneManager.LoadSceneAsync(sceneName);
 
-            _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
+            _logoMoveTween = _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
                 .SetEase(_curveMove);
 
-            _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, _speedRotation), 1f, RotateMode.FastBeyond360)
+            _logoRotateTween = _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, _speedRotation), 1f, RotateMode.FastBeyond360)
                 .SetEase(Ease.Linear)
                 .SetLoops(-1, LoopType.Incremental);
-            
+
             yield return new WaitForSeconds(_durationMove);
-            
+
             ResetState();
         }
 
         private void ResetState()
         {
-            DOTween.KillAll();
-            
+            _backgroundFadeTween?.Kill();
+            _logoMoveTween?.Kill();
+            _logoRotateTween?.Kill();
+
             _imageLogo.rectTransform.rotation = Quaternion.identity;
             var color = _imageBackground.color;
             color.a = 0f;
             _imageBackground.color = color;
-            
+
             _imageLogo.rectTransform.position = _startPos;
         }
     }
