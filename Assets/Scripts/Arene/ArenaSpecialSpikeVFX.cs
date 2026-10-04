@@ -38,6 +38,15 @@ namespace Arene
             EventBus.OnFoul += DestroyBackground;
             EventBus.OnPlayerTouchedBall += PlayerTouchedBall;
         }
+        
+        private void OnDisable()
+        {
+            EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
+            EventBus.OnAbsorbedSpecialSpike -= AbsorbedSpecialSpike;
+            EventBus.OnPlayerScored -= PlayerScored;
+            EventBus.OnFoul -= DestroyBackground;
+            EventBus.OnPlayerTouchedBall -= PlayerTouchedBall;
+        }
 
         private void DestroyBackground()
         {
@@ -57,15 +66,6 @@ namespace Arene
             {
                 DestroyBackground();
             }
-        }
-
-        private void OnDisable()
-        {
-            EventBus.OnSpecialSpikeActivated -= SpecialSpikeActivated;
-            EventBus.OnAbsorbedSpecialSpike -= AbsorbedSpecialSpike;
-            EventBus.OnPlayerScored -= PlayerScored;
-            EventBus.OnFoul -= DestroyBackground;
-            EventBus.OnPlayerTouchedBall -= PlayerTouchedBall;
         }
 
         private void SpecialSpikeActivated(int playerId, BlopType blopType)
@@ -96,7 +96,7 @@ namespace Arene
             _currentBackgroundScroll.GetComponent<ArenaSpecialSpikeScroll>().Setup(blopType);
 
             if (_currentBackgroundImpact) Destroy(_currentBackgroundImpact);
-            if (_currentBackgroundBlop) Destroy(_currentBackgroundBlop);
+            // if (_currentBackgroundBlop) Destroy(_currentBackgroundBlop);
         }
 
         #endregion

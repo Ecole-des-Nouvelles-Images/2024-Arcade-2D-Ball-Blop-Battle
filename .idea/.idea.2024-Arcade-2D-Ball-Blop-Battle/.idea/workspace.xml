@@ -12,13 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/InGame/CanvasInGame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/InGame/CanvasInGame.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeBlop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeBlop.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/DisplayMatchInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/DisplayMatchInfo.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,61 +43,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000251341297264" />
-      <entry key="MS500" value="1.1332349457329212" />
-      <entry key="S2" value="2.420624496890226" />
-      <entry key="S5" value="3.9984720687132627" />
-      <entry key="S10" value="5.0814833758007145" />
-      <entry key="S30" value="6.397437272112861" />
-      <entry key="S60" value="7.811022405602412" />
-      <entry key="M2" value="10.580885999911933" />
-      <entry key="M5" value="17.017710370393658" />
-      <entry key="M10" value="24.0330186282096" />
-      <entry key="M15" value="28.328537183142828" />
-      <entry key="M30" value="34.63453560602177" />
-      <entry key="H1" value="39.123477918569854" />
-      <entry key="H2" value="42.07063825506531" />
-      <entry key="H4" value="43.867465425885406" />
-      <entry key="D1" value="45.6156416303279" />
-      <entry key="W1" value="45.94429289747697" />
+      <entry key="MS100" value="1.2243530448187483" />
+      <entry key="MS500" value="2.402761173969297" />
+      <entry key="S2" value="7.115967310797483" />
+      <entry key="S5" value="10.890322106746078" />
+      <entry key="S10" value="13.051290261797718" />
+      <entry key="S30" value="16.08678823593671" />
+      <entry key="S60" value="17.954361269280504" />
+      <entry key="M2" value="20.528099677464127" />
+      <entry key="M5" value="28.12394288991078" />
+      <entry key="M10" value="37.57789723366999" />
+      <entry key="M15" value="43.702869890545145" />
+      <entry key="M30" value="53.08795962106117" />
+      <entry key="H1" value="59.90873953897878" />
+      <entry key="H2" value="64.32013439343619" />
+      <entry key="H4" value="66.94922694981393" />
+      <entry key="D1" value="69.45571914783683" />
+      <entry key="W1" value="69.92126334152573" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="7.543981654582379E-65" />
-      <entry key="MS500" value="1.498029589010252E-13" />
-      <entry key="S2" value="6.395471481451679E-4" />
-      <entry key="S5" value="0.06467129293192297" />
-      <entry key="S10" value="0.3402837021758226" />
-      <entry key="S30" value="1.1476965260480225" />
-      <entry key="S60" value="1.7838998500540975" />
-      <entry key="M2" value="2.5614288702263903" />
-      <entry key="M5" value="4.022518034738487" />
-      <entry key="M10" value="5.571703749443695" />
-      <entry key="M15" value="6.522629374266296" />
-      <entry key="M30" value="7.909349802843551" />
-      <entry key="H1" value="8.843881052949559" />
-      <entry key="H2" value="9.390688436210576" />
-      <entry key="H4" value="9.687033445426717" />
-      <entry key="D1" value="9.946639619271462" />
-      <entry key="W1" value="9.99234711151244" />
+      <entry key="MS100" value="2.741750153580632E-96" />
+      <entry key="MS500" value="7.719791578973742E-20" />
+      <entry key="S2" value="1.6668687097483958E-5" />
+      <entry key="S5" value="0.012270351688704053" />
+      <entry key="S10" value="0.11241002674814275" />
+      <entry key="S30" value="0.5986952844971234" />
+      <entry key="S60" value="1.0664713512832744" />
+      <entry key="M2" value="1.7805551125041907" />
+      <entry key="M5" value="3.7366263607782364" />
+      <entry key="M10" value="6.002437062909813" />
+      <entry key="M15" value="7.432641806389052" />
+      <entry key="M30" value="9.586745905479786" />
+      <entry key="H1" value="11.087753813558383" />
+      <entry key="H2" value="11.984617773242801" />
+      <entry key="H4" value="12.47636710880442" />
+      <entry key="D1" value="12.910410372586096" />
+      <entry key="W1" value="12.98714332434844" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.21464893589211914" />
-      <entry key="MS500" value="0.8411219481437578" />
-      <entry key="S2" value="2.224760316505851" />
-      <entry key="S5" value="3.85559244510657" />
-      <entry key="S10" value="5.181720955963823" />
-      <entry key="S30" value="7.339781056619423" />
-      <entry key="S60" value="9.442208308603458" />
-      <entry key="M2" value="13.037711088628075" />
-      <entry key="M5" value="20.97955795564297" />
-      <entry key="M10" value="29.566061988498266" />
-      <entry key="M15" value="34.82230315155358" />
-      <entry key="M30" value="42.527309831821746" />
-      <entry key="H1" value="47.958351453536174" />
-      <entry key="H2" value="51.45659993155497" />
-      <entry key="H4" value="53.55207048636127" />
-      <entry key="D1" value="55.56186633012706" />
-      <entry key="W1" value="55.93658046636456" />
+      <entry key="MS100" value="0.4068311454328103" />
+      <entry key="MS500" value="1.9481894377737132" />
+      <entry key="S2" value="6.702987526688906" />
+      <entry key="S5" value="10.282059872769516" />
+      <entry key="S10" value="12.520629921312192" />
+      <entry key="S30" value="16.257463733401" />
+      <entry key="S60" value="18.74335546106938" />
+      <entry key="M2" value="22.131958713911718" />
+      <entry key="M5" value="31.755370696926384" />
+      <entry key="M10" value="43.51111694866124" />
+      <entry key="M15" value="51.083188106335406" />
+      <entry key="M30" value="62.644256377653925" />
+      <entry key="H1" value="70.97984495450392" />
+      <entry key="H2" value="76.29600001394964" />
+      <entry key="H4" value="79.42109725259556" />
+      <entry key="D1" value="82.36536167378733" />
+      <entry key="W1" value="82.90829649794354" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -209,6 +206,7 @@
       <workItem from="1777230328372" duration="4306000" />
       <workItem from="1777290056095" duration="379000" />
       <workItem from="1777479710019" duration="3182000" />
+      <workItem from="1791117310981" duration="2482000" />
     </task>
     <servers />
   </component>

@@ -67,7 +67,7 @@ namespace Arene
 
         private void FadeOut()
         {
-            _spBlop.DOFade(0f, _durationMovement * 0.1f).SetEase(_animationFadeCurve);
+            _spBlop.DOFade(0f, _durationMovement * 0.2f).SetEase(_animationFadeCurve);
         }
     }
 }

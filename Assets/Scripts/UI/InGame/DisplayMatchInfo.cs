@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using Managers;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,11 @@ namespace UI.InGame
         [SerializeField] private TextMeshProUGUI _timer;
         [SerializeField] private Transform _containerSetsPlayerOne;
         [SerializeField] private Transform _containerSetsPlayerTwo;
+
+        [Header("===== ANIMATION =====")]
+        [SerializeField] private float _scaleFactor = 1.5f;
+        [SerializeField] private AnimationCurve _scoreAnimationCurve;
+        [SerializeField] private float _scoreAnimationDuration = 0.5f;
         
         [Header("===== PREFABS =====")]
         [SerializeField] private GameObject _prefabImageSet;
@@ -63,11 +69,15 @@ namespace UI.InGame
             // ANIMATION Grossissement
             if (scoringPlayerId == 1)
             {
-                
+                _scorePlayerOne.rectTransform.DOScale(Vector2.one * _scaleFactor, _scoreAnimationDuration)
+                    .SetEase(_scoreAnimationCurve)
+                    .SetLoops(2, LoopType.Yoyo);
             }
             else if (scoringPlayerId == 2)
             {
-                
+                _scorePlayerTwo.rectTransform.DOScale(Vector2.one * _scaleFactor, _scoreAnimationDuration)
+                    .SetEase(_scoreAnimationCurve)
+                    .SetLoops(2, LoopType.Yoyo);
             }
         }
         
