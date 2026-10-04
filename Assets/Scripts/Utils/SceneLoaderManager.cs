@@ -62,7 +62,12 @@ namespace Utils
 
             yield return new WaitForSeconds(_durationFade);
 
-            SceneManager.LoadSceneAsync(sceneName);
+            AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+            while (!asyncLoad.isDone)
+            {
+                yield return null;
+            }
 
             _logoMoveTween = _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
                 .SetEase(_curveMove);
