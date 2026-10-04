@@ -1,3 +1,4 @@
+using System.Linq;
 using DG.Tweening;
 using Managers;
 using Player.ScriptableObjects;
@@ -142,13 +143,22 @@ namespace SelectionBlop
         {
             if (_playerInput.actions["UI/Submit"].triggered)
             {
+                int playerId = IsPlayerOne ? 1 : 2;
+                int deviceId = _playerInput.devices[0].deviceId;
+                
+                // Vérifier si le joueur a déjà sélectionné un blop
+                if (GameManager.Instance.Players.Any(p => p.PlayerId == playerId))
+                {
+                    return;
+                }
+                
                 if (IsPlayerOne)
                 {
-                    GameManager.Instance.Players.Add(new PlayerData(1, _playerInput.devices[0].deviceId, blop));
+                    GameManager.Instance.Players.Add(new PlayerData(1, deviceId, blop));
                 }
                 else
                 {
-                    GameManager.Instance.Players.Add(new PlayerData(2, _playerInput.devices[0].deviceId, blop));
+                    GameManager.Instance.Players.Add(new PlayerData(2, deviceId, blop));
                 }
                 
                 _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBounce);

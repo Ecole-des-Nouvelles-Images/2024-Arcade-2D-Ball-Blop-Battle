@@ -7,7 +7,7 @@ namespace UI.Menu
     {
         public void ChangeScene(string sceneName)
         {
-            SceneLoaderManager.Instance.LoadScene(sceneName);
+            SceneLoaderManager.Instance.LoadSceneAnimation(sceneName);
         }
 
         public void QuitGame()
