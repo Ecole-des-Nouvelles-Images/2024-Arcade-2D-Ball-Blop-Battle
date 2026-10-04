@@ -86,12 +86,18 @@ namespace Balls
 
             if (other.gameObject.CompareTag("PlayerOneGround"))
             {
-                MatchManager.Instance.Foul(1);
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.Foul(1);
+                }
                 IsDestroy();
             }
             else if (other.gameObject.CompareTag("PlayerTwoGround"))
             {
-                MatchManager.Instance.Foul(2);
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.Foul(2);
+                }
                 IsDestroy();
             }
             
@@ -105,11 +111,17 @@ namespace Balls
             
             if (other.gameObject.CompareTag("PlayerOneSide"))
             {
-                MatchManager.Instance.BallSide = 1;
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.BallSide = 1;
+                }
             }
             else if (other.gameObject.CompareTag("PlayerTwoSide"))
             {
-                MatchManager.Instance.BallSide = 2;
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.BallSide = 2;
+                }
             }
         }
 
@@ -191,7 +203,10 @@ namespace Balls
 
         private void IsDestroy()
         {
-            MatchManager.Instance.BallSide = 0;
+            if (MatchManager.Instance != null)
+            {
+                MatchManager.Instance.BallSide = 0;
+            }
             
             Destroy(gameObject);
         }

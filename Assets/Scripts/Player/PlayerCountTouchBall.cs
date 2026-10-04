@@ -105,7 +105,10 @@ namespace Player
 
                 if (CurrentTouchCount >= _maxTouchCount)
                 {
-                    MatchManager.Instance.Foul(playerController.PlayerId);
+                    if (MatchManager.Instance != null)
+                    {
+                        MatchManager.Instance.Foul(playerController.PlayerId);
+                    }
                     ResetTouchCount();
                 }
 

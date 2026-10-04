@@ -46,8 +46,11 @@ namespace Managers
 
         private void Start()
         {
-            _setCountToWinAMatch = GameManager.Instance.SetCountToWinAMatch;
-            _setDuration = GameManager.Instance.SetDuration;
+            if (GameManager.Instance != null)
+            {
+                _setCountToWinAMatch = GameManager.Instance.SetCountToWinAMatch;
+                _setDuration = GameManager.Instance.SetDuration;
+            }
             TimerHandler.Setup(_setDuration);
             
             if (_commitmentCoroutine != null) return;

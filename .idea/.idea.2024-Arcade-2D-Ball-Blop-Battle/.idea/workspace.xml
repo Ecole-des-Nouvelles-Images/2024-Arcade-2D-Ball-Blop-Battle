@@ -12,10 +12,15 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/InGame/CanvasInGame.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/InGame/CanvasInGame.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeBlop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeBlop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/ArenaSpecialSpikeVFX.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/DisplayMatchInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/InGame/DisplayMatchInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Arene/BlopEyesFollowBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Arene/BlopEyesFollowBall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallVFXPart.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallVFXPart.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Celebrations/CelebrationSetHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Celebrations/CelebrationSetHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InputSystem/PlayerSpawnHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InputSystem/PlayerSpawnHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Laser/LaserHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Laser/LaserHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/MatchManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/MatchManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCountTouchBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCountTouchBall.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -206,7 +211,7 @@
       <workItem from="1777230328372" duration="4306000" />
       <workItem from="1777290056095" duration="379000" />
       <workItem from="1777479710019" duration="3182000" />
-      <workItem from="1791117310981" duration="2482000" />
+      <workItem from="1791117310981" duration="3419000" />
     </task>
     <servers />
   </component>

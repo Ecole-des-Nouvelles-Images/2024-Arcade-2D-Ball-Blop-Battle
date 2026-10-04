@@ -24,6 +24,9 @@ namespace Celebrations
         [SerializeField] private Sprite _firstSprite;
         [SerializeField] private Sprite _secondSprite;
         [SerializeField] private float _interval;
+
+        private Coroutine _spriteSwitchCoroutine;
+        private bool _isDestroyed = false;
         
         private void Awake()
         {
@@ -32,7 +35,7 @@ namespace Celebrations
 
         private void Start()
         {
-            StartCoroutine(Coroutine());
+            _spriteSwitchCoroutine = StartCoroutine(Coroutine());
         }
 
         public void SetUp(bool playerOneWinSet, float score)
@@ -68,7 +71,7 @@ namespace Celebrations
         
         private IEnumerator Coroutine()
         {
-            while (true)
+            while (!_isDestroyed)
             {
                 if (_spriteRenderer.sprite == _firstSprite)
                 {
@@ -79,6 +82,15 @@ namespace Celebrations
                     _spriteRenderer.sprite = _firstSprite;
                 }
                 yield return new WaitForSeconds(_interval);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            _isDestroyed = true;
+            if (_spriteSwitchCoroutine != null)
+            {
+                StopCoroutine(_spriteSwitchCoroutine);
             }
         }
     }

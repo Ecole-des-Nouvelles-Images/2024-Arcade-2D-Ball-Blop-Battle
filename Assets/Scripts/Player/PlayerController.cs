@@ -127,7 +127,10 @@ namespace Player
             // FOUL
             if (_hasTheBall && _isGrounded)
             {
-                MatchManager.Instance.Foul(PlayerId);
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.Foul(PlayerId);
+                }
                 _hasTheBall = false;
                 _isAbsorbing = false;
             }
@@ -318,7 +321,7 @@ namespace Player
             // Debug.Log(buttonValue);
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (_canSpecialSpike && PlayerId == MatchManager.Instance.BallSide)
+                if (_canSpecialSpike && MatchManager.Instance != null && PlayerId == MatchManager.Instance.BallSide)
                 {
                     _isSpecialSpike = true;
                     _perfectReceptionCount = 0;
@@ -408,7 +411,7 @@ namespace Player
             
             if (Mathf.Approximately(buttonValue, 1))
             {
-                if (!GameManager.IsGamePaused)
+                if (GameManager.Instance != null && !GameManager.IsGamePaused)
                 {
                     EventBus.OnGamePaused?.Invoke();
                 }

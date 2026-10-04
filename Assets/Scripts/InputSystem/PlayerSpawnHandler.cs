@@ -27,7 +27,7 @@ namespace InputSystem
             _playerOneController = _playerOne.GetComponent<PlayerController>();
             _playerTwoController = _playerTwo.GetComponent<PlayerController>();
 
-            if (GameManager.Instance.Players.Count > 0)
+            if (GameManager.Instance != null && GameManager.Instance.Players.Count > 0)
             {
                 foreach (var gamepad in Gamepad.all)
                 {

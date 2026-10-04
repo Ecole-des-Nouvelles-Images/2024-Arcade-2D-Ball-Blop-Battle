@@ -13,6 +13,7 @@ namespace Balls
         [SerializeField] private GameObject _psImpact;
 
         private float _spawnTime;
+        private readonly Collider2D[] _results = new Collider2D[8];
 
         private void Awake()
         {
@@ -33,16 +34,17 @@ namespace Balls
         {
             if (Time.time < _spawnTime + _delayDetection) return;
             
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, 0.55f);
+            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, 0.55f, _results);
 
-            foreach (var hit in hits)
+            for (int i = 0; i < hitCount; i++)
             {
-                if (hit.CompareTag("Player") || hit.CompareTag("Wall") || hit.CompareTag("Selling") 
-                    || hit.CompareTag("PlayerOneGround") || hit.CompareTag("PlayerTwoGround"))
+                if (_results[i].CompareTag("Player") || _results[i].CompareTag("Wall") || _results[i].CompareTag("Selling") 
+                    || _results[i].CompareTag("PlayerOneGround") || _results[i].CompareTag("PlayerTwoGround"))
                 {
                     Instantiate(_psImpact, transform.position, Quaternion.identity);
                     
                     _spawnTime = Time.time;
+                    break;
                 }
             }
         }

@@ -24,7 +24,10 @@ namespace Laser
                 hitPlayer.collider.gameObject.SetActive(false);
                 PlayerController playerController = hitPlayer.transform.gameObject.GetComponent<PlayerController>();
                 playerController.Die();
-                MatchManager.Instance.Foul(playerController.PlayerId);
+                if (MatchManager.Instance != null)
+                {
+                    MatchManager.Instance.Foul(playerController.PlayerId);
+                }
                 
                 // PS
                 _psLaser.Play();

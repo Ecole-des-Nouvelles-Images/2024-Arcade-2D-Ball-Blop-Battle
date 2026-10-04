@@ -12,22 +12,35 @@ namespace Arene
         [SerializeField] private Vector3 _rightPosition;
         [SerializeField] private float _animationTime;
         [SerializeField] private AnimationCurve _animationCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
-        
+
+        private Tween _moveTween;
+        private int _lastBallSide = -1;
 
         private void Update()
         {
-            if (MatchManager.Instance.BallSide == 1)
+            if (MatchManager.Instance == null) return;
+            
+            int currentBallSide = MatchManager.Instance.BallSide;
+            
+            if (currentBallSide != _lastBallSide)
             {
-                transform.DOMove(_leftPosition, _animationTime).SetEase(_animationCurve);
+                _moveTween?.Kill();
+                
+                Vector3 targetPos = currentBallSide switch
+                {
+                    1 => _leftPosition,
+                    2 => _rightPosition,
+                    _ => _basePosition
+                };
+                
+                _moveTween = transform.DOMove(targetPos, _animationTime).SetEase(_animationCurve);
+                _lastBallSide = currentBallSide;
             }
-            else if (MatchManager.Instance.BallSide == 2)
-            {
-                transform.DOMove(_rightPosition, _animationTime).SetEase(_animationCurve);
-            }
-            else if (MatchManager.Instance.BallSide == 0)
-            {
-                transform.DOMove(_basePosition, _animationTime).SetEase(_animationCurve);
-            }
+        }
+
+        private void OnDestroy()
+        {
+            _moveTween?.Kill();
         }
     }
 }
