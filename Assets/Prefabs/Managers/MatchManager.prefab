@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8282d836e5414f468b0711e878313d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isDontDestroyOnLoad: 0
   BallSide: 0
   _setDuration: 45
   _setCountToWinAMatch: 3

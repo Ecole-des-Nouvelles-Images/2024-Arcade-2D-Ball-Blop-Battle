@@ -7,7 +7,7 @@ using Utils.Singletons;
 
 namespace Utils
 {
-    public class SceneLoaderManager : MonoBehaviourSingletonDontDestroyOnLoad<SceneLoaderManager>
+    public class SceneLoaderManager : MonoBehaviourSingleton<SceneLoaderManager>
     {
         [Header("Loading Settings")]
         [SerializeField] private float _durationLoading = 1f;

@@ -7,7 +7,7 @@ using Utils.Singletons;
 
 namespace Managers
 {
-    public class GameManager : MonoBehaviourSingletonDontDestroyOnLoad<GameManager>
+    public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         [Header("===== SETTINGS =====")]
         public List<PlayerData> Players = new();

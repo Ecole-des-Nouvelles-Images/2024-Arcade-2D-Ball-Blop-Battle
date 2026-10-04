@@ -4,7 +4,7 @@ using Utils.Singletons;
 
 namespace Sounds
 {
-    public class AudioStock : MonoBehaviourSingletonDontDestroyOnLoad<AudioStock>
+    public class AudioStock : MonoBehaviourSingleton<AudioStock>
     {
         [Header("Ball")]
         public List<AudioClip> BallClips;
