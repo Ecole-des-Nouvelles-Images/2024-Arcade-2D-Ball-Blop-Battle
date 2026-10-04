@@ -65,6 +65,14 @@ namespace Managers
             EventBus.OnPlayerCommitment += PlayerCommitment;
             EventBus.OnTimerSetIsOver += SetIsOver;
         }
+        
+        private void OnDisable()
+        {
+            EventBus.OnPlayerScored -= PlayerScored;
+            EventBus.OnPlayerCommitment -= PlayerCommitment;
+            EventBus.OnTimerSetIsOver -= SetIsOver;
+
+        }
 
         private void PlayerScored(int scoringPlayerId)
         {
@@ -127,14 +135,6 @@ namespace Managers
         private void SetIsOver()
         {
             _isSetOver = true;
-        }
-        
-        private void OnDisable()
-        {
-            EventBus.OnPlayerScored -= PlayerScored;
-            EventBus.OnPlayerCommitment -= PlayerCommitment;
-            EventBus.OnTimerSetIsOver -= SetIsOver;
-
         }
 
         #endregion

@@ -26,23 +26,30 @@ namespace UI.InGame
         
         private void SetIsOver(float delay)
         {
-            StartCoroutine(DisplayCoroutine(delay));
+            StartCoroutine(CoroutineDisplaySetOver(delay));
         }
         
         private void MatchOver(int obj)
         {
-            _panelMatchOver.SetActive(true);
+            StartCoroutine(CoroutineDisplayMatchOver(3f));
         }
 
         #endregion
 
-        private IEnumerator DisplayCoroutine(float delay)
+        private IEnumerator CoroutineDisplaySetOver(float delay)
         {
             _panelNewSet.SetActive(true);
             
             yield return new WaitForSeconds(delay * 0.8f);
             
             _panelNewSet.SetActive(false);
+        }
+        
+        private IEnumerator CoroutineDisplayMatchOver(float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            
+            _panelMatchOver.SetActive(true);
         }
     }
 }

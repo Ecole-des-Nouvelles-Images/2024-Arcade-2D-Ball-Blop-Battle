@@ -16,6 +16,10 @@ namespace UI.InGame
         [SerializeField] private TextMeshProUGUI _timer;
         [SerializeField] private Transform _containerSetsPlayerOne;
         [SerializeField] private Transform _containerSetsPlayerTwo;
+        [Header("== PANEL FOULS ==")]
+        [SerializeField] private GameObject _scoredPlayerOne;
+        [SerializeField] private GameObject _scoredPlayerTwo;
+        
 
         [Header("===== ANIMATION =====")]
         [SerializeField] private float _scaleFactor = 1.5f;
@@ -64,20 +68,35 @@ namespace UI.InGame
             EventBus.OnSetChangement += SetChangement;
         }
 
+        private void OnDisable()
+        {
+            EventBus.OnPlayerScored -= PlayerScored;
+            EventBus.OnSetChangement -= SetChangement;
+        }
+
         private void PlayerScored(int scoringPlayerId)
         {
-            // ANIMATION Grossissement
             if (scoringPlayerId == 1)
             {
                 _scorePlayerOne.rectTransform.DOScale(Vector2.one * _scaleFactor, _scoreAnimationDuration)
                     .SetEase(_scoreAnimationCurve)
                     .SetLoops(2, LoopType.Yoyo);
+                
+                _scoredPlayerOne.SetActive(true);
+                _scoredPlayerOne.transform.DOScale(1, 0.3f).SetEase(Ease.OutBack);
+                _scoredPlayerOne.transform.DOScale(0, 0.3f).SetDelay(2f).OnComplete(() => 
+                    _scoredPlayerOne.SetActive(false));
             }
             else if (scoringPlayerId == 2)
             {
                 _scorePlayerTwo.rectTransform.DOScale(Vector2.one * _scaleFactor, _scoreAnimationDuration)
                     .SetEase(_scoreAnimationCurve)
                     .SetLoops(2, LoopType.Yoyo);
+                
+                _scoredPlayerTwo.SetActive(true);
+                _scoredPlayerTwo.transform.DOScale(1, 0.3f).SetEase(Ease.OutBack);
+                _scoredPlayerTwo.transform.DOScale(0, 0.3f).SetDelay(2f).OnComplete(() => 
+                    _scoredPlayerTwo.SetActive(false));
             }
         }
         
@@ -97,12 +116,6 @@ namespace UI.InGame
                     _setsPlayerTwo[i].color = Color.green;
                 }
             }
-        }
-        
-        private void OnDisable()
-        {
-            EventBus.OnPlayerScored -= PlayerScored;
-            EventBus.OnSetChangement -= SetChangement;
         }
 
         #endregion
