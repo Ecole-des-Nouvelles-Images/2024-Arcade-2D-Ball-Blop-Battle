@@ -23,7 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Arenas/LabArena.unity
     guid: 1f7fdd35de0069041b1ae562fd739831
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Arenas/RecyclingCenterArena.unity
     guid: c191ba7102d21aa4fafc01c1e0293665
   m_configObjects:
