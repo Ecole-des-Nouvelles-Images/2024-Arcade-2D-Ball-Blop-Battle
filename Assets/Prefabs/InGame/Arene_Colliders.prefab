@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 4790491954359477353}
   - component: {fileID: 4241382676685440125}
   m_Layer: 0
-  m_Name: Selling
+  m_Name: Ceiling
   m_TagString: Selling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

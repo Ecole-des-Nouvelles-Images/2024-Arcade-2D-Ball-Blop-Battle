@@ -8,7 +8,7 @@ namespace Player.ScriptableObjects
     {
         // Ball Components
         private PlayerController _playerController;
-        private BallController _ballHandler;
+        private MatchBallController _matchBallHandler;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
@@ -16,16 +16,16 @@ namespace Player.ScriptableObjects
             
             // Get Components
             _playerController = player.GetComponent<PlayerController>();
-            _ballHandler = ball.GetComponent<BallController>();
+            _matchBallHandler = ball.GetComponent<MatchBallController>();
             
             // Special Spike
             if (direction == Vector2.zero)
             {
-                _ballHandler.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
+                _matchBallHandler.DrawnSpecialSpike(Vector2.up, SpeedSpecialSpike);
             }
             else
             {
-                _ballHandler.DrawnSpecialSpike(direction, SpeedSpecialSpike);
+                _matchBallHandler.DrawnSpecialSpike(direction, SpeedSpecialSpike);
             }
             
             Instantiate(BallSpecialSpike, ball.transform.position, ball.transform.rotation, ball.transform);

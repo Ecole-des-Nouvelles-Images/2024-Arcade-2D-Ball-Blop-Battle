@@ -245,6 +245,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61249583f03f77e42976a81421aa4ab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rb2d: {fileID: 8752394035109270788}
+  _col2D: {fileID: 3045336366238888851}
+  _speedDrawn: 2.3
+  _speedPunch: 0.03
+  _speedPerfectReception: 1
+  _speedDashReception: 0.7
+  _speedSpecialSpikeActivation: 0.3
+  _maxSpeed: 50
+  _rotationFactor: 10
+  _maxRotationSpeed: 20
+  _isAbsorbed: 0
 --- !u!58 &3045336366238888851
 CircleCollider2D:
   m_ObjectHideFlags: 0

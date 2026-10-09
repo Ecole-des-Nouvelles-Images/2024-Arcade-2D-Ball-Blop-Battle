@@ -9,7 +9,7 @@ namespace Player.ScriptableObjects
     {
         // Ball Components
         private PlayerController _playerController;
-        private BallController _ballHandler;
+        private MatchBallController _matchBallHandler;
         
         public override void SpecialSpike(GameObject player, GameObject ball, Vector2 direction)
         {
@@ -17,12 +17,12 @@ namespace Player.ScriptableObjects
             
             // Get Components
             _playerController = player.GetComponent<PlayerController>();
-            _ballHandler = ball.GetComponent<BallController>();
+            _matchBallHandler = ball.GetComponent<MatchBallController>();
             
             GameObject playerSpecialSpike = Instantiate(PlayerSpecialSpike, player.transform.position, 
                 player.transform.rotation, player.transform);
             
-            playerSpecialSpike.GetComponent<PlayerSpecialSpikeRed>().Setup(_playerController, _ballHandler, 
+            playerSpecialSpike.GetComponent<PlayerSpecialSpikeRed>().Setup(_playerController, _matchBallHandler, 
                 direction, SpeedSpecialSpike);
         }
     }

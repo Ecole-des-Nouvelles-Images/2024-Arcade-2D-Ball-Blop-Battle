@@ -3,6 +3,7 @@ using Player;
 using Player.ScriptableObjects;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using Utils;
 
 namespace SpecialSpikes
@@ -12,8 +13,9 @@ namespace SpecialSpikes
         [Header("References")]
         [SerializeField] private GameObject _fakeBall;
         
+        [FormerlySerializedAs("_ballController")]
         [Header("Debug")]
-        [SerializeField] private BallController _ballController;
+        [SerializeField] private MatchBallController matchBallController;
         [SerializeField] private Vector2 _direction;
         [SerializeField] private float _speed;
         [SerializeField] private PlayerController _playerController;
@@ -22,10 +24,10 @@ namespace SpecialSpikes
         private int _winningIndex;
         private int _drawnBallCount;
         
-        public void Setup(PlayerController playerController, BallController ballController, Vector2 direction, float speed)
+        public void Setup(PlayerController playerController, MatchBallController matchBallController, Vector2 direction, float speed)
         {
             _playerController = playerController;
-            _ballController = ballController;
+            this.matchBallController = matchBallController;
             _direction = direction;
             _speed = speed;
             _playerInput = GetComponentInParent<PlayerInputHandler>().PlayerInput;
@@ -64,7 +66,7 @@ namespace SpecialSpikes
 
             if (_drawnBallCount == _winningIndex)
             {
-                _ballController.DrawnSpecialSpike(shootDirection, _speed);
+                matchBallController.DrawnSpecialSpike(shootDirection, _speed);
                 Debug.Log("Vrai ballon tiré !");
             }
             else

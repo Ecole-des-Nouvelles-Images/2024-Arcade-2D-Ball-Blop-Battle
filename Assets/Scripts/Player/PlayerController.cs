@@ -53,8 +53,7 @@ namespace Player
         private float _perfectReceptionTimeRemaining;
         private float _perfectReceptionCooldownRemaining;
         
-        // BALL
-        private BallController _ballController;
+        private IBall _ball;
 
         public void SetUp(Blop blop, int playerId)
         {
@@ -77,7 +76,6 @@ namespace Player
 
         public void Die()
         {
-            // RESET
             gameObject.SetActive(false);
             _move = Vector2.zero;
             _hasTheBall = false;
@@ -191,7 +189,7 @@ namespace Player
 
                     if (_move.y <= -0.5f)
                     {
-                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y - _blop.DownwardsForce);
+                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y * _blop.DownwardsForce);
                     }
                     else
                     {
@@ -209,37 +207,34 @@ namespace Player
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.CompareTag("Ball"))
+            if (other.gameObject.CompareTag("Ball") && other.gameObject.TryGetComponent<IBall>(out _ball))
             {
-                _ballController = other.gameObject.GetComponent<BallController>();
-                
                 if (_isPerfectReception)
                 {
-                    _ballController.PerfectReception();
+                    _ball.PerfectReception();
                     _perfectReceptionCount = Mathf.Clamp(_perfectReceptionCount + 1, 0, 3);
                     
                     EventBus.OnPlayerPerfectReception?.Invoke(PlayerId, _perfectReceptionCount);
-                    
                     PlayerEvents.PerfectReception(_blop);
                 }
                 else if (_isDashing)
                 {
-                    _ballController.DashReception();
+                    _ball.DashReception();
                 }
                 else if (_isAbsorbing)
                 {
                     _hasTheBall = true;
-                    _ballController.Absorb(transform);
+                    _ball.Absorb(transform);
                     
-                    PlayerEvents.Absorb(_blop, _ballController.transform);
+                    PlayerEvents.Absorb(_blop, _ball.transform);
                 }
                 else if (_isSpecialSpike)
                 {
                     _hasTheBall = true;
                     _rb2d.constraints = RigidbodyConstraints2D.FreezeAll;
-                    _ballController.Absorb(transform);
+                    _ball.Absorb(transform);
                     
-                    PlayerEvents.AbsorbSpecialSpike(_blop, _ballController.transform);
+                    PlayerEvents.AbsorbSpecialSpike(_blop, _ball.transform);
                     EventBus.OnAbsorbedSpecialSpike?.Invoke(PlayerId, _blop.BlopType);
                 }
                 else
@@ -255,8 +250,6 @@ namespace Player
 
         public void GetJoystickReadValue(Vector2 move)
         {
-            // Debug.Log(move);
-            
             if (_canMove)
             {
                 _move = move;
@@ -265,7 +258,6 @@ namespace Player
         
         public void GetWestButtonReadValue(float buttonValue)
         {
-            // Debug.Log(buttonValue);
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (!_isDashing && _isGrounded && _dashCooldownRemaining <= 0
@@ -274,7 +266,6 @@ namespace Player
                     _isDashing = true;
                     _dashTimeRemaining = _blop.DashDuration;
                     _dashCooldownRemaining = _blop.DashCooldown;
-                
                     _canMove = false;
                     
                     PlayerEvents.Dash(_blop);
@@ -290,7 +281,6 @@ namespace Player
                 if (!_isGrounded && !_isWalledLeft && !_isWalledRight && !_hasTheBall)
                 {
                     _isAbsorbing = true;
-                    
                     PlayerEvents.CanAbsorb(_blop);
                 }
             }
@@ -300,17 +290,15 @@ namespace Player
                 
                 if (_hasTheBall)
                 {
-                    if (_ballController)
+                    if (_ball != null)
                     {
-                        _ballController.Drawn(_move);
-                        
-                        PlayerEvents.Drawn(_blop, _ballController.transform);
+                        _ball.Drawn(_move);
+                        PlayerEvents.Drawn(_blop, _ball.transform);
                     }
                     
                     _hasTheBall = false;
-                    _ballController = null;
+                    _ball = null;
                     
-                    // ANIMATOR
                     _animator.SetTrigger("DrawnBall");
                 }
             }
@@ -318,7 +306,6 @@ namespace Player
 
         public void GetEastButtonReadValue(float buttonValue)
         {
-            // Debug.Log(buttonValue);
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (_canSpecialSpike && MatchManager.Instance != null && PlayerId == MatchManager.Instance.BallSide)
@@ -334,11 +321,12 @@ namespace Player
 
                 if (_isSpecialSpike && _hasTheBall)
                 {
-                    if (_ballController)
+                    if (_ball != null)
                     {
                         Debug.Log("SPECIAL SPIKE");
-                        _blop.SpecialSpike(gameObject, _ballController.gameObject, _move);
-                        _ballController = null;
+                        // On passe par un cast ou on appelle la méthode de l'interface adaptée
+                        _blop.SpecialSpike(gameObject, _ball.gameObject, _move);
+                        _ball = null;
                         
                         PlayerEvents.ShootSpecialSpike(_blop);
                     }
@@ -348,7 +336,6 @@ namespace Player
         
         public void GetSouthButtonReadValue(float buttonValue)
         {
-            // Debug.Log(buttonValue);
             if (_hasTheBall) return;
 
             if (_isGrounded)
@@ -365,30 +352,24 @@ namespace Player
                     _canDoubleJump = true;
                     
                     PlayerEvents.Jump(_blop);
-                    
-                    // ANIMATOR
                     _animator.SetTrigger("Jumping");
                 }
                 else if (_isWalledLeft)
                 {
-                    Vector2 wallJumping = new Vector2(1,1) * _blop.WallJumpForce;
+                    Vector2 wallJumping = new Vector2(1, 1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
                     _canDoubleJump = true;
                     
                     PlayerEvents.WallJump(_blop);
-                    
-                    // ANIMATOR
                     _animator.SetTrigger("JumpingWall");
                 }
                 else if (_isWalledRight)
                 {
-                    Vector2 wallJumping = new Vector2(-1,1) * _blop.WallJumpForce;
+                    Vector2 wallJumping = new Vector2(-1, 1) * _blop.WallJumpForce;
                     _rb2d.velocity = new Vector3(wallJumping.x, wallJumping.y);
                     _canDoubleJump = true;
                     
                     PlayerEvents.WallJump(_blop);
-                    
-                    // ANIMATOR
                     _animator.SetTrigger("JumpingWall");
                 }
                 else if (_canDoubleJump)
@@ -398,8 +379,6 @@ namespace Player
                     _canDoubleJump = false;
                     
                     PlayerEvents.DoubleJump(_blop);
-                    
-                    // ANIMATOR
                     _animator.SetTrigger("Jumping");
                 }
             }
@@ -407,8 +386,6 @@ namespace Player
 
         public void GetStartButtonReadValue(float buttonValue)
         {
-            // Debug.Log(buttonValue);
-            
             if (Mathf.Approximately(buttonValue, 1))
             {
                 if (GameManager.Instance != null && !GameManager.IsGamePaused)
@@ -419,7 +396,6 @@ namespace Player
                 {
                     EventBus.OnGameResumed?.Invoke();
                 }
-                
             }
         }
 
@@ -449,7 +425,6 @@ namespace Player
                 Vector3.right, _blop.RayWalledLength, _blop.WallLayer);
             else _isWalledRight = false;
             
-            // EVENTS
             if (_isGrounded && lastIsGrounded != _isGrounded)
             {
                 PlayerEvents.Land(_blop);
@@ -460,19 +435,6 @@ namespace Player
             {
                 PlayerEvents.IsWalled(_blop);
             }
-            
-            // DEBUG
-            if (!_hasTheBall)
-            {
-                Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLength, Color.red);
-            }
-            else
-            {
-                Debug.DrawRay(transform.position, Vector3.down * _blop.RayGroundedLengthHaveTheBall, Color.red);
-
-            }
-            if (_move.x < -0.1f) Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.left * _blop.RayWalledLength, Color.red);
-            if (_move.x > 0.1f) Debug.DrawRay(transform.position + new Vector3(0, .5f, 0), Vector3.right * _blop.RayWalledLength, Color.red);
         }
 
         private void ReverseIsPunchingBall()
@@ -509,7 +471,6 @@ namespace Player
             _playerInputHandler.InputAreEnable = false;
             _move = Vector2.zero;
             
-            // ANIMATOR
             if (PlayerId == playerId)
             {
                 _animator.SetTrigger("WinMatch");
@@ -525,8 +486,6 @@ namespace Player
             EventBus.OnPlayerScored -= PlayerScored;
             EventBus.OnFoul -= Foul;
             EventBus.OnMatchOver -= MatchOver;
-
-            // Instantiate(_blop.PSDeath, transform.position, transform.rotation);
         }
 
         #endregion
