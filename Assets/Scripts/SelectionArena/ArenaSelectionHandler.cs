@@ -61,7 +61,7 @@ namespace SelectionArena
             
             yield return new WaitForSeconds(1f);
 
-            SceneLoaderManager.Instance.LoadScene(arenaName);
+            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation("SC_Gameplay", arenaName);
         }
     }
 }

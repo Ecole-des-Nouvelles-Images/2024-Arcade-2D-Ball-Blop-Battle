@@ -1,7 +1,7 @@
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using Utils;
 
 namespace SplashScreen
 {
@@ -21,10 +21,13 @@ namespace SplashScreen
         [Header("Loading Text Settings")]
         [SerializeField] private float _dotInterval = 0.5f;
 
+        private SceneLoaderManager _sceneLoaderManager;
         private Sequence _mainSequence;
 
         private void OnEnable()
         {
+            if (_sceneLoaderManager == null) _sceneLoaderManager = SceneLoaderManager.Instance;
+            
             SetupInitialState();
 
             BuildAndPlaySequence();
@@ -66,7 +69,7 @@ namespace SplashScreen
             _mainSequence.AppendInterval(_displayTimePerImage * rdn);
 
             // 4. Fin et changement de scène
-            _mainSequence.OnComplete(() => SceneManager.LoadScene(1));
+            _mainSequence.OnComplete(() => _sceneLoaderManager.LoadScene(1));
         }
 
         private void AnimateLoadingText()

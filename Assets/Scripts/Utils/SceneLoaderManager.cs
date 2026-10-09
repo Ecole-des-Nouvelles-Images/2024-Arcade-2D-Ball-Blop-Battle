@@ -46,17 +46,31 @@ namespace Utils
             Application.Quit();
         }
         
+        /// <p>Charge une scène principale</p>
         public void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName);
         }
-
-        public void LoadSceneAnimation(string sceneName)
+        
+        /// <p>Charge une scène principale</p>
+        public void LoadScene(int sceneIndex)
         {
-            StartCoroutine(AnimationCoroutine(sceneName));
+            SceneManager.LoadScene(sceneIndex);
         }
 
-        private IEnumerator AnimationCoroutine(string sceneName)
+        /// <p>Charge une scène principale en async, puis lance l'animation</p>
+        public void LoadSceneAnimation(string sceneName)
+        {
+            StartCoroutine(LoadSceneCoroutine(sceneName));
+        }
+
+        /// <p>Charge une scène principale en async et une deuxième en mode Additive, puis lance l'animation</p>
+        public void LoadScenesAdditiveAnimation(string mainSceneName, string additiveSceneName)
+        {
+            StartCoroutine(LoadScenesAdditiveCoroutine(mainSceneName, additiveSceneName));
+        }
+
+        private IEnumerator LoadSceneCoroutine(string sceneName)
         {
             _backgroundFadeTween = _imageBackground.DOFade(1f, _durationFade).SetEase(_curveFade);
 
@@ -67,6 +81,38 @@ namespace Utils
             while (!asyncLoad.isDone)
             {
                 yield return null;
+            }
+
+            _logoMoveTween = _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)
+                .SetEase(_curveMove);
+
+            _logoRotateTween = _imageLogo.rectTransform.DORotate(new Vector3(0f, 0f, _speedRotation), 1f, RotateMode.FastBeyond360)
+                .SetEase(Ease.Linear)
+                .SetLoops(-1, LoopType.Incremental);
+
+            yield return new WaitForSeconds(_durationMove);
+
+            ResetState();
+        }
+
+        private IEnumerator LoadScenesAdditiveCoroutine(string mainSceneName, string additiveSceneName)
+        {
+            _backgroundFadeTween = _imageBackground.DOFade(1f, _durationFade).SetEase(_curveFade);
+            
+            yield return new WaitForSeconds(_durationFade);
+
+            AsyncOperation mainLoad = SceneManager.LoadSceneAsync(mainSceneName);
+            AsyncOperation additiveLoad = SceneManager.LoadSceneAsync(additiveSceneName, LoadSceneMode.Additive);
+
+            while (!mainLoad.isDone || !additiveLoad.isDone)
+            {
+                yield return null;
+            }
+
+            Scene mainScene = SceneManager.GetSceneByName(mainSceneName);
+            if (mainScene.IsValid())
+            {
+                SceneManager.SetActiveScene(mainScene);
             }
 
             _logoMoveTween = _imageLogo.rectTransform.DOMoveX(_endPos, _durationMove)

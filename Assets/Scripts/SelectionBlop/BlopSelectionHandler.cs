@@ -31,7 +31,7 @@ namespace SelectionBlop
         {
             yield return new WaitForSeconds(_delay);
 
-            SceneLoaderManager.Instance.LoadScene("ArenaSelection");
+            SceneLoaderManager.Instance.LoadScene("SC_ArenaSelection");
         }
 
         private void CancelLoadScene()

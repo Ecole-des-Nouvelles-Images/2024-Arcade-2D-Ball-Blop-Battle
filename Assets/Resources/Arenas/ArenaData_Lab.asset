@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d6f52254194b3a873ad0d4ee11f8ad, type: 3}
   m_Name: ArenaData_Lab
   m_EditorClassIdentifier: 
-  ArenaName: Lab
+  ArenaName: LABORATOIRE
   ArenaVisual: {fileID: 21300000, guid: 5ee84a883cd621747a96a42ffb464f41, type: 3}
-  ArenaSceneName: LabArena
+  ArenaSceneName: SC_ArenaLab

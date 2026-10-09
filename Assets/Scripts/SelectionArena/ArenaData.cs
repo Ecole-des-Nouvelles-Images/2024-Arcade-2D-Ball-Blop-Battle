@@ -6,7 +6,7 @@ namespace SelectionArena
     public class ArenaData : ScriptableObject
     {
         [Header("===== REFERENCES =====")]
-        public string ArenaName;
+        [TextArea(2, 5)] public string ArenaName;
         public Sprite ArenaVisual;
         public string ArenaSceneName;
     }

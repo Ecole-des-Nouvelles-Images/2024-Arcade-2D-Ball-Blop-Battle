@@ -21,7 +21,7 @@ namespace SelectionGameMode
             }
             else if (gameMode == "Duel")
             {
-                SceneLoaderManager.Instance.LoadScene("BlopSelection");
+                SceneLoaderManager.Instance.LoadScene("SC_BlopSelection");
             }
         }
         

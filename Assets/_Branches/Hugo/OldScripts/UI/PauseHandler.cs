@@ -1,5 +1,6 @@
 using Managers;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 namespace _Branches.Hugo.OldScripts.UI
@@ -21,13 +22,17 @@ namespace _Branches.Hugo.OldScripts.UI
             
             Time.timeScale = 1;
             
-            SceneLoaderManager.Instance.LoadSceneAnimation("LabArena");
+            string activeScene = GetAdditiveSceneName();
+            if (activeScene != null)
+            {
+                SceneLoaderManager.Instance.LoadScenesAdditiveAnimation("SC_Gameplay", activeScene);
+            }
         }
         
         public void BackMenu()
         {
             GameManager.Instance.ResetGameState();
-            SceneLoaderManager.Instance.LoadSceneAnimation("MainMenu");
+            SceneLoaderManager.Instance.LoadSceneAnimation("SC_MainMenu");
         }
         
         public void Quit()
@@ -63,5 +68,20 @@ namespace _Branches.Hugo.OldScripts.UI
         }
 
         #endregion
+        
+        public string GetAdditiveSceneName()
+        {
+            for (int i = 0; i < SceneManager.sceneCount; i++)
+            {
+                Scene scene = SceneManager.GetSceneAt(i);
+        
+                if (scene.isLoaded && scene != SceneManager.GetActiveScene())
+                {
+                    return scene.name;
+                }
+            }
+    
+            return null;
+        }
     }
 }
