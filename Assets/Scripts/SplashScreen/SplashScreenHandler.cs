@@ -8,9 +8,9 @@ namespace SplashScreen
     public class SplashScreenHandler : MonoBehaviour
     {
         [Header("Timing Settings")]
-        [SerializeField] private float _fadeInDuration = 1f;
-        [SerializeField] private float _fadeOutDuration = 1f;
-        [SerializeField] private float _displayTimePerImage = 2f;
+        [SerializeField] private float _fadeInDuration = 0.5f;
+        [SerializeField] private float _fadeOutDuration = 1.5f;
+        [SerializeField] private float _displayTimePerImage = 1.0f;
         
         [Header("References")]
         [SerializeField] private CanvasGroup _groupEnsi;
@@ -51,7 +51,7 @@ namespace SplashScreen
             _mainSequence.Append(_groupEnsi.DOFade(1f, _fadeInDuration));
             _mainSequence.AppendInterval(_displayTimePerImage);
             _mainSequence.Append(_groupEnsi.DOFade(0f, _fadeOutDuration));
-
+            
             // 2. Apparition PACKAGES
             _mainSequence.Append(_groupPackages.DOFade(1f, _fadeInDuration));
             _mainSequence.AppendInterval(_displayTimePerImage);
@@ -61,8 +61,9 @@ namespace SplashScreen
             // On utilise "Join" pour qu'ils apparaissent en même temps
             _mainSequence.Append(_groupIllustration.DOFade(1f, _fadeInDuration));
             _mainSequence.Join(_textChargement.DOFade(1f, _fadeInDuration));
-            
-            _mainSequence.AppendInterval(_displayTimePerImage);
+
+            float rdn = Random.Range(1.5f, 3.0f);
+            _mainSequence.AppendInterval(_displayTimePerImage * rdn);
 
             // 4. Fin et changement de scène
             _mainSequence.OnComplete(() => SceneManager.LoadScene(1));

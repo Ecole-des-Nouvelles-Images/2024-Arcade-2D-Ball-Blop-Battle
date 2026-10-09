@@ -3,7 +3,7 @@ using Sounds;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     public class UIButtonFeedback : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, ISelectHandler, IDeselectHandler
     {

@@ -10,7 +10,28 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="" />
+    <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/link.xml.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/SplashScreen/Canvas_SplashScreen.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SplashScreen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIAnimationBase.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIAnimationBase.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIButtonFedback.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIButtonFedback.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIFadeAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIFadeAnimation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIRotationAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIRotationAnimation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIScaleAnimation.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UIScaleAnimation.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UISpriteAnimator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/AnimationFedback/UISpriteAnimator.cs.meta" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -38,61 +59,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="1.7520283923951294E-165" />
-      <entry key="S5" value="3.285232772091768E-66" />
-      <entry key="S10" value="4.15702524131538E-33" />
-      <entry key="S30" value="6.390896310459278E-11" />
-      <entry key="S60" value="2.6335568020522383E-5" />
-      <entry key="M2" value="0.018876969668879116" />
-      <entry key="M5" value="1.760586103457103" />
-      <entry key="M10" value="12.003609885833047" />
-      <entry key="M15" value="24.616175448213536" />
-      <entry key="M30" value="53.2338664926295" />
-      <entry key="H1" value="80.34888623740109" />
-      <entry key="H2" value="99.6804440132576" />
-      <entry key="H4" value="111.43382766225965" />
-      <entry key="D1" value="122.59472573728866" />
-      <entry key="W1" value="124.65256990709037" />
+      <entry key="MS100" value="1.0000000014412822" />
+      <entry key="MS500" value="1.0175875479899095" />
+      <entry key="S2" value="1.5135535671896019" />
+      <entry key="S5" value="2.1364783235010743" />
+      <entry key="S10" value="2.50487344075815" />
+      <entry key="S30" value="3.2854177370732245" />
+      <entry key="S60" value="4.919624037173261" />
+      <entry key="M2" value="7.351971513337304" />
+      <entry key="M5" value="10.147881052068573" />
+      <entry key="M10" value="12.138426139087231" />
+      <entry key="M15" value="18.124778070983247" />
+      <entry key="M30" value="71.20317302581991" />
+      <entry key="H1" value="200.66944103935288" />
+      <entry key="H2" value="354.0601683802306" />
+      <entry key="H4" value="474.9106096894388" />
+      <entry key="D1" value="609.4807391085288" />
+      <entry key="W1" value="636.3924306020537" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000000023808" />
-      <entry key="S60" value="1.000001549239712" />
-      <entry key="M2" value="1.0014082850979744" />
-      <entry key="M5" value="1.1703056093256443" />
-      <entry key="M10" value="2.3534992594442303" />
-      <entry key="M15" value="3.985767471900556" />
-      <entry key="M30" value="8.044260784791003" />
-      <entry key="H1" value="12.140021652678115" />
-      <entry key="H2" value="15.121278368596737" />
-      <entry key="H4" value="16.93189950743856" />
-      <entry key="D1" value="18.635815193950545" />
-      <entry key="W1" value="18.94747323582541" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="1.138424446120195E-69" />
+      <entry key="S2" value="5.80866129834261E-18" />
+      <entry key="S5" value="1.2757884350036014E-7" />
+      <entry key="S10" value="3.6643213914770294E-4" />
+      <entry key="S30" value="0.10432710680653043" />
+      <entry key="S60" value="0.524721599293508" />
+      <entry key="M2" value="1.2349243782509574" />
+      <entry key="M5" value="2.095733354327966" />
+      <entry key="M10" value="2.5073320501120486" />
+      <entry key="M15" value="2.6886470139496863" />
+      <entry key="M30" value="3.500960264693581" />
+      <entry key="H1" value="6.430341914034699" />
+      <entry key="H2" value="11.09666831913191" />
+      <entry key="H4" value="15.40154744332126" />
+      <entry key="D1" value="20.69493353501191" />
+      <entry key="W1" value="21.80779426517089" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.996831197650831E-4" />
-      <entry key="MS500" value="0.1819986936248858" />
-      <entry key="S2" value="0.6531562210191629" />
-      <entry key="S5" value="0.8433480150064716" />
-      <entry key="S10" value="0.918339814560205" />
-      <entry key="S30" value="0.9720034458362765" />
-      <entry key="S60" value="0.9859301548759133" />
-      <entry key="M2" value="1.0131158376537406" />
-      <entry key="M5" value="2.921128469561304" />
-      <entry key="M10" value="14.332194723858185" />
-      <entry key="M15" value="28.569922137455205" />
-      <entry key="M30" value="61.245677782641934" />
-      <entry key="H1" value="92.46531559966303" />
-      <entry key="H2" value="114.78740264834322" />
-      <entry key="H4" value="128.35782138527992" />
-      <entry key="D1" value="141.229107869695" />
-      <entry key="W1" value="143.59983542073155" />
+      <entry key="MS100" value="0.4665164966194756" />
+      <entry key="MS500" value="0.8743329201325795" />
+      <entry key="S2" value="1.4578475204597101" />
+      <entry key="S5" value="2.103145707054829" />
+      <entry key="S10" value="2.484976352567175" />
+      <entry key="S30" value="3.37241172022503" />
+      <entry key="S60" value="5.418436927405587" />
+      <entry key="M2" value="8.560029701857406" />
+      <entry key="M5" value="12.226225565900611" />
+      <entry key="M10" value="14.63546830546421" />
+      <entry key="M15" value="20.80592476096669" />
+      <entry key="M30" value="74.69743351131866" />
+      <entry key="H1" value="207.0907623635845" />
+      <entry key="H2" value="365.14794507116164" />
+      <entry key="H4" value="490.30573291849896" />
+      <entry key="D1" value="630.1742021260859" />
+      <entry key="W1" value="658.2000028686012" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -152,12 +173,10 @@
     </configuration>
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
+      <option name="coreClr" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
-      <option name="runtimes">
-        <list />
-      </option>
       <option name="selectedOptions">
         <list />
       </option>
@@ -165,12 +184,10 @@
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" useMixedMode="false">
       <option name="allowRunningInParallel" value="false" />
+      <option name="coreClr" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
-      <option name="runtimes">
-        <list />
-      </option>
       <option name="selectedOptions">
         <list />
       </option>

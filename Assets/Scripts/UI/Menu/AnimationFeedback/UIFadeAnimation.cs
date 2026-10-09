@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     [RequireComponent(typeof(CanvasGroup))]
     public class UIFadeAnimation : UIAnimationBase

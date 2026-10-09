@@ -1,11 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     public class UIScaleAnimation : UIAnimationBase
     {
-        [Header("Scale Settings")]
+        [Header("=== SCALE SETTINGS ===")]
         [SerializeField] private Vector3 _startScale = Vector3.zero;
         [SerializeField] private Vector3 _endScale = Vector3.one;
 

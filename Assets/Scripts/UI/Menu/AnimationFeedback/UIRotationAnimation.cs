@@ -1,11 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     public class UIRotationAnimation : UIAnimationBase
     {
-        [Header("Rotation Settings")]
+        [Header("=== ROTATION SETTINGS ===")]
         [SerializeField] private Vector3 _startRotation = new Vector3(0, 0, -10f);
         [SerializeField] private Vector3 _endRotation = new Vector3(0, 0, 10f);
         

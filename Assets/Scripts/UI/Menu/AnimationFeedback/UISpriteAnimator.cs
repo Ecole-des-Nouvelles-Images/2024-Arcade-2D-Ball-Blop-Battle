@@ -1,12 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     [RequireComponent(typeof(Image))]
     public class UISpriteAnimator : MonoBehaviour
     {
-        [Header("Settings")]
+        [Header("=== SETTINGS ===")]
         [SerializeField] private Sprite[] _sprites;
         [SerializeField] private float _frameRate = 0.1f;
         [SerializeField] private bool _loop = true;
@@ -29,7 +29,7 @@ namespace UI.Menu.AnimationFedback
 
             if (_timer >= _frameRate)
             {
-                _timer -= _frameRate;
+                _timer = 0f;
                 _currentFrame++;
 
                 if (_currentFrame >= _sprites.Length)

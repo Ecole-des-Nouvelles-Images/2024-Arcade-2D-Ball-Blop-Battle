@@ -1,11 +1,11 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace UI.Menu.AnimationFedback
+namespace UI.Menu.AnimationFeedback
 {
     public abstract class UIAnimationBase : MonoBehaviour
     {
-        [Header("Global Settings")]
+        [Header("===== GLOBAL SETTINGS =====")]
         [SerializeField] protected float _duration = 0.5f;
         [SerializeField] protected float _delay = 0f;
         [SerializeField] protected AnimationCurve _animationCurve = AnimationCurve.Linear(0, 0, 1, 1);
