@@ -10,20 +10,43 @@ namespace SelectionBlop
     {
         [Header("Settings")]
         [SerializeField] private float _delay;
+
+        private GameManager _gameManager;
         
         // Coroutine
         private Coroutine _loadSceneCoroutine;
 
+        private void Start()
+        {
+            _gameManager = GameManager.Instance;
+        }
+
         private void Update()
         {
-            if (GameManager.Instance.Players.Count == 2 && !GameManager.HasGameLoaded)
+            if (_gameManager.CurrentGameModeData.GameModeType == GameMode.Training
+                || _gameManager.CurrentGameModeData.GameModeType == GameMode.Pve)
             {
-                GameManager.HasGameLoaded = true;
-                _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
+                if (GameManager.Instance.Players.Count == 1 && !GameManager.HasGameLoaded)
+                {
+                    GameManager.HasGameLoaded = true;
+                    _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
+                }
+                else if (GameManager.Instance.Players.Count < 1)
+                {
+                    CancelLoadScene();
+                }
             }
-            else if (GameManager.Instance.Players.Count < 2)
+            else if (_gameManager.CurrentGameModeData.GameModeType == GameMode.Pvp)
             {
-                CancelLoadScene();
+                if (GameManager.Instance.Players.Count == 2 && !GameManager.HasGameLoaded)
+                {
+                    GameManager.HasGameLoaded = true;
+                    _loadSceneCoroutine = StartCoroutine(LoadSceneWithDelay());
+                }
+                else if (GameManager.Instance.Players.Count < 2)
+                {
+                    CancelLoadScene();
+                }
             }
         }
 

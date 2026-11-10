@@ -61,12 +61,14 @@ namespace Managers
     [Serializable]
     public class PlayerData
     {
+        public bool IsAi;
         public int PlayerId;
         public int DeviceId;
         public Blop Blop;
 
-        public PlayerData(int playerId, int deviceId, Blop blop)
+        public PlayerData(bool isAi, int playerId, int deviceId, Blop blop)
         {
+            IsAi = isAi;
             PlayerId = playerId;
             DeviceId = deviceId;
             Blop = blop;

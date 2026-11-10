@@ -154,11 +154,11 @@ namespace SelectionBlop
                 
                 if (IsPlayerOne)
                 {
-                    GameManager.Instance.Players.Add(new PlayerData(1, deviceId, blop));
+                    GameManager.Instance.Players.Add(new PlayerData(false, 1, deviceId, blop));
                 }
                 else
                 {
-                    GameManager.Instance.Players.Add(new PlayerData(2, deviceId, blop));
+                    GameManager.Instance.Players.Add(new PlayerData(false, 2, deviceId, blop));
                 }
                 
                 _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1.2f, 0.3f).SetEase(Ease.OutBounce);
@@ -174,16 +174,16 @@ namespace SelectionBlop
         {
             if (_playerInput.actions["UI/Cancel"].triggered)
             {
-                PlayerData player = GameManager.Instance.Players.Find(p => p.DeviceId == _playerInput.devices[0].deviceId);
+                PlayerData playerData = GameManager.Instance.Players.Find(p => p.DeviceId == _playerInput.devices[0].deviceId);
 
-                if (player == null)
+                if (playerData == null)
                 {
                     GameManager.Instance.Players.Clear();
                     SceneLoaderManager.Instance.LoadScene("MainMenu");
                     return;
                 }
                 
-                GameManager.Instance.Players.Remove(player);
+                GameManager.Instance.Players.Remove(playerData);
                 
                 _dislpayCurrentSelectedBlopGameObject.transform.DOScale(1f, 0.3f).SetEase(Ease.OutBounce);
                 _currentButtonSelected.GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);

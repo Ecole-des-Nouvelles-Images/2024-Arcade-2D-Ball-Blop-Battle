@@ -9,13 +9,13 @@ namespace InputSystem
 {
     public class PlayerSpawnHandler : MonoBehaviour
     {
-        [Header("References")]
+        [Header("===== REFERENCES =====")]
         [SerializeField] private GameObject _playerOne;
         [SerializeField] private PlayerInput _playerOneInput;
         [SerializeField] private GameObject _playerTwo;
         [SerializeField] private PlayerInput _playerTwoInput;
         
-        [Header("Settings")]
+        [Header("===== SETTINGS =====")]
         [SerializeField] private Vector2 _playerOneStartPos;
         [SerializeField] private Vector2 _playerTwoStartPos;
         
