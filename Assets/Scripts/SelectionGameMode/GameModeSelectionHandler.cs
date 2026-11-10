@@ -24,7 +24,7 @@ namespace SelectionGameMode
         
         public void GameModeSelected(GameModeData gameModeData)
         {
-            GameManager.Instance.GameMode = gameModeData;
+            GameManager.Instance.CurrentGameModeData = gameModeData;
             SceneLoaderManager.Instance.LoadScene("SC_BlopSelection");
             
             // if (gameMode == GameMode.Training)

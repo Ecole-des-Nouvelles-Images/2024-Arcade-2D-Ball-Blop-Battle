@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Player.ScriptableObjects;
+using SelectionArena;
 using SelectionGameMode;
 using UnityEngine;
 using Utils;
@@ -12,10 +13,10 @@ namespace Managers
     {
         [Header("===== SETTINGS =====")]
         public List<PlayerData> Players = new();
-        public GameModeData GameMode;
+        public GameModeData CurrentGameModeData;
+        public ArenaData CurrentArenaData;
         public int SetDuration;
         public int SetCountToWinAMatch;
-        public string ArenaSceneName;
         
         [Header("===== GAME STATES =====")]
         public static bool HasGameLoaded = false;

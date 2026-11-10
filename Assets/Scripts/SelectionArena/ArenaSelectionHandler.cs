@@ -29,28 +29,28 @@ namespace SelectionArena
 
             for (var index = 0; index < _arenas.Count; index++)
             {
-                var arena = _arenas[index];
+                var arenaData = _arenas[index];
                 
                 GameObject go = Instantiate(_arenaButtonPrefab, _buttonsContainer);
-                go.GetComponent<ArenaButton>().Setup(arena.ArenaName, arena.ArenaVisual);
-                go.GetComponent<Button>().onClick.AddListener(() => SelectArena(arena.ArenaSceneName));
+                go.GetComponent<ArenaButton>().Setup(arenaData.ArenaName, arenaData.ArenaVisual);
+                go.GetComponent<Button>().onClick.AddListener(() => SelectArena(arenaData));
 
                 if (index == 0) _uiFirstSelectedButton.SelectFirstButton(go);
             }
         }
         
-        private void SelectArena(string arenaName)
+        private void SelectArena(ArenaData arenaData)
         {
+            GameManager.Instance.CurrentArenaData = arenaData;
             EventSystem.current.enabled = false;
-            StartCoroutine(LoadSceneWithDelay(arenaName));
+            StartCoroutine(LoadSceneWithDelay(arenaData.ArenaSceneName));
         }
         
-        private IEnumerator LoadSceneWithDelay(string arenaName)
+        private IEnumerator LoadSceneWithDelay(string arenaSceneName)
         {
             var color = _imageTimer.color;
             color.a = 1f;
             _imageTimer.color = color;
-            
             
             int index = 0;
 
@@ -63,7 +63,7 @@ namespace SelectionArena
             
             yield return new WaitForSeconds(1f);
 
-            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation(GameManager.Instance.GameMode.SceneName, arenaName);
+            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation(GameManager.Instance.CurrentGameModeData.SceneName, arenaSceneName);
         }
     }
 }

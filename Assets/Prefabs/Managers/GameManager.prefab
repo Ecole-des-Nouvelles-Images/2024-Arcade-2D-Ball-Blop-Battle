@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isDontDestroyOnLoad: 1
   Players: []
-  GameMode: 2
+  GameMode: {fileID: 11400000, guid: 36741eb5d89749147a32e0c5eca9eeeb, type: 2}
   SetDuration: 45
   SetCountToWinAMatch: 3
   ArenaSceneName: 
