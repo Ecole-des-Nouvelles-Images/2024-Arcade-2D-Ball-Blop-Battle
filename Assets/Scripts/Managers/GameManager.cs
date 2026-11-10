@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Player.ScriptableObjects;
+using SelectionGameMode;
 using UnityEngine;
 using Utils;
 using Utils.Singletons;
@@ -11,7 +12,7 @@ namespace Managers
     {
         [Header("===== SETTINGS =====")]
         public List<PlayerData> Players = new();
-        public string GameMode;
+        public GameModeData GameMode;
         public int SetDuration;
         public int SetCountToWinAMatch;
         public string ArenaSceneName;
@@ -69,5 +70,12 @@ namespace Managers
             DeviceId = deviceId;
             Blop = blop;
         }
+    }
+
+    public enum GameMode
+    {
+        Training,
+        Pve,
+        Pvp
     }
 }

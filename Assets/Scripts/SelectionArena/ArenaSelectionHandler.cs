@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UI.Menu;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,6 +24,7 @@ namespace SelectionArena
 
         private void Start()
         {
+            // Load Arenas
             _arenas = ResourceLoader.GetAllScriptables<ArenaData>("Arenas");
 
             for (var index = 0; index < _arenas.Count; index++)
@@ -61,7 +63,7 @@ namespace SelectionArena
             
             yield return new WaitForSeconds(1f);
 
-            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation("SC_Gameplay", arenaName);
+            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation(GameManager.Instance.GameMode.SceneName, arenaName);
         }
     }
 }

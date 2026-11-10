@@ -24,7 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/Arenas/SC_ArenaLab.unity
     guid: 46911d1d22adef044ad26d90968c40d0
   - enabled: 1
-    path: Assets/Scenes/Arenas/SC_Gameplay.unity
+    path: Assets/Scenes/Gameplay/SC_Gameplay_Training.unity
+    guid: e47fa54a535c7304eaa5ec288132483b
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/SC_Gameplay_Pve.unity
+    guid: f748532c71635184e831e26470964f3c
+  - enabled: 1
+    path: Assets/Scenes/Gameplay/SC_Gameplay_Pvp.unity
     guid: 431e0e636ba974c428d9234fa05c4f5b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 69688712518dc0f43b85bce0ca91550c, type: 2}

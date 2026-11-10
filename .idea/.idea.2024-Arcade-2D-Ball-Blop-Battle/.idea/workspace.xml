@@ -11,21 +11,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeButton.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeButton.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Balls/FakeBall.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Balls/FakeBall.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/InGame/Arene_Colliders.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/InGame/Arene_Colliders.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Arenas/SC_Gameplay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Arenas/SC_Gameplay.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallController.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopBlue.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopBlue.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopGreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopGreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopRed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopRed.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopYellow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/BlopYellow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Managers/GameManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Managers/GameManager.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/GameModeSelection/Canvas_GameModeSelection.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Arenas/SC_Gameplay.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Arenas/SC_Gameplay.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_GameModeSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_GameModeSelection.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaSelectionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeSelectionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +38,8 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerEvents.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/PlayerVFXPart.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player/ScriptableObjects/Blop.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SelectionGameMode/GameModeData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SplashScreen/SplashScreenHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/UI/Menu/UILocaleSelector.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.7.0/InputSystem/Plugins/UI/InputSystemUIInputModuleEditor.cs" root0="SKIP_HIGHLIGHTING" />
@@ -54,61 +54,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.5307574753477493" />
-      <entry key="MS500" value="4.370721035764992" />
-      <entry key="S2" value="6.73771728897686" />
-      <entry key="S5" value="7.455950688748545" />
-      <entry key="S10" value="7.7209276090648995" />
-      <entry key="S30" value="7.979823637336917" />
-      <entry key="S60" value="9.07774857416578" />
-      <entry key="M2" value="12.572888657036929" />
-      <entry key="M5" value="20.223602866085063" />
-      <entry key="M10" value="26.050277985287238" />
-      <entry key="M15" value="28.774501549142425" />
-      <entry key="M30" value="32.322947711842524" />
-      <entry key="H1" value="39.39327897209302" />
-      <entry key="H2" value="86.80298579111623" />
-      <entry key="H4" value="216.53160089186957" />
-      <entry key="D1" value="565.5625097353332" />
-      <entry key="W1" value="673.8784690638846" />
+      <entry key="MS100" value="2.842493078509154E-123" />
+      <entry key="MS500" value="3.2848052194073527E-25" />
+      <entry key="S2" value="1.2361439336075267E-6" />
+      <entry key="S5" value="0.007931327455128808" />
+      <entry key="S10" value="0.15561435866960327" />
+      <entry key="S30" value="1.285378881094513" />
+      <entry key="S60" value="2.7342501262326038" />
+      <entry key="M2" value="5.139257673660435" />
+      <entry key="M5" value="8.64719711515372" />
+      <entry key="M10" value="10.546507927789085" />
+      <entry key="M15" value="11.35251729142052" />
+      <entry key="M30" value="14.880453709601701" />
+      <entry key="H1" value="39.83184587538689" />
+      <entry key="H2" value="113.68328146831414" />
+      <entry key="H4" value="263.89490758262417" />
+      <entry key="D1" value="747.8773960283277" />
+      <entry key="W1" value="925.6392707175353" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="4.1285655060077963E-100" />
-      <entry key="S5" value="2.8902732702669457E-40" />
-      <entry key="S10" value="2.796380271730736E-20" />
-      <entry key="S30" value="6.222377914143974E-7" />
-      <entry key="S60" value="0.0013635566641565144" />
-      <entry key="M2" value="0.06404448826648419" />
-      <entry key="M5" value="0.6703655073353736" />
-      <entry key="M10" value="1.5535294421465504" />
-      <entry key="M15" value="2.09843474226375" />
-      <entry key="M30" value="3.0498999343488777" />
-      <entry key="H1" value="4.944201204505467" />
-      <entry key="H2" value="9.28398142172986" />
-      <entry key="H4" value="16.449093579972114" />
-      <entry key="D1" value="32.413334048924526" />
-      <entry key="W1" value="37.12938647118753" />
+      <entry key="MS100" value="1.0000000000004423" />
+      <entry key="MS500" value="1.0033817834590613" />
+      <entry key="S2" value="1.2411495461460347" />
+      <entry key="S5" value="1.566127927611003" />
+      <entry key="S10" value="1.7524147311230707" />
+      <entry key="S30" value="1.9095343312928383" />
+      <entry key="S60" value="1.9536950934616568" />
+      <entry key="M2" value="1.9765731377944507" />
+      <entry key="M5" value="1.9905689180514128" />
+      <entry key="M10" value="1.999678631472742" />
+      <entry key="M15" value="2.041426447411985" />
+      <entry key="M30" value="2.9219016593943756" />
+      <entry key="H1" value="8.973021210259152" />
+      <entry key="H2" value="24.00929044745051" />
+      <entry key="H4" value="44.54937830531867" />
+      <entry key="D1" value="85.57156836657609" />
+      <entry key="W1" value="97.7351944279785" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.390886510453841" />
-      <entry key="MS500" value="4.300277347246634" />
-      <entry key="S2" value="6.711038433185727" />
-      <entry key="S5" value="7.444173605352827" />
-      <entry key="S10" value="7.71483494613873" />
-      <entry key="S30" value="7.977185116663784" />
-      <entry key="S60" value="9.07383173882743" />
-      <entry key="M2" value="12.626910241852071" />
-      <entry key="M5" value="20.880714791202625" />
-      <entry key="M10" value="27.592526967307386" />
-      <entry key="M15" value="30.863757318953436" />
-      <entry key="M30" value="35.36704269241437" />
-      <entry key="H1" value="44.333623514004834" />
-      <entry key="H2" value="96.08336862019699" />
-      <entry key="H4" value="232.97686624690235" />
-      <entry key="D1" value="597.9742871446075" />
-      <entry key="W1" value="711.0075916959789" />
+      <entry key="MS100" value="1.2992800078776405E-4" />
+      <entry key="MS500" value="0.16721144990162728" />
+      <entry key="S2" value="0.7585169812226198" />
+      <entry key="S5" value="1.2699586807574064" />
+      <entry key="S10" value="1.7103097389986608" />
+      <entry key="S30" value="3.0850754653929333" />
+      <entry key="S60" value="4.615667090131895" />
+      <entry key="M2" value="7.072522379976179" />
+      <entry key="M5" value="10.618039992421792" />
+      <entry key="M10" value="12.535824058036814" />
+      <entry key="M15" value="13.386840968862513" />
+      <entry key="M30" value="17.797846541218604" />
+      <entry key="H1" value="48.79940687990941" />
+      <entry key="H2" value="137.68568974349932" />
+      <entry key="H4" value="308.437478830879" />
+      <entry key="D1" value="833.4463240462865" />
+      <entry key="W1" value="1023.3740129569379" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
