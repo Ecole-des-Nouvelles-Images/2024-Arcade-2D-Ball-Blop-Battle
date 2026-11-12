@@ -3,13 +3,14 @@ using UnityEngine;
 
 namespace SelectionGameMode
 {
+    /// <summary>
+    /// Mode de jeu et scène de gameplay associée.
+    /// Choisi automatiquement par l'écran de sélection : PvE si le J2 est une IA, PvP sinon.
+    /// </summary>
     [CreateAssetMenu(fileName = "GameModeData", menuName = "ScriptableObject/GameModeData")]
     public class GameModeData : ScriptableObject
     {
         public GameMode GameModeType;
-        [TextArea(2, 5)] public string SceneName;
-        [TextArea(2, 5)] public string Text;
-        public Sprite FirstOponent;
-        public Sprite SecondOponent;
+        public string SceneName;
     }
 }

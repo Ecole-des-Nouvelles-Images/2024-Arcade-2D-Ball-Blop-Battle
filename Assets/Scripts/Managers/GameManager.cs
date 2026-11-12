@@ -61,6 +61,9 @@ namespace Managers
     [Serializable]
     public class PlayerData
     {
+        /// <summary>DeviceId utilisé pour un joueur contrôlé par l'IA.</summary>
+        public const int NoDevice = -1;
+
         public bool IsAi;
         public int PlayerId;
         public int DeviceId;

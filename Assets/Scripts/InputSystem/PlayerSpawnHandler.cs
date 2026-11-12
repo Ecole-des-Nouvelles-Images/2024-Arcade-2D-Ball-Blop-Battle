@@ -32,30 +32,30 @@ namespace InputSystem
             
             foreach (var playerData in _gameManager.Players)
             {
-                Gamepad gamepad = Gamepad.all.FirstOrDefault(g => g.deviceId == playerData.DeviceId);
-                // if (gamepad == null) return;
-                
                 GameObject goPlayer = Instantiate(_player, transform);
                 goPlayer.name = goPlayer.name + "_" + playerData.PlayerId;
-                
+
                 PlayerController playerController = goPlayer.GetComponent<PlayerController>();
-                
+
                 playerController.SetUp(playerData.Blop, playerData.PlayerId);
                 goPlayer.transform.position = _playersStartPos[playerData.PlayerId - 1];
-                
+
                 _goPlayers.Add(goPlayer);
-                
-                if (!playerData.IsAi)
+
+                // Un joueur dont la manette a été débranchée depuis la sélection est repris par l'IA
+                InputDevice device = playerData.IsAi ? null : UnityEngine.InputSystem.InputSystem.GetDeviceById(playerData.DeviceId);
+
+                if (device != null)
                 {
                     PlayerInputHandler playerInputHandler = goPlayer.GetComponent<PlayerInputHandler>();
-                    
+
                     GameObject goPlayerInput = Instantiate(_playerInput, transform);
                     goPlayerInput.name = goPlayerInput.name + "_" + playerData.PlayerId;
-                    
+
                     PlayerInput playerInput = goPlayerInput.GetComponent<PlayerInput>();
-                
+
                     playerInputHandler.Setup(playerInput);
-                    playerInput.SwitchCurrentControlScheme(gamepad);
+                    SwitchControlScheme(playerInput, device);
                 }
                 else
                 {
@@ -69,6 +69,18 @@ namespace InputSystem
             }
         }
         
+        private static void SwitchControlScheme(PlayerInput playerInput, InputDevice device)
+        {
+            if (device is Keyboard keyboard && Mouse.current != null)
+            {
+                playerInput.SwitchCurrentControlScheme(keyboard, Mouse.current);
+            }
+            else
+            {
+                playerInput.SwitchCurrentControlScheme(device);
+            }
+        }
+
         private IEnumerator PlayerRespawn(int playerId)
         {
             yield return new WaitForSeconds(1f);

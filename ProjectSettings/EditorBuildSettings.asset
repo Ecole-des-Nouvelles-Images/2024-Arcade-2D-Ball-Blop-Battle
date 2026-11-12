@@ -12,11 +12,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SC_MainMenu.unity
     guid: 99595347546561143a0a67572a828f63
   - enabled: 1
-    path: Assets/Scenes/Selections/SC_GameModeSelection.unity
+    path: Assets/Scenes/Selections/SC_PlayerSelection.unity
     guid: 94f7ec321ff71a44381caf3206d32897
-  - enabled: 1
-    path: Assets/Scenes/Selections/SC_BlopSelection.unity
-    guid: 75c46bd0e52c4024a9872a5b1d397296
   - enabled: 1
     path: Assets/Scenes/Selections/SC_ArenaSelection.unity
     guid: ba1bab96249f5774cad5bab157a6efd8
