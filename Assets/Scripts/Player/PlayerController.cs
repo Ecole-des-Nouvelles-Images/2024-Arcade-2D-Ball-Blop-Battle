@@ -26,7 +26,7 @@ namespace Player
         [SerializeField] private GameObject _laserTrigger;
         
         [Header("States")]
-        [SerializeField] private bool _hasTheBall;
+        [SerializeField] public bool _hasTheBall;
         [SerializeField] private bool _isGrounded;
         [SerializeField] private bool _isWalledLeft;
         [SerializeField] private bool _isWalledRight;
@@ -177,25 +177,28 @@ namespace Player
             // MOVEMENT
             if (_canMove && !_hasTheBall)
             {
-                if (_isGrounded)
-                {
-                    Vector2 movement = new Vector2(_move.x * (_blop.Speed * Time.fixedDeltaTime), _rb2d.velocity.y);
-                    _rb2d.velocity = movement;
-                }
-                else
-                {
-                    float airSpeed = _move.x * _blop.Speed * _blop.AirControlFactor;
-                    float newMovement = Math.Clamp(_rb2d.velocity.x + airSpeed * Time.fixedDeltaTime, -_blop.MaxAirSpeed, _blop.MaxAirSpeed);
-
-                    if (_move.y <= -0.5f)
-                    {
-                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y * _blop.DownwardsForce);
-                    }
-                    else
-                    {
-                        _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
-                    }
-                }
+                Vector2 movement = new Vector2(_move.x * (_blop.Speed * Time.fixedDeltaTime), _rb2d.velocity.y);
+                _rb2d.velocity = movement;
+                
+                // if (_isGrounded)
+                // {
+                //     Vector2 movement = new Vector2(_move.x * (_blop.Speed * Time.fixedDeltaTime), _rb2d.velocity.y);
+                //     _rb2d.velocity = movement;
+                // }
+                // else
+                // {
+                //     float airSpeed = _move.x * _blop.Speed * _blop.AirControlFactor;
+                //     float newMovement = Math.Clamp(_rb2d.velocity.x + airSpeed * Time.fixedDeltaTime, -_blop.MaxAirSpeed, _blop.MaxAirSpeed);
+                //
+                //     if (_move.y <= -0.5f)
+                //     {
+                //         _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y * _blop.DownwardsForce);
+                //     }
+                //     else
+                //     {
+                //         _rb2d.velocity = new Vector2(newMovement, _rb2d.velocity.y);
+                //     }
+                // }
             }
             
             FlipSprite(_move.x);

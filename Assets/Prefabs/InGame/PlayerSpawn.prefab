@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: {fileID: 8243948108377192109, guid: 769afb88e5cdcbe49a452dc564fdf5ba, type: 3}
   _playerInput: {fileID: 6387992527135935642, guid: 54d271e7a6016ab4cb2491ab2bd44e61, type: 3}
+  _botFsm: {fileID: 6387992527135935642, guid: be519b59edb18dd468684adc5261e361, type: 3}
   _playersStartPos:
   - {x: -6, y: -4}
   - {x: 6, y: -4}
