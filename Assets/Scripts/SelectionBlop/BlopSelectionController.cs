@@ -76,8 +76,8 @@ namespace SelectionBlop
             // Instantiate Prefab
             if (_playerInput.playerIndex == 0)
             {
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.15f, 0.45f);
-                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.35f, 0.85f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0f, 0f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.5f, 1f);
                 
                 _specialSpikeText.anchorMin = new Vector2(0f, 0.02f);
                 _specialSpikeText.anchorMax = new Vector2(0.25f, 0.4f);
@@ -86,8 +86,8 @@ namespace SelectionBlop
             {
                 _currentSelectedBlopRectTransform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 
-                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.65f, 0.45f);
-                _currentSelectedBlopRectTransform.anchorMax = new Vector2(0.85f, 0.85f);
+                _currentSelectedBlopRectTransform.anchorMin = new Vector2(0.5f, 0f);
+                _currentSelectedBlopRectTransform.anchorMax = new Vector2(1f, 1f);
                 
                 _specialSpikeText.anchorMin = new Vector2(0.75f, 0.02f);
                 _specialSpikeText.anchorMax = new Vector2(1f, 0.4f);

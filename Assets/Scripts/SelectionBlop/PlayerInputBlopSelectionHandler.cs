@@ -6,11 +6,15 @@ namespace SelectionBlop
 {
     public class PlayerInputBlopSelectionHandler : MonoBehaviour
     {
+        [Header("===== Header =====")]
+        [SerializeField] private GameObject _playerSelectPrefab;
+
+        private List<Gamepad> _connectedGamepads;
         private PlayerInputManager _playerInputManager;
 
-        [Header("References")]
-        [SerializeField] private List<GameObject> _p1Visuals;
-        [SerializeField] private List<GameObject> _p2Visuals;
+        // [Header("References")]
+        // [SerializeField] private List<GameObject> _p1Visuals;
+        // [SerializeField] private List<GameObject> _p2Visuals;
 
         private void Awake()
         {
@@ -34,11 +38,11 @@ namespace SelectionBlop
             
             character.IsPlayerOne = isP1;
             
-            List<GameObject> targets = isP1 ? _p1Visuals : _p2Visuals;
-            foreach (GameObject target in targets)
-            {
-                target.SetActive(false);
-            }
+            // List<GameObject> targets = isP1 ? _p1Visuals : _p2Visuals;
+            // foreach (GameObject target in targets)
+            // {
+            //     target.SetActive(false);
+            // }
         }
     }
 }
