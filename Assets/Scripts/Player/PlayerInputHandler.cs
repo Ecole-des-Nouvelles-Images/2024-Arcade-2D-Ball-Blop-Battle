@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using Utils;
 
 namespace Player
@@ -10,7 +9,7 @@ namespace Player
     {
         [Header("Settings")]
         public bool InputAreEnable = true;
-        [FormerlySerializedAs("_playerInput")] public PlayerInput PlayerInput;
+        public PlayerInput PlayerInput;
         
         public static event Action<bool> OnInputDeviceChanged;
         
@@ -22,6 +21,12 @@ namespace Player
         private float _westButtonReadValue;
         private float _leftButtonReadValue;
 
+        public void Setup(PlayerInput playerInput)
+        {
+            PlayerInput = playerInput;
+            OnEnable();
+        }
+
         private void Awake()
         {
             _playerController = GetComponent<PlayerController>();
@@ -32,6 +37,7 @@ namespace Player
             UnityEngine.InputSystem.InputSystem.onDeviceChange += OnDeviceChange;
 
             // Bind input actions
+            if (PlayerInput == null) return;
             PlayerInput.actions["LeftJoystick"].performed += LeftJoystick;
             PlayerInput.actions["LeftJoystick"].canceled += LeftJoystick;
             PlayerInput.actions["SouthButton"].performed += SouthButton;
@@ -53,6 +59,7 @@ namespace Player
             UnityEngine.InputSystem.InputSystem.onDeviceChange -= OnDeviceChange;
 
             // Unbind input actions
+            if (PlayerInput == null) return;
             PlayerInput.actions["LeftJoystick"].performed -= LeftJoystick;
             PlayerInput.actions["LeftJoystick"].canceled -= LeftJoystick;
             PlayerInput.actions["SouthButton"].performed -= SouthButton;

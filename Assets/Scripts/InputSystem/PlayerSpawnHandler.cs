@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using Managers;
 using Player;
 using UnityEngine;
@@ -9,51 +11,48 @@ namespace InputSystem
 {
     public class PlayerSpawnHandler : MonoBehaviour
     {
-        [Header("===== REFERENCES =====")]
-        [SerializeField] private GameObject _playerOne;
-        [SerializeField] private PlayerInput _playerOneInput;
-        [SerializeField] private GameObject _playerTwo;
-        [SerializeField] private PlayerInput _playerTwoInput;
+        [Header("===== PREFABS =====")]
+        [SerializeField] private GameObject _player;
+        [SerializeField] private GameObject _playerInput;
         
         [Header("===== SETTINGS =====")]
-        [SerializeField] private Vector2 _playerOneStartPos;
-        [SerializeField] private Vector2 _playerTwoStartPos;
-        
-        private PlayerController _playerOneController;
-        private PlayerController _playerTwoController;
+        [SerializeField] private List<Vector2> _playersStartPos;
+
+        [Header("===== DEBUG =====")]
+        private GameManager _gameManager;
+        private List<GameObject> _goPlayers = new();
         
         private void Start()
         {
-            _playerOneController = _playerOne.GetComponent<PlayerController>();
-            _playerTwoController = _playerTwo.GetComponent<PlayerController>();
+            _gameManager = GameManager.Instance;
 
-            if (GameManager.Instance != null && GameManager.Instance.Players.Count > 0)
+            _gameManager.Players = _gameManager.Players.OrderBy(p => p.PlayerId).ToList();
+            
+            foreach (var playerData in _gameManager.Players)
             {
-                foreach (var gamepad in Gamepad.all)
+                if (playerData.IsAi == false)
                 {
-                    PlayerData player = GameManager.Instance.Players.Find(p => p.DeviceId == gamepad.deviceId);
+                    Gamepad gamepad = Gamepad.all.FirstOrDefault(g => g.deviceId == playerData.DeviceId);
+                    if (gamepad == null) return;
 
-                    if (player == null) return;
-                    
-                    if (player.PlayerId == 1)
-                    {
-                        _playerOneInput.SwitchCurrentControlScheme(gamepad);
-                        _playerOneController.SetUp(player.Blop, player.PlayerId);
-                    }
-                    else if (player.PlayerId == 2)
-                    {
-                        _playerTwoInput.SwitchCurrentControlScheme(gamepad);
-                        _playerTwoController.SetUp(player.Blop, player.PlayerId);
-                    }
-                }
-            }
-            else
-            {
-                _playerOneInput.SwitchCurrentControlScheme(Gamepad.all[0]);
-                _playerOneController.DebugSetUp(1);
+                    GameObject goPlayer = Instantiate(_player, transform);
+                    GameObject goPlayerInput = Instantiate(_playerInput, transform);
+
+                    PlayerController playerController = goPlayer.GetComponent<PlayerController>();
+                    PlayerInputHandler playerInputHandler = goPlayer.GetComponent<PlayerInputHandler>();
+                    PlayerInput playerInput = goPlayerInput.GetComponent<PlayerInput>();
                 
-                _playerTwoInput.SwitchCurrentControlScheme(Gamepad.all[1]);
-                _playerTwoController.DebugSetUp(2);
+                    playerInputHandler.Setup(playerInput);
+                    playerInput.SwitchCurrentControlScheme(gamepad);
+                    playerController.SetUp(playerData.Blop, playerData.PlayerId);
+                    goPlayer.transform.position = _playersStartPos[playerData.PlayerId - 1];
+                
+                    _goPlayers.Add(goPlayer);
+                }
+                else
+                {
+                    
+                }
             }
         }
         
@@ -61,16 +60,8 @@ namespace InputSystem
         {
             yield return new WaitForSeconds(1f);
 
-            if (playerId == 1)
-            {
-                _playerOne.transform.position = _playerOneStartPos;
-                _playerOne.SetActive(true);
-            }
-            else if (playerId == 2)
-            {
-                _playerTwo.transform.position = _playerTwoStartPos;
-                _playerTwo.SetActive(true);
-            }
+            _goPlayers[playerId - 1].transform.position = _playersStartPos[playerId - 1];
+            _goPlayers[playerId - 1].SetActive(true);
         }
         
         #region ===== EVENTS =====
