@@ -245,20 +245,17 @@ namespace SelectionPlayer
 
         private void HandleSettingsInput(SelectionInput input)
         {
-            Vector2Int direction = input.ReadNavigation();
-
-            if (direction.y != 0 && !_matchSettings.MoveFocus(-direction.y))
+            switch (_matchSettings.HandleInput(input))
             {
-                _matchSettings.Unfocus();
-            }
-            else if (direction.x != 0)
-            {
-                _matchSettings.ChangeFocusedValue(direction.x);
-            }
-
-            if (input.SubmitPressed || input.CancelPressed)
-            {
-                _matchSettings.Unfocus();
+                case MatchSettingsHandler.InputResult.Moved:
+                case MatchSettingsHandler.InputResult.ValueChanged:
+                case MatchSettingsHandler.InputResult.Exited:
+                    PlayClip(AudioStock.Instance ? AudioStock.Instance.ClassicButtonClip : null);
+                    break;
+                case MatchSettingsHandler.InputResult.EditStarted:
+                case MatchSettingsHandler.InputResult.EditEnded:
+                    PlayClip(AudioStock.Instance ? AudioStock.Instance.SlimeButtonClip : null);
+                    break;
             }
         }
 
