@@ -1,422 +1,733 @@
-using UnityEngine;
+using Balls;
+using Managers;
 using Player;
+using UnityEngine;
+using Utils;
 
 namespace Bots
 {
     public enum BotState
     {
-        Idle,
-        MoveToBall,
-        WaitingForPerfectReception,
-        AbsorbAndRelease,
-        ReturnToCenter
+        Idle,               // Pas de balle : retour au centre de son camp
+        Reposition,         // Balle chez l'adversaire : se replacer
+        Intercept,          // Balle qui arrive : se placer, sauter, absorber
+        PerfectReception,   // Balle qui tombe lentement : réception parfaite au sol
+        Absorb,             // En l'air, bouton d'absorption maintenu
+        Throw               // Balle absorbée : viser et relâcher avant de toucher le sol
     }
 
+    /// <summary>
+    /// IA d'un blop, organisée en trois couches :
+    /// Perception (état de la balle perçu avec un temps de réaction + prédiction de trajectoire),
+    /// Décision (FSM),
+    /// Action (BotActuator, qui envoie les inputs comme une manette).
+    /// Fonctionne des deux côtés du filet.
+    /// </summary>
     public class BotFsm : MonoBehaviour
     {
-        [Header("===== SETTINGS =====")]
-        [SerializeField] private float _tickRate = 0.03f; 
-        [SerializeField] private float _reachDistance = 2.2f; 
-        [SerializeField] private float _predictionTimeMax = 3.0f; 
-        [SerializeField] private int _simulationSteps = 60; 
-        [SerializeField] private float _centerPositionX = 4f; 
-        [SerializeField] private float _maxHorizontalSpeedForReception = 6.5f; 
-        
-        [Header("===== RECEPTION TIMINGS =====")]
-        private const float ReceptionDuration = 0.25f;
-        private const float ReceptionCooldown = 0.75f;
-        private float _receptionCooldownTimer = 0f;
+        [Header("===== DIFFICULTY =====")]
+        [SerializeField] private BotDifficulty _difficulty;
 
-        [Header("===== AIM RANDOMNESS =====")]
-        [SerializeField, Range(0f, 0.5f)] private float _aimRandomnessX = 0.15f; 
-        [SerializeField, Range(0f, 0.4f)] private float _aimRandomnessY = 0.2f;  
+        [Header("===== ARENA =====")]
+        [SerializeField] private ArenaBounds _arena = ArenaBounds.Default;
+        [Tooltip("Distance au filet de la position de repos.")]
+        [SerializeField] private float _homeDistanceFromNet = 4.5f;
 
-        [Header("===== DEBUGS =====")]
-        [SerializeField] private PlayerController _playerController;
+        [Header("===== BODY =====")]
+        [Tooltip("Hauteur (depuis les pieds) à laquelle le blop touche la balle.")]
+        [SerializeField] private float _contactHeight = 0.9f;
+        [Tooltip("Distance balle / blop sous laquelle le bot déclenche l'absorption en l'air.")]
+        [SerializeField] private float _absorbRange = 1.4f;
+        [Tooltip("Hauteur minimale (au-dessus du point de contact) pour sauter vers la balle.")]
+        [SerializeField] private float _minJumpHeight = 0.25f;
+
+        [Header("===== PREDICTION =====")]
+        [SerializeField] private float _predictionHorizon = 3f;
+
+        [Header("===== PERFECT RECEPTION =====")]
+        [SerializeField] private float _maxHorizontalSpeedForReception = 6.5f;
+        [SerializeField] private float _receptionAlignTolerance = 0.15f;
+
+        [Header("===== DASH =====")]
+        [SerializeField] private float _dashMinDistance = 2.5f;
+
+        [Header("===== AIM =====")]
+        [SerializeField] private float _minAimAngle = -40f;
+        [SerializeField] private float _maxAimAngle = 75f;
+        [SerializeField, Min(2)] private int _aimCandidates = 16;
+
+        [Header("===== DEBUG =====")]
         [SerializeField] private BotState _currentState;
-        [SerializeField] private Transform _targetBall;
-        [SerializeField] private Transform _targetEnemy; 
-        
-        private PlayerCountTouchBall _touchCountComponent;
-        private float _timer;
-        private Rigidbody2D _ballRb;
-        private Vector2 _targetPosition;
+        [SerializeField] private PlayerController _playerController;
+        [SerializeField] private PlayerController _enemy;
+        [SerializeField] private BaseBallController _ball;
+        [SerializeField] private Vector2 _targetPosition;
 
-        public void Setup(PlayerController playerController)
+        // ===== CONSTANTES =====
+        private const int HistorySize = 128;
+        private const float BallSearchInterval = 0.25f;
+        private const float AbsorbTimeout = 0.6f;
+
+        // ===== RÉFÉRENCES =====
+        private BotActuator _actuator;
+        private Rigidbody2D _playerRb;
+        private Rigidbody2D _ballRb;
+        private float _ballRadius = 0.45f;
+        private float _ballGravityScale = 1f;
+
+        // ===== CÔTÉ =====
+        private float _side; // -1 = camp gauche (joueur 1), +1 = camp droit (joueur 2)
+
+        // ===== PERCEPTION =====
+        private struct BallSnapshot
         {
-            _playerController = playerController;
-            _currentState = BotState.Idle;
-            
-            if (_playerController != null)
+            public float Time;
+            public Vector2 Position;
+            public Vector2 Velocity;
+            public float GravityScale;
+            public bool IsAbsorbed;
+        }
+
+        private readonly BallSnapshot[] _history = new BallSnapshot[HistorySize];
+        private int _historyHead;
+        private int _historyCount;
+        private BallSnapshot _perceived;
+        private bool _hasPerception;
+
+        private readonly BallPredictor _predictor = new();
+        private readonly BallPredictor _aimPredictor = new();
+
+        // ===== ÉTAT =====
+        private float _decisionTimer;
+        private float _ballSearchTimer;
+        private float _stateEnterTime;
+        private float _positionErrorX;
+        private bool _perfectReceptionRoll;
+        private float _perfectReceptionCooldown;
+        private float _perfectReceptionPressTime = -1f;
+        private bool _usedDoubleJump;
+        private bool _wasInactive;
+        private bool _isMatchOver;
+
+        private BotDifficulty Difficulty => _difficulty;
+        private Vector2 PlayerPos => _playerController.transform.position;
+        private float RunSpeed => _playerController.Blop.Speed * Time.fixedDeltaTime;
+        private float ContactY => _arena.GroundY + _contactHeight;
+        private int TouchCount => _playerController.CountTouchBall ? _playerController.CountTouchBall.CurrentTouchCount : 0;
+        private int MaxTouchCount => _playerController.CountTouchBall ? _playerController.CountTouchBall.MaxTouchCount : 3;
+
+        #region ===== SETUP =====
+
+        /// <param name="difficulty">Difficulté choisie dans la sélection ; null garde celle du prefab.</param>
+        public void Setup(PlayerController playerController, BotDifficulty difficulty = null)
+        {
+            if (difficulty) _difficulty = difficulty;
+
+            if (!_difficulty)
             {
-                _touchCountComponent = _playerController.GetComponent<PlayerCountTouchBall>();
+                Debug.LogError($"[{nameof(BotFsm)}] Aucune BotDifficulty assignée (prefab ou sélection) : bot désactivé.", this);
+                enabled = false;
+                return;
             }
 
-            FindEnemyPlayer();
+            _playerController = playerController;
+            _playerRb = playerController.Rigidbody;
+            _actuator = new BotActuator(playerController);
+
+            // Le joueur 1 joue à gauche du filet, le joueur 2 à droite (cf. PlayerOneSide / PlayerTwoSide)
+            _side = playerController.PlayerId == 1 ? -1f : 1f;
+
+            ChangeState(BotState.Idle);
+            RerollErrors();
         }
+
+        private void OnEnable()
+        {
+            EventBus.OnPlayerTouchedBall += OnPlayerTouchedBall;
+            EventBus.OnMatchOver += OnMatchOver;
+        }
+
+        private void OnDisable()
+        {
+            EventBus.OnPlayerTouchedBall -= OnPlayerTouchedBall;
+            EventBus.OnMatchOver -= OnMatchOver;
+        }
+
+        private void OnPlayerTouchedBall(int playerId) => RerollErrors();
+
+        private void OnMatchOver(int playerId)
+        {
+            _isMatchOver = true;
+            _actuator?.ReleaseAll();
+        }
+
+        private void RerollErrors()
+        {
+            _positionErrorX = Random.Range(-1f, 1f) * Difficulty.PositioningError;
+            _perfectReceptionRoll = Random.value < Difficulty.PerfectReceptionChance;
+        }
+
+        #endregion
+
+        #region ===== LOOP =====
 
         private void Update()
         {
-            if (!_playerController || !_playerController.gameObject.activeInHierarchy) return;
+            if (!_playerController) return;
 
-            if (_receptionCooldownTimer > 0f)
+            if (!_playerController.gameObject.activeInHierarchy)
             {
-                _receptionCooldownTimer -= Time.deltaTime;
-            }
-            
-            FindClosestBall();
-            
-            if (!_targetEnemy)
-            {
-                FindEnemyPlayer();
+                _wasInactive = true;
+                return;
             }
 
-            _timer += Time.deltaTime;
-            if (_timer >= _tickRate)
+            if (_wasInactive)
             {
-                _timer = 0;
-                ExecuteFsmLogic();
+                _wasInactive = false;
+                _actuator.Invalidate();
+                ChangeState(BotState.Idle);
+            }
+
+            if (_isMatchOver || GameManager.IsGamePaused) return;
+
+            if (_perfectReceptionCooldown > 0f) _perfectReceptionCooldown -= Time.deltaTime;
+            if (_playerController.IsGrounded) _usedDoubleJump = false;
+
+            TrackBall();
+
+            _decisionTimer -= Time.deltaTime;
+            if (_decisionTimer > 0f) return;
+            _decisionTimer = Difficulty.DecisionInterval;
+
+            Perceive();
+            Decide();
+            Act();
+        }
+
+        #endregion
+
+        #region ===== PERCEPTION =====
+
+        private void TrackBall()
+        {
+            if (!_ball)
+            {
+                _ballSearchTimer -= Time.deltaTime;
+                if (_ballSearchTimer > 0f) return;
+                _ballSearchTimer = BallSearchInterval;
+
+                GameObject ballObject = GameObject.FindWithTag("Ball");
+                if (!ballObject || !ballObject.TryGetComponent(out _ball)) return;
+
+                _ballRb = _ball.Rigidbody;
+                _ballRadius = _ball.Collider is CircleCollider2D circle
+                    ? circle.radius * Mathf.Max(_ball.transform.lossyScale.x, _ball.transform.lossyScale.y)
+                    : _ball.Collider.bounds.extents.x;
+
+                _historyCount = 0;
+                RerollErrors();
+            }
+
+            if (!_enemy || _enemy == _playerController)
+            {
+                FindEnemy();
             }
         }
 
-        private void FindClosestBall()
+        /// <summary>
+        /// L'historique est enregistré au pas physique (et non à chaque frame) :
+        /// sa durée couverte (HistorySize × fixedDeltaTime) ne dépend donc pas du FPS.
+        /// </summary>
+        private void FixedUpdate()
         {
-            GameObject ballObject = GameObject.FindWithTag("Ball");
-    
-            if (ballObject)
+            if (!_playerController || !_ball || !_ballRb) return;
+
+            if (_ballRb.gravityScale > 0f) _ballGravityScale = _ballRb.gravityScale;
+
+            _history[_historyHead] = new BallSnapshot
             {
-                _targetBall = ballObject.transform;
-                _ballRb = ballObject.GetComponent<Rigidbody2D>();
-            }
-            else
-            {
-                _targetBall = null;
-                _ballRb = null;
-            }
+                Time = Time.time,
+                Position = _ball.transform.position,
+                Velocity = _ballRb.velocity,
+                GravityScale = _ballRb.gravityScale,
+                IsAbsorbed = _ball.IsAbsorbed
+            };
+            _historyHead = (_historyHead + 1) % HistorySize;
+            _historyCount = Mathf.Min(_historyCount + 1, HistorySize);
         }
 
-        private void FindEnemyPlayer()
+        private void FindEnemy()
         {
-            PlayerController[] allPlayers = FindObjectsByType<PlayerController>(FindObjectsSortMode.None);
-            foreach (var p in allPlayers)
+            foreach (PlayerController player in FindObjectsByType<PlayerController>(FindObjectsInactive.Include, FindObjectsSortMode.None))
             {
-                if (p.PlayerId != _playerController.PlayerId)
+                if (player != _playerController)
                 {
-                    _targetEnemy = p.transform;
-                    break;
+                    _enemy = player;
+                    return;
                 }
             }
         }
 
-        private bool TryPredictGroundLanding(out Vector2 landingPos, out float timeToLand)
+        /// <summary>Le bot ne voit la balle qu'avec un retard égal à son temps de réaction.</summary>
+        private bool TryGetDelayedSnapshot(out BallSnapshot snapshot)
         {
-            landingPos = _targetBall.position;
-            timeToLand = 0f;
+            float targetTime = Time.time - Difficulty.ReactionTime;
 
-            if (!_targetBall || !_ballRb) return false;
-
-            Vector2 currentPos = _targetBall.position;
-            Vector2 currentVelocity = _ballRb.velocity;
-            float gravity = Physics2D.gravity.y * _ballRb.gravityScale;
-            float dt = _predictionTimeMax / _simulationSteps;
-            float groundY = _playerController.transform.position.y + 0.3f;
-
-            for (int i = 1; i <= _simulationSteps; i++)
+            for (int i = 1; i <= _historyCount; i++)
             {
-                currentPos += currentVelocity * dt;
-                currentVelocity.y += gravity * dt;
-
-                if (currentPos.x < -8.5f || currentPos.x > 8.5f)
+                int index = (_historyHead - i + HistorySize) % HistorySize;
+                if (_history[index].Time <= targetTime)
                 {
-                    currentVelocity.x = -currentVelocity.x;
-                    currentPos.x = Mathf.Clamp(currentPos.x, -8.5f, 8.5f);
-                }
-
-                if (currentPos.y > 4.8f)
-                {
-                    currentVelocity.y = -Mathf.Abs(currentVelocity.y);
-                }
-
-                if (currentPos.y <= groundY && currentVelocity.y <= 0f)
-                {
-                    landingPos = currentPos;
-                    timeToLand = i * dt;
+                    snapshot = _history[index];
                     return true;
                 }
             }
 
+            snapshot = default;
             return false;
         }
 
-        private Vector2 CalculateDynamicIntercept()
+        private void Perceive()
         {
-            if (!_targetBall || !_ballRb) return transform.position;
+            _hasPerception = _ball && TryGetDelayedSnapshot(out _perceived);
+            if (!_hasPerception) return;
 
-            Vector2 currentPos = _targetBall.position;
-            Vector2 currentVelocity = _ballRb.velocity;
-            float gravity = Physics2D.gravity.y * _ballRb.gravityScale;
-            float dt = _predictionTimeMax / _simulationSteps;
+            float delay = Time.time - _perceived.Time;
+            float gravity = Physics2D.gravity.y * _perceived.GravityScale;
 
-            Vector2 bestIntercept = currentPos;
-            float minScore = float.MaxValue;
-
-            for (int i = 0; i < _simulationSteps; i++)
-            {
-                currentPos += currentVelocity * dt;
-                currentVelocity.y += gravity * dt;
-
-                if (currentPos.x < -8.5f || currentPos.x > 8.5f)
-                {
-                    currentVelocity.x = -currentVelocity.x;
-                }
-
-                float distToBot = Vector2.Distance(currentPos, _playerController.transform.position);
-                float sidePenalty = (currentPos.x < 0f) ? 15f : 0f;
-                float heightFactor = Mathf.Abs(currentPos.y - _playerController.transform.position.y);
-                float totalScore = distToBot + sidePenalty + (heightFactor * 0.2f);
-
-                if (totalScore < minScore)
-                {
-                    minScore = totalScore;
-                    bestIntercept = currentPos;
-                }
-            }
-
-            return bestIntercept;
+            _predictor.Simulate(_perceived.Position, _perceived.Velocity, gravity, _ballRadius,
+                _arena, _predictionHorizon, Time.fixedDeltaTime, -delay);
         }
 
-        private Vector2 CalculateRandomizedLaunchDirection()
+        private bool IsOnMySide(float x) => (x - _arena.NetX) * _side > 0f;
+
+        private float HomeX => _arena.NetX + _side * _homeDistanceFromNet;
+
+        /// <summary>Empêche le bot de viser une position de l'autre côté du filet.</summary>
+        private float ClampToMySide(float x)
         {
-            if (!_targetEnemy)
-            {
-                float fallbackX = (_playerController.PlayerId == 1) ? 1f : -1f;
-                return new Vector2(fallbackX, 0.6f).normalized;
-            }
-
-            Vector2 botPos = _playerController.transform.position;
-            Vector2 enemyPos = _targetEnemy.position;
-            
-            float distanceX = enemyPos.x - botPos.x;
-            float baseDirX = Mathf.Sign(distanceX);
-            float baseDirY = Mathf.Clamp(0.6f + (Mathf.Abs(distanceX) * 0.04f), 0.5f, 0.85f);
-
-            float randomizedX = baseDirX + Random.Range(-_aimRandomnessX, _aimRandomnessX);
-            float randomizedY = baseDirY + Random.Range(-_aimRandomnessY, _aimRandomnessY);
-
-            randomizedY = Mathf.Clamp(randomizedY, 0.3f, 0.95f);
-
-            return new Vector2(randomizedX, randomizedY).normalized;
+            float minDistanceFromNet = _arena.NetHalfWidth + 0.5f;
+            float distance = Mathf.Max((x - _arena.NetX) * _side, minDistanceFromNet);
+            return _arena.NetX + distance * _side;
         }
 
-        private void ExecuteFsmLogic()
+        /// <summary>La balle est (ou sera) dans notre camp avant de toucher le sol.</summary>
+        private bool BallThreatensMySide()
         {
-            if (_targetBall && _targetBall.position.x < 0f && _currentState != BotState.AbsorbAndRelease && _currentState != BotState.WaitingForPerfectReception)
+            if (IsOnMySide(_perceived.Position.x)) return true;
+
+            for (int i = 0; i < _predictor.Count; i++)
             {
-                _currentState = BotState.ReturnToCenter;
+                if (IsOnMySide(_predictor[i].Position.x)) return true;
+            }
+            return false;
+        }
+
+        /// <summary>Position de la balle "maintenant" selon la prédiction.</summary>
+        private Vector2 PredictedBallNow()
+        {
+            int index = _predictor.FirstFutureIndex();
+            return index >= 0 ? _predictor[index].Position : _perceived.Position;
+        }
+
+        /// <summary>Premier moment où la balle descend à hauteur de contact du blop, dans notre camp.</summary>
+        private bool TryGetContactSample(out BallSample contact)
+        {
+            int start = _predictor.FirstFutureIndex();
+            if (start >= 0)
+            {
+                for (int i = start; i < _predictor.Count; i++)
+                {
+                    BallSample sample = _predictor[i];
+                    if (sample.Velocity.y < 0f && sample.Position.y - _ballRadius <= ContactY)
+                    {
+                        contact = sample;
+                        return IsOnMySide(sample.Position.x);
+                    }
+                }
             }
 
+            contact = default;
+            return false;
+        }
+
+        /// <summary>
+        /// Premier point de la trajectoire, dans notre camp, que le blop peut atteindre à temps
+        /// (déplacement horizontal et montée du saut se font en parallèle).
+        /// </summary>
+        private bool TryFindIntercept(out BallSample intercept)
+        {
+            float maxHeight = JumpApexHeight();
+            int start = _predictor.FirstFutureIndex();
+
+            if (start >= 0)
+            {
+                for (int i = start; i < _predictor.Count; i++)
+                {
+                    BallSample sample = _predictor[i];
+                    if (!IsOnMySide(sample.Position.x)) continue;
+
+                    float height = sample.Position.y - ContactY;
+                    if (height < _minJumpHeight || height > maxHeight) continue;
+
+                    float runTime = Mathf.Abs(sample.Position.x - PlayerPos.x) / RunSpeed;
+                    float riseTime = TimeToRise(height);
+
+                    if (Mathf.Max(runTime, riseTime) <= sample.Time)
+                    {
+                        intercept = sample;
+                        return true;
+                    }
+                }
+            }
+
+            intercept = default;
+            return false;
+        }
+
+        private float PlayerGravity => Mathf.Abs(Physics2D.gravity.y * _playerRb.gravityScale);
+
+        private float JumpApexHeight()
+        {
+            float v = _playerController.Blop.JumpForce;
+            return v * v / (2f * PlayerGravity);
+        }
+
+        /// <summary>Temps pour qu'un saut atteigne la hauteur donnée (temps d'apogée si inatteignable).</summary>
+        private float TimeToRise(float height)
+        {
+            float v = _playerController.Blop.JumpForce;
+            float g = PlayerGravity;
+            float discriminant = v * v - 2f * g * height;
+            return discriminant <= 0f ? v / g : (v - Mathf.Sqrt(discriminant)) / g;
+        }
+
+        #endregion
+
+        #region ===== DECISION =====
+
+        private void Decide()
+        {
+            BotState next = _currentState;
+
+            if (_playerController.HasTheBall)
+            {
+                next = BotState.Throw;
+            }
+            else if (!_hasPerception)
+            {
+                next = BotState.Idle;
+            }
+            else if (_perceived.IsAbsorbed)
+            {
+                next = BotState.Reposition;
+            }
+            else if (_currentState == BotState.Absorb && IsAbsorbStillValid())
+            {
+                next = BotState.Absorb;
+            }
+            else if (_currentState == BotState.PerfectReception && IsPerfectReceptionStillValid())
+            {
+                next = BotState.PerfectReception;
+            }
+            else if (BallThreatensMySide())
+            {
+                next = CanTryPerfectReception() ? BotState.PerfectReception : BotState.Intercept;
+            }
+            else
+            {
+                next = BotState.Reposition;
+            }
+
+            if (next != _currentState) ChangeState(next);
+        }
+
+        private void ChangeState(BotState next)
+        {
+            // Sortie : ne jamais garder un bouton appuyé d'un état à l'autre
+            if (_actuator != null && _currentState == BotState.Absorb && next != BotState.Throw)
+            {
+                _actuator.SetWest(false);
+            }
+
+            _currentState = next;
+            _stateEnterTime = Time.time;
+            _perfectReceptionPressTime = -1f;
+        }
+
+        private float TimeInState => Time.time - _stateEnterTime;
+
+        private bool IsAbsorbStillValid()
+        {
+            if (_playerController.IsGrounded || TimeInState > AbsorbTimeout) return false;
+            return Vector2.Distance(PredictedBallNow(), PlayerPos + Vector2.up * _contactHeight) < _absorbRange * 2f;
+        }
+
+        private bool CanTryPerfectReception()
+        {
+            if (!_perfectReceptionRoll || _perfectReceptionCooldown > 0f) return false;
+            if (TouchCount != 0 || !_playerController.IsGrounded) return false;
+            if (_perceived.GravityScale == 0f) return false;
+            if (!TryGetContactSample(out BallSample contact)) return false;
+            if (Mathf.Abs(contact.Velocity.x) > _maxHorizontalSpeedForReception) return false;
+
+            float runTime = Mathf.Abs(contact.Position.x - PlayerPos.x) / RunSpeed;
+            return runTime + Difficulty.DecisionInterval <= contact.Time;
+        }
+
+        private bool IsPerfectReceptionStillValid()
+        {
+            if (_perfectReceptionPressTime >= 0f)
+            {
+                // Bouton pressé : on attend la fin de la fenêtre de réception
+                return Time.time - _perfectReceptionPressTime < _playerController.Blop.PerfectReceptionDuration + 0.1f;
+            }
+
+            return TouchCount == 0 && _playerController.IsGrounded && TryGetContactSample(out _);
+        }
+
+        #endregion
+
+        #region ===== ACTION =====
+
+        private void Act()
+        {
             switch (_currentState)
             {
                 case BotState.Idle:
-                    HandleIdleState();
+                case BotState.Reposition:
+                    ActReposition();
                     break;
-                case BotState.MoveToBall:
-                    HandleMoveToBallState();
+                case BotState.Intercept:
+                    ActIntercept();
                     break;
-                case BotState.WaitingForPerfectReception:
-                    HandleWaitingForPerfectReceptionState();
+                case BotState.PerfectReception:
+                    ActPerfectReception();
                     break;
-                case BotState.AbsorbAndRelease:
-                    HandleAbsorbAndReleaseState();
+                case BotState.Absorb:
+                    ActAbsorb();
                     break;
-                case BotState.ReturnToCenter:
-                    HandleReturnToCenterState();
+                case BotState.Throw:
+                    ActThrow();
                     break;
             }
         }
 
-        private void HandleIdleState()
+        private void MoveTowardX(float targetX, float deadZone = 0.1f)
         {
-            _playerController.GetJoystickReadValue(Vector2.zero);
-            _playerController.GetWestButtonReadValue(0);
-            _playerController.GetSouthButtonReadValue(0);
+            _targetPosition = new Vector2(targetX, _targetPosition.y);
+            float dx = targetX - PlayerPos.x;
 
-            if (_targetBall)
-            {
-                if (_targetBall.position.x >= 0f)
-                {
-                    _currentState = BotState.MoveToBall;
-                }
-                else
-                {
-                    _currentState = BotState.ReturnToCenter;
-                }
-            }
+            // Ralentit à l'approche pour éviter d'osciller autour de la cible
+            float input = Mathf.Abs(dx) <= deadZone ? 0f : Mathf.Clamp(dx / 0.5f, -1f, 1f);
+            if (Mathf.Abs(input) > 0f && Mathf.Abs(input) < 0.2f) input = 0.2f * Mathf.Sign(input);
+
+            _actuator.SetMoveX(input);
         }
 
-        private void HandleMoveToBallState()
+        private void ActReposition()
         {
-            if (!_targetBall)
+            _actuator.SetSouth(false);
+            _actuator.SetWest(false);
+            _targetPosition = new Vector2(HomeX, _arena.GroundY);
+            MoveTowardX(HomeX, 0.2f);
+        }
+
+        private void ActIntercept()
+        {
+            bool hasIntercept = TryFindIntercept(out BallSample target);
+
+            if (!hasIntercept)
             {
-                _currentState = BotState.Idle;
-                return;
+                // Inatteignable en l'air : se placer sous le point de contact, sinon sous la balle
+                if (TryGetContactSample(out BallSample contact)) target = contact;
+                else target = new BallSample { Position = PredictedBallNow(), Time = 0f };
             }
 
-            bool isEngagementOrNoGravity = (_ballRb.gravityScale == 0f || _ballRb.velocity.magnitude < 0.1f);
+            float targetX = ClampToMySide(target.Position.x + _positionErrorX);
+            _targetPosition = new Vector2(targetX, target.Position.y);
+            MoveTowardX(targetX);
 
-            if (isEngagementOrNoGravity)
+            float dx = targetX - PlayerPos.x;
+            float height = target.Position.y - ContactY;
+
+            if (_playerController.IsGrounded)
             {
-                _targetPosition = _targetBall.position;
+                // Dash si la course à pied ne suffit pas
+                bool needsDash = Difficulty.UseDash && Mathf.Abs(dx) > _dashMinDistance
+                                 && Mathf.Abs(dx) / RunSpeed > target.Time;
+                if (needsDash) _actuator.TapWest();
+                else _actuator.SetWest(false);
 
-                float directionX = _targetPosition.x - _playerController.transform.position.x;
-                float heightDifference = _targetBall.position.y - _playerController.transform.position.y;
+                // Saut : déclenché pour arriver à hauteur de balle au bon moment
+                float riseTime = TimeToRise(height);
+                bool canReachHorizontally = Mathf.Abs(dx) <= Mathf.Max(0.35f, RunSpeed * riseTime);
+                bool isJumpTime = target.Time <= riseTime + Difficulty.DecisionInterval * 0.5f;
 
-                float moveInput = Mathf.Abs(directionX) > 0.05f ? Mathf.Sign(directionX) : 0f;
-                _playerController.GetJoystickReadValue(new Vector2(moveInput, 0f));
-
-                if (heightDifference > 0.4f && Mathf.Abs(directionX) < 1.5f)
+                if (height > _minJumpHeight && canReachHorizontally && isJumpTime && !needsDash)
                 {
-                    _playerController.GetSouthButtonReadValue(1);
+                    _actuator.TapSouth();
                 }
                 else
                 {
-                    _playerController.GetSouthButtonReadValue(0);
-                }
-
-                float distance = Vector2.Distance(_playerController.transform.position, _targetBall.position);
-                if (distance <= _reachDistance || Mathf.Abs(directionX) < 0.6f)
-                {
-                    _playerController.GetWestButtonReadValue(1); 
-                    if (distance <= 1.5f)
-                    {
-                        _currentState = BotState.AbsorbAndRelease;
-                    }
+                    _actuator.SetSouth(false);
                 }
                 return;
             }
 
-            bool hasGroundLanding = TryPredictGroundLanding(out Vector2 landingPos, out float timeToLand);
-            bool isHorizontalSpeedSlow = Mathf.Abs(_ballRb.velocity.x) <= _maxHorizontalSpeedForReception;
-            float distToLandingX = Mathf.Abs(landingPos.x - _playerController.transform.position.x);
-            bool hasEnoughTimeToReach = (distToLandingX / 8.0f) <= (timeToLand + 0.15f); // Ajusté à 8.0f vu la vitesse sans inertie
+            // En l'air
+            Vector2 ballNow = PredictedBallNow();
+            Vector2 contactPoint = PlayerPos + Vector2.up * _contactHeight;
 
-            bool canAttemptReception = (_receptionCooldownTimer <= 0f);
-            bool isFirstTouch = (_touchCountComponent == null || _touchCountComponent.CurrentTouchCount == 0);
-
-            if (isFirstTouch && hasGroundLanding && landingPos.x >= 0f && isHorizontalSpeedSlow && hasEnoughTimeToReach && canAttemptReception)
+            if (Vector2.Distance(ballNow, contactPoint) < _absorbRange && TouchCount < MaxTouchCount - 1)
             {
-                // ==========================================
-                // CAS 2 : RÉCEPTION PARFAITE AU SOL (0 touch)
-                // ==========================================
-                _targetPosition = landingPos;
+                _actuator.TapWest();
+                ChangeState(BotState.Absorb);
+                return;
+            }
 
-                float directionX = _targetPosition.x - _playerController.transform.position.x;
-                float moveInput = Mathf.Abs(directionX) > 0.05f ? Mathf.Sign(directionX) : 0f;
-                
-                _playerController.GetJoystickReadValue(new Vector2(moveInput, 0f));
-                _playerController.GetSouthButtonReadValue(0); 
-
-                if (Mathf.Abs(directionX) <= 0.2f)
-                {
-                    _playerController.GetJoystickReadValue(Vector2.zero);
-
-                    if (timeToLand <= ReceptionDuration)
-                    {
-                        _playerController.GetWestButtonReadValue(1);
-                        _currentState = BotState.WaitingForPerfectReception;
-                    }
-                    else
-                    {
-                        _playerController.GetWestButtonReadValue(0);
-                    }
-                }
+            // Double saut si la balle reste au-dessus et que le premier saut s'essouffle
+            bool ballAbove = ballNow.y - contactPoint.y > 0.6f && Mathf.Abs(ballNow.x - PlayerPos.x) < 1f;
+            if (!_usedDoubleJump && ballAbove && _playerRb.velocity.y < 1f)
+            {
+                _usedDoubleJump = true;
+                _actuator.TapSouth();
             }
             else
             {
-                // ==========================================
-                // CAS 3 : INTERCEPTION DYNAMIQUE
-                // ==========================================
-                _targetPosition = CalculateDynamicIntercept();
-
-                float directionX = _targetPosition.x - _playerController.transform.position.x;
-                float heightDifference = _targetBall.position.y - _playerController.transform.position.y;
-
-                float moveInput = Mathf.Abs(directionX) > 0.05f ? Mathf.Sign(directionX) : 0f;
-                _playerController.GetJoystickReadValue(new Vector2(moveInput, 0f));
-
-                bool isAlignedHorizontally = Mathf.Abs(directionX) < 0.4f;
-                bool isBallInAir = heightDifference > 0.6f && heightDifference < 3.0f;
-
-                if (isAlignedHorizontally && isBallInAir)
-                {
-                    _playerController.GetSouthButtonReadValue(1); 
-                }
-                else
-                {
-                    _playerController.GetSouthButtonReadValue(0);
-                }
-
-                float distance = Vector2.Distance(_playerController.transform.position, _targetBall.position);
-                if (distance <= _reachDistance)
-                {
-                    _playerController.GetWestButtonReadValue(1); 
-                    
-                    if (distance <= 1.5f)
-                    {
-                        _currentState = BotState.AbsorbAndRelease;
-                    }
-                }
+                _actuator.SetSouth(false);
             }
         }
 
-        private void HandleWaitingForPerfectReceptionState()
+        private void ActPerfectReception()
         {
-            _playerController.GetJoystickReadValue(Vector2.zero);
-            _playerController.GetSouthButtonReadValue(0);
-            _playerController.GetWestButtonReadValue(1);
+            _actuator.SetSouth(false);
 
-            if (Mathf.Abs(_targetBall.position.x - _playerController.transform.position.x) > 1.2f)
+            if (_perfectReceptionPressTime >= 0f)
             {
-                _receptionCooldownTimer = ReceptionCooldown;
-                _currentState = BotState.MoveToBall;
+                _actuator.SetMove(Vector2.zero);
                 return;
             }
 
-            if (_playerController._hasTheBall || (_targetBall.position.y > _playerController.transform.position.y + 0.6f && _ballRb.velocity.y > 0.5f))
+            if (!TryGetContactSample(out BallSample contact))
             {
-                _playerController.GetWestButtonReadValue(0);
-                _receptionCooldownTimer = ReceptionCooldown;
-                _currentState = BotState.AbsorbAndRelease;
+                ChangeState(BotState.Intercept);
+                return;
+            }
+
+            float targetX = contact.Position.x + _positionErrorX * 0.5f;
+            _targetPosition = new Vector2(targetX, contact.Position.y);
+
+            if (Mathf.Abs(targetX - PlayerPos.x) > _receptionAlignTolerance)
+            {
+                _actuator.SetWest(false);
+                MoveTowardX(targetX, _receptionAlignTolerance);
+                return;
+            }
+
+            // Immobile : le PlayerController n'accepte la réception parfaite que sans mouvement
+            _actuator.SetMove(Vector2.zero);
+
+            float window = _playerController.Blop.PerfectReceptionDuration;
+            if (contact.Time <= window * 0.6f)
+            {
+                _actuator.TapWest();
+                _actuator.SetWest(false);
+                _perfectReceptionPressTime = Time.time;
+                _perfectReceptionCooldown = _playerController.Blop.PerfectReceptionCooldown;
             }
         }
 
-        private void HandleAbsorbAndReleaseState()
+        private void ActAbsorb()
         {
-            Vector2 launchDirection = CalculateRandomizedLaunchDirection();
-            
-            _playerController.GetJoystickReadValue(launchDirection);
-            _playerController.GetWestButtonReadValue(0); 
-
-            _currentState = BotState.Idle;
+            _actuator.SetSouth(false);
+            _actuator.SetWest(true);
+            MoveTowardX(PredictedBallNow().x + _positionErrorX * 0.3f);
         }
 
-        private void HandleReturnToCenterState()
+        private void ActThrow()
         {
-            _playerController.GetWestButtonReadValue(0);
-            _playerController.GetSouthButtonReadValue(0);
+            // Viser puis relâcher dans le même tick : garder la balle au sol est une faute
+            Vector2 direction = ChooseThrowDirection();
+            _actuator.SetMove(direction);
 
-            float directionX = _centerPositionX - _playerController.transform.position.x;
-            
-            if (Mathf.Abs(directionX) <= 0.2f)
-            {
-                _playerController.GetJoystickReadValue(Vector2.zero);
-                _currentState = BotState.Idle;
-            }
-            else
-            {
-                float moveInput = Mathf.Sign(directionX);
-                _playerController.GetJoystickReadValue(new Vector2(moveInput, 0f));
-            }
+            // Le tir part sur le relâchement : s'assurer qu'il y a bien un front descendant
+            if (!_actuator.IsWestPressed) _actuator.SetWest(true);
+            _actuator.SetWest(false);
         }
+
+        /// <summary>
+        /// Simule plusieurs angles de tir et note chacun (utility) :
+        /// la balle doit passer le filet et tomber loin de l'adversaire, idéalement vite.
+        /// </summary>
+        private Vector2 ChooseThrowDirection()
+        {
+            float towardEnemy = -_side;
+            Vector2 fallback = new Vector2(towardEnemy, 1f).normalized;
+
+            if (!_ball || !_ballRb) return fallback;
+
+            Vector2 origin = PlayerPos;
+            float speed = _ball.DrawnImpulse / _ballRb.mass;
+            float gravity = Physics2D.gravity.y * _ballGravityScale;
+            float enemyX = _enemy && _enemy.gameObject.activeInHierarchy
+                ? _enemy.transform.position.x
+                : _arena.NetX - _side * _homeDistanceFromNet;
+            float halfWidth = (_arena.RightWallX - _arena.LeftWallX) * 0.5f;
+            float noiseAmplitude = 1f - Difficulty.AimSkill;
+
+            float bestScore = float.MinValue;
+            float bestAngle = float.NaN;
+
+            for (int i = 0; i < _aimCandidates; i++)
+            {
+                float angle = Mathf.Lerp(_minAimAngle, _maxAimAngle, i / (float)(_aimCandidates - 1));
+                Vector2 direction = AngleToDirection(angle, towardEnemy);
+
+                _aimPredictor.Simulate(origin, direction * speed, gravity, _ballRadius,
+                    _arena, _predictionHorizon, Time.fixedDeltaTime);
+
+                if (!_aimPredictor.HasLanding || _aimPredictor.HitNet) continue;
+                if (IsOnMySide(_aimPredictor.Landing.Position.x)) continue;
+
+                float distanceFromEnemy = Mathf.Abs(_aimPredictor.Landing.Position.x - enemyX) / halfWidth;
+                float speedBonus = 1f / (1f + _aimPredictor.Landing.Time);
+                float score = distanceFromEnemy + 0.3f * speedBonus + Random.value * noiseAmplitude;
+
+                if (score > bestScore)
+                {
+                    bestScore = score;
+                    bestAngle = angle;
+                }
+            }
+
+            if (float.IsNaN(bestAngle)) return fallback;
+
+            float jitter = Random.Range(-1f, 1f) * Difficulty.AimErrorDegrees;
+            return AngleToDirection(bestAngle + jitter, towardEnemy);
+        }
+
+        private static Vector2 AngleToDirection(float angleDegrees, float towardX)
+        {
+            float rad = angleDegrees * Mathf.Deg2Rad;
+            return new Vector2(Mathf.Cos(rad) * towardX, Mathf.Sin(rad));
+        }
+
+        #endregion
+
+        #region ===== GIZMOS =====
+
+        private void OnDrawGizmos()
+        {
+            if (!_playerController) return;
+
+            _predictor.DrawGizmos(Color.yellow);
+
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawWireSphere(_targetPosition, 0.25f);
+            Gizmos.DrawLine(_playerController.transform.position, _targetPosition);
+        }
+
+        #endregion
     }
 }

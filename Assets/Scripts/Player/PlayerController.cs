@@ -14,7 +14,13 @@ namespace Player
         // PROPERTIES
         public PlayerEvents PlayerEvents { get; private set; } =  new ();
         public BlopType BlopType { get; private set; }
-        
+        public Blop Blop => _blop;
+        public Rigidbody2D Rigidbody => _rb2d;
+        public PlayerCountTouchBall CountTouchBall => _playerCountTouchBall;
+        public bool HasTheBall => _hasTheBall;
+        public bool IsGrounded => _isGrounded;
+        public bool IsDashing => _isDashing;
+
         [Header("Blop")]
         [SerializeField] private Blop _blop;
         
@@ -26,7 +32,7 @@ namespace Player
         [SerializeField] private GameObject _laserTrigger;
         
         [Header("States")]
-        [SerializeField] public bool _hasTheBall;
+        [SerializeField] private bool _hasTheBall;
         [SerializeField] private bool _isGrounded;
         [SerializeField] private bool _isWalledLeft;
         [SerializeField] private bool _isWalledRight;

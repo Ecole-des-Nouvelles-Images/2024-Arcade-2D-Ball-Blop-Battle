@@ -44,11 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414c75251cf240fb9e622b2c0fcf14b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tickRate: 0.05
-  _reachDistance: 1.8
-  _predictionTimeMax: 2.5
-  _simulationSteps: 40
-  _playerController: {fileID: 0}
+  _difficulty: {fileID: 11400000, guid: 799d5c867d184d2d8b9519e5fca0e8d2, type: 2}
+  _arena:
+    LeftWallX: -8.45
+    RightWallX: 8.47
+    CeilingY: 3.53
+    GroundY: -4.45
+    NetX: 0
+    NetHalfWidth: 0.15
+    NetTopY: -1
+    Bounciness: 0.8
+  _homeDistanceFromNet: 4.5
+  _contactHeight: 0.9
+  _absorbRange: 1.4
+  _minJumpHeight: 0.25
+  _predictionHorizon: 3
+  _maxHorizontalSpeedForReception: 6.5
+  _receptionAlignTolerance: 0.15
+  _dashMinDistance: 2.5
+  _minAimAngle: -40
+  _maxAimAngle: 75
+  _aimCandidates: 16
   _currentState: 0
-  _targetBall: {fileID: 0}
-  _targetEnemy: {fileID: 0}
+  _playerController: {fileID: 0}
+  _enemy: {fileID: 0}
+  _ball: {fileID: 0}
+  _targetPosition: {x: 0, y: 0}

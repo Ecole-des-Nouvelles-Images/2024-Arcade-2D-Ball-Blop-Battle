@@ -9,6 +9,7 @@ namespace Player
     public class PlayerCountTouchBall : MonoBehaviour
     {
         public int CurrentTouchCount { get; private set; }
+        public int MaxTouchCount => _maxTouchCount;
         
         [Header("Settings")]
         [SerializeField] private int _maxTouchCount = 3;

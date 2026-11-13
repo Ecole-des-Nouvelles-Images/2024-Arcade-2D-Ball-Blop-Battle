@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Bots;
 using Managers;
 using SelectionGameMode;
 using Sounds;
@@ -323,6 +324,9 @@ namespace SelectionPlayer
 
             _playerTwoView.Refresh(_playerTwo, _portraits[_playerTwo.CursorIndex],
                 isControlled: !_playerTwo.IsConfirmed && (_playerTwo.HasDevice || playerOneControlsAi));
+
+            // La difficulté n'a de sens que contre l'IA
+            _matchSettings.SetDifficultyVisible(_playerTwo.IsAi);
         }
 
         #endregion
@@ -363,10 +367,11 @@ namespace SelectionPlayer
             _gameManager.CurrentGameModeData = _gameModes.Find(g => g.GameModeType == gameMode);
         }
 
-        private static PlayerData CreatePlayerData(SelectionSlot slot)
+        private PlayerData CreatePlayerData(SelectionSlot slot)
         {
             int deviceId = slot.IsAi ? PlayerData.NoDevice : slot.Input.Device.deviceId;
-            return new PlayerData(slot.IsAi, slot.PlayerId, deviceId, slot.ConfirmedBlop);
+            BotDifficulty botDifficulty = slot.IsAi ? _gameManager.BotDifficulty : null;
+            return new PlayerData(slot.IsAi, slot.PlayerId, deviceId, slot.ConfirmedBlop, botDifficulty);
         }
 
         #endregion

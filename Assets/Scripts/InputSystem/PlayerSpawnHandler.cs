@@ -64,7 +64,7 @@ namespace InputSystem
                     
                     BotFsm botFsm = goBotFsm.GetComponent<BotFsm>();
 
-                    botFsm.Setup(playerController);
+                    botFsm.Setup(playerController, playerData.BotDifficulty);
                 }
             }
         }

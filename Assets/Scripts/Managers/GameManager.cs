@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Bots;
 using Player.ScriptableObjects;
 using SelectionArena;
 using SelectionGameMode;
@@ -17,7 +18,9 @@ namespace Managers
         public ArenaData CurrentArenaData;
         public int SetDuration;
         public int SetCountToWinAMatch;
-        
+        [Tooltip("Difficulté choisie pour l'IA dans l'écran de sélection (null = celle du prefab BotFSM).")]
+        public BotDifficulty BotDifficulty;
+
         [Header("===== GAME STATES =====")]
         public static bool HasGameLoaded = false;
         public static bool IsGamePaused = false;
@@ -68,13 +71,16 @@ namespace Managers
         public int PlayerId;
         public int DeviceId;
         public Blop Blop;
+        /// <summary>Difficulté de l'IA (null pour un joueur humain).</summary>
+        public BotDifficulty BotDifficulty;
 
-        public PlayerData(bool isAi, int playerId, int deviceId, Blop blop)
+        public PlayerData(bool isAi, int playerId, int deviceId, Blop blop, BotDifficulty botDifficulty = null)
         {
             IsAi = isAi;
             PlayerId = playerId;
             DeviceId = deviceId;
             Blop = blop;
+            BotDifficulty = botDifficulty;
         }
     }
 

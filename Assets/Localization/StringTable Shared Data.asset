@@ -235,6 +235,22 @@ MonoBehaviour:
     m_Key: score
     m_Metadata:
       m_Items: []
+  - m_Id: 72703989089992704
+    m_Key: ai_difficulty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158528
+    m_Key: ai_difficulty_easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158529
+    m_Key: ai_difficulty_medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158530
+    m_Key: ai_difficulty_hard
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -273,6 +273,22 @@ MonoBehaviour:
     m_Localized: Score
     m_Metadata:
       m_Items: []
+  - m_Id: 72703989089992704
+    m_Localized: "Difficult\xE9 de l'IA"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158528
+    m_Localized: Facile
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158529
+    m_Localized: Moyen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 72703989115158530
+    m_Localized: Difficile
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

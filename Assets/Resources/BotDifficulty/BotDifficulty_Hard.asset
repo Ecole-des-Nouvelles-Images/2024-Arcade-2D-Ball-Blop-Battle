@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a4e13b5d2bf66c4f8851efdcc334c7e, type: 3}
+  m_Name: BotDifficulty_Hard
+  m_EditorClassIdentifier: 
+  LocalizedName:
+    m_TableReference:
+      m_TableCollectionName: GUID:d8b305913d4122545b392c5681d56280
+    m_TableEntryReference:
+      m_KeyId: 72703989115158530
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
+  DisplayName: Difficile
+  Order: 2
+  ReactionTime: 0.06
+  DecisionInterval: 0.02
+  PositioningError: 0.08
+  PerfectReceptionChance: 0.95
+  UseDash: 1
+  AimSkill: 0.95
+  AimErrorDegrees: 2
+  references:
+    version: 2
+    RefIds: []

@@ -26,6 +26,10 @@ namespace Balls
 
         public Transform Transform => transform;
         public GameObject GameObject => gameObject;
+        public Rigidbody2D Rigidbody => _rb2d;
+        public Collider2D Collider => _col2D;
+        public bool IsAbsorbed => _isAbsorbed;
+        public float DrawnImpulse => _speedDrawn;
 
         protected virtual void Update()
         {
