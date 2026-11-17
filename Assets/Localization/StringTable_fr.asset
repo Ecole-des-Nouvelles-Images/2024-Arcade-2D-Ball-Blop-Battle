@@ -328,6 +328,10 @@ MonoBehaviour:
     m_Localized: Laboratoire
     m_Metadata:
       m_Items: []
+  - m_Id: 74157906130796544
+    m_Localized: "Entra\xEEnement"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

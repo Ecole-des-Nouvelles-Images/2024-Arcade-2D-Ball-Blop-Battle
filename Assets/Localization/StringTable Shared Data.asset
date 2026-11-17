@@ -287,6 +287,10 @@ MonoBehaviour:
     m_Key: arena_laboratory
     m_Metadata:
       m_Items: []
+  - m_Id: 74157906130796544
+    m_Key: training
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -22,56 +22,56 @@ namespace Bots
 
         [Header("===== PERCEPTION =====")]
         [Tooltip("Retard (s) entre l'état réel de la balle et ce que le bot perçoit.")]
-        [Range(0f, 0.6f)] public float ReactionTime = 0.24f;
+        [Range(0f, 0.6f)] public float ReactionTime = 0.16f;
 
         [Tooltip("Variation aléatoire (s) ajoutée au temps de réaction, retirée à chaque touche de balle.")]
-        [Range(0f, 0.2f)] public float ReactionTimeJitter = 0.06f;
+        [Range(0f, 0.2f)] public float ReactionTimeJitter = 0.04f;
 
         [Tooltip("Intervalle (s) entre deux décisions.")]
-        [Range(0.02f, 0.2f)] public float DecisionInterval = 0.05f;
+        [Range(0.02f, 0.2f)] public float DecisionInterval = 0.04f;
 
         [Tooltip("Erreur max (unités) sur la position visée, retirée à chaque touche de balle.")]
-        [Range(0f, 1.5f)] public float PositioningError = 0.35f;
+        [Range(0f, 1.5f)] public float PositioningError = 0.3f;
 
         [Tooltip("Probabilité d'hésiter quand l'adversaire touche la balle.")]
-        [Range(0f, 1f)] public float HesitationChance = 0.15f;
+        [Range(0f, 1f)] public float HesitationChance = 0.08f;
 
         [Tooltip("Durée max (s) d'une hésitation.")]
-        [Range(0f, 0.5f)] public float HesitationDuration = 0.2f;
+        [Range(0f, 0.5f)] public float HesitationDuration = 0.15f;
 
         [Header("===== DÉCISIONS =====")]
         [Tooltip("Probabilité de tenter une réception parfaite quand elle est possible.")]
-        [Range(0f, 1f)] public float PerfectReceptionChance = 0.5f;
+        [Range(0f, 1f)] public float PerfectReceptionChance = 0.6f;
 
         [Tooltip("Erreur max (s) sur le moment d'appui de la réception parfaite (trop tôt = fenêtre ratée).")]
-        [Range(0f, 0.3f)] public float PerfectReceptionTimingError = 0.08f;
+        [Range(0f, 0.3f)] public float PerfectReceptionTimingError = 0.05f;
 
         [Tooltip("Le bot peut-il dasher pour rattraper une balle lointaine ?")]
         public bool UseDash = true;
 
         [Header("===== ABSORPTION =====")]
         [Tooltip("Probabilité de rater l'absorption (la balle est frappée au lieu d'être absorbée).")]
-        [Range(0f, 1f)] public float AbsorbMissChance = 0.2f;
+        [Range(0f, 1f)] public float AbsorbMissChance = 0.1f;
 
         [Tooltip("Retard max (s) de l'appui sur absorber une fois la balle à portée.")]
-        [Range(0f, 0.3f)] public float AbsorbTimingJitter = 0.1f;
+        [Range(0f, 0.3f)] public float AbsorbTimingJitter = 0.05f;
 
         [Header("===== TIR =====")]
         [Tooltip("Temps min (s) pendant lequel la balle est gardée avant d'être tirée.")]
-        [Range(0f, 1f)] public float ThrowHoldMin = 0.15f;
+        [Range(0f, 1f)] public float ThrowHoldMin = 0.06f;
 
         [Tooltip("Temps max (s) pendant lequel la balle est gardée avant d'être tirée.")]
-        [Range(0f, 1.5f)] public float ThrowHoldMax = 0.35f;
+        [Range(0f, 1.5f)] public float ThrowHoldMax = 0.2f;
 
         [Tooltip("Vitesse (degrés/s) à laquelle le stick tourne vers la direction de tir choisie.")]
-        [Range(90f, 2000f)] public float AimTurnSpeed = 600f;
+        [Range(90f, 2000f)] public float AimTurnSpeed = 1080f;
 
         [Header("===== VISÉE =====")]
         [Tooltip("0 = choisit au hasard parmi les tirs valides, 1 = choisit toujours le meilleur.")]
-        [Range(0f, 1f)] public float AimSkill = 0.6f;
+        [Range(0f, 1f)] public float AimSkill = 0.7f;
 
         [Tooltip("Erreur angulaire max (degrés) appliquée au tir choisi.")]
-        [Range(0f, 25f)] public float AimErrorDegrees = 8f;
+        [Range(0f, 25f)] public float AimErrorDegrees = 6f;
 
         /// <summary>Nom dans la langue courante, ou <see cref="DisplayName"/> à défaut.</summary>
         public string GetDisplayName()

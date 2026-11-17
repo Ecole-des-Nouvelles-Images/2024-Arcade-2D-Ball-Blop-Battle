@@ -12,19 +12,22 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/IBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/IBall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Gameplay/SC_Gameplay_Training.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Gameplay/SC_Gameplay_Training.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SC_MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SC_MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/UIMainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Menu/UIMainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Utils/SceneLoaderManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Examples &amp; Extras/Resources/Fonts &amp; Materials/Electronic Highway Sign SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ScriptableBuildPipeline.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ScriptableBuildPipeline.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,61 +60,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="6.361732901859392E-48" />
-      <entry key="MS500" value="8.996486729959826E-10" />
-      <entry key="S2" value="0.02532301314780018" />
-      <entry key="S5" value="0.8512680743736104" />
-      <entry key="S10" value="2.795552694175894" />
-      <entry key="S30" value="6.793439771122329" />
-      <entry key="S60" value="9.056823940846233" />
-      <entry key="M2" value="10.721715560663663" />
-      <entry key="M5" value="11.996272516460136" />
-      <entry key="M10" value="12.506720930589944" />
-      <entry key="M15" value="13.03112141425535" />
-      <entry key="M30" value="19.397435887171245" />
-      <entry key="H1" value="45.14254608306333" />
-      <entry key="H2" value="103.46988104344204" />
-      <entry key="H4" value="230.9100998871413" />
-      <entry key="D1" value="823.3238720693311" />
-      <entry key="W1" value="1101.8808382679065" />
+      <entry key="MS100" value="3.338761001162647E-93" />
+      <entry key="MS500" value="3.1968117768543973E-19" />
+      <entry key="S2" value="2.3858879921433423E-5" />
+      <entry key="S5" value="0.015595085840046978" />
+      <entry key="S10" value="0.15705085483590317" />
+      <entry key="S30" value="0.8283493847464557" />
+      <entry key="S60" value="1.2814237351844553" />
+      <entry key="M2" value="1.6049708355168637" />
+      <entry key="M5" value="2.6185977835306264" />
+      <entry key="M10" value="6.323126738119253" />
+      <entry key="M15" value="10.153450329670598" />
+      <entry key="M30" value="19.81132445886878" />
+      <entry key="H1" value="41.73723045937576" />
+      <entry key="H2" value="94.88508986760718" />
+      <entry key="H4" value="217.28573449056566" />
+      <entry key="D1" value="824.4029852825994" />
+      <entry key="W1" value="1122.263611757685" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.000000000003385" />
-      <entry key="S5" value="1.0000259225237662" />
-      <entry key="S10" value="1.0054130389165377" />
-      <entry key="S30" value="1.2411885758975834" />
-      <entry key="S60" value="1.6778278870386254" />
-      <entry key="M2" value="2.1569475441751145" />
-      <entry key="M5" value="2.6042574800441622" />
-      <entry key="M10" value="2.8020970671710606" />
-      <entry key="M15" value="3.0445526303507995" />
-      <entry key="M30" value="6.82788015554407" />
-      <entry key="H1" value="24.164900801459304" />
-      <entry key="H2" value="58.828991194725354" />
-      <entry key="H4" value="104.83400555193423" />
-      <entry key="D1" value="204.57612474788172" />
-      <entry key="W1" value="236.8464282839467" />
+      <entry key="MS500" value="1.0000277337072332" />
+      <entry key="S2" value="1.0730763962604444" />
+      <entry key="S5" value="1.398281598799743" />
+      <entry key="S10" value="1.8110699147679585" />
+      <entry key="S30" value="2.4426001241816744" />
+      <entry key="S60" value="2.692843925241865" />
+      <entry key="M2" value="2.8493595981798796" />
+      <entry key="M5" value="3.654708143963529" />
+      <entry key="M10" value="6.029931755068687" />
+      <entry key="M15" value="8.061894737002032" />
+      <entry key="M30" value="12.641529101293049" />
+      <entry key="H1" value="25.17330208276725" />
+      <entry key="H2" value="55.962397049261995" />
+      <entry key="H4" value="103.23928081849945" />
+      <entry key="D1" value="214.56704479206869" />
+      <entry key="W1" value="251.8432975321141" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.8239457614875186E-4" />
-      <entry key="MS500" value="0.19506137092883066" />
-      <entry key="S2" value="0.6897923941380145" />
-      <entry key="S5" value="1.6989414192357664" />
-      <entry key="S10" value="3.7129050647941826" />
-      <entry key="S30" value="7.9480792184832225" />
-      <entry key="S60" value="10.65207468176286" />
-      <entry key="M2" value="12.818362339793893" />
-      <entry key="M5" value="14.569776596877718" />
-      <entry key="M10" value="15.292061111024045" />
-      <entry key="M15" value="16.0637684982694" />
-      <entry key="M30" value="26.214954285808677" />
-      <entry key="H1" value="69.2925969609456" />
-      <entry key="H2" value="162.28198368293127" />
-      <entry key="H4" value="335.72922712756684" />
-      <entry key="D1" value="1027.8947405658016" />
-      <entry key="W1" value="1338.72636534657" />
+      <entry key="MS100" value="3.11588173128416E-5" />
+      <entry key="MS500" value="0.1255281707649165" />
+      <entry key="S2" value="0.6473892666741463" />
+      <entry key="S5" value="1.1681116215511602" />
+      <entry key="S10" value="1.7795381385462332" />
+      <entry key="S30" value="3.142225031265913" />
+      <entry key="S60" value="3.890085782744614" />
+      <entry key="M2" value="4.405394663755609" />
+      <entry key="M5" value="6.249147063392039" />
+      <entry key="M10" value="12.335910761627563" />
+      <entry key="M15" value="18.20079970214768" />
+      <entry key="M30" value="32.44129961501313" />
+      <entry key="H1" value="66.89790523761454" />
+      <entry key="H2" value="150.83273192287976" />
+      <entry key="H4" value="320.5110365169939" />
+      <entry key="D1" value="1038.9646677521364" />
+      <entry key="W1" value="1374.1059748757893" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -150,6 +153,16 @@
   }
 }</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$USER_HOME$/Desktop/BBB\BallBlopBattle.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\h.isambart\Desktop\BBB" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="ENV_FILE_PATHS" value="" />
+      <option name="REDIRECT_INPUT_PATH" value="" />
+      <option name="MIXED_MODE_DEBUG" value="0" />
+      <method v="2" />
+    </configuration>
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Unity.exe" />
       <option name="PROGRAM_PARAMETERS" value="-projectPath C:\Users\PC\LocalRepo\2024-Arcade-2D-Ball-Blop-Battle -debugCodeOptimization" />

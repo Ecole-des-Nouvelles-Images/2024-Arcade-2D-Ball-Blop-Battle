@@ -23,22 +23,22 @@ MonoBehaviour:
     m_LocalVariables: []
   DisplayName: Moyen
   Order: 1
-  ReactionTime: 0.26
-  ReactionTimeJitter: 0.08
-  DecisionInterval: 0.06
-  PositioningError: 0.4
-  HesitationChance: 0.15
-  HesitationDuration: 0.25
-  PerfectReceptionChance: 0.45
-  PerfectReceptionTimingError: 0.09
+  ReactionTime: 0.16
+  ReactionTimeJitter: 0.04
+  DecisionInterval: 0.04
+  PositioningError: 0.3
+  HesitationChance: 0.08
+  HesitationDuration: 0.15
+  PerfectReceptionChance: 0.6
+  PerfectReceptionTimingError: 0.05
   UseDash: 1
-  AbsorbMissChance: 0.22
-  AbsorbTimingJitter: 0.12
-  ThrowHoldMin: 0.18
-  ThrowHoldMax: 0.4
-  AimTurnSpeed: 550
-  AimSkill: 0.6
-  AimErrorDegrees: 9
+  AbsorbMissChance: 0.1
+  AbsorbTimingJitter: 0.05
+  ThrowHoldMin: 0.06
+  ThrowHoldMax: 0.2
+  AimTurnSpeed: 1080
+  AimSkill: 0.7
+  AimErrorDegrees: 6
   references:
     version: 2
     RefIds: []

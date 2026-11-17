@@ -30,6 +30,7 @@ namespace Utils
         private Tween _backgroundFadeTween;
         private Tween _logoMoveTween;
         private Tween _logoRotateTween;
+        private Coroutine _loadRoutine;
 
         private void Start()
         {
@@ -61,13 +62,21 @@ namespace Utils
         /// <p>Charge une scène principale en async, puis lance l'animation</p>
         public void LoadSceneAnimation(string sceneName)
         {
-            StartCoroutine(LoadSceneCoroutine(sceneName));
+            StartLoad(LoadSceneCoroutine(sceneName));
         }
 
         /// <p>Charge une scène principale en async et une deuxième en mode Additive, puis lance l'animation</p>
         public void LoadScenesAdditiveAnimation(string mainSceneName, string additiveSceneName)
         {
-            StartCoroutine(LoadScenesAdditiveCoroutine(mainSceneName, additiveSceneName));
+            StartLoad(LoadScenesAdditiveCoroutine(mainSceneName, additiveSceneName));
+        }
+
+        /// <p>Interrompt un chargement en cours (sinon il réinitialiserait l'animation du nouveau), puis lance le nouveau</p>
+        private void StartLoad(IEnumerator routine)
+        {
+            if (_loadRoutine != null) StopCoroutine(_loadRoutine);
+            ResetState();
+            _loadRoutine = StartCoroutine(routine);
         }
 
         private IEnumerator LoadSceneCoroutine(string sceneName)

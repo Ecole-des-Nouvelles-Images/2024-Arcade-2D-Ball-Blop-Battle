@@ -360,6 +360,10 @@ MonoBehaviour:
     m_Localized: Laboratory
     m_Metadata:
       m_Items: []
+  - m_Id: 74157906130796544
+    m_Localized: Training
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

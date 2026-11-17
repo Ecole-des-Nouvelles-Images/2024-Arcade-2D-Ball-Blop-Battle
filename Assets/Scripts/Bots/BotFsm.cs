@@ -67,6 +67,8 @@ namespace Bots
         private const int HistorySize = 128;
         private const float BallSearchInterval = 0.25f;
         private const float AbsorbTimeout = 0.6f;
+        private const float ThrowAimTolerance = 8f;
+        private const float ThrowMaxAimDelay = 0.25f;
 
         // ===== RÉFÉRENCES =====
         private BotActuator _actuator;
@@ -120,7 +122,7 @@ namespace Bots
         private bool _absorbPressed;
         private float _throwReleaseTime;
         private Vector2 _throwDirection;
-        private Vector2 _aimStick;
+        private float _aimAngle;
         private float _lastAimTime;
 
         private BotDifficulty Difficulty => _difficulty;
@@ -227,11 +229,9 @@ namespace Bots
             if (_decisionTimer > 0f) return;
             _decisionTimer = Difficulty.DecisionInterval;
 
-            if (Time.time < _hesitateUntil && !_playerController.HasTheBall)
-            {
-                _actuator.SetMoveX(0f);
-                return;
-            }
+            // Hésitation : le bot garde ses inputs actuels sans prendre de nouvelle décision
+            // (le figer sur place le rendait beaucoup trop lent à se replacer)
+            if (Time.time < _hesitateUntil && !_playerController.HasTheBall) return;
 
             Perceive();
             Decide();
@@ -495,7 +495,8 @@ namespace Bots
                 float holdMax = Mathf.Max(Difficulty.ThrowHoldMin, Difficulty.ThrowHoldMax);
                 _throwReleaseTime = Time.time + Random.Range(Difficulty.ThrowHoldMin, holdMax);
                 _throwDirection = ChooseThrowDirection();
-                _aimStick = _actuator.Move.sqrMagnitude > 0.01f ? _actuator.Move.normalized : Vector2.up;
+                Vector2 move = _actuator.Move;
+                _aimAngle = move.sqrMagnitude > 0.01f ? Mathf.Atan2(move.y, move.x) * Mathf.Rad2Deg : 90f;
                 _lastAimTime = Time.time;
             }
         }
@@ -715,19 +716,49 @@ namespace Bots
             // Garder le bouton : la balle reste absorbée pendant la visée
             _actuator.SetWest(true);
 
+            // Le blop descend pendant qu'il garde la balle : un tir choisi plus haut peut ne plus passer le filet
+            if (!IsThrowValid(_throwDirection))
+            {
+                _throwDirection = ChooseThrowDirection();
+            }
+
             float dt = Time.time - _lastAimTime;
             _lastAimTime = Time.time;
-            float currentAngle = Mathf.Atan2(_aimStick.y, _aimStick.x) * Mathf.Rad2Deg;
             float targetAngle = Mathf.Atan2(_throwDirection.y, _throwDirection.x) * Mathf.Rad2Deg;
-            float angle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Difficulty.AimTurnSpeed * dt) * Mathf.Deg2Rad;
-            _aimStick = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
-            _actuator.SetMove(_aimStick);
+            _aimAngle = Mathf.MoveTowardsAngle(_aimAngle, targetAngle, Difficulty.AimTurnSpeed * dt);
+            _actuator.SetMove(AngleToDirection(_aimAngle, 1f));
 
-            // Le tir part sur le relâchement ; toucher le sol avec la balle est une faute
-            if (Time.time >= _throwReleaseTime || IsAboutToLand())
+            // Lâcher une fois le temps de garde écoulé ET le stick orienté (avec une marge max),
+            // ou tout de suite si le sol approche : toucher le sol avec la balle est une faute
+            bool isAimed = Mathf.Abs(Mathf.DeltaAngle(_aimAngle, targetAngle)) <= ThrowAimTolerance;
+            bool holdDone = Time.time >= _throwReleaseTime;
+            bool holdOverdue = Time.time >= _throwReleaseTime + ThrowMaxAimDelay;
+
+            if (holdDone && isAimed || holdOverdue || IsAboutToLand())
             {
                 _actuator.SetWest(false);
             }
+        }
+
+        /// <summary>Le tir, lancé depuis la position actuelle, passe-t-il le filet pour tomber chez l'adversaire ?</summary>
+        private bool IsThrowValid(Vector2 direction)
+        {
+            if (!_ball || !_ballRb) return true;
+            return SimulateThrow(PlayerPos, direction.normalized);
+        }
+
+        /// <summary>
+        /// Simule un tir (direction unitaire) dans <see cref="_aimPredictor"/> et indique s'il passe le filet
+        /// pour tomber chez l'adversaire. Le résultat détaillé reste lisible dans <see cref="_aimPredictor"/>.
+        /// </summary>
+        private bool SimulateThrow(Vector2 origin, Vector2 direction)
+        {
+            float speed = _ball.DrawnImpulse / _ballRb.mass;
+            float gravity = Physics2D.gravity.y * _ballGravityScale;
+            _aimPredictor.Simulate(origin, direction * speed, gravity, _ballRadius,
+                _arena, _predictionHorizon, Time.fixedDeltaTime);
+
+            return _aimPredictor.HasLanding && !_aimPredictor.HitNet && !IsOnMySide(_aimPredictor.Landing.Position.x);
         }
 
         /// <summary>Le blop touchera le sol avant la prochaine décision : il faut lâcher la balle maintenant.</summary>
@@ -755,8 +786,6 @@ namespace Bots
             if (!_ball || !_ballRb) return fallback;
 
             Vector2 origin = PlayerPos;
-            float speed = _ball.DrawnImpulse / _ballRb.mass;
-            float gravity = Physics2D.gravity.y * _ballGravityScale;
             float enemyX = _enemy && _enemy.gameObject.activeInHierarchy
                 ? _enemy.transform.position.x
                 : _arena.NetX - _side * _homeDistanceFromNet;
@@ -771,11 +800,7 @@ namespace Bots
                 float angle = Mathf.Lerp(_minAimAngle, _maxAimAngle, i / (float)(_aimCandidates - 1));
                 Vector2 direction = AngleToDirection(angle, towardEnemy);
 
-                _aimPredictor.Simulate(origin, direction * speed, gravity, _ballRadius,
-                    _arena, _predictionHorizon, Time.fixedDeltaTime);
-
-                if (!_aimPredictor.HasLanding || _aimPredictor.HitNet) continue;
-                if (IsOnMySide(_aimPredictor.Landing.Position.x)) continue;
+                if (!SimulateThrow(origin, direction)) continue;
 
                 float distanceFromEnemy = Mathf.Abs(_aimPredictor.Landing.Position.x - enemyX) / halfWidth;
                 float speedBonus = 1f / (1f + _aimPredictor.Landing.Time);
