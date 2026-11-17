@@ -20,7 +20,6 @@ namespace SelectionPlayer
         [SerializeField] private TextMeshProUGUI _specialSpikeDescription;
         [SerializeField] private TextMeshProUGUI _playerTag;
         [SerializeField] private GameObject _readyBadge;
-        [SerializeField] private GameObject _joinPrompt;
 
         [Header("===== CURSOR =====")]
         [SerializeField] private RectTransform _cursor;
@@ -65,7 +64,6 @@ namespace SelectionPlayer
             _cursorLabel.text = playerTag;
 
             _readyBadge.SetActive(slot.IsConfirmed);
-            _joinPrompt.SetActive(!slot.HasDevice);
 
             _cursor.gameObject.SetActive(!slot.IsWaitingForPlayer);
             _cursorCanvasGroup.alpha = isControlled || slot.IsConfirmed ? 1f : _idleCursorAlpha;

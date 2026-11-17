@@ -10,6 +10,8 @@ namespace _Branches.Hugo.OldScripts.UI
         [Header("References")]
         [SerializeField] private GameObject _pausePanel;
 
+        private GameManager _gameManager;
+
         public void Resum()
         {
             EventBus.OnGameResumed?.Invoke();
@@ -22,11 +24,7 @@ namespace _Branches.Hugo.OldScripts.UI
             
             Time.timeScale = 1;
             
-            string activeScene = GetAdditiveSceneName();
-            if (activeScene != null)
-            {
-                SceneLoaderManager.Instance.LoadScenesAdditiveAnimation("SC_Gameplay", activeScene);
-            }
+            SceneLoaderManager.Instance.LoadScenesAdditiveAnimation(_gameManager.CurrentGameModeData.SceneName, _gameManager.CurrentArenaData.ArenaSceneName);
         }
         
         public void BackMenu()
@@ -39,6 +37,11 @@ namespace _Branches.Hugo.OldScripts.UI
         {
             GameManager.Instance.ResetGameState();
             Application.Quit();
+        }
+
+        private void Start()
+        {
+            _gameManager = GameManager.Instance;
         }
 
         #region ===== EVENTS =====

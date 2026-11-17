@@ -32,7 +32,7 @@ namespace SelectionArena
                 var arenaData = _arenas[index];
                 
                 GameObject go = Instantiate(_arenaButtonPrefab, _buttonsContainer);
-                go.GetComponent<ArenaButton>().Setup(arenaData.ArenaName, arenaData.ArenaVisual);
+                go.GetComponent<ArenaButton>().Setup(arenaData.GetArenaName(), arenaData.ArenaVisual);
                 go.GetComponent<Button>().onClick.AddListener(() => SelectArena(arenaData));
 
                 if (index == 0) _uiFirstSelectedButton.SelectFirstButton(go);

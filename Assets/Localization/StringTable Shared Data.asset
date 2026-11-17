@@ -267,6 +267,26 @@ MonoBehaviour:
     m_Key: special_spike_blapyellow
     m_Metadata:
       m_Items: []
+  - m_Id: 74139639798464512
+    m_Key: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74139794341789696
+    m_Key: random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74139940974657536
+    m_Key: ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74142829927366656
+    m_Key: select_player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74144998818742272
+    m_Key: arena_laboratory
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

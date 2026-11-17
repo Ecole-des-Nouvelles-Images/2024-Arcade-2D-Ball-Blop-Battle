@@ -91,19 +91,19 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 8074147405824
-    m_Localized: Blep (Green)
+    m_Localized: Vortex
     m_Metadata:
       m_Items: []
   - m_Id: 8156611616768
-    m_Localized: Blop (Red)
+    m_Localized: Mirage
     m_Metadata:
       m_Items: []
   - m_Id: 8232432050176
-    m_Localized: Blup (Blue)
+    m_Localized: Presto
     m_Metadata:
       m_Items: []
   - m_Id: 8452385546240
-    m_Localized: Blap (Yellow)
+    m_Localized: Volt
     m_Metadata:
       m_Items: []
   - m_Id: 9203493117952
@@ -271,7 +271,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 37530861838336
-    m_Localized: to join
+    m_Localized: join / select
     m_Metadata:
       m_Items: []
   - m_Id: 38758626893824
@@ -338,6 +338,26 @@ MonoBehaviour:
   - m_Id: 74127251607027714
     m_Localized: Shoots a ball so fast it becomes invisible, leaving only an electric
       trail.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74139639798464512
+    m_Localized: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74139794341789696
+    m_Localized: random
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74139940974657536
+    m_Localized: Ready
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74142829927366656
+    m_Localized: Select Player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74144998818742272
+    m_Localized: Laboratory
     m_Metadata:
       m_Items: []
   references:
