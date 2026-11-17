@@ -12,17 +12,19 @@
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/ArenaSelection/Canvas_ArenaSelection.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasFond.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasFond.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasPremierPlan.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasPremierPlan.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_ArenaSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_ArenaSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_PlayerSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_PlayerSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionArena/ArenaSelectionHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/SelectionSlotView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/SelectionSlotView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BallTrail.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/FakeBallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/IBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/IBall.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/MatchBallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/TrainingBallController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SpecialSpikes/PlayerSpecialSpikeRed.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

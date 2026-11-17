@@ -1,21 +1,20 @@
 using Player;
 using Player.ScriptableObjects;
 using UnityEngine;
+using Utils;
 
 namespace Balls
 {
+    /// <summary>
+    /// Colore la traînée de la balle avec la couleur du dernier blop qui l'a touchée.
+    /// S'appuie sur <see cref="EventBus.OnPlayerTouchedBall"/> (levé par le PlayerController à chaque contact)
+    /// plutôt que sur une détection par zone, qui ratait les frappes rapides et les contacts au filet.
+    /// </summary>
     public class BallTrail : MonoBehaviour
     {
-        [Header("Settings")]
-        [SerializeField] private float _detectionRadius = 1.5f;
-        [SerializeField] private LayerMask _playerLayer;
-
         private TrailRenderer _trailRenderer;
         private BlopType? _currentType;
-
-        // On augmente la taille à 8 pour être sûr de capter le joueur 
-        // même s'il y a d'autres colliders (trigger, etc.) autour.
-        private readonly Collider2D[] _results = new Collider2D[8];
+        private PlayerController[] _players;
 
         private readonly Color _colorBlue = new(0.25f, 0.57f, 0.75f);
         private readonly Color _colorYellow = new(1f, 1f, 0f);
@@ -27,24 +26,44 @@ namespace Balls
             _trailRenderer = GetComponent<TrailRenderer>();
         }
 
-        private void FixedUpdate()
+        private void OnEnable()
         {
-            int hitCount = Physics2D.OverlapCircleNonAlloc(transform.position, _detectionRadius, _results, _playerLayer);
+            EventBus.OnPlayerTouchedBall += OnPlayerTouchedBall;
+        }
 
-            for (int i = 0; i < hitCount; i++)
+        private void OnDisable()
+        {
+            EventBus.OnPlayerTouchedBall -= OnPlayerTouchedBall;
+        }
+
+        private void OnPlayerTouchedBall(int playerId)
+        {
+            PlayerController player = FindPlayer(playerId);
+            if (!player) return;
+
+            BlopType newType = player.BlopType;
+            if (_currentType == newType) return;
+
+            _currentType = newType;
+            UpdateTrailColor(newType);
+        }
+
+        private PlayerController FindPlayer(int playerId)
+        {
+            for (int pass = 0; pass < 2; pass++)
             {
-                if (_results[i].TryGetComponent(out PlayerController player))
+                if (_players != null)
                 {
-                    BlopType newType = player.BlopType;
-
-                    if (_currentType != newType)
+                    foreach (PlayerController player in _players)
                     {
-                        UpdateTrailColor(newType);
-                        _currentType = newType;
+                        if (player && player.PlayerId == playerId) return player;
                     }
-                    break; 
                 }
+
+                // Cache absent ou périmé (joueur détruit / respawn) : on relance une recherche une seule fois
+                _players = FindObjectsByType<PlayerController>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             }
+            return null;
         }
 
         private void UpdateTrailColor(BlopType type)
@@ -60,12 +79,6 @@ namespace Balls
 
             _trailRenderer.startColor = targetColor;
             _trailRenderer.endColor = targetColor;
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.cyan;
-            Gizmos.DrawWireSphere(transform.position, _detectionRadius);
         }
     }
 }

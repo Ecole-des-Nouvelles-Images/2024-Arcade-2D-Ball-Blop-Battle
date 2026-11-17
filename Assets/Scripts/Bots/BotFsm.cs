@@ -109,6 +109,20 @@ namespace Bots
         private bool _wasInactive;
         private bool _isMatchOver;
 
+        // ===== IMPERFECTIONS "HUMAINES" (retirées à chaque touche de balle) =====
+        private float _reactionTime;
+        private float _receptionTimingOffset;
+        private bool _absorbMissRoll;
+        private float _hesitateUntil = -1f;
+
+        // ===== ABSORPTION / TIR =====
+        private float _absorbPressTime;
+        private bool _absorbPressed;
+        private float _throwReleaseTime;
+        private Vector2 _throwDirection;
+        private Vector2 _aimStick;
+        private float _lastAimTime;
+
         private BotDifficulty Difficulty => _difficulty;
         private Vector2 PlayerPos => _playerController.transform.position;
         private float RunSpeed => _playerController.Blop.Speed * Time.fixedDeltaTime;
@@ -153,7 +167,18 @@ namespace Bots
             EventBus.OnMatchOver -= OnMatchOver;
         }
 
-        private void OnPlayerTouchedBall(int playerId) => RerollErrors();
+        private void OnPlayerTouchedBall(int playerId)
+        {
+            if (!_difficulty || !_playerController) return;
+
+            RerollErrors();
+
+            // Un humain marque parfois un temps d'arrêt quand l'adversaire renvoie la balle
+            if (playerId != _playerController.PlayerId && Random.value < Difficulty.HesitationChance)
+            {
+                _hesitateUntil = Time.time + Random.Range(0f, Difficulty.HesitationDuration);
+            }
+        }
 
         private void OnMatchOver(int playerId)
         {
@@ -165,6 +190,9 @@ namespace Bots
         {
             _positionErrorX = Random.Range(-1f, 1f) * Difficulty.PositioningError;
             _perfectReceptionRoll = Random.value < Difficulty.PerfectReceptionChance;
+            _reactionTime = Difficulty.ReactionTime + Random.Range(0f, Difficulty.ReactionTimeJitter);
+            _receptionTimingOffset = Random.Range(-1f, 1f) * Difficulty.PerfectReceptionTimingError;
+            _absorbMissRoll = Random.value < Difficulty.AbsorbMissChance;
         }
 
         #endregion
@@ -198,6 +226,12 @@ namespace Bots
             _decisionTimer -= Time.deltaTime;
             if (_decisionTimer > 0f) return;
             _decisionTimer = Difficulty.DecisionInterval;
+
+            if (Time.time < _hesitateUntil && !_playerController.HasTheBall)
+            {
+                _actuator.SetMoveX(0f);
+                return;
+            }
 
             Perceive();
             Decide();
@@ -271,7 +305,7 @@ namespace Bots
         /// <summary>Le bot ne voit la balle qu'avec un retard égal à son temps de réaction.</summary>
         private bool TryGetDelayedSnapshot(out BallSnapshot snapshot)
         {
-            float targetTime = Time.time - Difficulty.ReactionTime;
+            float targetTime = Time.time - _reactionTime;
 
             for (int i = 1; i <= _historyCount; i++)
             {
@@ -453,6 +487,17 @@ namespace Bots
             _currentState = next;
             _stateEnterTime = Time.time;
             _perfectReceptionPressTime = -1f;
+            _absorbPressed = false;
+
+            if (next == BotState.Throw && _actuator != null)
+            {
+                // Un humain garde la balle un instant et oriente son stick progressivement
+                float holdMax = Mathf.Max(Difficulty.ThrowHoldMin, Difficulty.ThrowHoldMax);
+                _throwReleaseTime = Time.time + Random.Range(Difficulty.ThrowHoldMin, holdMax);
+                _throwDirection = ChooseThrowDirection();
+                _aimStick = _actuator.Move.sqrMagnitude > 0.01f ? _actuator.Move.normalized : Vector2.up;
+                _lastAimTime = Time.time;
+            }
         }
 
         private float TimeInState => Time.time - _stateEnterTime;
@@ -579,10 +624,13 @@ namespace Bots
             Vector2 ballNow = PredictedBallNow();
             Vector2 contactPoint = PlayerPos + Vector2.up * _contactHeight;
 
-            if (Vector2.Distance(ballNow, contactPoint) < _absorbRange && TouchCount < MaxTouchCount - 1)
+            // Raté d'absorption tiré au sort : la balle sera simplement frappée
+            if (!_absorbMissRoll && Vector2.Distance(ballNow, contactPoint) < _absorbRange
+                                 && TouchCount < MaxTouchCount - 1)
             {
-                _actuator.TapWest();
                 ChangeState(BotState.Absorb);
+                _absorbPressTime = Time.time + Random.Range(0f, Difficulty.AbsorbTimingJitter);
+                ActAbsorb();
                 return;
             }
 
@@ -628,8 +676,9 @@ namespace Bots
             // Immobile : le PlayerController n'accepte la réception parfaite que sans mouvement
             _actuator.SetMove(Vector2.zero);
 
+            // Décalage aléatoire : trop tôt, la fenêtre expire avant le contact (réception ratée)
             float window = _playerController.Blop.PerfectReceptionDuration;
-            if (contact.Time <= window * 0.6f)
+            if (contact.Time <= window * 0.6f + _receptionTimingOffset)
             {
                 _actuator.TapWest();
                 _actuator.SetWest(false);
@@ -641,19 +690,57 @@ namespace Bots
         private void ActAbsorb()
         {
             _actuator.SetSouth(false);
-            _actuator.SetWest(true);
             MoveTowardX(PredictedBallNow().x + _positionErrorX * 0.3f);
+
+            if (_absorbPressed)
+            {
+                _actuator.SetWest(true);
+            }
+            else if (Time.time >= _absorbPressTime)
+            {
+                // Front montant garanti, même si le bouton était resté appuyé (dash)
+                _actuator.TapWest();
+                _absorbPressed = true;
+            }
+            else
+            {
+                _actuator.SetWest(false);
+            }
         }
 
         private void ActThrow()
         {
-            // Viser puis relâcher dans le même tick : garder la balle au sol est une faute
-            Vector2 direction = ChooseThrowDirection();
-            _actuator.SetMove(direction);
+            _actuator.SetSouth(false);
 
-            // Le tir part sur le relâchement : s'assurer qu'il y a bien un front descendant
-            if (!_actuator.IsWestPressed) _actuator.SetWest(true);
-            _actuator.SetWest(false);
+            // Garder le bouton : la balle reste absorbée pendant la visée
+            _actuator.SetWest(true);
+
+            float dt = Time.time - _lastAimTime;
+            _lastAimTime = Time.time;
+            float currentAngle = Mathf.Atan2(_aimStick.y, _aimStick.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(_throwDirection.y, _throwDirection.x) * Mathf.Rad2Deg;
+            float angle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, Difficulty.AimTurnSpeed * dt) * Mathf.Deg2Rad;
+            _aimStick = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+            _actuator.SetMove(_aimStick);
+
+            // Le tir part sur le relâchement ; toucher le sol avec la balle est une faute
+            if (Time.time >= _throwReleaseTime || IsAboutToLand())
+            {
+                _actuator.SetWest(false);
+            }
+        }
+
+        /// <summary>Le blop touchera le sol avant la prochaine décision : il faut lâcher la balle maintenant.</summary>
+        private bool IsAboutToLand()
+        {
+            float vy = _playerRb.velocity.y;
+            if (vy > 0f) return false;
+
+            float lookAhead = Difficulty.DecisionInterval * 2f + Time.fixedDeltaTime;
+            float fallDistance = -vy * lookAhead + 0.5f * PlayerGravity * lookAhead * lookAhead;
+            float rayLength = _playerController.Blop.RayGroundedLengthHaveTheBall + fallDistance;
+
+            return Physics2D.Raycast(PlayerPos, Vector2.down, rayLength, _playerController.Blop.GroundLayer);
         }
 
         /// <summary>

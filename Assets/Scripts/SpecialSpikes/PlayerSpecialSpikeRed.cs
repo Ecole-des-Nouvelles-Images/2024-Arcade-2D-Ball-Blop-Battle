@@ -72,7 +72,7 @@ namespace SpecialSpikes
             else
             {
                 GameObject go = Instantiate(_fakeBall, transform.position, transform.rotation);
-                go.GetComponent<FakeBallController>().Setup(shootDirection, _speed);
+                go.GetComponent<FakeBallController>().Setup(shootDirection, _speed, _playerController.transform);
                 Debug.Log("Faux ballon tiré.");
             }
             

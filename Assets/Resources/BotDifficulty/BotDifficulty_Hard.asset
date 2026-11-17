@@ -23,13 +23,22 @@ MonoBehaviour:
     m_LocalVariables: []
   DisplayName: Difficile
   Order: 2
-  ReactionTime: 0.06
-  DecisionInterval: 0.02
-  PositioningError: 0.08
-  PerfectReceptionChance: 0.95
+  ReactionTime: 0.18
+  ReactionTimeJitter: 0.05
+  DecisionInterval: 0.04
+  PositioningError: 0.15
+  HesitationChance: 0.05
+  HesitationDuration: 0.15
+  PerfectReceptionChance: 0.8
+  PerfectReceptionTimingError: 0.04
   UseDash: 1
-  AimSkill: 0.95
-  AimErrorDegrees: 2
+  AbsorbMissChance: 0.08
+  AbsorbTimingJitter: 0.06
+  ThrowHoldMin: 0.12
+  ThrowHoldMax: 0.28
+  AimTurnSpeed: 900
+  AimSkill: 0.88
+  AimErrorDegrees: 4
   references:
     version: 2
     RefIds: []

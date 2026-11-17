@@ -12,8 +12,9 @@ namespace Balls
 
         private float _gravityScale;
 
-        private void Start()
+        private void Awake()
         {
+            // Awake (et non Start) : la gravité doit être connue même si un blop touche la balle dès son apparition
             if (_isCommitted)
             {
                 _gravityScale = _rb2d.gravityScale;
@@ -23,28 +24,34 @@ namespace Balls
 
         private void OnCollisionEnter2D(Collision2D other)
         {
+            // Avant le test d'absorption : si le PlayerController a traité le contact en premier et absorbé
+            // la balle, l'engagement doit quand même avoir lieu (sinon balle tirée sans gravité)
+            if (other.gameObject.CompareTag("Player")) Commit();
+
             if (_isAbsorbed) return;
             
-            if (other.gameObject.CompareTag("Player") && _isCommitted)
-            {
-                _isCommitted = false;
-                _rb2d.gravityScale = _gravityScale;
-                
-                EventBus.OnPlayerCommitment?.Invoke();
-            }
+        }
+
+        public override void Absorb(Transform playerTransform)
+        {
+            Commit();
+            base.Absorb(playerTransform);
+        }
+
+        /// <summary>Engagement : la balle flottante prend sa gravité au premier contact d'un blop.</summary>
+        private void Commit()
+        {
+            if (!_isCommitted) return;
+
+            _isCommitted = false;
+            _rb2d.gravityScale = _gravityScale;
+
+            EventBus.OnPlayerCommitment?.Invoke();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (_isAbsorbed) return;
-            
-            if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Selling"))
-            {
-                Vector2 direction = _rb2d.velocity;
-                Vector2 newDirection = direction;
-                newDirection.x = -_rb2d.velocity.x;
-                _rb2d.velocity = newDirection;
-            }
             
             if (other.gameObject.CompareTag("PlayerOneSide"))
             {
@@ -59,14 +66,6 @@ namespace Balls
                 {
                     MatchManager.Instance.BallSide = 2;
                 }
-            }
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (other.gameObject.CompareTag("Player"))
-            {
-                _col2D.isTrigger = false;
             }
         }
 

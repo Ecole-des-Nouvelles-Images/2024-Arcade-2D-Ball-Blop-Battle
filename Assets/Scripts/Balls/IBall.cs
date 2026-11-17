@@ -12,5 +12,6 @@ namespace Balls
         void Absorb(Transform playerTransform);
         void Drawn(Vector2 direction);
         void DrawnSpecialSpike(Vector2 direction, float speed);
+        void Release();
     }
 }
