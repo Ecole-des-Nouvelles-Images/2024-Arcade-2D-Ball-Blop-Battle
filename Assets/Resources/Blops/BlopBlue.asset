@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BlopBlue
   m_EditorClassIdentifier: 
   BlopType: 0
-  PlayerName: Blue
+  PlayerName: Presto
   Sprite: {fileID: 21300000, guid: 8af49cbc149bc4946b6ae8353dd7dae5, type: 3}
   PlayerAnimatorController: {fileID: 9100000, guid: b08a02d06567cfe43a45f8112b7c72e8, type: 2}
   Speed: 350
@@ -41,6 +41,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 192
   SpeedSpecialSpike: 3
+  LocalizedSpecialSpikeDescription:
+    m_TableReference:
+      m_TableCollectionName: GUID:d8b305913d4122545b392c5681d56280
+    m_TableEntryReference:
+      m_KeyId: 74127251607027713
+      m_Key: 
+    m_FallbackState: 0
+    m_WaitForCompletion: 0
+    m_LocalVariables: []
   SpecialSpikeDescription: "Tire un ballon qui r\xE9tr\xE9cit et devient plus dur
     a r\xE9ceptionner."
   PlayerSpecialSpike: {fileID: 0}
@@ -55,3 +64,6 @@ MonoBehaviour:
   PSLanding: {fileID: 1122944454073200289, guid: 2b0b3b52764ace448b3dbc2fec569378, type: 3}
   PSActiveSpecialSpike: {fileID: 5677235554576504653, guid: 8d29b86dbab93444aadbe3a73b6b2cf3, type: 3}
   PSShootSpecialSpike: {fileID: 5230853136912673148, guid: cc47e78894f1b3f4b91203c3878104f2, type: 3}
+  references:
+    version: 2
+    RefIds: []

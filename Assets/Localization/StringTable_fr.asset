@@ -289,6 +289,25 @@ MonoBehaviour:
     m_Localized: Difficile
     m_Metadata:
       m_Items: []
+  - m_Id: 74127251565084672
+    m_Localized: "Tire le ballon et peut ensuite modifier sa trajectoire pour le
+      faire s'\xE9craser au sol."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027712
+    m_Localized: "Tire trois ballons les uns apr\xE8s les autres mais seulement un
+      seul est le vrai."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027713
+    m_Localized: "Tire un ballon qui r\xE9tr\xE9cit et devient plus dur \xE0 r\xE9ceptionner."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027714
+    m_Localized: "Tire un ballon si rapide qu'il devient invisible et laisse seulement
+      une tra\xEEn\xE9e \xE9lectrique."
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

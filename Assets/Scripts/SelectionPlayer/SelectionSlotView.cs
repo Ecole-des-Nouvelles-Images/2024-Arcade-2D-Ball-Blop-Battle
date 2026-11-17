@@ -2,6 +2,8 @@ using DG.Tweening;
 using Player.ScriptableObjects;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 
 namespace SelectionPlayer
@@ -32,6 +34,22 @@ namespace SelectionPlayer
         [SerializeField, Range(0f, 1f)] private float _waitingPreviewAlpha = 0.25f;
 
         private RectTransform _cursorTarget;
+        private Blop _displayedBlop;
+
+        private void OnEnable()
+        {
+            LocalizationSettings.SelectedLocaleChanged += OnLocaleChanged;
+        }
+
+        private void OnDisable()
+        {
+            LocalizationSettings.SelectedLocaleChanged -= OnLocaleChanged;
+        }
+
+        private void OnLocaleChanged(Locale locale)
+        {
+            if (_displayedBlop) _specialSpikeDescription.text = _displayedBlop.GetSpecialSpikeDescription();
+        }
 
         public void Refresh(SelectionSlot slot, BlopPortrait hoveredPortrait, bool isControlled)
         {
@@ -40,8 +58,9 @@ namespace SelectionPlayer
 
             _preview.sprite = blop.Sprite;
             _preview.color = new Color(1f, 1f, 1f, slot.IsWaitingForPlayer ? _waitingPreviewAlpha : 1f);
+            _displayedBlop = blop;
             _blopName.text = blop.PlayerName;
-            _specialSpikeDescription.text = blop.SpecialSpikeDescription;
+            _specialSpikeDescription.text = blop.GetSpecialSpikeDescription();
             _playerTag.text = playerTag;
             _cursorLabel.text = playerTag;
 

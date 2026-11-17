@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Localization;
 
 namespace Player.ScriptableObjects
 {
@@ -44,6 +45,9 @@ namespace Player.ScriptableObjects
         
         [Header("Special Spike")]
         public float SpeedSpecialSpike;
+        [Tooltip("Description localisée affichée dans l'écran de sélection.")]
+        public LocalizedString LocalizedSpecialSpikeDescription;
+        [Tooltip("Description de secours si LocalizedSpecialSpikeDescription n'est pas renseignée.")]
         public string SpecialSpikeDescription;
         public GameObject PlayerSpecialSpike;
         public GameObject BallSpecialSpike;
@@ -60,6 +64,14 @@ namespace Player.ScriptableObjects
         public GameObject PSActiveSpecialSpike;
         public GameObject PSShootSpecialSpike;
 
+
+        /// <summary>Description du coup spécial dans la langue courante, ou <see cref="SpecialSpikeDescription"/> à défaut.</summary>
+        public string GetSpecialSpikeDescription()
+        {
+            return LocalizedSpecialSpikeDescription != null && !LocalizedSpecialSpikeDescription.IsEmpty
+                ? LocalizedSpecialSpikeDescription.GetLocalizedString()
+                : SpecialSpikeDescription;
+        }
 
         public abstract void SpecialSpike(GameObject player, GameObject ball, Vector2 direction);
     }

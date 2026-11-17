@@ -251,6 +251,22 @@ MonoBehaviour:
     m_Key: ai_difficulty_hard
     m_Metadata:
       m_Items: []
+  - m_Id: 74127251565084672
+    m_Key: special_spike_blepgreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027712
+    m_Key: special_spike_blopred
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027713
+    m_Key: special_spike_blupblue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027714
+    m_Key: special_spike_blapyellow
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

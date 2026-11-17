@@ -322,6 +322,24 @@ MonoBehaviour:
     m_Localized: Hard
     m_Metadata:
       m_Items: []
+  - m_Id: 74127251565084672
+    m_Localized: Shoots the ball, then can change its trajectory to smash it into
+      the ground.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027712
+    m_Localized: Shoots three balls one after another, but only one of them is real.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027713
+    m_Localized: Shoots a ball that shrinks and becomes harder to receive.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 74127251607027714
+    m_Localized: Shoots a ball so fast it becomes invisible, leaving only an electric
+      trail.
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
