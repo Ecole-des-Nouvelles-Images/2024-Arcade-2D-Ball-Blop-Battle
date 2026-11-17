@@ -972,8 +972,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7443008832459126061}
   - {fileID: 8785607161335789337}
+  - {fileID: 7443008832459126061}
   - {fileID: 5797758308721588207}
   - {fileID: 2819187153636571300}
   m_Father: {fileID: 0}
@@ -2607,7 +2607,7 @@ MonoBehaviour:
   _editIndicator: {fileID: 2703331486484004467}
   _min: 10
   _max: 120
-  _step: 10
+  _step: 5
   _wrap: 0
   _normalColor: {r: 0.48235294, g: 0.68235296, b: 0.16078432, a: 1}
   _hoveredColor: {r: 0.604, g: 0.875, b: 0.18, a: 1}
