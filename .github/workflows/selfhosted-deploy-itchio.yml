@@ -2,11 +2,11 @@
 name: Self-Hosted - Deploy to itch.io
 
 on:
-  workflow_run:
-    workflows:
-      - "Self-Hosted - Unity Build"
-    types:
-      - completed
+  # workflow_run:
+  #   workflows:
+  #     - "Self-Hosted - Unity Build"
+  #   types:
+  #     - completed
       
   workflow_dispatch:
     inputs:
