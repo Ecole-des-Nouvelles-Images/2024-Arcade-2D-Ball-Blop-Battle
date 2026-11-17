@@ -11,37 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38ee909d-4418-40ef-982a-3d69486293f9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Easy.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Hard.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/BotDifficulty/BotDifficulty_Medium.asset.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/ArenaBounds.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/ArenaBounds.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BallPredictor.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BallPredictor.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotActuator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotActuator.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotDifficulty.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.2024-Arcade-2D-Ball-Blop-Battle/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable Shared Data.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_en.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Localization/StringTable_fr.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/BotFSM.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/BotFSM.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasFond.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasFond.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasPremierPlan.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/BlopSelection/CanvasPremierPlan.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_PlayerSelection.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Selections/SC_PlayerSelection.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Balls/BaseBallController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bots/BotFsm.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/InputSystem/PlayerSpawnHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InputSystem/PlayerSpawnHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Managers/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCountTouchBall.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerCountTouchBall.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/MatchSettingsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/MatchSettingsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/PlayerSelectionHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SelectionPlayer/PlayerSelectionHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/MainMenu/PanelTutoriel.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Absorber_Lancer.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Absorber_Lancer.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Bleu.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Bleu.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Jaune.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Jaune.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Rouge.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Rouge.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Vert.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/CS_Vert.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Dash.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Dash.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/ReceptionParfaite.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/ReceptionParfaite.renderTexture" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Touches_CS.renderTexture" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Branches/Calvin/Vidéos Tuto/Touches_CS.renderTexture" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,27 +125,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "cidr.known.project.marker": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "claude__code",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeLensConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;claude__code&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeLensConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Unity.exe" />
